@@ -1,0 +1,63 @@
+---
+const slides = [
+  {
+    image: "/images/main/1.jpg",
+    eyebrow: "OEM & Private Label",
+    title: "Private Label & OEM Noodle Manufacturer in China",
+    text: "Custom noodles, packaging, and export-ready production for global food brands, importers, and distributors."
+  },
+  {
+    image: "/images/main/2.jpg",
+    eyebrow: "Export-Ready Production",
+    title: "Reliable Noodle Manufacturing for Overseas Markets",
+    text: "Support for product customization, private label packaging, stable supply, and international quality requirements."
+  },
+  {
+    image: "/images/main/3.jpg",
+    eyebrow: "Custom Packaging",
+    title: "From Recipe Development to Retail-Ready Packaging",
+    text: "Flexible OEM solutions for instant noodles, dry noodles, ramen, and foodservice noodle products."
+  },
+  {
+    image: "/images/main/4.jpg",
+    eyebrow: "Quality & Supply",
+    title: "Built for Brands, Importers, and Foodservice Buyers",
+    text: "A practical manufacturing partner for long-term noodle supply and overseas business growth."
+  }
+];
+---
+
+<section class="hero-slider" data-hero-slider>
+  <div class="hero-track" data-hero-track>
+    {slides.map((slide, index) => (
+      <article class="hero-slide" aria-hidden={index === 0 ? "false" : "true"}>
+        <img src={slide.image} alt={slide.title} />
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p>{slide.eyebrow}</p>
+          <h1>{slide.title}</h1>
+          <span>{slide.text}</span>
+          <div class="hero-actions">
+            <a href="/contact/" class="btn-primary">Request a Quote</a>
+            <a href="/products/" class="btn-secondary">View Products</a>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <div class="hero-controls" aria-label="Hero slider controls">
+    <button type="button" data-slide-prev aria-label="Previous slide">‹</button>
+    <div class="hero-dots">
+      {slides.map((_, index) => (
+        <button
+          type="button"
+          class={index === 0 ? "active" : ""}
+          data-slide-to={index}
+          aria-label={`Go to slide ${index + 1}`}
+        ></button>
+      ))}
+    </div>
+    <button type="button" data-slide-next aria-label="Next slide">›</button>
+  </div>
+</section>
