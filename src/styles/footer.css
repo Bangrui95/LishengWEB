@@ -1,0 +1,230 @@
+/* Contact CTA */
+.contact-cta {
+  padding: 92px 24px 86px;
+  background: var(--brand-green-light);
+}
+
+.contact-cta-inner {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-cta-inner p {
+  margin: 0 0 16px;
+  color: var(--brand-green-dark);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.contact-cta-inner h2 {
+  margin: 0;
+  color: #111914;
+  font-size: clamp(32px, 3.3vw, 48px);
+  line-height: 1.22;
+  font-weight: 800;
+}
+
+.contact-cta-inner h2 span {
+  color: #0b2317;
+  background: #8fe08a;
+  box-shadow: 0 0 0 4px #8fe08a;
+}
+
+.contact-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  margin-top: 34px;
+  padding: 0 24px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--brand-green);
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 800;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.contact-cta-button:hover {
+  background: var(--brand-green-dark);
+  transform: translateY(-2px);
+}
+
+.contact-cta-button svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Footer */
+.site-footer {
+  color: #fff;
+  background: var(--brand-green);
+}
+
+.footer-inner {
+  width: min(var(--page-max), calc(100% - var(--page-gutter)));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.55fr);
+  gap: 72px;
+  padding: 76px 0 58px;
+}
+
+.footer-brand img {
+  width: min(260px, 100%);
+  max-height: 58px;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+}
+
+.footer-brand p {
+  max-width: 420px;
+  margin: 26px 0 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.footer-quote {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin-top: 30px;
+  padding: 0 20px;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 38px;
+}
+
+.footer-links div {
+  min-width: 0;
+}
+
+.footer-links h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 21px;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+.footer-links h2::after {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 4px;
+  margin: 18px 0 18px;
+  background: #fff;
+}
+
+.footer-links a {
+  display: block;
+  color: rgba(255, 255, 255, 0.86);
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 1.42;
+}
+
+.footer-links a + a {
+  margin-top: 11px;
+}
+
+.footer-links a:hover,
+.footer-bottom a:hover {
+  color: #8fe08a;
+}
+
+.footer-bottom {
+  width: min(var(--page-max), calc(100% - var(--page-gutter)));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 0 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 15px;
+}
+
+.footer-bottom div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+
+.footer-bottom a {
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/* Footer responsive */
+@media (max-width: 900px) {
+  .contact-cta {
+    padding: 66px 18px 62px;
+  }
+
+  .contact-cta-inner h2 {
+    font-size: 32px;
+  }
+
+  .contact-cta-button {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .footer-inner {
+    width: min(100% - 32px, 620px);
+    grid-template-columns: 1fr;
+    gap: 46px;
+    padding: 58px 0 42px;
+  }
+
+  .footer-links {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 34px 24px;
+  }
+
+  .footer-bottom {
+    width: min(100% - 32px, 620px);
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 24px 0 30px;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer-links {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-cta-inner h2 {
+    font-size: 28px;
+  }
+}
