@@ -1,23 +1,27 @@
 ---
 import "../styles/footer.css";
+
+const { showCta = true } = Astro.props;
 ---
 
-<section class="contact-cta" aria-labelledby="contact-cta-title">
-  <div class="contact-cta-inner">
-    <p>Ready for OEM noodle production?</p>
-    <h2 id="contact-cta-title">
-      Let’s build your <span>private label noodle program</span> together and
-      move your supply chain forward.
-    </h2>
-    <a class="contact-cta-button" href="/contact/" aria-label="Contact Lisheng today">
-      <svg aria-hidden="true" viewBox="0 0 24 24">
-        <path d="M21 3 10.8 13.2" />
-        <path d="m21 3-6.5 18-3.7-7.8L3 9.5 21 3Z" />
-      </svg>
-      Contact us today
-    </a>
-  </div>
-</section>
+{showCta && (
+  <section class="contact-cta" aria-labelledby="contact-cta-title">
+    <div class="contact-cta-inner">
+      <p>Ready for OEM noodle production?</p>
+      <h2 id="contact-cta-title">
+        Let’s build your <span>private label noodle program</span> together and
+        move your supply chain forward.
+      </h2>
+      <a class="contact-cta-button" href="/contact/" aria-label="Contact Lisheng today">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M21 3 10.8 13.2" />
+          <path d="m21 3-6.5 18-3.7-7.8L3 9.5 21 3Z" />
+        </svg>
+        Contact us today
+      </a>
+    </div>
+  </section>
+)}
 
 <footer class="site-footer">
   <div class="footer-inner">

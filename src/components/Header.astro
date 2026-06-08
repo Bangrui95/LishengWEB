@@ -1,5 +1,21 @@
 ---
 import "../styles/header.css";
+
+const currentPath = Astro.url.pathname;
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/oem-private-label-noodles/", label: "OEM Services" },
+  { href: "/products/", label: "Products" },
+  { href: "/manufacturing/", label: "Manufacturing" },
+  { href: "/quality-certifications/", label: "Quality" },
+  { href: "/solutions/", label: "Solutions" },
+  { href: "/contact/", label: "Contact" }
+];
+
+const isActive = (href) => {
+  if (href === "/") return currentPath === "/";
+  return currentPath.startsWith(href);
+};
 ---
 
 <header class="site-header" data-header>
@@ -14,13 +30,11 @@ import "../styles/header.css";
   </button>
 
   <nav class="site-nav" data-site-nav>
-    <a href="/" class="active">Home</a>
-    <a href="/oem-private-label-noodles/">OEM Services</a>
-    <a href="/products/">Products</a>
-    <a href="/manufacturing/">Manufacturing</a>
-    <a href="/quality-certifications/">Quality</a>
-    <a href="/solutions/">Solutions</a>
-    <a href="/contact/">Contact</a>
+    {navItems.map((item) => (
+      <a href={item.href} class={isActive(item.href) ? "active" : ""}>
+        {item.label}
+      </a>
+    ))}
   </nav>
 
   <a class="quote-link" href="/contact/">Request a Quote</a>

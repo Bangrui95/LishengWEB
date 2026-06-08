@@ -13,13 +13,13 @@
   padding: 0 6vw;
   color: #fff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(20, 31, 27, 0.18);
+  background: var(--header-bg, rgba(20, 31, 27, 0.18));
   transition: background 0.25s ease, height 0.25s ease;
 }
 
 .site-header.is-scrolled {
   height: 76px;
-  background: rgba(20, 31, 27, 0.92);
+  background: var(--header-bg-scrolled, rgba(20, 31, 27, 0.92));
 }
 
 .site-logo img {
@@ -45,7 +45,7 @@
 
 .site-nav a.active,
 .site-nav a:hover {
-  color: #7bcf78;
+  color: var(--header-accent, #7bcf78);
 }
 
 .quote-link {
@@ -98,7 +98,7 @@
     display: grid;
     gap: 0;
     padding: 18px 22px 26px;
-    background: rgba(20, 31, 27, 0.96);
+    background: var(--header-menu-bg, rgba(20, 31, 27, 0.96));
   }
 
   .site-nav.is-open a {

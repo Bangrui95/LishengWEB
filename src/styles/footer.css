@@ -1,7 +1,7 @@
 /* Contact CTA */
 .contact-cta {
   padding: 92px 24px 86px;
-  background: var(--brand-green-light);
+  background: #f7f0e6;
 }
 
 .contact-cta-inner {
@@ -12,7 +12,7 @@
 
 .contact-cta-inner p {
   margin: 0 0 16px;
-  color: var(--brand-green-dark);
+  color: #b56c10;
   font-size: 15px;
   font-weight: 800;
   letter-spacing: 0;
@@ -28,9 +28,9 @@
 }
 
 .contact-cta-inner h2 span {
-  color: #0b2317;
-  background: #8fe08a;
-  box-shadow: 0 0 0 4px #8fe08a;
+  color: #fff;
+  background: var(--accent-red);
+  box-shadow: 0 0 0 4px var(--accent-red);
 }
 
 .contact-cta-button {
@@ -43,7 +43,7 @@
   padding: 0 24px;
   border-radius: 999px;
   color: #fff;
-  background: var(--brand-green);
+  background: var(--accent-red);
   text-decoration: none;
   font-size: 17px;
   font-weight: 800;
@@ -51,7 +51,7 @@
 }
 
 .contact-cta-button:hover {
-  background: var(--brand-green-dark);
+  background: #b9141a;
   transform: translateY(-2px);
 }
 
@@ -68,7 +68,7 @@
 /* Footer */
 .site-footer {
   color: #fff;
-  background: var(--brand-green);
+  background: #2f2b25;
 }
 
 .footer-inner {
@@ -103,9 +103,10 @@
   min-height: 48px;
   margin-top: 30px;
   padding: 0 20px;
-  border: 1px solid rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(227, 154, 36, 0.8);
   border-radius: 4px;
   color: #fff;
+  background: rgba(215, 25, 32, 0.85);
   text-decoration: none;
   font-size: 15px;
   font-weight: 800;
@@ -135,7 +136,7 @@
   width: 54px;
   height: 4px;
   margin: 18px 0 18px;
-  background: #fff;
+  background: var(--accent-gold);
 }
 
 .footer-links a {
@@ -152,7 +153,7 @@
 
 .footer-links a:hover,
 .footer-bottom a:hover {
-  color: #8fe08a;
+  color: var(--accent-gold);
 }
 
 .footer-bottom {

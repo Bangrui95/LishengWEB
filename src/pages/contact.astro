@@ -1,0 +1,243 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import "../styles/global.css";
+import "../styles/contact.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Request a Quote | Lisheng OEM Noodle Manufacturer</title>
+    <meta
+      name="description"
+      content="Contact Lisheng for OEM noodle manufacturing, private label production, custom packaging, samples, and export-ready supply support."
+    />
+  </head>
+  <body class="quote-page">
+    <Header />
+
+    <main>
+      <section class="quote-hero" aria-labelledby="quote-hero-title">
+        <img src="/images/main/4.jpg" alt="Private label noodle packaging and OEM product display" />
+        <div class="quote-hero-overlay"></div>
+        <div class="quote-hero-inner">
+          <p class="quote-kicker">Request a Quote</p>
+          <h1 id="quote-hero-title">
+            Start your <span>OEM noodle project</span> with Lisheng.
+          </h1>
+          <p class="quote-hero-copy">
+            Tell us about your market, product idea, packaging direction, and
+            target order plan. Our team will help turn your requirements into a
+            practical manufacturing proposal.
+          </p>
+          <div class="quote-hero-actions">
+            <a href="#quote-form" class="quote-primary">Send an Inquiry</a>
+            <a href="#quote-process" class="quote-secondary">View Process</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote-paths" aria-labelledby="quote-paths-title">
+        <div class="quote-section-heading">
+          <p>How we can help</p>
+          <h2 id="quote-paths-title">Choose the support you need.</h2>
+        </div>
+
+        <div class="quote-path-grid">
+          <article class="quote-path-card">
+            <span>01</span>
+            <h3>Private Label Noodles</h3>
+            <p>
+              Develop retail-ready instant noodles, dry noodles, ramen-style
+              products, or regional formulas under your own brand.
+            </p>
+          </article>
+
+          <article class="quote-path-card">
+            <span>02</span>
+            <h3>Packaging & Specification</h3>
+            <p>
+              Share your pack format, target price, market language, and shelf
+              needs so we can align packaging with production.
+            </p>
+          </article>
+
+          <article class="quote-path-card">
+            <span>03</span>
+            <h3>Samples & Export Supply</h3>
+            <p>
+              Request samples, ingredient direction, export documents, and a
+              supply plan for importers or foodservice distributors.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="quote-form-section" aria-labelledby="quote-form-title">
+        <div class="quote-form-intro">
+          <p>Inquiry Form</p>
+          <h2 id="quote-form-title">Tell us about your noodle project.</h2>
+          <span>
+            Fields marked with * help us prepare a clearer proposal. This form
+            is ready for design and structure now; form delivery can be wired to
+            email or CRM later.
+          </span>
+        </div>
+
+        <div class="quote-form-layout">
+          <form id="quote-form" class="quote-form" action="#" method="post">
+            <div class="form-grid">
+              <label>
+                First name*
+                <input type="text" name="first-name" autocomplete="given-name" required />
+              </label>
+
+              <label>
+                Last name*
+                <input type="text" name="last-name" autocomplete="family-name" required />
+              </label>
+
+              <label>
+                Business email*
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+
+              <label>
+                Phone / WhatsApp
+                <input type="tel" name="phone" autocomplete="tel" />
+              </label>
+
+              <label>
+                Company*
+                <input type="text" name="company" autocomplete="organization" required />
+              </label>
+
+              <label>
+                Country / Market*
+                <input type="text" name="country" autocomplete="country-name" required />
+              </label>
+
+              <label>
+                Product category*
+                <select name="product-category" required>
+                  <option value="">Select a product category</option>
+                  <option>Instant noodles</option>
+                  <option>Dry noodles</option>
+                  <option>Ramen noodles</option>
+                  <option>Foodservice bulk noodles</option>
+                  <option>Custom OEM product</option>
+                </select>
+              </label>
+
+              <label>
+                Estimated order volume
+                <select name="order-volume">
+                  <option value="">Select estimated volume</option>
+                  <option>Trial order / sampling stage</option>
+                  <option>One container</option>
+                  <option>Monthly container supply</option>
+                  <option>Distributor program</option>
+                  <option>Not sure yet</option>
+                </select>
+              </label>
+
+              <label class="form-wide">
+                Packaging needs
+                <input
+                  type="text"
+                  name="packaging"
+                  placeholder="Cup, bowl, pillow pack, family pack, foodservice carton..."
+                />
+              </label>
+
+              <label class="form-wide">
+                Your message*
+                <textarea
+                  name="message"
+                  required
+                  placeholder="Tell us about your target market, flavor direction, packaging idea, certifications, and timeline."
+                ></textarea>
+              </label>
+            </div>
+
+            <label class="quote-check">
+              <input type="checkbox" name="updates" />
+              <span>I would like to receive product and OEM manufacturing updates.</span>
+            </label>
+
+            <div class="quote-form-footer">
+              <button type="submit">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M21 3 10.8 13.2" />
+                  <path d="m21 3-6.5 18-3.7-7.8L3 9.5 21 3Z" />
+                </svg>
+                Submit Inquiry
+              </button>
+              <p>
+                By submitting this form, you agree that Lisheng may contact you
+                about your inquiry. Fields with * are mandatory.
+              </p>
+            </div>
+          </form>
+
+          <aside class="quote-side-panel" aria-label="Inquiry support details">
+            <h2>What happens next?</h2>
+            <ul>
+              <li>
+                <span>1</span>
+                <p>We review your product type, market, packaging, and target volume.</p>
+              </li>
+              <li>
+                <span>2</span>
+                <p>Our team confirms feasibility, sample direction, and key specifications.</p>
+              </li>
+              <li>
+                <span>3</span>
+                <p>You receive a practical quotation path for OEM production.</p>
+              </li>
+            </ul>
+            <div class="quote-side-card">
+              <p>For clear quotation, prepare:</p>
+              <strong>Product type, pack size, market, quantity, and certification needs.</strong>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="quote-process" class="quote-process" aria-labelledby="quote-process-title">
+        <div class="quote-section-heading">
+          <p>From inquiry to production</p>
+          <h2 id="quote-process-title">A straightforward OEM workflow.</h2>
+        </div>
+
+        <ol class="quote-process-list">
+          <li>
+            <span>01</span>
+            <h3>Share Requirements</h3>
+            <p>Send your product direction, target market, packaging idea, and timeline.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h3>Confirm Samples</h3>
+            <p>We align formula, texture, flavor, packaging, and specification details.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h3>Receive Quote</h3>
+            <p>Get a proposal based on product scope, MOQ, packaging, and export needs.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h3>Plan Production</h3>
+            <p>Move into artwork, production schedule, quality checks, and shipment planning.</p>
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <Footer showCta={false} />
+    <script src="/scripts/site.js" defer></script>
+  </body>
+</html>
