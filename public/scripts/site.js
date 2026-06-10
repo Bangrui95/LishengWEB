@@ -22,6 +22,7 @@ const next = document.querySelector("[data-slide-next]");
 
 let currentSlide = 0;
 let timer;
+const heroAutoPlayEnabled = false;
 
 const goToSlide = (index) => {
   if (!track || slides.length === 0) return;
@@ -39,6 +40,9 @@ const goToSlide = (index) => {
 };
 
 const startAutoPlay = () => {
+  if (!heroAutoPlayEnabled) return;
+
+  stopAutoPlay();
   timer = window.setInterval(() => goToSlide(currentSlide + 1), 5200);
 };
 
@@ -61,7 +65,6 @@ slider?.addEventListener("focusin", stopAutoPlay);
 slider?.addEventListener("focusout", startAutoPlay);
 
 goToSlide(0);
-startAutoPlay();
 
 const productTabs = Array.from(document.querySelectorAll("[data-product-tab]"));
 const productPanels = Array.from(document.querySelectorAll("[data-product-panel]"));
