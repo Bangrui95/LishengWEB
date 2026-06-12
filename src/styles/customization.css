@@ -1,0 +1,163 @@
+/* Product customization configurator (/services/customization/) */
+
+.config-kicker {
+  margin: 0 0 12px;
+  color: #b56c10;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Step blocks */
+.config-step {
+  margin-top: 46px;
+  padding-top: 36px;
+  border-top: 1px solid #ececec;
+}
+
+.config-step:first-of-type {
+  margin-top: 36px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.config-step-num {
+  display: block;
+  color: var(--accent-red);
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.config-step h3 {
+  margin: 12px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.18;
+  font-weight: 700;
+  color: #343434;
+}
+
+.config-step > p {
+  margin: 12px 0 0;
+  max-width: 720px;
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.config-group-label {
+  margin: 26px 0 0;
+  color: var(--text-dark);
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Option buttons — same language as the product tabs */
+.config-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.config-options button {
+  min-height: 48px;
+  padding: 0 22px;
+  border: 1px solid #c9c9c9;
+  color: #303030;
+  background: #fff;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.config-options button:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+}
+
+.config-options button.selected {
+  border-color: var(--accent-red);
+  background: var(--accent-red);
+  color: #fff;
+}
+
+/* Save & contact strip */
+.config-save {
+  margin-top: 64px;
+  padding: 42px 52px;
+  background: #f7f0e6;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 28px;
+}
+
+.config-save h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(24px, 2.4vw, 32px);
+  line-height: 1.18;
+  font-weight: 700;
+  color: #343434;
+}
+
+.config-save p {
+  margin: 12px 0 0;
+  font-size: 16px;
+  line-height: 1.58;
+  color: #555;
+}
+
+.config-save-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 30px;
+  border-radius: 999px;
+  background: var(--accent-red);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.config-save-link:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .config-step {
+    margin-top: 38px;
+    padding-top: 28px;
+  }
+
+  .config-save {
+    grid-template-columns: 1fr;
+    padding: 28px 24px;
+  }
+}
+
+@media (max-width: 700px) {
+  .config-options {
+    gap: 10px;
+  }
+
+  .config-options button {
+    flex: 1 1 calc(50% - 10px);
+    min-width: 0;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+}

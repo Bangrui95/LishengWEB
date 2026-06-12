@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.lishengmf.com)",
+      "Bash(curl -sL --max-time 30 -A \"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/125.0 Safari/537.36\" \"https://www.lishengmf.com/list-jituanjianjie.html\" -o /tmp/lisheng_intro.html)",
+      "Bash(echo \"exit:$?\")",
+      "Read(//tmp/**)",
+      "Bash(curl -sL --max-time 30 -A \"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/125.0 Safari/537.36\" \"http://www.lishengmf.com/list-jituanjianjie.html\" -o /tmp/lisheng_intro.html)",
+      "Bash(curl -sL --max-time 30 --tlsv1.2 --ciphers DEFAULT@SECLEVEL=1 \"https://www.lishengmf.com/\" -o /tmp/lisheng_home.html)",
+      "Bash(echo \"exit2:$?\")",
+      "WebFetch(domain:www.fabianelli.it)",
+      "Bash(python3 -c \"import PIL; print\\('PIL ok', PIL.__version__\\)\")",
+      "Bash(python3)",
+      "Bash(mv \"01上海阳春面.webp\" 01-shanghai-yangchun.webp)",
+      "Bash(mv \"02兰州拉面.webp\" 02-lanzhou-ramen.webp)",
+      "Bash(mv \"03四川担担面.webp\" 03-sichuan-dandan.webp)",
+      "Bash(mv \"04.webp\" 04-shandong-ramen.webp)",
+      "Bash(mv \"山西刀削面.webp\" 05-shanxi-sliced.webp)",
+      "Bash(npx astro *)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(python3 -c \"import fitz; print\\('pymupdf', fitz.__doc__\\)\")",
+      "Bash(pip3 install *)",
+      "Bash(python3 -c \"import fitz; print\\('ok', fitz.version\\)\")",
+      "Bash(curl -sL --max-time 30 -A \"Mozilla/5.0\" \"http://www.lishengmf.com/\" -o /tmp/ls_home.html)",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -s http://localhost:4322/company/subsidiaries/)",
+      "Bash(sed -n '1,8p' src/styles/footer.css)",
+      "Bash(sed -n '184,205p' src/styles/footer.css)",
+      "Bash(python3 -)",
+      "Bash(curl -sL --max-time 20 -A \"Mozilla/5.0\" \"http://www.lishengmf.com/list-gongsixinwen.html\" -o ls_news1.html)",
+      "Bash(curl -sL --max-time 60 -A \"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36\" -H 'Cookie: wtime=1781193717; wtoken=9p0krrzr\"' \"http://www.lishengmf.com/list-gongsixinwen.html\" -o ls_news1.html)",
+      "Bash(echo \"exit:$? size:$\\(wc -c < ls_news1.html\\)\")",
+      "WebFetch(domain:megahmee.com)"
+    ]
+  }
+}

@@ -1,0 +1,210 @@
+/* Products page: category tabs + product grid */
+
+/* Hero CTA */
+.products-hero-actions {
+  margin-top: 30px;
+}
+
+.products-hero-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 999px;
+  background: var(--accent-red);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.products-hero-button:hover {
+  transform: translateY(-1px);
+}
+
+.products-catalog {
+  padding: 74px 0 112px;
+}
+
+.products-catalog-inner {
+  width: min(var(--page-max), calc(100% - var(--page-gutter)));
+  margin: 0 auto;
+}
+
+.products-catalog-intro {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.products-catalog-intro p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: #555;
+}
+
+/* Category tabs — same language as the homepage product tabs */
+.product-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.product-tabs button {
+  min-width: 178px;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 1px solid #c9c9c9;
+  color: #303030;
+  background: #fff;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.product-tabs button:hover,
+.product-tabs button.active {
+  border-color: var(--accent-red);
+  color: #fff;
+  background: var(--accent-red);
+}
+
+/* Standalone row above the tabs, centered */
+.product-tabs-extra {
+  display: flex;
+  justify-content: center;
+  margin-top: 38px;
+}
+
+/* Link styled like a tab (navigates to another page) */
+.product-tabs-extra .tab-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 178px;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 1px solid #c9c9c9;
+  color: #303030;
+  background: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.product-tabs-extra .tab-link:hover {
+  border-color: var(--accent-red);
+  color: #fff;
+  background: var(--accent-red);
+}
+
+.product-panels {
+  margin-top: 42px;
+}
+
+.product-panel {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 38px 28px;
+}
+
+.product-panel[hidden] {
+  display: none;
+}
+
+/* CTA strip under the catalog */
+.products-cta {
+  margin-top: 86px;
+  padding: 42px 52px;
+  background: #f7f0e6;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 28px;
+}
+
+.products-cta h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(24px, 2.4vw, 32px);
+  line-height: 1.18;
+  font-weight: 700;
+  color: #343434;
+}
+
+.products-cta p {
+  margin: 12px 0 0;
+  font-size: 16px;
+  line-height: 1.58;
+  color: #555;
+}
+
+.products-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 30px;
+  border-radius: 999px;
+  background: var(--accent-red);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.products-cta-link:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .product-panel {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px 22px;
+  }
+
+  .products-cta {
+    grid-template-columns: 1fr;
+    padding: 28px 24px;
+  }
+}
+
+@media (max-width: 700px) {
+  .products-catalog {
+    padding: 54px 0 76px;
+  }
+
+  .product-tabs {
+    gap: 10px;
+    margin-top: 34px;
+  }
+
+  .product-tabs button {
+    min-width: 0;
+    flex: 1 1 calc(33% - 10px);
+    padding: 0 12px;
+    font-size: 14px;
+  }
+
+  .product-tabs-extra .tab-link {
+    width: 100%;
+    max-width: 320px;
+    font-size: 14px;
+  }
+
+  .product-panel {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px 18px;
+  }
+}

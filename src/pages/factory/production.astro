@@ -1,0 +1,354 @@
+---
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/global.css";
+import "../../styles/subpage.css";
+import "../../styles/factory-production.css";
+
+const IMG = "/images/company/production";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Production Facilities | Lisheng Group Manufacturing</title>
+    <meta
+      name="description"
+      content="Six production bases, Bühler intelligent milling systems, MES-controlled lines: 4,500 tons of wheat and 600 tons of dried noodles processed daily by Lisheng Group."
+    />
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <section class="page-hero" aria-labelledby="production-hero-title">
+        <img
+          src={`${IMG}/C8BEDC21-1979-4392-8498-7E1B00619385.png`}
+          alt="Lisheng automated production workshop"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Manufacturing</p>
+          <h1 id="production-hero-title">Production Facilities</h1>
+          <p class="page-hero-copy">
+            Six production bases across China's premium wheat regions, built on
+            international equipment and intelligent factory control.
+          </p>
+        </div>
+      </section>
+
+      <!-- Capacity: intro + dark stats band -->
+      <section class="page-section" aria-labelledby="production-capacity-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Capacity</p>
+          <h2 id="production-capacity-title">Built for volume, run for consistency</h2>
+          <p>
+            Lisheng operates six production bases in Shandong, Hebei and Henan
+            — each located inside a national premium wheat production area.
+            Combined, they give overseas partners manufacturer-direct capacity
+            with room to scale.
+          </p>
+        </div>
+
+        <div class="prod-stats-band">
+          <div class="prod-stats-grid" aria-label="Production capacity figures">
+            <dl>
+              <dt>4,500<span>Tons</span></dt>
+              <dd>Wheat processed per day, group-wide</dd>
+            </dl>
+            <dl>
+              <dt>600<span>Tons</span></dt>
+              <dd>Dried noodles produced per day</dd>
+            </dl>
+            <dl>
+              <dt>1M<span>Tons</span></dt>
+              <dd>Annual wheat intake at the Liangshan plant</dd>
+            </dl>
+            <dl>
+              <dt>200,000<span>Tons</span></dt>
+              <dd>Own grain storage capacity</dd>
+            </dl>
+            <dl>
+              <dt>7<span>Lines</span></dt>
+              <dd>Automated 1000-type noodle production</dd>
+            </dl>
+            <dl>
+              <dt>2<span>MW</span></dt>
+              <dd>Rooftop solar power at Liangshan</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="page-section-inner">
+          <div class="company-cta">
+            <div>
+              <h2>See the capacity with your own eyes</h2>
+              <p>
+                Walk the milling floors and noodle lines, then sit down with
+                our export team — most visits run in a single day.
+              </p>
+            </div>
+            <a class="company-cta-link" href="/contact/">
+              Contact us <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Plant gallery -->
+      <section class="page-section tight-top" aria-labelledby="production-gallery-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Inside our plants</p>
+          <h2 id="production-gallery-title">Where your product is made</h2>
+
+          <div class="prod-gallery" aria-label="Factory photo gallery">
+            <img
+              src={`${IMG}/866C968F-F12E-4A9F-B2BF-89580E3894D2.png`}
+              alt="Fine noodle strands on the production line"
+            />
+            <img
+              src={`${IMG}/EFAC5AD0-D5F8-4E67-9027-40E764F72892.png`}
+              alt="Automated production line in operation"
+            />
+            <img
+              src={`${IMG}/463A6028-5BD3-4E82-A5BE-CD93145F5B63.png`}
+              alt="Packaged noodles leaving the packing machine"
+            />
+          </div>
+
+        </div>
+      </section>
+      <!-- Production journey with photos -->
+      <section class="page-section alt" aria-labelledby="production-process-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">How production runs</p>
+          <h2 id="production-process-title">From wheat to pallet, one controlled chain</h2>
+
+          <ol class="prod-steps">
+            <li>
+              <img
+                src={`${IMG}/5BB27579-F866-46C3-A651-F02EAA49FBEB.png`}
+                alt="Wheat cleaning and milling hall"
+              />
+              <span class="step-arrow" aria-hidden="true">STEP 1</span>
+              <h3>Cleaning &amp; Milling</h3>
+              <p>
+                Wheat is tested, stored by variety, blended to order and milled
+                at low temperature.
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/D05E664D-3913-4315-9C3B-53F91DA8C3AD.png`}
+                alt="Dough preparation and sheeting machine"
+              />
+              <span class="step-arrow" aria-hidden="true">STEP 2</span>
+              <h3>Dough &amp; Sheeting</h3>
+              <p>
+                Flour, water and formula ingredients are mixed and rolled into
+                an even dough sheet.
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/3314AB7C-DC8C-43B7-94A6-2BE50C2267CB.png`}
+                alt="Noodle cutting and forming line"
+              />
+              <span class="step-arrow" aria-hidden="true">STEP 3</span>
+              <h3>Cutting &amp; Forming</h3>
+              <p>
+                Interchangeable cutters shape every width — from 0# dragon
+                beard to 10# knife-cut.
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/08DA00E9-CF0E-4F25-A195-04A89D0D5234.png`}
+                alt="Noodles hanging in the drying room"
+              />
+              <span class="step-arrow" aria-hidden="true">STEP 4</span>
+              <h3>Low-Temperature Drying</h3>
+              <p>
+                Hung noodles dry slowly in controlled rooms — solar-heated at
+                the Liangshan plant.
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/8839792A-8F9B-400D-A3A1-8C92E677D91A.png`}
+                alt="Automated noodle packing machine"
+              />
+              <span class="step-arrow" aria-hidden="true">STEP 5</span>
+              <h3>Packing</h3>
+              <p>
+                Retail, family and foodservice formats packed on automated
+                lines with in-house packaging materials.
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/1703B9E3-E547-460F-8187-C474D9870A1D.png`}
+                alt="Finished goods stacked in the warehouse"
+              />
+              <span class="step-arrow" aria-hidden="true">STEP 6</span>
+              <h3>Storage &amp; Dispatch</h3>
+              <p>
+                Finished goods are batch-recorded into storage and dispatched
+                through the group's logistics network.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Equipment photo cards -->
+      <section class="page-section" aria-labelledby="production-equipment-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Equipment &amp; technology</p>
+          <h2 id="production-equipment-title">International equipment, intelligent control</h2>
+
+          <div class="equip-row">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/F2A9AEB8-EF12-4CA2-8160-034E9ECA18FB.png`}
+                alt="Bühler milling hall at a Lisheng plant"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>Bühler Intelligent Milling Systems</h3>
+              <p>
+                Swiss Bühler milling equipment runs across the group — full
+                Bühler sets at the Jining headquarters and Chengwu plants, and
+                a complete intelligent flour production system at the flagship
+                Liangshan plant, where four lines mill 3,000 tons of specialty
+                flour a day with complete flour blending.
+              </p>
+              <p>
+                For buyers, this means the same flour specification batch after
+                batch: blending recipes are executed by the system, not by
+                hand.
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row reverse">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/6360FA8C-B9D1-4D84-9DDE-B5C36B107846.png`}
+                alt="Technician working with grain analysis instruments"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>Perten Grain Analysis Instruments</h3>
+              <p>
+                Swedish Perten analysers profile every batch of incoming wheat
+                and outgoing flour — protein, moisture and gluten quality are
+                measured, not estimated. Wheat is then stored by variety and
+                blended against the measured data.
+              </p>
+              <p>
+                Each order ships with batch records behind it, the basis of the
+                certificate of analysis your QA team receives.
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/AE1D12D2-A0DE-490C-8D09-3011B26DBBA4.png`}
+                alt="MDDK roller mills and purifiers"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>MDDK Roller Mills &amp; Multi-Stage Purification</h3>
+              <p>
+                MDDK roller mills work on a five-break, eight-reduction process
+                designed with milling specialists from Zhengzhou Grain College,
+                with five purification passes and mid-route flour extraction.
+              </p>
+              <p>
+                The gentle, staged grinding keeps protein and starch intact —
+                high-purity flour streams with whiteness, aroma and stable
+                baking performance.
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row reverse">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/1B01EC50-0146-463A-9E9B-DDFB6E370177.png`}
+                alt="Automated processing equipment under intelligent control"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>PLC + MES Smart Factory Control</h3>
+              <p>
+                At the Liangshan flagship plant every stage runs under PLC
+                control and an MES management system — wheat inspection,
+                binning, blending, milling, classified storage, flour blending,
+                packing and truck loading are all automated.
+              </p>
+              <p>
+                The plant operates largely unmanned under remote control, and
+                every batch leaves a full digital trace from raw wheat to
+                pallet.
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/DF48BEB5-7893-495E-8152-5A1497F0ECF7.png`}
+                alt="Low-temperature milling hall"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>Low-Temperature Milling</h3>
+              <p>
+                Milling temperature is precisely controlled to avoid the heat
+                damage that destroys vitamins and high-molecular nutrients —
+                the flour keeps its nutrition and the wheat's natural aroma.
+              </p>
+              <p>
+                The same philosophy extends to our whole grain line, where
+                Danish stone mills grind at low speed under automatic
+                temperature control.
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row reverse">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/78EA50FB-6C15-45A8-835A-71DEDE416C51.png`}
+                alt="1000-type automated noodle production line"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>1000-Type Automated Noodle Lines</h3>
+              <p>
+                Seven automated 1000-type lines cover the full noodle process —
+                dough feeding, sheeting, cutting, hanging, drying and packing —
+                producing up to 600 tons of dried noodles a day, including
+                fermented, hollow, multigrain and vegetable varieties.
+              </p>
+              <p>
+                Drying rooms at Liangshan are heated by 1,200 m² of solar
+                thermal panels, alongside 2 MW of rooftop photovoltaics — lower
+                energy costs, greener production.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <Footer />
+    <script src="/scripts/site.js" defer></script>
+  </body>
+</html>

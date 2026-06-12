@@ -1,0 +1,186 @@
+---
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/global.css";
+import "../../styles/subpage.css";
+import "../../styles/factory-lab.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product Lab | Lisheng Group R&amp;D</title>
+    <meta
+      name="description"
+      content="Lisheng Group's product development lab: flour and noodle formula development, texture research, stone-milled whole grain innovation and 10+ food production invention patents."
+    />
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <section class="page-hero" aria-labelledby="lab-hero-title">
+        <img src="/images/main/4.jpg" alt="Lisheng product development laboratory" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Research &amp; Development</p>
+          <h1 id="lab-hero-title">Product Lab</h1>
+          <p class="page-hero-copy">
+            An independent development system covering flour, dried noodles and
+            grain-based foods — from raw material testing to packaging trials.
+          </p>
+        </div>
+      </section>
+
+      <!-- R&D capability -->
+      <section class="page-section" aria-labelledby="lab-rd-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">What the lab does</p>
+          <h2 id="lab-rd-title">From raw wheat to a market-ready recipe</h2>
+          <p>
+            Lisheng's product team works across raw material testing, formula
+            adjustment, noodle texture development and packaging trials. Using
+            Perten grain analysis instruments, every batch of wheat and flour
+            is profiled before it enters development, so new products are built
+            on measured data rather than guesswork.
+          </p>
+
+          <div class="media-trio" aria-label="Product lab and R&D photos">
+            <img
+              src="/images/factory/11.png"
+              alt="R&D specialist checking noodle product samples"
+            />
+            <img
+              src="/images/factory/22.png"
+              alt="R&D team reviewing product development details"
+            />
+            <img
+              src="/images/factory/33.png"
+              alt="Noodle product research and sample testing"
+            />
+          </div>
+
+          <div class="machine-grid">
+            <div>
+              <dt>Formula Development</dt>
+              <dd>
+                Testing and adjusting flour and dough formulas for different
+                product requirements — from high-gluten noodles to multigrain
+                and vegetable recipes.
+              </dd>
+            </div>
+            <div>
+              <dt>Texture &amp; Cooking Research</dt>
+              <dd>
+                Noodle size, thickness, elasticity and cooking behaviour tuned
+                for each target market and preparation style.
+              </dd>
+            </div>
+            <div>
+              <dt>Process Optimisation</dt>
+              <dd>
+                Production stability improved through our own patented food
+                processing technologies before a product reaches the line.
+              </dd>
+            </div>
+            <div>
+              <dt>Packaging Trials</dt>
+              <dd>
+                Pack formats, materials and shelf-life behaviour verified with
+                the group's in-house packaging resources.
+              </dd>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Whole grain innovation -->
+      <section class="page-section alt" aria-labelledby="lab-wholegrain-title">
+        <div class="page-section-inner">
+          <div class="split-row" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src="/images/main/1.jpg"
+                alt="Stone-milled whole grain flour production"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">Latest innovation</p>
+              <h3>Stone-milled whole grain line</h3>
+              <p>
+                Our dedicated whole grain workshop uses Danish stone mills with
+                low-speed, low-temperature grinding and precise automatic
+                temperature control — avoiding starch gelatinisation and
+                protein denaturation to keep the wheat's natural nutrition.
+              </p>
+              <p>
+                A bran-baking step improves taste, digestibility and storage
+                stability, supporting whole wheat flour and whole wheat noodle
+                products with significantly higher dietary fibre than refined
+                flour.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Patents -->
+      <section class="page-section" aria-labelledby="lab-patents-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Intellectual property</p>
+          <h2 id="lab-patents-title">10+ food production invention patents</h2>
+          <p>
+            The Group holds more than ten food production invention patents
+            covering processing technology, formulation and production
+            stability — long-term assets behind consistent industrial quality.
+          </p>
+
+          <!-- Placeholder tiles: replace images with real patent certificates later -->
+          <div class="cert-grid" aria-label="Patent certificates">
+            <div class="cert-card">
+              <div class="cert-media">
+                <img src="/images/main/1.jpg" alt="Patent certificate placeholder" />
+              </div>
+              <h3>Invention Patent</h3>
+              <p>Food processing technology</p>
+              <span class="cert-tag">Patent</span>
+            </div>
+            <div class="cert-card">
+              <div class="cert-media">
+                <img src="/images/main/2.jpg" alt="Patent certificate placeholder" />
+              </div>
+              <h3>Invention Patent</h3>
+              <p>Noodle production process</p>
+              <span class="cert-tag">Patent</span>
+            </div>
+            <div class="cert-card">
+              <div class="cert-media">
+                <img src="/images/main/3.jpg" alt="Patent certificate placeholder" />
+              </div>
+              <h3>Invention Patent</h3>
+              <p>Flour formulation</p>
+              <span class="cert-tag">Patent</span>
+            </div>
+          </div>
+
+          <div class="company-cta">
+            <div>
+              <h2>Develop your product with our lab</h2>
+              <p>
+                Bring a target product or market brief — our team handles
+                formula, texture, packaging and sampling.
+              </p>
+            </div>
+            <a class="company-cta-link" href="/contact/">
+              Start a Project <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+    <script src="/scripts/site.js" defer></script>
+  </body>
+</html>

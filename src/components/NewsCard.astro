@@ -1,0 +1,119 @@
+---
+/**
+ * Reusable news preview card.
+ *
+ * Add one block per news item (copy-paste friendly):
+ *   <NewsCard
+ *     image="/images/news/news-594.jpg"
+ *     date="2026-01-09"
+ *     title="News title"
+ *     excerpt="One or two sentence summary shown under the title."
+ *     href="#"           (optional — link to the full article when ready)
+ *   />
+ */
+const {
+  image,
+  date = "",
+  title,
+  excerpt = "",
+  href = "",
+} = Astro.props;
+
+const Tag = href ? "a" : "div";
+---
+
+<article class="news-card">
+  <Tag class="news-card-link" href={href || undefined}>
+    <span class="news-card-media">
+      <img src={image} alt={title} loading="lazy" />
+    </span>
+    <span class="news-card-copy">
+      {date && <time datetime={date}>{date}</time>}
+      <h3>{title}</h3>
+      {excerpt && <p>{excerpt}</p>}
+    </span>
+  </Tag>
+</article>
+
+<style>
+  .news-card-link {
+    display: block;
+    height: 100%;
+    background: #fff;
+    border: 1px solid #ececec;
+    color: inherit;
+    text-decoration: none;
+    transition: 0.2s ease;
+  }
+
+  .news-card-link:hover {
+    border-color: var(--accent-gold);
+    transform: translateY(-2px);
+  }
+
+  .news-card-link:hover h3 {
+    color: var(--accent-red);
+  }
+
+  .news-card-media {
+    display: block;
+    aspect-ratio: 1.42;
+    overflow: hidden;
+    background: var(--soft-gray);
+  }
+
+  .news-card-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .news-card-copy {
+    display: block;
+    padding: 20px 22px 26px;
+  }
+
+  .news-card-copy time {
+    display: block;
+    color: #b56c10;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  .news-card-copy h3 {
+    margin: 10px 0 0;
+    color: var(--text-dark);
+    font-size: 18px;
+    line-height: 1.35;
+    font-weight: 700;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    transition: color 0.2s ease;
+  }
+
+  .news-card-copy p {
+    margin: 10px 0 0;
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  @media (max-width: 700px) {
+    .news-card-copy {
+      padding: 16px 16px 20px;
+    }
+
+    .news-card-copy h3 {
+      font-size: 15px;
+    }
+  }
+</style>

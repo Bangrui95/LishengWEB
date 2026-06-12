@@ -1,0 +1,540 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import NewsCard from "../components/NewsCard.astro";
+import "../styles/global.css";
+import "../styles/subpage.css";
+import "../styles/news.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>News | Lisheng Group</title>
+    <meta
+      name="description"
+      content="Company news from Lisheng Group: new products, production milestones, awards, community work and market updates."
+    />
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <section class="page-hero" aria-labelledby="news-hero-title">
+        <img src="/images/main/4.jpg" alt="Lisheng Group company news" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Company Updates</p>
+          <h1 id="news-hero-title">News</h1>
+          <p class="page-hero-copy">
+            Product launches, production milestones, awards and stories from
+            across the Lisheng Group.
+          </p>
+        </div>
+      </section>
+
+      <section class="news-listing" aria-labelledby="news-listing-title">
+        <div class="news-listing-inner">
+          <h2 id="news-listing-title" class="sr-only">All news</h2>
+
+          <div class="news-listing-intro">
+            <p>
+              Three decades of building a food enterprise — follow what is
+              happening across our plants, products and people.
+            </p>
+          </div>
+
+          <!-- Add a new item by copy-pasting one <NewsCard /> block (newest first). -->
+          <div class="news-grid" data-news-grid>
+            <NewsCard
+              image="/images/news/news-594.jpg"
+              href="/news/594/"
+              date="2026-01-09"
+              title="Statement on Early Adoption of the New National Food Labelling Standard"
+              excerpt="Lisheng will implement China's new national standard for prepackaged food labels ahead of schedule across its products."
+            />
+            <NewsCard
+              image="/images/news/news-567.jpg"
+              href="/news/567/"
+              date="2025-10-06"
+              title="Lisheng Whole Wheat Flour Series: A Healthier Way to Eat"
+              excerpt="Our stone-milled whole wheat line keeps the bran, germ and endosperm intact — part of China's national whole grain initiative."
+            />
+            <NewsCard
+              image="/images/news/news-563.jpg"
+              href="/news/563/"
+              date="2023-06-02"
+              title="New Lisheng Products Hit the Market"
+              excerpt="Liangshan Lisheng now mills 3,000 tons of wheat daily on a full Bühler intelligent production system with complete flour blending."
+            />
+            <NewsCard
+              image="/images/news/news-565.jpg"
+              href="/news/565/"
+              date="2023-06-02"
+              title="A Strong Backing for the Community"
+              excerpt="When the 2022 epidemic hit Jining, Lisheng launched an emergency response to keep flour and noodles supplied across the city."
+            />
+            <NewsCard
+              image="/images/news/news-555.jpg"
+              href="/news/555/"
+              date="2023-06-02"
+              title="Group-Wide Clean-Up to Welcome Labour Day"
+              excerpt="All group companies carried out a thorough clean-up of plants and offices to greet International Labour Day."
+            />
+            <NewsCard
+              image="/images/news/news-564.jpg"
+              href="/news/564/"
+              date="2023-06-02"
+              title="Lisheng Employees Rescue Trapped Villager"
+              excerpt="Two Lisheng employees came to the aid of an elderly villager pinned under an electric tricycle after a road accident."
+            />
+            <NewsCard
+              image="/images/news/news-557.jpg"
+              href="/news/557/"
+              date="2021-06-14"
+              title="Dragon Boat Festival Greetings"
+              excerpt="Wishing health and smooth sailing this Duanwu — fine grain, good noodles, made with care."
+            />
+            <NewsCard
+              image="/images/news/news-556.jpg"
+              href="/news/556/"
+              date="2020-05-07"
+              title="Wenshang Noodle Workshop Incentive Award Ceremony"
+              excerpt="The Wenshang plant honoured its noodle workshop team for exceeding April production targets."
+            />
+            <NewsCard
+              image="/images/news/news-554.jpg"
+              href="/news/554/"
+              date="2020-04-01"
+              title="Wenshang QC Team Skills Promotion Ceremony"
+              excerpt="Quality-control inspectors at the Wenshang plant were promoted after passing operational skill assessments."
+            />
+            <NewsCard
+              image="/images/news/news-553.jpg"
+              href="/news/553/"
+              date="2020-02-07"
+              title="Jining Mayor Inspects Lisheng's Work Resumption"
+              excerpt="Mayor Shi Guangliang made an unannounced visit to review epidemic controls and the resumption of production at Lisheng."
+            />
+            <NewsCard
+              image="/images/news/news-552.jpg"
+              href="/news/552/"
+              date="2020-01-28"
+              title="Corporate Responsibility Amid the Epidemic"
+              excerpt="During the 2020 Spring Festival outbreak, Lisheng kept staple food supplies flowing as provinces activated emergency response."
+            />
+            <NewsCard
+              image="/images/news/news-548.jpg"
+              href="/news/548/"
+              date="2019-06-13"
+              title="A Bumper Summer Grain Harvest"
+              excerpt="A strong summer wheat harvest secured stable grain supply and steady prices."
+            />
+            <NewsCard
+              image="/images/news/news-526.jpg"
+              href="/news/526/"
+              date="2018-11-23"
+              title="Liangshan Healthy Food Project Groundbreaking"
+              excerpt="The Lisheng (Liangshan) healthy food project broke ground in the Jining biotech industrial park with county leaders attending."
+            />
+            <NewsCard
+              image="/images/news/news-524.jpg"
+              href="/news/524/"
+              date="2018-11-07"
+              title="Capacity Doubling: 3,000-Ton Milling Project Signed in Liangshan"
+              excerpt="Lisheng signed the agreement for a 3,000-ton-per-day flour processing project in Liangshan County — a major growth milestone."
+            />
+            <NewsCard
+              image="/images/news/news-525.jpg"
+              href="/news/525/"
+              date="2018-11-07"
+              title="Acceptance Review: 300-Ton Premium Noodle Expansion"
+              excerpt="The expansion project for 300 tons of premium dried noodles, noodle sheets and non-fried instant noodles passed acceptance review."
+            />
+            <NewsCard
+              image="/images/news/news-416.jpg"
+              href="/news/416/"
+              date="2018-03-19"
+              title="Back to Work in Good Order After Spring Festival"
+              excerpt="On the first working day after the 2018 holiday, all group companies held morning meetings to refocus teams for the new year."
+            />
+            <NewsCard
+              image="/images/news/news-419.jpg"
+              href="/news/419/"
+              date="2017-02-02"
+              title="A Swift Return to Work After the 2017 Holiday"
+              excerpt="Group companies resumed orderly production right after Spring Festival, mobilising staff through pre-shift meetings."
+            />
+            <NewsCard
+              image="/images/news/news-420.jpg"
+              href="/news/420/"
+              date="2017-01-26"
+              title="Happy Year of the Rooster from Lisheng"
+              excerpt="All Lisheng employees thank our customers and partners and wish everyone a prosperous Chinese New Year."
+            />
+            <NewsCard
+              image="/images/news/news-421.jpg"
+              href="/news/421/"
+              date="2016-11-10"
+              title="Lisheng Named a 2016 China Top 10 Grain & Oil (Food) Brand"
+              excerpt="At the 6th China Grain & Oil Awards, Lisheng was honoured among the nation's top ten grain and food brands."
+            />
+            <NewsCard
+              image="/images/news/news-422.jpg"
+              href="/news/422/"
+              date="2016-09-30"
+              title="National Day Greetings 2016"
+              excerpt="Lisheng wishes customers and friends a happy National Day on the 67th anniversary of the People's Republic."
+            />
+            <NewsCard
+              image="/images/news/news-423.jpg"
+              href="/news/423/"
+              date="2016-07-13"
+              title="2016 Mid-Year Work Summary Conference Held"
+              excerpt="Group leadership and company managers reviewed first-half performance and set targets for the second half of 2016."
+            />
+            <NewsCard
+              image="/images/news/news-424.jpg"
+              href="/news/424/"
+              date="2016-02-05"
+              title="Chairman's Spring Festival Greetings 2016"
+              excerpt="The chairman and all employees wish the nation a joyful Year of the Monkey and a happy family reunion."
+            />
+            <NewsCard
+              image="/images/news/news-425.jpg"
+              href="/news/425/"
+              date="2016-02-05"
+              title="Lisheng 2016 Spring Annual Meeting"
+              excerpt="The group gathered for its 2016 spring annual meeting to celebrate achievements and welcome the new year."
+            />
+            <NewsCard
+              image="/images/news/news-426.jpg"
+              href="/news/426/"
+              date="2015-07-27"
+              title="2015 Mid-Year Conference Held on July 13"
+              excerpt="Chairman Gao Fengguo and managers from every company reviewed half-year results at group headquarters."
+            />
+            <NewsCard
+              image="/images/news/news-427.jpg"
+              href="/news/427/"
+              date="2015-02-16"
+              title="New Year Wishes to Leaders and Friends"
+              excerpt="On behalf of the board, the chairman extended Spring Festival greetings to partners and friends for 2015."
+            />
+            <NewsCard
+              image="/images/news/news-428.jpg"
+              href="/news/428/"
+              date="2015-02-16"
+              title="2015 Annual Meeting: Forging Ahead with Passion"
+              excerpt="Under the theme “determined progress, passionate leaps”, the 2015 annual meeting celebrated the year's momentum."
+            />
+            <NewsCard
+              image="/images/news/news-429.jpg"
+              href="/news/429/"
+              date="2015-02-16"
+              title="Shenzhou Flour Company Established"
+              excerpt="Lisheng acquired a well-known Hebei mill to found Shandong Lisheng Group Shenzhou Flour Co. — the group's first base outside Shandong."
+            />
+            <NewsCard
+              image="/images/news/news-430.jpg"
+              href="/news/430/"
+              date="2015-01-07"
+              title="Lisheng Hosts Confucian Couplet Calligraphy Exhibition"
+              excerpt="Lisheng invited noted calligraphers to a Confucius-themed couplet exhibition celebrating traditional culture."
+            />
+            <NewsCard
+              image="/images/news/news-431.jpg"
+              href="/news/431/"
+              date="2014-06-09"
+              title="Shandong Wheat Harvest: One Mu Cut in Two Minutes"
+              excerpt="Modern harvesters across Shandong cut a mu of wheat in two minutes while reducing grain loss by 5 jin per mu."
+            />
+            <NewsCard
+              image="/images/news/news-398.jpg"
+              href="/news/398/"
+              date="2014-06-09"
+              title="Weekly China Flour Market Review (2014)"
+              excerpt="A round-up of flour market conditions across producing regions as summer demand entered its off-season."
+            />
+            <NewsCard
+              image="/images/news/news-399.jpg"
+              href="/news/399/"
+              date="2014-05-07"
+              title="Critical Window for Winter Wheat Aphid Control"
+              excerpt="With northern winter wheat at heading stage, growers were urged to act during the peak aphid prevention period."
+            />
+            <NewsCard
+              image="/images/news/news-400.jpg"
+              href="/news/400/"
+              date="2014-04-17"
+              title="Global Ingredient Prices Push Up Grain and Flour Costs"
+              excerpt="Worldwide crop shortfalls kept agricultural commodities at high prices heading into the festival demand season."
+            />
+            <NewsCard
+              image="/images/news/news-401.jpg"
+              href="/news/401/"
+              date="2014-03-31"
+              title="Mouldy Flour Scandal Implicates Hangzhou Bakeries"
+              excerpt="The Guangqi expired-ingredient case raised public concern over raw material quality across the baking industry."
+            />
+            <NewsCard
+              image="/images/news/news-402.jpg"
+              href="/news/402/"
+              date="2014-03-28"
+              title="Jining Vice Mayor Reviews Lisheng's E-Commerce Development"
+              excerpt="Vice Mayor Zhou Hong visited group headquarters to survey e-commerce progress among high-tech zone enterprises."
+            />
+            <NewsCard
+              image="/images/news/news-403.jpg"
+              href="/news/403/"
+              date="2014-03-13"
+              title="2014 Distributor Strategy Conference: Winning Together"
+              excerpt="Distributors nationwide gathered at headquarters under the theme “gratitude and shared success in 2014”."
+            />
+            <NewsCard
+              image="/images/news/news-404.jpg"
+              href="/news/404/"
+              date="2014-03-13"
+              title="Planting Hope: New Green for Our Hometown"
+              excerpt="More than 50 employees joined the March 12 tree-planting drive organised by the group's management centre."
+            />
+            <NewsCard
+              image="/images/news/news-405.jpg"
+              href="/news/405/"
+              date="2014-02-28"
+              title="Chairman's New Year Message 2014"
+              excerpt="As the Year of the Horse arrived, the chairman thanked employees and partners and shared hopes for the year ahead."
+            />
+            <NewsCard
+              image="/images/news/news-406.jpg"
+              href="/news/406/"
+              date="2014-02-28"
+              title="2013 Annual Summary and 2014 Targets Conference"
+              excerpt="The group reviewed 2013 results and mapped out operating goals for 2014."
+            />
+            <NewsCard
+              image="/images/news/news-407.jpg"
+              href="/news/407/"
+              date="2014-02-28"
+              title="Jining Plant Technical Upgrade Passes Trial Run"
+              excerpt="The flour packing system and new noodle workshop equipment started up successfully after months of renovation."
+            />
+            <NewsCard
+              image="/images/news/news-408.jpg"
+              href="/news/408/"
+              date="2014-02-28"
+              title="Management Improvement Program Kicks Off"
+              excerpt="A “summer management storm” swept Lisheng as the group launched its management upgrade project."
+            />
+            <NewsCard
+              image="/images/news/news-409.jpg"
+              href="/news/409/"
+              date="2014-02-28"
+              title="2013 Summer Grain Purchasing Campaign Launched"
+              excerpt="Seven Lisheng grain stations across Jining, Wenshang and Heze opened the season's wheat purchasing in early June."
+            />
+            <NewsCard
+              image="/images/news/news-410.jpg"
+              href="/news/410/"
+              date="2014-02-28"
+              title="2013 Mid-Year Management Review Meeting"
+              excerpt="Group leadership heard half-year work reports and performance reviews from management."
+            />
+            <NewsCard
+              image="/images/news/news-411.jpg"
+              href="/news/411/"
+              date="2014-02-28"
+              title="New Employee Welcome and Mentorship Signing"
+              excerpt="Sixty-three new employees joined the group and signed mentor-apprentice agreements at headquarters."
+            />
+            <NewsCard
+              image="/images/news/news-412.jpg"
+              href="/news/412/"
+              date="2014-02-28"
+              title="2013 New Employee Training Review and Performance"
+              excerpt="New staff completed orientation training and presented their results at the group's headquarters."
+            />
+            <NewsCard
+              image="/images/news/news-413.jpg"
+              href="/news/413/"
+              date="2014-02-28"
+              title="School-Enterprise Partnership with Jining Technician College"
+              excerpt="Lisheng signed an order-based talent cultivation agreement with Jining Technician College."
+            />
+            <NewsCard
+              image="/images/news/news-414.jpg"
+              href="/news/414/"
+              date="2014-02-28"
+              title="2013 Marketing Strategy Conference: Hand in Hand"
+              excerpt="The “win together” marketing conference deepened cooperation and consensus with channel partners."
+            />
+            <NewsCard
+              image="/images/news/news-415.jpg"
+              href="/news/415/"
+              date="2014-02-28"
+              title="Technical Upgrades Renew the Jining Workshops"
+              excerpt="A plant-wide technical transformation gave the Jining production workshops a new look and better performance."
+            />
+            <NewsCard
+              image="/images/news/news-387.jpg"
+              href="/news/387/"
+              date="2014-02-28"
+              title="Chairman's New Year Message 2013"
+              excerpt="The chairman thanked supporters at every level as the Year of the Snake approached."
+            />
+            <NewsCard
+              image="/images/news/news-388.jpg"
+              href="/news/388/"
+              date="2014-02-28"
+              title="2012 Annual Awards Ceremony"
+              excerpt="Outstanding teams and employees of 2012 were honoured at a grand ceremony."
+            />
+            <NewsCard
+              image="/images/news/news-389.jpg"
+              href="/news/389/"
+              date="2014-02-28"
+              title="Executive Training on Execution Excellence"
+              excerpt="A renowned corporate trainer led an execution-focused workshop for Lisheng managers at the chairman's invitation."
+            />
+            <NewsCard
+              image="/images/news/news-390.jpg"
+              href="/news/390/"
+              date="2014-02-28"
+              title="Lisheng at the 2012 China Grain Food Expo"
+              excerpt="Lisheng joined the national grain food exposition at the invitation of industry associations."
+            />
+            <NewsCard
+              image="/images/news/news-391.jpg"
+              href="/news/391/"
+              date="2014-02-28"
+              title="Chairman Attends City Food Safety Conference"
+              excerpt="Chairman Gao Fengguo joined Jining's food safety awareness conference — food safety first, for people's health."
+            />
+            <NewsCard
+              image="/images/news/news-392.jpg"
+              href="/news/392/"
+              date="2014-02-28"
+              title="Team Training in Full Swing Across the Group"
+              excerpt="Military-style training strengthened discipline, leadership and team spirit across group companies."
+            />
+            <NewsCard
+              image="/images/news/news-393.jpg"
+              href="/news/393/"
+              date="2014-02-28"
+              title="2012 Goals and 2011 Awards Conference"
+              excerpt="The group set its 2012 work targets and honoured 2011's outstanding performers."
+            />
+            <NewsCard
+              image="/images/news/news-394.jpg"
+              href="/news/394/"
+              date="2014-02-28"
+              title="“Lisheng” Recognised as a China Famous Trademark"
+              excerpt="On 29 November 2011 the State Administration for Industry and Commerce recognised the Lisheng trademark as a China Famous Trademark."
+            />
+            <NewsCard
+              image="/images/news/news-395.jpg"
+              href="/news/395/"
+              date="2014-02-28"
+              title="State Grain Purchase Policy Briefing"
+              excerpt="Lisheng held a training session on the national minimum-price grain purchasing policy and procurement workflow."
+            />
+            <NewsCard
+              image="/images/news/news-396.jpg"
+              href="/news/396/"
+              date="2014-02-28"
+              title="Donation Drive for Yushu Earthquake Relief"
+              excerpt="Led by the chairman, headquarters staff donated to support rebuilding in quake-hit Yushu."
+            />
+            <NewsCard
+              image="/images/news/news-397.jpg"
+              href="/news/397/"
+              date="2014-02-28"
+              title="Relief Supplies Arrive in Sishui"
+              excerpt="Two truckloads of Lisheng relief goods reached Sishui County, continuing the group's disaster-relief commitment."
+            />
+          </div>
+
+          <nav class="news-pagination" aria-label="News pages">
+            <button
+              class="news-page-nav"
+              type="button"
+              data-news-prev
+              aria-label="Previous page"
+            >
+              &lsaquo;
+            </button>
+            <span class="news-page-status" data-news-status>1 / 1</span>
+            <button
+              class="news-page-nav"
+              type="button"
+              data-news-next
+              aria-label="Next page"
+            >
+              &rsaquo;
+            </button>
+          </nav>
+        </div>
+      </section>
+    </main>
+
+    <Footer showCta={false} />
+    <script src="/scripts/site.js" defer></script>
+
+    <script>
+      // Client-side pagination: 8 cards per page.
+      const PAGE_SIZE = 8;
+      const grid = document.querySelector("[data-news-grid]");
+      const cards = grid
+        ? Array.from(grid.querySelectorAll<HTMLElement>(".news-card"))
+        : [];
+      const prev =
+        document.querySelector<HTMLButtonElement>("[data-news-prev]");
+      const next =
+        document.querySelector<HTMLButtonElement>("[data-news-next]");
+      const status = document.querySelector("[data-news-status]");
+      const pages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
+      let page = 0;
+
+      // Restore the saved page only when returning from an article
+      // (the article's back link carries ?from=article). Any other entry —
+      // nav menu, direct URL — always starts on page 1.
+      const fromArticle = new URLSearchParams(location.search).has("from");
+      if (fromArticle) {
+        const saved = Number(sessionStorage.getItem("lisheng-news-page"));
+        if (Number.isFinite(saved) && saved > 0 && saved < pages) page = saved;
+        history.replaceState(null, "", "/news/");
+      } else {
+        sessionStorage.removeItem("lisheng-news-page");
+      }
+
+      const render = () => {
+        cards.forEach((card, i) => {
+          card.hidden = i < page * PAGE_SIZE || i >= (page + 1) * PAGE_SIZE;
+        });
+        if (status) status.textContent = `${page + 1} / ${pages}`;
+        if (prev) prev.disabled = page === 0;
+        if (next) next.disabled = page === pages - 1;
+        // Lock the grid to its tallest rendered height (grow-only) so a
+        // shorter last page can't shrink the document and shift the scroll.
+        if (grid instanceof HTMLElement) {
+          const h = grid.offsetHeight;
+          const locked = parseFloat(grid.style.minHeight) || 0;
+          if (h > locked) grid.style.minHeight = `${h}px`;
+        }
+      };
+
+      const goTo = (target: number) => {
+        const clamped = Math.max(0, Math.min(target, pages - 1));
+        if (clamped === page) return;
+        page = clamped;
+        sessionStorage.setItem("lisheng-news-page", String(page));
+        render();
+      };
+
+      prev?.addEventListener("click", () => goTo(page - 1));
+      next?.addEventListener("click", () => goTo(page + 1));
+      render();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,305 @@
+---
+/**
+ * Reusable product card with a built-in detail popup.
+ *
+ * Usage — add one block per product, swap the image and name:
+ *   <ProductCard
+ *     image="/images/products/noodles1/01.png"
+ *     name="Whole Wheat Dried Noodles"
+ *     category="Noodle Products"
+ *     description="Optional detail text shown in the popup."
+ *   />
+ */
+const {
+  image,
+  name,
+  category = "",
+  description = "Available for OEM and private label programs with flexible packaging formats, customised specifications and export-ready supply.",
+  alt = "",
+} = Astro.props;
+
+const imageAlt = alt || name;
+---
+
+<article class="product-tile">
+  <button class="product-tile-button" type="button" data-product-open>
+    <span class="product-tile-media">
+      <img src={image} alt={imageAlt} loading="lazy" />
+    </span>
+    <span class="product-tile-name">{name}</span>
+  </button>
+
+  <dialog class="product-modal" aria-label={`${name} details`}>
+    <button
+      class="product-modal-close"
+      type="button"
+      data-product-close
+      aria-label="Close product details"
+    >
+      ×
+    </button>
+    <div class="product-modal-layout">
+      <div class="product-modal-media">
+        <img src={image} alt={imageAlt} loading="lazy" />
+      </div>
+      <div class="product-modal-copy">
+        {category && <p class="product-modal-kicker">{category}</p>}
+        <h3>{name}</h3>
+        <p class="product-modal-text">{description}</p>
+        <ul class="product-modal-points">
+          <li>Private label &amp; OEM packaging available</li>
+          <li>Customisable size, texture and formulation</li>
+          <li>Export documentation support</li>
+        </ul>
+        <div class="product-modal-actions">
+          <a class="product-modal-cta" href="/contact/">
+            Start an OEM Project <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</article>
+
+<style>
+  .product-tile {
+    text-align: center;
+  }
+
+  .product-tile-button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+    color: var(--text-dark);
+  }
+
+  .product-tile-media {
+    display: block;
+    aspect-ratio: 1;
+    padding: 20px;
+    background: #fafafa;
+    border: 1px solid #ececec;
+    transition: 0.2s ease;
+  }
+
+  .product-tile-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .product-tile-name {
+    display: block;
+    margin: 18px auto 0;
+    max-width: 270px;
+    font-size: 18px;
+    line-height: 1.25;
+    font-weight: 700;
+    min-height: 46px;
+    transition: 0.2s ease;
+  }
+
+  .product-tile-button:hover .product-tile-media,
+  .product-tile-button:focus-visible .product-tile-media {
+    border-color: var(--accent-gold);
+    transform: translateY(-2px);
+  }
+
+  .product-tile-button:hover .product-tile-name,
+  .product-tile-button:focus-visible .product-tile-name {
+    color: var(--accent-red);
+  }
+
+  /* Popup */
+  .product-modal {
+    width: min(860px, calc(100% - 32px));
+    padding: 0;
+    border: 0;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(42, 47, 43, 0.18);
+  }
+
+  .product-modal::backdrop {
+    background: rgba(20, 31, 27, 0.55);
+  }
+
+  .product-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+
+  .product-modal-close:hover {
+    color: var(--accent-red);
+  }
+
+  .product-modal-layout {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.9fr) minmax(300px, 1.1fr);
+    gap: 0;
+    text-align: left;
+  }
+
+  .product-modal-media {
+    display: grid;
+    place-items: center;
+    padding: 36px;
+    background: #f7f0e6;
+  }
+
+  .product-modal-media img {
+    display: block;
+    width: 100%;
+    max-height: 380px;
+    object-fit: contain;
+  }
+
+  .product-modal-copy {
+    padding: 42px 44px 38px;
+  }
+
+  .product-modal-kicker {
+    margin: 0 0 12px;
+    color: #b56c10;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .product-modal-copy h3 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 32px;
+    line-height: 1.18;
+    font-weight: 700;
+    color: #343434;
+  }
+
+  .product-modal-copy h3::after {
+    content: "";
+    display: block;
+    width: 46px;
+    height: 3px;
+    margin: 18px 0 0;
+    background: #303030;
+  }
+
+  .product-modal-text {
+    margin: 18px 0 0;
+    font-size: 16px;
+    line-height: 1.58;
+    color: #555;
+  }
+
+  .product-modal-points {
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 10px;
+  }
+
+  .product-modal-points li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+
+  .product-modal-points li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 2px;
+    background: var(--accent-gold);
+  }
+
+  .product-modal-actions {
+    margin-top: 34px;
+  }
+
+  .product-modal-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 52px;
+    min-width: 158px;
+    padding: 0 28px;
+    border-radius: 999px;
+    background: var(--accent-red);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: 0.2s ease;
+  }
+
+  .product-modal-cta:hover {
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 700px) {
+    .product-tile-name {
+      font-size: 15px;
+      min-height: 40px;
+    }
+
+    .product-modal-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .product-modal-media {
+      padding: 24px;
+    }
+
+    .product-modal-media img {
+      max-height: 260px;
+    }
+
+    .product-modal-copy {
+      padding: 26px 22px 30px;
+    }
+
+    .product-modal-copy h3 {
+      font-size: 26px;
+    }
+  }
+</style>
+
+<script>
+  // Astro dedupes this script across all ProductCard instances.
+  document.querySelectorAll(".product-tile").forEach((tile) => {
+    const opener = tile.querySelector("[data-product-open]");
+    const modal = tile.querySelector(".product-modal");
+    const closer = tile.querySelector("[data-product-close]");
+
+    if (!(modal instanceof HTMLDialogElement)) return;
+
+    opener?.addEventListener("click", () => modal.showModal());
+    closer?.addEventListener("click", () => modal.close());
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) modal.close();
+    });
+  });
+</script>

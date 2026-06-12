@@ -1,0 +1,243 @@
+---
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/global.css";
+import "../../styles/subpage.css";
+import "../../styles/company-about.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Lisheng Group | Company</title>
+    <meta
+      name="description"
+      content="Shandong Lisheng Group: founded in 1995, 11 companies, six production bases — an integrated grain storage, flour milling, noodle manufacturing and logistics enterprise."
+    />
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <section class="page-hero" aria-labelledby="company-hero-title">
+        <img src="/images/main/2.jpg" alt="Lisheng Group headquarters and facilities" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">About Lisheng Group</p>
+          <h1 id="company-hero-title">Company</h1>
+          <p class="page-hero-copy">
+            A large-scale Chinese food enterprise integrating grain storage,
+            flour milling, noodle manufacturing, packaging and logistics since
+            1995.
+          </p>
+        </div>
+      </section>
+
+      <!-- Who we are + key figures -->
+      <section class="page-section" aria-labelledby="company-about-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Who we are</p>
+          <h2 id="company-about-title">
+            From a county flour mill to an integrated food group
+          </h2>
+          <p>
+            Shandong Lisheng Group was founded in 1995 and is headquartered in
+            the Jining High-tech Industrial Development Zone, Shandong
+            Province. Today the Group consists of 11 companies — six production
+            bases and three grain storage companies — located across China's
+            premium wheat-growing regions in Shandong, Hebei and Henan.
+          </p>
+          <p>
+            Guided by the corporate mission of “building a business that
+            benefits people's everyday lives”, Lisheng controls the full chain
+            from wheat sourcing and grain storage to flour milling, dried
+            noodle production, in-house packaging and logistics. Products are
+            sold in more than 300 cities across 30 provinces and reach
+            international retail chains including Walmart, Carrefour, RT-Mart
+            and China Resources Vanguard.
+          </p>
+
+          <div class="company-stats" aria-label="Lisheng Group key figures">
+            <dl>
+              <dt>1995</dt>
+              <dd>Founded in Jining, Shandong</dd>
+            </dl>
+            <dl>
+              <dt>11</dt>
+              <dd>Companies, incl. 6 production bases</dd>
+            </dl>
+            <dl>
+              <dt>1,300<span>+</span></dt>
+              <dd>Employees</dd>
+            </dl>
+            <dl>
+              <dt>4,500<span>Tons</span></dt>
+              <dd>Daily Wheat Processing Capacity</dd>
+            </dl>
+            <dl>
+              <dt>600<span>Tons</span></dt>
+              <dd>Daily Dried Noodle Output</dd>
+            </dl>
+            <dl>
+              <dt>200,000<span>Tons</span></dt>
+              <dd>Grain Storage Capacity</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mission & values -->
+      <section class="page-section alt" aria-labelledby="company-values-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Culture</p>
+          <h2 id="company-values-title">What we stand for</h2>
+
+          <div class="value-grid">
+            <div class="value-card">
+              <h3>Mission</h3>
+              <p>Building a business that benefits people's everyday lives.</p>
+            </div>
+            <div class="value-card">
+              <h3>Vision</h3>
+              <p>A century-long Lisheng — an integrated green food enterprise.</p>
+            </div>
+            <div class="value-card">
+              <h3>Spirit</h3>
+              <p>Unity, progress, integrity and innovation.</p>
+            </div>
+            <div class="value-card">
+              <h3>Philosophy</h3>
+              <p>First-class quality, integrity that lasts forever.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- From wheat to table: production overview -->
+      <section class="page-section" aria-labelledby="company-process-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">From wheat to table</p>
+          <h2 id="company-process-title">An integrated production chain</h2>
+          <p>
+            Every Lisheng base is built inside a national premium wheat
+            production area. Raw grain enters our own storage system, is milled
+            on international-grade equipment, and leaves as flour or dried
+            noodles through one continuous, quality-controlled chain.
+          </p>
+
+          <ol class="process-flow">
+            <li>
+              <h3>Wheat Sourcing &amp; Storage</h3>
+              <p>
+                Premium wheat from Shandong, Hebei and Henan, with 200,000 tons
+                of own grain storage.
+              </p>
+            </li>
+            <li>
+              <h3>Flour Milling</h3>
+              <p>
+                Bühler milling systems with low-temperature processing and
+                multi-stage purification.
+              </p>
+            </li>
+            <li>
+              <h3>Noodle Production</h3>
+              <p>
+                Automated 1000-type lines covering dough, cutting, drying and
+                packing.
+              </p>
+            </li>
+            <li>
+              <h3>Packaging &amp; Logistics</h3>
+              <p>
+                In-house packaging resources and a logistics network serving
+                domestic and export orders.
+              </p>
+            </li>
+          </ol>
+
+          <div class="split-row">
+            <div class="split-media">
+              <img
+                src="/images/factory/01.png"
+                alt="Automated production line at a Lisheng factory"
+              />
+            </div>
+            <div class="split-copy">
+              <h3>Production facilities</h3>
+              <p>
+                Six production bases process up to 4,500 tons of wheat and 600
+                tons of dried noodles per day. Our flagship Liangshan plant
+                runs four intelligent milling lines under full PLC and MES
+                control — largely unmanned, remotely operated production.
+              </p>
+              <a class="split-link" href="/factory/production/">
+                Explore our production facilities
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications teaser -->
+      <section class="page-section alt" aria-labelledby="company-cert-title">
+        <div class="page-section-inner">
+          <div class="split-row reverse" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src="/images/main/WHO.png"
+                alt="Lisheng quality certifications display"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">Quality &amp; recognition</p>
+              <h3>Certified, awarded, trusted</h3>
+              <p>
+                Lisheng operates under ISO 9001, ISO 22000 and HACCP management
+                systems. “Lisheng” wheat flour was named a China Top-Brand
+                Product in 2007, and the Lisheng trademark was recognised as a
+                China Famous Trademark in 2011.
+              </p>
+              <a class="split-link" href="/factory/certificates/">
+                View certificates &amp; awards
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Subsidiaries teaser -->
+      <section class="page-section" aria-labelledby="company-sub-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Group structure</p>
+          <h2 id="company-sub-title">Eight subsidiaries, one supply chain</h2>
+          <p>
+            From the Jining headquarters to the flagship intelligent plant in
+            Liangshan, each Lisheng subsidiary plays a defined role in the
+            group's flour, noodle, food technology and packaging chain.
+          </p>
+          <a class="split-link" href="/company/subsidiaries/">
+            Meet the subsidiaries
+          </a>
+
+          <div class="company-cta">
+            <div>
+              <h2>Work with Lisheng</h2>
+              <p>
+                Source export-ready noodles and flour directly from the
+                manufacturer, with OEM and private label support.
+              </p>
+            </div>
+            <a class="company-cta-link" href="/contact/">
+              Request a Quote <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+    <script src="/scripts/site.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,525 @@
+/* Services page (/services/) — OEM & private label manufacturing */
+
+.services-kicker {
+  margin: 0 0 12px;
+  color: #b56c10;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Hero CTA buttons */
+.services-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.services-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 999px;
+  background: var(--accent-red);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.services-hero-primary:hover {
+  transform: translateY(-1px);
+}
+
+/* Three pillars */
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 42px;
+}
+
+.pillar-card {
+  background: #f7f0e6;
+  padding: 34px 30px 38px;
+}
+
+.pillar-card .pillar-num {
+  display: block;
+  color: #b56c10;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 800;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.pillar-card h3 {
+  margin: 16px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  line-height: 1.22;
+  font-weight: 700;
+  color: #343434;
+}
+
+.pillar-card h3::after {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 2px;
+  margin: 16px 0 0;
+  background: #303030;
+}
+
+.pillar-card p {
+  margin: 16px 0 0;
+  color: #555;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.pillar-card ul {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 9px;
+}
+
+.pillar-card li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.pillar-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 2px;
+  background: var(--accent-gold);
+}
+
+/* Customisation grid */
+.custom-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 42px;
+}
+
+.custom-item {
+  border-left: 5px solid var(--accent-gold);
+  padding-left: 22px;
+}
+
+.custom-item h3 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.custom-item p {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.58;
+}
+
+/* Vertical production timeline */
+.prod-timeline {
+  position: relative;
+  max-width: 980px;
+  margin: 56px auto 0;
+  padding: 6px 0 0;
+  list-style: none;
+}
+
+.prod-timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 6px;
+  width: 2px;
+  background: #d9d9d9;
+  transform: translateX(-50%);
+}
+
+.prod-timeline li {
+  position: relative;
+  width: 50%;
+  padding: 0 56px 52px 0;
+  text-align: right;
+}
+
+.prod-timeline li:nth-child(even) {
+  margin-left: 50%;
+  padding: 0 0 52px 56px;
+  text-align: left;
+}
+
+.prod-timeline li:last-child {
+  padding-bottom: 0;
+}
+
+/* Red dot on the line */
+.prod-timeline li::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: -8px;
+  z-index: 1;
+  width: 13px;
+  height: 13px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--accent-red);
+  box-shadow: 0 0 0 2px var(--accent-red);
+}
+
+.prod-timeline li:nth-child(even)::before {
+  right: auto;
+  left: -8px;
+}
+
+.prod-step-num {
+  display: block;
+  color: #b56c10;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 800;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.prod-timeline h3 {
+  margin: 12px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  line-height: 1.22;
+  font-weight: 700;
+  color: #343434;
+}
+
+.prod-timeline p {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 380px;
+}
+
+.prod-timeline li:nth-child(odd) p {
+  margin-left: auto;
+}
+
+/* OEM workflow steps */
+.oem-flow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 42px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.oem-flow li {
+  counter-increment: step;
+  background: #fff;
+  border: 1px solid #ececec;
+  padding: 26px 24px 28px;
+}
+
+.oem-flow li::before {
+  content: "0" counter(step);
+  display: block;
+  color: var(--accent-red);
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 800;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.oem-flow h3 {
+  margin: 14px 0 0;
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.oem-flow p {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* Two consecutive same-background sections share one gap */
+.page-section.tight-top {
+  padding-top: 0;
+}
+
+/* Split rows (quality / R&D / plants) — stacked rows share one section */
+.services-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.08fr);
+  gap: 56px;
+  align-items: center;
+  margin-top: 86px;
+}
+
+.services-split:first-child {
+  margin-top: 0;
+}
+
+.services-split.reverse .services-split-media {
+  order: 2;
+}
+
+.services-split-media img {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1.42;
+  object-fit: cover;
+}
+
+.services-split-copy h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(28px, 2.6vw, 40px);
+  line-height: 1.12;
+  font-weight: 700;
+  color: #343434;
+}
+
+.services-split-copy h3::after {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 3px;
+  margin: 18px 0 24px;
+  background: #303030;
+}
+
+.services-split-copy p {
+  margin: 0;
+  max-width: 520px;
+  color: var(--text-muted);
+  font-size: 17px;
+  line-height: 1.66;
+}
+
+.services-split-copy p + p {
+  margin-top: 12px;
+}
+
+.services-split-link {
+  display: inline-block;
+  margin-top: 22px;
+  color: #d98410;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent-gold);
+  transition: 0.2s ease;
+}
+
+.services-split-link:hover {
+  color: var(--accent-red);
+}
+
+/* Equipment grid */
+.equip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 42px;
+}
+
+.equip-grid > div {
+  border-left: 5px solid var(--accent-gold);
+  padding-left: 22px;
+}
+
+.equip-grid dt {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.3;
+}
+
+.equip-grid dd {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.58;
+}
+
+/* Certification chips */
+.cert-chip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 42px;
+}
+
+.cert-chip {
+  background: #f7f0e6;
+  padding: 24px 24px 26px;
+}
+
+.cert-chip h3 {
+  margin: 0;
+  color: #b56c10;
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+.cert-chip p {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* Capacity stats band */
+.services-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px 34px;
+  margin-top: 42px;
+}
+
+.services-stats dl {
+  margin: 0;
+  border-left: 5px solid var(--accent-gold);
+  padding-left: 22px;
+}
+
+.services-stats dt {
+  font-size: clamp(34px, 3vw, 48px);
+  line-height: 1;
+  font-weight: 800;
+  color: var(--text-dark);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.services-stats dt span {
+  font-size: 0.5em;
+  font-weight: 700;
+  margin-left: 6px;
+}
+
+.services-stats dd {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .pillar-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .custom-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .oem-flow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services-split,
+  .services-split.reverse {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 56px;
+  }
+
+  .services-split:first-child {
+    margin-top: 0;
+  }
+
+  .services-split.reverse .services-split-media {
+    order: 0;
+  }
+
+  .services-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 18px;
+  }
+
+  .equip-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cert-chip-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .custom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .oem-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .services-stats dd {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .cert-chip-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Timeline collapses: line on the left, all steps on the right */
+  .prod-timeline::before {
+    left: 6px;
+    transform: none;
+  }
+
+  .prod-timeline li,
+  .prod-timeline li:nth-child(even) {
+    width: 100%;
+    margin-left: 0;
+    padding: 0 0 40px 34px;
+    text-align: left;
+  }
+
+  .prod-timeline li::before,
+  .prod-timeline li:nth-child(even)::before {
+    right: auto;
+    left: 0;
+  }
+
+  .prod-timeline li:nth-child(odd) p {
+    margin-left: 0;
+  }
+
+  .prod-timeline h3 {
+    font-size: 20px;
+  }
+}

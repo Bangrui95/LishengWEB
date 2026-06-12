@@ -1,0 +1,163 @@
+/* Company · Honors page (/company/honors/) */
+
+.company-kicker {
+  margin: 0 0 12px;
+  color: #b56c10;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Vertical timeline, left-aligned: years left of the line, details right */
+.honor-timeline {
+  position: relative;
+  max-width: 880px;
+  margin: 42px 0 0;
+  padding: 4px 0 0;
+  list-style: none;
+}
+
+.honor-timeline::before {
+  content: "";
+  position: absolute;
+  left: 100px;
+  top: 0;
+  bottom: 6px;
+  width: 2px;
+  background: #d9d9d9;
+}
+
+.honor-timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 56px;
+  align-items: baseline;
+  padding: 0 0 40px;
+}
+
+.honor-timeline li:last-child {
+  padding-bottom: 0;
+}
+
+/* Red dot on the line */
+.honor-timeline li::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 100px;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: 13px;
+  height: 13px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--accent-red);
+  box-shadow: 0 0 0 2px var(--accent-red);
+}
+
+.honor-year {
+  display: block;
+  color: var(--text-dark);
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 800;
+  text-align: right;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.honor-timeline p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 560px;
+}
+
+.honor-timeline strong {
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+/* Certificate wall — masonry columns: each certificate keeps its own
+   portrait/landscape ratio, nothing is cropped or letterboxed. */
+.honor-grid {
+  columns: 4;
+  column-gap: 22px;
+  margin-top: 42px;
+}
+
+.honor-card {
+  break-inside: avoid;
+  margin-bottom: 22px;
+  background: #fff;
+  border: 1px solid #ececec;
+  padding: 16px;
+  text-align: center;
+}
+
+.honor-card .honor-media {
+  background: var(--soft-gray);
+}
+
+.honor-card .honor-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.honor-card h3 {
+  margin: 14px 0 0;
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.honor-card p {
+  margin: 6px 0 0;
+  color: #b56c10;
+  font-size: 13px;
+  font-weight: 800;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+@media (max-width: 900px) {
+  .honor-timeline::before {
+    left: 72px;
+  }
+
+  .honor-timeline li {
+    grid-template-columns: 52px 1fr;
+    gap: 38px;
+    padding-bottom: 32px;
+  }
+
+  .honor-timeline li::before {
+    left: 72px;
+  }
+
+  .honor-year {
+    font-size: 20px;
+  }
+
+  .honor-timeline p {
+    font-size: 15px;
+  }
+
+  .honor-grid {
+    columns: 2;
+    column-gap: 16px;
+  }
+
+  .honor-card {
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .honor-grid {
+    columns: 1;
+  }
+}
