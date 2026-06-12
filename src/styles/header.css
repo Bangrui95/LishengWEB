@@ -7,7 +7,7 @@
   right: 0;
   height: 92px;
   display: grid;
-  grid-template-columns: 280px 1fr auto;
+  grid-template-columns: 280px 1fr auto auto;
   align-items: center;
   gap: 32px;
   padding: 0 6vw;
@@ -61,9 +61,16 @@
   padding: 0 13px;
 }
 
-.site-nav a.active,
-.site-nav a:hover {
+.site-nav a.active {
   color: var(--header-accent, var(--accent-gold));
+}
+
+/* Hover feedback only at desktop sizes — phone-size layouts (including
+   narrow desktop windows) get no hover states at all */
+@media (min-width: 901px) {
+  .site-nav a:hover {
+    color: var(--header-accent, var(--accent-gold));
+  }
 }
 
 .quote-link {
@@ -73,9 +80,11 @@
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.quote-link:hover {
-  background: var(--accent-red);
-  border-color: var(--accent-red);
+@media (min-width: 901px) {
+  .quote-link:hover {
+    background: var(--accent-red);
+    border-color: var(--accent-red);
+  }
 }
 
 /* Dropdown */
@@ -100,11 +109,16 @@
   transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
 }
 
-.nav-item.has-dropdown:hover .nav-dropdown,
-.nav-item.has-dropdown:focus-within .nav-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
+/* Desktop only: keyboard focus and hover both reveal the dropdown.
+   At phone sizes dropdowns are always visible (flattened), and this
+   transform would drag the static list sideways. */
+@media (min-width: 901px) {
+  .nav-item.has-dropdown:hover .nav-dropdown,
+  .nav-item.has-dropdown:focus-within .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 .nav-dropdown a {
@@ -112,6 +126,34 @@
   padding: 12px 24px;
   font-size: 14px;
   white-space: nowrap;
+}
+
+/* Language switcher: compact dropdown at the right end of the header.
+   Lives outside .site-nav, so it carries its own link styling. */
+.lang-switch a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+@media (min-width: 901px) {
+  .lang-switch a:hover {
+    color: var(--header-accent, var(--accent-gold));
+  }
+}
+
+.lang-switch > a {
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+  height: 100%;
+  padding: 0 13px;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+
+.lang-switch .nav-dropdown {
+  min-width: 120px;
 }
 
 .nav-toggle {
@@ -145,9 +187,21 @@
     background: #fff;
   }
 
+  /* .nav-item.has-dropdown sets display:flex with two-class specificity,
+     so the mobile hide needs to match it */
   .site-nav,
-  .quote-link {
+  .quote-link,
+  .nav-item.lang-switch {
     display: none;
+  }
+
+  /* While the menu is open the header adopts the menu colour, so the
+     bar and the panel below read as one solid surface */
+  .site-header.menu-open {
+    background: var(--header-menu-bg, rgba(20, 31, 27, 0.96));
+    border-bottom-color: transparent;
+    /* bar darkens instantly; the panel sweep below carries the animation */
+    transition: none;
   }
 
   .site-nav.is-open {
@@ -155,14 +209,42 @@
     top: 74px;
     left: 0;
     right: 0;
+    /* auto height — just enough for the items, not full screen */
+    max-height: calc(100dvh - 74px);
+    overflow-y: auto;
     display: grid;
+    /* full-width single column — cancels the desktop justify-content:center,
+       which otherwise floats the whole menu in the middle */
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+    align-content: start;
     gap: 0;
-    padding: 18px 22px 26px;
+    /* right-aligned under the hamburger button (header side padding 22px) */
+    padding: 18px 22px 32px;
+    text-align: right;
     background: var(--header-menu-bg, rgba(20, 31, 27, 0.96));
+    /* dark surface wipes in from top to bottom */
+    animation: nav-sweep 0.35s ease;
   }
 
+  @keyframes nav-sweep {
+    from {
+      clip-path: inset(0 0 100% 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  /* No hover/tap visual feedback at phone sizes */
   .site-nav.is-open a {
-    padding: 14px 0;
+    padding: 9px 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .site-nav.is-open a:hover,
+  .site-nav.is-open a:focus {
+    outline: none;
   }
 
   /* Reset the desktop full-height hit area in the mobile list */
@@ -171,7 +253,7 @@
     display: block;
     height: auto;
     align-self: auto;
-    padding: 14px 0;
+    padding: 11px 0;
   }
 
   /* Dropdown flattens into the mobile menu */
@@ -192,8 +274,8 @@
   }
 
   .site-nav.is-open .nav-dropdown a {
-    padding: 10px 0 10px 18px;
+    padding: 6px 18px 6px 0;
     font-size: 14px;
-    border-left: 2px solid rgba(255, 255, 255, 0.25);
+    border-right: 2px solid rgba(255, 255, 255, 0.25);
   }
 }

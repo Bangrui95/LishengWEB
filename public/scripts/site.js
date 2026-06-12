@@ -10,7 +10,8 @@ window.addEventListener("scroll", updateHeader);
 updateHeader();
 
 navToggle?.addEventListener("click", () => {
-  nav?.classList.toggle("is-open");
+  const open = nav?.classList.toggle("is-open");
+  header?.classList.toggle("menu-open", Boolean(open));
 });
 
 const track = document.querySelector("[data-hero-track]");
