@@ -4,6 +4,9 @@ import Header from "../../components/Header.astro";
 import "../../styles/global.css";
 import "../../styles/subpage.css";
 import "../../styles/factory-certificates.css";
+
+const CERT = "/images/factory/certificates/certificate";
+const GREEN = "/images/factory/certificates/green";
 ---
 
 <html lang="en">
@@ -13,7 +16,7 @@ import "../../styles/factory-certificates.css";
     <title>Certificates &amp; Awards | Lisheng Group</title>
     <meta
       name="description"
-      content="Lisheng Group certifications: ISO 9001, ISO 22000, HACCP management systems, China Top-Brand Product, China Famous Trademark and industry awards."
+      content="Lisheng Group certifications: ISO 9001, ISO 22000 and HACCP with IQNET international recognition, Green Food A-grade products, China Top-Brand Product and industry awards."
     />
   </head>
   <body>
@@ -33,76 +36,8 @@ import "../../styles/factory-certificates.css";
         </div>
       </section>
 
-      <!-- Management systems -->
-      <section class="page-section" aria-labelledby="cert-systems-title">
-        <div class="page-section-inner">
-          <p class="company-kicker">Management systems</p>
-          <h2 id="cert-systems-title">Certified food safety management</h2>
-          <p>
-            Lisheng has operated under certified management systems since 2003.
-            Production companies across the group hold quality, food safety and
-            environmental certifications that are re-audited on a regular
-            cycle.
-          </p>
-
-          <!-- Placeholder tiles: replace images with real certificate scans later -->
-          <div class="cert-grid" aria-label="Management system certificates">
-            <div class="cert-card">
-              <div class="cert-media">
-                <img src="/images/main/1.jpg" alt="ISO 9001 certificate placeholder" />
-              </div>
-              <h3>ISO 9001</h3>
-              <p>Quality management system</p>
-              <span class="cert-tag">System</span>
-            </div>
-            <div class="cert-card">
-              <div class="cert-media">
-                <img src="/images/main/2.jpg" alt="ISO 22000 certificate placeholder" />
-              </div>
-              <h3>ISO 22000</h3>
-              <p>Food safety management system</p>
-              <span class="cert-tag">System</span>
-            </div>
-            <div class="cert-card">
-              <div class="cert-media">
-                <img src="/images/main/3.jpg" alt="HACCP certificate placeholder" />
-              </div>
-              <h3>HACCP</h3>
-              <p>Hazard analysis &amp; critical control points</p>
-              <span class="cert-tag">System</span>
-            </div>
-            <div class="cert-card">
-              <div class="cert-media">
-                <img src="/images/main/4.jpg" alt="ISO 14001 certificate placeholder" />
-              </div>
-              <h3>ISO 14001</h3>
-              <p>Environmental management system</p>
-              <span class="cert-tag">System</span>
-            </div>
-            <div class="cert-card">
-              <div class="cert-media">
-                <img src="/images/main/OEM.png" alt="Export documentation placeholder" />
-              </div>
-              <h3>Export Documentation</h3>
-              <p>
-                Export-ready paperwork support for overseas orders
-              </p>
-              <span class="cert-tag">Export</span>
-            </div>
-            <div class="cert-card">
-              <div class="cert-media">
-                <img src="/images/main/WHO.png" alt="Measurement assurance certificate placeholder" />
-              </div>
-              <h3>Measurement Assurance</h3>
-              <p>Metrology assurance qualification</p>
-              <span class="cert-tag">System</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- National recognition -->
-      <section class="page-section alt" aria-labelledby="cert-national-title">
+      <section class="page-section" aria-labelledby="cert-national-title">
         <div class="page-section-inner">
           <p class="company-kicker">National recognition</p>
           <h2 id="cert-national-title">Recognised at the national level</h2>
@@ -192,6 +127,101 @@ import "../../styles/factory-certificates.css";
           </div>
         </div>
       </section>
+
+      <!-- Management systems -->
+      <section class="page-section alt" aria-labelledby="cert-systems-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Management systems</p>
+          <h2 id="cert-systems-title">Certified food safety management</h2>
+          <p>
+            Lisheng has operated under certified management systems since 2003.
+            Quality, food safety and HACCP certifications are issued by CQC
+            (China Quality Certification Centre), carry IQNET international
+            recognition and are re-audited on a regular cycle. Click any
+            certificate to view the original PDF.
+          </p>
+
+          <div class="cert-grid" aria-label="Management system certificates">
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/iso9001-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/iso9001-en-preview.jpg`} alt="ISO 9001:2015 quality management system certificate issued by CQC" loading="lazy" />
+              </a>
+              <h3>ISO 9001:2015</h3>
+              <p>Quality management system — dried noodles and wheat flour</p>
+            </div>
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/iso22000-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/iso22000-en-preview.jpg`} alt="ISO 22000:2018 food safety management system certificate issued by CQC" loading="lazy" />
+              </a>
+              <h3>ISO 22000:2018</h3>
+              <p>Food safety management system covering flour and noodle production</p>
+            </div>
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/haccp-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/haccp-en-preview.jpg`} alt="HACCP system certificate issued by CQC" loading="lazy" />
+              </a>
+              <h3>HACCP</h3>
+              <p>Hazard analysis &amp; critical control points</p>
+            </div>
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/iso9001-iqnet-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/iqnet-preview.jpg`} alt="IQNET international certificate recognising Lisheng's ISO 9001 management system" loading="lazy" />
+              </a>
+              <h3>IQNET International</h3>
+              <p>IQNET international certificate for ISO 9001 &amp; ISO 22000</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Green Food certification -->
+      <section class="page-section alt has-divider" aria-labelledby="cert-green-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Green Food</p>
+          <h2 id="cert-green-title">Green Food A-grade certified products</h2>
+          <p>
+            Five Lisheng products are certified Green Food A-grade by the China
+            Green Food Development Center — China's strictest national standard
+            for residue-controlled, traceable food. Current certificates are
+            valid through August 2026.
+          </p>
+
+          <div class="green-grid" aria-label="Green Food certificates">
+            <figure class="green-card">
+              <a href={`${GREEN}/green-super-refined-flour.jpg`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-super-refined-flour.jpg`} alt="Green Food A-grade certificate for super-grade refined wheat flour" loading="lazy" />
+              </a>
+              <figcaption>Super-Grade Refined Flour</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-wheat-core-flour.jpg`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-wheat-core-flour.jpg`} alt="Green Food A-grade certificate for multi-purpose wheat core flour" loading="lazy" />
+              </a>
+              <figcaption>Multi-Purpose Wheat Core Flour</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-dragon-beard-noodles.jpg`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-dragon-beard-noodles.jpg`} alt="Green Food A-grade certificate for premium dragon-beard noodles" loading="lazy" />
+              </a>
+              <figcaption>Premium Dragon-Beard Noodles</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-egg-noodles.jpg`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-egg-noodles.jpg`} alt="Green Food A-grade certificate for premium egg noodles" loading="lazy" />
+              </a>
+              <figcaption>Premium Egg Noodles</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-original-noodles.jpg`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-original-noodles.jpg`} alt="Green Food A-grade certificate for premium original noodles" loading="lazy" />
+              </a>
+              <figcaption>Premium Original Noodles</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+
     </main>
 
     <Footer />
