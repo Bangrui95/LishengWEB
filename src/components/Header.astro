@@ -17,8 +17,8 @@ const navItems = [
     href: "/factory/production/",
     label: "Factory",
     children: [
-      { href: "/factory/lab/", label: "Food Lab" },
       { href: "/factory/production/", label: "Smart Factory" },
+      { href: "/factory/lab/", label: "Food Lab" },
       { href: "/factory/certificates/", label: "Product Certifications" },
       { href: "/factory/tour/", label: "Factory Tour" }
     ]
@@ -107,4 +107,11 @@ const navActive = (item: { href: string; children?: { href: string }[] }) =>
   </nav>
 
   <a class="quote-link" href="/contact/">Request a Quote</a>
+
+  <div class="nav-item has-dropdown lang-switch">
+    <a href="#" aria-haspopup="true" aria-label="Language: English">EN</a>
+    <div class="nav-dropdown" aria-label="Languages">
+      <a href="#" data-lang="zh">中文</a>
+    </div>
+  </div>
 </header>
