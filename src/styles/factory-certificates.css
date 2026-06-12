@@ -1,5 +1,21 @@
 /* Factory · Certificates page (/factory/certificates/) */
 
+/* Section titles run the full content width so they stay on one line */
+.page-section-inner h2 {
+  max-width: none;
+}
+
+/* This page stacks five sections — tighter, uniform vertical rhythm */
+.page-section {
+  padding: 48px 0;
+}
+
+/* Thin content-width rule separating two same-background sections */
+.page-section.has-divider .page-section-inner {
+  border-top: 1px solid #ddd9d1;
+  padding-top: 48px;
+}
+
 .company-kicker {
   margin: 0 0 12px;
   color: #b56c10;
@@ -9,10 +25,10 @@
   text-transform: uppercase;
 }
 
-/* Certificate tiles */
+/* Certificate tiles — portrait scans of the real certificates */
 .cert-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 22px;
   margin-top: 42px;
 }
@@ -27,7 +43,7 @@
 .cert-card .cert-media {
   display: grid;
   place-items: center;
-  aspect-ratio: 1.35;
+  aspect-ratio: 0.74;
   background: var(--soft-gray);
   overflow: hidden;
 }
@@ -37,6 +53,42 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+a.cert-media:hover img {
+  transform: scale(1.03);
+}
+
+/* Green Food certificate gallery */
+.green-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px;
+  margin-top: 42px;
+}
+
+.green-card {
+  margin: 0;
+  background: #fff;
+  border: 1px solid #ececec;
+  padding: 14px;
+  text-align: center;
+}
+
+.green-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 0.71;
+  object-fit: cover;
+}
+
+.green-card figcaption {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text-dark);
 }
 
 .cert-card h3 {
@@ -52,18 +104,6 @@
   color: var(--text-muted);
   font-size: 14px;
   line-height: 1.5;
-}
-
-.cert-tag {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 4px 12px;
-  background: #f7f0e6;
-  color: #b56c10;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 /* Recognition / award lists */
@@ -93,15 +133,20 @@
   line-height: 1.58;
 }
 
-/* CTA strip */
+/* CTA strip — sits above the certificates; beige fill appears on hover */
 .company-cta {
-  margin-top: 86px;
+  margin: 48px 0 0;
   padding: 42px 52px;
-  background: #f7f0e6;
+  background: transparent;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: 28px;
+  transition: background-color 0.25s ease;
+}
+
+.company-cta:hover {
+  background: #f7f0e6;
 }
 
 .company-cta h2 {
@@ -146,6 +191,11 @@
     gap: 18px;
   }
 
+  .green-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
   .machine-grid {
     grid-template-columns: 1fr;
   }
@@ -159,5 +209,9 @@
 @media (max-width: 700px) {
   .cert-grid {
     grid-template-columns: 1fr;
+  }
+
+  .green-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
