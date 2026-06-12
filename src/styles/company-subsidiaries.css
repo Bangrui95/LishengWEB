@@ -1,0 +1,180 @@
+/* Company · Subsidiaries page (/company/subsidiaries/) */
+
+/* Section heading spans the full container width (avoid 3-line wrap) */
+.page-section-inner h2 {
+  max-width: none;
+}
+
+.company-kicker {
+  margin: 0 0 12px;
+  color: #b56c10;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Subsidiary rows */
+.subsidiary-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 36px 48px;
+  align-items: stretch;
+  padding: 34px 0;
+  border-bottom: 1px solid #ececec;
+}
+
+.subsidiary-card:last-child {
+  border-bottom: 0;
+}
+
+/* Reversed rows swap the column widths too, so the image column is
+   always 0.8fr and the text column always 1.2fr — uniform sizes. */
+.subsidiary-card.reverse {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+}
+
+.subsidiary-card.reverse .subsidiary-media {
+  order: 2;
+}
+
+/* Image stays vertically centred while the text column stretches */
+.subsidiary-media {
+  align-self: center;
+  width: 100%;
+}
+
+.subsidiary-media img {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1.42;
+  object-fit: cover;
+}
+
+/* Copy column stretches to image height: year/title at the top,
+   facts pinned to the bottom edge of the image. */
+.subsidiary-copy {
+  display: flex;
+  flex-direction: column;
+}
+
+.subsidiary-year {
+  display: block;
+  color: var(--text-dark);
+  font-size: clamp(40px, 3.6vw, 54px);
+  line-height: 1;
+  font-weight: 800;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.subsidiary-copy .company-kicker {
+  margin: 14px 0 10px;
+}
+
+.subsidiary-copy h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.18;
+  font-weight: 700;
+  color: #343434;
+}
+
+.subsidiary-copy > p {
+  margin: 16px 0 0;
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.62;
+  max-width: 620px;
+}
+
+.subsidiary-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin: auto 0 0;
+  padding: 18px 0 0;
+  list-style: none;
+}
+
+.subsidiary-facts li {
+  padding: 6px 14px;
+  background: #f7f0e6;
+  color: #6b4a12;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* CTA strip */
+.company-cta {
+  margin-top: 86px;
+  padding: 42px 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 28px;
+}
+
+.company-cta h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(24px, 2.4vw, 32px);
+  line-height: 1.18;
+  font-weight: 700;
+  color: #343434;
+}
+
+.company-cta p {
+  margin: 12px 0 0;
+  font-size: 16px;
+  line-height: 1.58;
+  color: #555;
+}
+
+.company-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 30px;
+  border-radius: 999px;
+  background: var(--accent-red);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.company-cta-link:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .subsidiary-card,
+  .subsidiary-card.reverse {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 24px 0;
+  }
+
+  .subsidiary-year {
+    font-size: 34px;
+  }
+
+  .subsidiary-facts {
+    margin-top: 18px;
+    padding-top: 0;
+  }
+
+  .subsidiary-card.reverse .subsidiary-media {
+    order: 0;
+  }
+
+  .company-cta {
+    grid-template-columns: 1fr;
+    padding: 28px 0;
+  }
+}

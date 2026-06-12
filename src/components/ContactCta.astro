@@ -1,0 +1,41 @@
+---
+/**
+ * Reusable contact CTA band.
+ *
+ * Usage (all props optional):
+ *   <ContactCta
+ *     kicker="Ready for OEM noodle production?"
+ *     title="Let's build your private label noodle program."
+ *     text="Optional supporting sentence."
+ *     buttonLabel="Contact us today"
+ *     buttonHref="/contact/"
+ *   />
+ */
+import "../styles/contact-cta.css";
+
+const {
+  kicker = "Ready for OEM noodle production?",
+  title = "Let’s build your private label noodle program.",
+  text = "Tell us about your market, product idea and target volume — our export team will come back with a practical manufacturing proposal.",
+  buttonLabel = "Contact us today",
+  buttonHref = "/contact/",
+  secondaryLabel = "",
+  secondaryHref = "",
+} = Astro.props;
+---
+
+<section class="contact-cta" aria-labelledby="contact-cta-title">
+  <div class="contact-cta-inner">
+    <p class="contact-cta-kicker">{kicker}</p>
+    <h2 id="contact-cta-title">{title}</h2>
+    {text && <p class="contact-cta-text">{text}</p>}
+    {secondaryLabel && secondaryHref && (
+      <a class="contact-cta-link" href={secondaryHref}>{secondaryLabel}</a>
+    )}
+    <div class="contact-cta-actions">
+      <a class="contact-cta-button" href={buttonHref}>
+        {buttonLabel} <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>

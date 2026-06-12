@@ -1,0 +1,155 @@
+---
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/global.css";
+import "../../styles/subpage.css";
+import "../../styles/company-subsidiaries.css";
+
+// One entry per subsidiary — swap the placeholder images later.
+const subsidiaries = [
+  {
+    name: "Shandong Lisheng Food Group Co., Ltd.",
+    year: "1995",
+    kicker: "Headquarters · Jining",
+    image: "/images/company/subsidiaries/jining-hq.jpg",
+    facts: ["Jining, Shandong", "450+ employees", "1,100 t wheat / day", "200 t noodles / day"],
+    copy: "The group's founding company and headquarters, located in Liuhang, Jining High-tech Industrial Development Zone. With 450+ employees and a large team of engineers and managers, it processes 1,100 tons of wheat, 200 tons of dried noodles and 200 tons of rice daily on Bühler production equipment with Perten testing instruments. Its three product series cover more than 60 varieties, sold in 300+ cities across 30 provinces. The plant is certified to ISO 9001, ISO 14001 and ISO 22000, holds the national “Reliable Grain & Oil” and Pollution-Free Agricultural Product credentials, and in November 2011 the “Lisheng” trademark was recognised as a China Famous Trademark.",
+  },
+  {
+    name: "Shandong Lisheng Group Wenshang Flour Co., Ltd.",
+    year: "2005",
+    kicker: "Production base · Wenshang",
+    image: "/images/company/subsidiaries/wenshang.png",
+    facts: ["Wenshang, Jining", "300+ employees", "1,000 t wheat / day", "200 t noodles / day"],
+    copy: "A wholly-owned subsidiary founded in 2005 with RMB 40 million registered capital, on a 33,000 m² site in Wenshang's premium wheat area beside National Highway 105 — with road, rail and waterway links close by. Around 300 employees run an integrated flour and noodle plant, processing 1,000 tons of wheat and 200 tons of dried noodles daily on Bühler equipment with Perten instruments, producing two series and 60+ varieties sold in 260+ cities nationwide. Certified to ISO 9001, ISO 14001 and ISO 22000, its products carry the “Shandong Top 10 Flour Industry Brands” and “National Well-Known Dried Noodle Brand” titles.",
+  },
+  {
+    name: "Shandong Lisheng Group Chengwu Food Co., Ltd.",
+    year: "2008",
+    kicker: "Production base · Chengwu, Heze",
+    image: "/images/company/subsidiaries/chengwu.jpg",
+    facts: ["Chengwu, Shandong", "300+ employees", "1,000 t wheat / day", "200 t noodles / day"],
+    copy: "A holding subsidiary in Jiunü Town, Chengwu County — a national grain production protection zone with the Beijing–Kowloon, Rizhao–Heze and Longhai rail lines on three sides. On a 35,000 m² site with total assets of RMB 80 million, 300+ employees process 1,000 tons of wheat and 200 tons of noodles daily. The mill runs full Bühler equipment on a process designed by Zhengzhou Grain College milling specialists: five-break, eight-reduction milling, five purification passes and mid-route flour extraction — flour known for whiteness, aroma and stable quality, sold across nearly ten northern provinces. Rated an AA credit enterprise by the banking system in consecutive years.",
+  },
+  {
+    name: "Shandong Lisheng Group Shenzhou Flour Co., Ltd.",
+    year: "2009",
+    kicker: "Production base · Shenzhou, Hebei",
+    image: "/images/company/subsidiaries/shenzhou.jpg",
+    facts: ["Shenzhou, Hebei", "600 t wheat / day", "180,000 t flour / year", "170,000 mu wheat base"],
+    copy: "The group's Hebei base in Taiguzhuang Industrial Park, Shenzhou — a key investment-attraction project of the city. Its 68-strong team mills 600 tons of North China Plain wheat daily on advanced MDDK roller mills and purifiers, producing up to 180,000 tons of flour a year with a 100% production-to-sales rate across 20+ major cities from Beijing to Guangdong. Shenzhou pioneered the group's “company + base + farmer” model: a 170,000-mu premium wheat base working with 18,000 farming households under unified seed supply, planting guidance and purchasing — grain quality secured before it ever reaches the mill.",
+  },
+  {
+    name: "Henan Lisheng Flour Co., Ltd.",
+    year: "2016",
+    kicker: "Production base · Huaxian, Henan",
+    image: "/images/company/subsidiaries/henan.png",
+    facts: ["Huaxian, Henan", "100 employees", "20 technical specialists"],
+    copy: "Established in 2016 with RMB 33.6 million registered capital on a 101-mu site in Huaxian New District — “China's No. 1 wheat county”, planting nearly 1.8 million mu of wheat a year, harvesting close to one billion kilograms of premium grain, and leading Henan's per-mu grain output for almost three decades. A key investment project of the county government, its 100-person team — including 20 mid-to-senior technical specialists — extends Lisheng's production network into the heart of the Henan wheat belt.",
+  },
+  {
+    name: "Liangshan Lisheng Food Co., Ltd.",
+    year: "2018",
+    kicker: "Flagship smart plant · Liangshan",
+    image: "/images/company/subsidiaries/liangshan.jpg",
+    facts: ["Liangshan, Shandong", "RMB 1B investment", "3,000 t specialty flour / day", "1M t wheat / year"],
+    copy: "A wholly-owned subsidiary founded in August 2018 with RMB 43 million registered capital — a RMB 1 billion smart grain industry project on a 153,180 m² site. Four intelligent milling lines process 3,000 tons of specialty flour daily, taking in one million tons of wheat a year under full PLC and MES control — largely unmanned from wheat intake to palletising. Low-temperature milling protects nutrition and the wheat's natural aroma, while 20,000 m² of rooftop solar generates 2 MW and solar heating serves the noodle drying rooms. The plant anchors the group's capacity-doubling strategy and its move into premium specialty flour.",
+  },
+  {
+    name: "Shandong Ruili Food Technology Co., Ltd.",
+    year: "2020",
+    kicker: "Food technology · Jining",
+    image: "/images/company/subsidiaries/ruili.png",
+    facts: ["Jining, Shandong", "Frozen food line", "Deep processing R&D"],
+    copy: "Added to the group in December 2020 as its food technology arm, based in Jining. Ruili extends the chain into frozen foods and deeper processing — applying Lisheng's flour and noodle capability to next-generation convenience products, with a frozen food sales line already in operation.",
+  },
+  {
+    name: "Jining Tianyu Color Printing & Packaging Co., Ltd.",
+    kicker: "Packaging · Group packaging resources",
+    image: "/images/company/subsidiaries/tianyu.png",
+    facts: ["Jining, Shandong", "In-house packaging", "Private label support"],
+    copy: "The group's own packaging company in Jining, producing film and carton packaging for Lisheng products and OEM programs. Keeping packaging design and production inside the group is what makes flexible private-label formats, small-batch artwork changes and fast packaging turnaround possible for export customers.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Subsidiaries | Lisheng Group Companies</title>
+    <meta
+      name="description"
+      content="The eight subsidiaries of Shandong Lisheng Group: flour and noodle production bases in Shandong, Hebei and Henan, plus food technology and packaging companies."
+    />
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <section class="page-hero" aria-labelledby="sub-hero-title">
+        <img src="/images/main/2.jpg" alt="Lisheng Group subsidiary facilities" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Group Structure</p>
+          <h1 id="sub-hero-title">Subsidiaries</h1>
+          <p class="page-hero-copy">
+            Eight companies across Shandong, Hebei and Henan — production
+            bases, food technology and packaging in one supply chain.
+          </p>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="sub-list-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">The companies</p>
+          <h2 id="sub-list-title">One group,<br />eight specialised companies</h2>
+          <p>
+            Each production base sits inside a national premium wheat region,
+            while the technology and packaging companies extend the chain from
+            raw grain to retail-ready product. Together they employ more than
+            1,300 people, plus three grain storage companies holding 200,000
+            tons.
+          </p>
+
+          <div class="subsidiary-list-block">
+            {subsidiaries.map((sub, i) => (
+              <article class={`subsidiary-card ${i % 2 === 1 ? "reverse" : ""}`}>
+                <div class="subsidiary-media">
+                  <img src={sub.image} alt={`${sub.name} facility`} />
+                </div>
+                <div class="subsidiary-copy">
+                  {sub.year && <span class="subsidiary-year">{sub.year}</span>}
+                  <p class="company-kicker">{sub.kicker}</p>
+                  <h3>{sub.name}</h3>
+                  <p>{sub.copy}</p>
+                  <ul class="subsidiary-facts" aria-label="Key facts">
+                    {sub.facts.map((fact) => (
+                      <li>{fact}</li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div class="company-cta">
+            <div>
+              <h2>One contact for the whole group</h2>
+              <p>
+                Whichever base fits your product, OEM inquiries run through a
+                single export team.
+              </p>
+            </div>
+            <a class="company-cta-link" href="/contact/">
+              Request a Quote <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+    <script src="/scripts/site.js" defer></script>
+  </body>
+</html>

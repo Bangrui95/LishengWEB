@@ -1,0 +1,174 @@
+---
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/global.css";
+import "../../styles/subpage.css";
+import "../../styles/company-honors.css";
+
+const IMG = "/images/company/honors";
+
+// Certificate wall — add a new honor by copying one block and swapping the image.
+const honors = [
+  { img: "china-top-brand-2007.jpg", title: "China Top-Brand Product", year: "2007" },
+  { img: "china-famous-trademark-2011.jpg", title: "China Famous Trademark", year: "2011" },
+  { img: "key-leading-enterprise-2005.jpg", title: "Key Leading Enterprise in Agricultural Industrialisation", year: "2005" },
+  { img: "national-noodle-brand-2006.jpg", title: "National Well-Known Dried Noodle Brand", year: "2006" },
+  { img: "top50-2011.jpg", title: "China Top 50 Wheat Flour Processors", year: "2011" },
+  { img: "top50-2015.jpg", title: "China Top 50 Wheat Flour Processors", year: "2015" },
+  { img: "top50-2017.jpg", title: "China Top 50 Wheat Flour Processors", year: "2017" },
+  { img: "top10-grain-oil-2016.jpg", title: "China Top 10 Grain & Oil (Food) Brands", year: "2016" },
+  { img: "shandong-brand-flour.jpg", title: "Shandong Famous Brand — Wheat Flour", year: "Shandong" },
+  { img: "shandong-brand-noodles.jpg", title: "Shandong Famous Brand — Dried Noodles", year: "Shandong" },
+  { img: "shandong-trademark-2009.jpg", title: "Shandong Famous Trademark", year: "2009" },
+  { img: "most-influential-brand.jpg", title: "Most Influential Brand", year: "Industry" },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Honors &amp; Awards | Lisheng Group</title>
+    <meta
+      name="description"
+      content="Three decades of recognition: China Top-Brand Product, China Famous Trademark, Top 50 wheat flour processors and more honors earned by Lisheng Group."
+    />
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <section class="page-hero" aria-labelledby="honors-hero-title">
+        <img
+          src={`${IMG}/hero-display.jpg`}
+          alt="Lisheng Group honor display wall"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Recognition</p>
+          <h1 id="honors-hero-title">Honors &amp; Awards</h1>
+          <p class="page-hero-copy">
+            Three decades of national and provincial recognition — earned one
+            certificate at a time.
+          </p>
+        </div>
+      </section>
+
+      <!-- Milestones by year -->
+      <section class="page-section" aria-labelledby="honors-milestones-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Milestones</p>
+          <h2 id="honors-milestones-title">A record built year by year</h2>
+
+          <ol class="honor-timeline">
+            <li>
+              <span class="honor-year">2022</span>
+              <p>
+                Selected for the inaugural
+                <strong>“Good Products of Shandong”</strong> provincial quality
+                brand list.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2019</span>
+              <p>
+                Rated <strong>Most Competitive Brand</strong> by the Chinese
+                Cereals and Oils Association.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2017</span>
+              <p>
+                <strong>China Top 50 Wheat Flour Processors</strong> — listed
+                again in the national ranking.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2016</span>
+              <p>
+                Listed among the
+                <strong>China Top 10 Grain &amp; Oil (Food) Brands</strong>.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2015</span>
+              <p>
+                <strong>China Top 50 Wheat Flour Processors</strong> for the
+                consecutive year.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2011</span>
+              <p>
+                <strong>China Famous Trademark</strong> — and first listing
+                among the <strong>China Top 50 Wheat Flour Processors</strong>.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2009</span>
+              <p>
+                “Lisheng” recognised as a
+                <strong>Shandong Famous Trademark</strong>.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2007</span>
+              <p>
+                “Lisheng” wheat flour named a
+                <strong>China Top-Brand Product</strong>.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2006</span>
+              <p>
+                Awarded <strong>National Well-Known Dried Noodle Brand</strong>.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2005</span>
+              <p>
+                Named a provincial <strong>Key Leading Enterprise in
+                Agricultural Industrialisation</strong>.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2003</span>
+              <p>
+                Certified to <strong>ISO 9001, ISO 22000 and HACCP</strong>
+                management systems.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Certificate wall -->
+      <section class="page-section alt" aria-labelledby="honors-wall-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">The certificates</p>
+          <h2 id="honors-wall-title">Recognition you can verify</h2>
+          <p>
+            A selection from our honor wall — original certificates and plaques
+            are on display at the Jining headquarters, and copies are available
+            for serious OEM inquiries.
+          </p>
+
+          <div class="honor-grid">
+            {honors.map((h) => (
+              <article class="honor-card">
+                <div class="honor-media">
+                  <img src={`${IMG}/${h.img}`} alt={h.title} loading="lazy" />
+                </div>
+                <h3>{h.title}</h3>
+                <p>{h.year}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+    <script src="/scripts/site.js" defer></script>
+  </body>
+</html>

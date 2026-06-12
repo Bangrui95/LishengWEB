@@ -1,0 +1,101 @@
+/* News article page (/news/{id}/) */
+
+.article-section {
+  padding: 64px 0 96px;
+}
+
+.article-inner {
+  width: min(860px, calc(100% - var(--page-gutter)));
+  margin: 0 auto;
+}
+
+.article-back {
+  display: inline-block;
+  color: #b56c10;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.article-back:hover {
+  color: var(--accent-red);
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 26px;
+  margin-top: 30px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #ececec;
+}
+
+.article-meta time {
+  color: #b56c10;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.article-meta a {
+  color: var(--text-muted);
+  font-size: 14px;
+  text-decoration: none;
+  border-bottom: 1px solid #d9d9d9;
+  transition: color 0.2s ease;
+}
+
+.article-meta a:hover {
+  color: var(--accent-red);
+}
+
+.article-body {
+  margin-top: 34px;
+  color: #444;
+  font-size: 17px;
+  line-height: 1.95;
+}
+
+.article-body p {
+  margin: 0 0 20px;
+}
+
+.article-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 28px auto;
+}
+
+.article-body h2,
+.article-body h3 {
+  margin: 34px 0 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  color: #343434;
+  line-height: 1.3;
+}
+
+.article-empty {
+  margin-top: 34px;
+  padding: 24px 28px;
+  background: #f7f0e6;
+  border-left: 5px solid var(--accent-gold);
+  color: #555;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .article-section {
+    padding: 44px 0 64px;
+  }
+
+  .article-body {
+    font-size: 16px;
+    line-height: 1.85;
+  }
+}

@@ -4,18 +4,65 @@ import "../styles/header.css";
 const currentPath = Astro.url.pathname;
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/oem-private-label-noodles/", label: "OEM Services" },
-  { href: "/products/", label: "Products" },
-  { href: "/manufacturing/", label: "Manufacturing" },
-  { href: "/quality-certifications/", label: "Quality" },
-  { href: "/solutions/", label: "Solutions" },
+  {
+    href: "/company/",
+    label: "Company",
+    children: [
+      { href: "/company/", label: "About" },
+      { href: "/company/honors/", label: "Honors & Awards" },
+      { href: "/company/subsidiaries/", label: "Subsidiaries" }
+    ]
+  },
+  {
+    href: "/factory/production/",
+    label: "Factory",
+    children: [
+      { href: "/factory/lab/", label: "Food Lab" },
+      { href: "/factory/production/", label: "Smart Factory" },
+      { href: "/factory/certificates/", label: "Product Certifications" },
+      { href: "/factory/tour/", label: "Factory Tour" }
+    ]
+  },
+  {
+    href: "/services/",
+    label: "Services",
+    children: [
+      { href: "/services/", label: "OEM Manufacturing" },
+      { href: "/services/customization/", label: "Product Customization" }
+    ]
+  },
+  {
+    href: "/products/",
+    label: "Products",
+    children: [
+      { href: "/products/#noodles", label: "Noodle Products" },
+      { href: "/products/#flour", label: "Flour Products" },
+      { href: "/products/#customization", label: "Partner Collaborations" },
+      { href: "/products/specifications/", label: "Sample Specifications" }
+    ]
+  },
+  { href: "/news/", label: "News" },
   { href: "/contact/", label: "Contact" }
 ];
 
-const isActive = (href) => {
+const isActive = (href: string) => {
   if (href === "/") return currentPath === "/";
   return currentPath.startsWith(href);
 };
+
+const isExactActive = (href: string) => {
+  if (href === "/") return currentPath === "/";
+  return currentPath === href || currentPath === href.replace(/\/$/, "");
+};
+
+// Company and Factory share the /company/ path prefix, so dropdown parents
+// highlight only when one of their own pages is open.
+const navActive = (item: { href: string; children?: { href: string }[] }) =>
+  item.children
+    ? [item.href, ...item.children.map((c) => c.href.split("#")[0])].some(
+        isExactActive
+      )
+    : isActive(item.href);
 ---
 
 <header class="site-header" data-header>
@@ -30,11 +77,33 @@ const isActive = (href) => {
   </button>
 
   <nav class="site-nav" data-site-nav>
-    {navItems.map((item) => (
-      <a href={item.href} class={isActive(item.href) ? "active" : ""}>
-        {item.label}
-      </a>
-    ))}
+    {navItems.map((item) =>
+      item.children ? (
+        <div class={`nav-item has-dropdown ${navActive(item) ? "active" : ""}`}>
+          <a
+            href={item.href}
+            class={navActive(item) ? "active" : ""}
+            aria-haspopup="true"
+          >
+            {item.label}
+          </a>
+          <div class="nav-dropdown" aria-label={`${item.label} sections`}>
+            {item.children.map((child) => (
+              <a
+                href={child.href}
+                class={isExactActive(child.href) ? "active" : ""}
+              >
+                {child.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <a href={item.href} class={isActive(item.href) ? "active" : ""}>
+          {item.label}
+        </a>
+      )
+    )}
   </nav>
 
   <a class="quote-link" href="/contact/">Request a Quote</a>

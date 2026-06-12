@@ -1,0 +1,98 @@
+---
+import type { MarkdownInstance } from "astro";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/global.css";
+import "../../styles/subpage.css";
+import "../../styles/news-article.css";
+
+type NewsFrontmatter = {
+  title: string;
+  date: string | Date;
+  source?: string;
+  cover?: string;
+};
+
+type NewsModule = MarkdownInstance<NewsFrontmatter>;
+
+// Reusable article template: one page is generated automatically for every
+// markdown file in src/data/news/ — add a new .md file to publish a new article.
+export async function getStaticPaths() {
+  const mods = import.meta.glob<NewsModule>("../../data/news/*.md", {
+    eager: true,
+  });
+  return Object.entries(mods).map(([path, mod]) => ({
+    params: { id: (path.split("/").pop() ?? "").replace(".md", "") },
+    props: { mod },
+  }));
+}
+
+interface Props {
+  mod: NewsModule;
+}
+
+const { mod } = Astro.props;
+const fm = mod.frontmatter;
+const Content = mod.Content;
+
+const title = fm.title;
+// Frontmatter dates may arrive as Date objects or full ISO strings —
+// normalise to YYYY-MM-DD either way.
+const date = (
+  fm.date instanceof Date ? fm.date.toISOString() : String(fm.date)
+).slice(0, 10);
+const cover = fm.cover || "/images/main/4.jpg";
+const source = fm.source || "";
+const hasBody = mod.rawContent().trim().length > 0;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | Lisheng News</title>
+    <meta name="description" content={`Lisheng Group news: ${title}`} />
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <section class="page-hero" aria-labelledby="article-title">
+        <img src={cover} alt={title} />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Company News</p>
+          <h1 id="article-title">{title}</h1>
+        </div>
+      </section>
+
+      <article class="article-section">
+        <div class="article-inner">
+          <a class="article-back" href="/news/?from=article">← Back to News</a>
+
+          <div class="article-meta">
+            <time datetime={date}>{date}</time>
+            {source && (
+              <a href={source} target="_blank" rel="noopener">
+                原文链接 (lishengmf.com)
+              </a>
+            )}
+          </div>
+
+          <div class="article-body" lang="zh-CN">
+            {hasBody ? (
+              <Content />
+            ) : (
+              <p class="article-empty">
+                本篇新闻官网原文为图片版，文字内容整理中。
+              </p>
+            )}
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <Footer showCta={false} />
+    <script src="/scripts/site.js" defer></script>
+  </body>
+</html>

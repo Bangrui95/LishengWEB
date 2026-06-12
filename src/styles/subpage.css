@@ -1,0 +1,136 @@
+/* Shared sub-page layout: hero banner + content sections */
+
+/* Page hero (dark image area so the fixed white header stays readable) */
+.page-hero {
+  position: relative;
+  min-height: clamp(320px, 42vh, 460px);
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+}
+
+.page-hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 31, 27, 0.55) 0%,
+    rgba(20, 31, 27, 0.28) 45%,
+    rgba(20, 31, 27, 0.62) 100%
+  );
+}
+
+.page-hero-inner {
+  position: relative;
+  width: min(var(--page-max), calc(100% - var(--page-gutter)));
+  margin: 0 auto;
+  padding: 132px 0 56px;
+  color: #fff;
+}
+
+.page-hero-inner .page-kicker {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+.page-hero-inner h1 {
+  margin: 0;
+  font-size: clamp(38px, 4vw, 58px);
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.page-hero-inner .page-hero-copy {
+  margin: 18px 0 0;
+  max-width: 640px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Content section rhythm */
+.page-section {
+  padding: 86px 0 78px;
+}
+
+.page-section.alt {
+  background: var(--soft-gray);
+}
+
+.page-section-inner {
+  width: min(var(--page-max), calc(100% - var(--page-gutter)));
+  margin: 0 auto;
+}
+
+.page-section-inner h2 {
+  margin: 0;
+  max-width: 760px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 4vw, 58px);
+  line-height: 1.15;
+  font-weight: 700;
+  color: #343434;
+}
+
+.page-section-inner h2::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  margin: 22px 0 28px;
+  background: var(--accent-red);
+}
+
+.page-section-inner p {
+  margin: 0;
+  max-width: 820px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: #555;
+}
+
+.page-section-inner p + p {
+  margin-top: 14px;
+}
+
+/* Placeholder note for sections still to be designed */
+.page-placeholder {
+  margin-top: 34px;
+  padding: 42px 52px;
+  background: #f7f0e6;
+  border-left: 5px solid var(--accent-gold);
+}
+
+.page-placeholder p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.58;
+  color: #555;
+}
+
+@media (max-width: 900px) {
+  .page-hero-inner {
+    padding: 110px 0 42px;
+  }
+
+  .page-section {
+    padding: 60px 0 54px;
+  }
+
+  .page-placeholder {
+    padding: 24px 22px;
+  }
+}

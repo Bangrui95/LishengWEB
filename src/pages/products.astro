@@ -1,0 +1,531 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import ProductCard from "../components/ProductCard.astro";
+import "../styles/global.css";
+import "../styles/subpage.css";
+import "../styles/products.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Products | Lisheng Group Noodles & Wheat Flour</title>
+    <meta
+      name="description"
+      content="Lisheng Group product range: dried noodle series, wheat flour series and custom OEM noodle solutions for retail, foodservice and export markets."
+    />
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <section class="page-hero" aria-labelledby="products-hero-title">
+        <img
+          src="/images/products/products.png"
+          alt="Lisheng noodle and flour product range"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Noodles &amp; Flour</p>
+          <h1 id="products-hero-title">Products</h1>
+          <p class="page-hero-copy">
+            Dried noodle series, wheat flour series and custom OEM solutions
+            for retail, foodservice and export markets.
+          </p>
+          <div class="products-hero-actions">
+            <a class="products-hero-button" href="/services/customization/">
+              Customize Your Product <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="products-catalog" aria-labelledby="products-catalog-title">
+        <div class="products-catalog-inner">
+          <h2 id="products-catalog-title" class="sr-only">Product catalog</h2>
+
+          <div class="products-catalog-intro">
+            <p>
+              Every product below can be produced under your own brand. Click
+              any item to view details, then start an OEM project with your
+              preferred specifications and packaging format.
+            </p>
+          </div>
+
+          <div class="product-tabs-extra">
+            <a class="tab-link" href="/products/specifications/">
+              Sample Specifications
+            </a>
+          </div>
+
+          <div
+            class="product-tabs"
+            role="tablist"
+            aria-label="Product categories"
+          >
+            <button
+              class="active"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              data-product-tab="noodles"
+            >
+              Noodle Products
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-product-tab="flour"
+            >
+              Flour Products
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-product-tab="customization"
+            >
+              Custom Solutions
+            </button>
+          </div>
+
+          <div class="product-panels">
+            <!-- ============ Noodle Products ============ -->
+            <div class="product-panel active" data-product-panel="noodles">
+              <ProductCard
+                image="/images/products/noodles1/01.png"
+                name="Whole Wheat Noodles 500 g"
+                category="Noodle Products · Whole Wheat Series"
+                description="Milled from whole wheat kernels, keeping the bran and germ while preserving a refined noodle texture. Rich in dietary fibre. Ingredients: whole wheat flour, water, salt. Carton: 20 × 500 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/02.png"
+                name="Whole Wheat Noodles 1 kg"
+                category="Noodle Products · Whole Wheat Series"
+                description="The family-size pack of our whole wheat range — high in dietary fibre, low in fat, for a lighter daily staple. Ingredients: whole wheat flour, water, salt. Carton: 15 × 1 kg, paper-wrapped."
+              />
+              <ProductCard
+                image="/images/products/noodles1/03.png"
+                name="Buckwheat Noodles"
+                category="Noodle Products · Multigrain Series"
+                description="Wheat flour blended with buckwheat for a nutty flavour, high fibre and a lower glycemic index — a popular choice for sugar-conscious diets. Ingredients: wheat flour, buckwheat flour, water, salt. Carton: 15 × 800 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/04.png"
+                name="Royal Egg Noodles"
+                category="Noodle Products · Royal Series"
+                description="Green Food certified premium noodles with a springy bite and rich egg aroma. Ingredients: wheat flour, egg powder, water, salt. Carton: 15 × 1 kg, paper-wrapped."
+              />
+              <ProductCard
+                image="/images/products/noodles1/05.png"
+                name="Royal Dragon Beard Noodles"
+                category="Noodle Products · Royal Series"
+                description="Green Food certified extra-fine noodles made from selected wheat, smooth and springy with a rich wheat aroma. Ingredients: wheat flour, water, salt. Carton: 15 × 1 kg, paper-wrapped."
+              />
+              <ProductCard
+                image="/images/products/noodles1/06.png"
+                name="Slim Silver-Thread Noodles"
+                category="Noodle Products · Australian Wheat Series"
+                description="Extra-thin noodles made from a blend of Australian and Chinese wheat — quick cooking yet firm and chewy. Ingredients: wheat flour (Australian and domestic wheat), water, salt. Carton: 15 × 1 kg, paper-wrapped."
+              />
+              <ProductCard
+                image="/images/products/noodles1/07.png"
+                name="Wheat-Core Dragon Beard Noodles"
+                category="Noodle Products · Wheat-Core Series"
+                description="Extra-fine noodles milled from the wheat core with around 13% protein — soft without turning mushy, fine without sticking. Ingredients: wheat-core flour, water, salt. Carton: 15 × 900 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/08.png"
+                name="Wheat-Core Egg Noodles"
+                category="Noodle Products · Wheat-Core Series"
+                description="Wheat-core flour enriched with egg for a tender yet springy chew. Ingredients: wheat-core flour, egg powder, water, salt. Carton: 15 × 900 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/09.png"
+                name="Wheat-Core Hand-Rolled Style Noodles"
+                category="Noodle Products · Wheat-Core Series"
+                description="A thicker, hand-rolled style cut with an upgraded chewy texture. Ingredients: wheat-core flour, water, salt. Carton: 15 × 900 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/010.png"
+                name="Wheat-Core Wide Noodles"
+                category="Noodle Products · Wheat-Core Series"
+                description="A wide-cut noodle with extra chew, made from selected wheat-core flour — ideal for stir-fried and braised noodle dishes. Ingredients: wheat-core flour, water, salt. Carton: 15 × 900 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/011.png"
+                name="Premium Fine Round Noodles"
+                category="Noodle Products · Premium Series"
+                description="Fine round-cut noodles with a smooth, springy mouthfeel. Ingredients: wheat flour, water, salt. Carton: 15 × 800 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/012.png"
+                name="Premium Egg Noodles"
+                category="Noodle Products · Premium Series"
+                description="Premium-series noodles enriched with egg for extra nutrition and a fuller flavour. Ingredients: wheat flour, egg powder, water, salt. Carton: 15 × 800 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/013.png"
+                name="Premium Original Noodles"
+                category="Noodle Products · Premium Series"
+                description="Classic medium-cut noodles that stay firm through long boiling without breaking. Ingredients: wheat flour, water, salt. Carton: 15 × 800 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/014.png"
+                name="High-Gluten Dragon Beard Noodles 1 kg"
+                category="Noodle Products · High-Gluten Series"
+                description="Extra-fine high-gluten noodles — tender, smooth and fast to cook. Ingredients: high-gluten wheat flour, water, salt. Carton: 15 × 1 kg (also available 20 × 400 g)."
+              />
+              <ProductCard
+                image="/images/products/noodles1/015.png"
+                name="High-Gluten Egg Noodles 1 kg"
+                category="Noodle Products · High-Gluten Series"
+                description="Springy, smooth high-gluten noodles with a mild egg flavour, easy to cook through. Ingredients: high-gluten wheat flour, egg powder, water, salt. Carton: 15 × 1 kg."
+              />
+              <ProductCard
+                image="/images/products/noodles1/016.png"
+                name="High-Gluten Clear Soup Noodles 1 kg"
+                category="Noodle Products · High-Gluten Series"
+                description="High-gluten noodles that cook up smooth and keep the broth clear. Ingredients: high-gluten wheat flour, water, salt. Carton: 15 × 1 kg (also available 20 × 400 g)."
+              />
+              <ProductCard
+                image="/images/products/noodles1/017.png"
+                name="High-Gluten Dragon Beard Noodles 500 g"
+                category="Noodle Products · High-Gluten Series"
+                description="The retail 500 g pack of our extra-fine high-gluten noodles — tender, smooth and fast to cook. Ingredients: high-gluten wheat flour, water, salt. Carton: 20 × 500 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/018.png"
+                name="High-Gluten Egg Noodles 500 g"
+                category="Noodle Products · High-Gluten Series"
+                description="The retail 500 g pack of our high-gluten egg noodles — springy, smooth, with a mild egg flavour. Ingredients: high-gluten wheat flour, egg powder, water, salt. Carton: 20 × 500 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/019.png"
+                name="High-Gluten Clear Soup Noodles 500 g"
+                category="Noodle Products · High-Gluten Series"
+                description="The retail 500 g pack of our clear-soup noodles — smooth and easy to cook without clouding the broth. Ingredients: high-gluten wheat flour, water, salt. Carton: 20 × 500 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/020.png"
+                name="Superior Dragon Beard Noodles"
+                category="Noodle Products · Superior Series"
+                description="Made from top-grade wheat-core flour with a full wheat aroma, in a traditional paper-wrapped format. Ingredients: wheat-core flour, water, salt. Carton: 15 × 1 kg or 20 × 500 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/021.png"
+                name="Superior Egg Noodles"
+                category="Noodle Products · Superior Series"
+                description="Top-grade wheat-core flour with added egg for a richer flavour, in a traditional paper-wrapped format. Ingredients: wheat-core flour, egg powder, water, salt. Carton: 15 × 1 kg or 20 × 500 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/022.png"
+                name="Superior Original Noodles"
+                category="Noodle Products · Superior Series"
+                description="A strong wheat aroma and smooth texture from top-grade wheat-core flour, paper-wrapped. Ingredients: wheat-core flour, water, salt. Carton: 15 × 1 kg or 20 × 500 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/023.png"
+                name="Superior Dragon Beard Noodles 800 g"
+                category="Noodle Products · Superior Series"
+                description="The 800 g film-pack version of our Superior dragon beard noodles, made from top-grade wheat-core flour. Ingredients: wheat-core flour, water, salt. Carton: 15 × 800 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/024.png"
+                name="Superior Original Noodles 800 g"
+                category="Noodle Products · Superior Series"
+                description="The 800 g film-pack version of our Superior original noodles — strong wheat aroma, smooth texture. Ingredients: wheat-core flour, water, salt. Carton: 15 × 800 g."
+              />
+              <ProductCard
+                image="/images/products/noodles1/025.png"
+                name="Northern Wheat Dragon Beard Noodles"
+                category="Noodle Products · Northern Wheat Series"
+                description="Made from northern Chinese wheat — springy and smooth, with no starch haze in the soup. Ingredients: wheat flour, water, salt. Carton: 15 × 800 g, paper-wrapped."
+              />
+              <ProductCard
+                image="/images/products/noodles1/026.png"
+                name="Northern Wheat Egg Noodles"
+                category="Noodle Products · Northern Wheat Series"
+                description="Northern wheat noodles enriched with egg — springy and smooth, with no starch haze in the soup. Ingredients: wheat flour, egg powder, water, salt. Carton: 15 × 800 g, paper-wrapped."
+              />
+              <ProductCard
+                image="/images/products/noodles1/027.png"
+                name="Northern Wheat Hand-Rolled Style Noodles"
+                category="Noodle Products · Northern Wheat Series"
+                description="A hand-rolled style cut from northern Chinese wheat — springy, smooth and substantial. Ingredients: wheat flour, water, salt. Carton: 15 × 800 g, paper-wrapped."
+              />
+              <ProductCard
+                image="/images/products/noodles1/028.png"
+                name="Wheat-Core Egg Noodle Sheets"
+                category="Noodle Products · Noodle Sheet Series"
+                description="Paper-thin noodle sheets with a smooth, springy bite and rich egg aroma. Ingredients: wheat-core flour, egg powder, water, salt. Carton: 10 × 1 kg."
+              />
+              <ProductCard
+                image="/images/products/noodles1/029.png"
+                name="Homestyle Original Noodles"
+                category="Noodle Products · Homestyle Series"
+                description="An everyday staple noodle — smooth, wholesome and great value. Ingredients: wheat flour, water, salt. Pack sizes from 350 g to 500 g, multiple cut widths available."
+              />
+              <ProductCard
+                image="/images/products/noodles1/030.png"
+                name="Homestyle Egg Noodles"
+                category="Noodle Products · Homestyle Series"
+                description="Everyday noodles with added egg powder for a fuller taste. Ingredients: wheat flour, egg powder, water, salt. Pack sizes 400 g / 500 g, multiple cut widths available."
+              />
+              <ProductCard
+                image="/images/products/noodles1/211.png"
+                name="Chinese Yam Noodles"
+                category="Noodle Products · Multigrain Series"
+                description="Blended with Chinese yam, valued in traditional diets for gentle nourishment. A filling staple with natural flavour. Ingredients: wheat flour, Chinese yam powder, water, salt. Family pack, carton: 6 × 1.75 kg."
+              />
+              <ProductCard
+                image="/images/products/noodles1/222.png"
+                name="Millet Noodles"
+                category="Noodle Products · Multigrain Series"
+                description="Multigrain noodles made with millet — high fibre and a lower glycemic index for sugar-conscious diets. Ingredients: wheat flour, millet flour, water, salt. Family pack, carton: 6 × 1.75 kg."
+              />
+              <ProductCard
+                image="/images/products/noodles1/223.png"
+                name="Wheat-Core Knife-Cut Noodle Sheets"
+                category="Noodle Products · Noodle Sheet Series"
+                description="Knife-cut style noodle sheets from selected wheat-core flour — silky outside with an upgraded chew. Ingredients: wheat-core flour, water, salt. Carton: 20 × 250 g (200 g size also available)."
+              />
+              <ProductCard
+                image="/images/products/noodles1/224.png"
+                name="Wheat-Core Egg Noodles Family Pack"
+                category="Noodle Products · Wheat-Core Series"
+                description="A 1.5 kg carry-handle family pack of our wheat-core egg noodles, made from quality raw materials. Ingredients: wheat-core flour, egg powder, water, salt. Carton: 7 × 1.5 kg."
+              />
+              <ProductCard
+                image="/images/products/noodles1/225.png"
+                name="Millet Noodles Bulk Pack"
+                category="Noodle Products · Foodservice Series"
+                description="A 4 kg bulk pack with millet essence added, for foodservice and wholesale channels. Ingredients: wheat flour, millet flour, water, salt. Carton: 3 × 4 kg."
+              />
+            </div>
+
+            <!-- ============ Flour Products ============ -->
+            <div class="product-panel" data-product-panel="flour" hidden>
+              <ProductCard
+                image="/images/products/flour1/01.png"
+                name="Eight-Star Strong Gluten Wheat Flour"
+                category="Flour Products · Strong Gluten Series"
+                description="The top grade of our strong gluten range, milled from selected high-protein wheat for premium bread, noodles and other high-gluten products. 25 kg woven bag with colour film."
+              />
+              <ProductCard
+                image="/images/products/flour1/02.png"
+                name="Seven-Star Strong Gluten Wheat Flour"
+                category="Flour Products · Strong Gluten Series"
+                description="High-grade general-purpose strong gluten flour for a wide range of premium high-gluten products. Milled from selected high-protein wheat. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/03.png"
+                name="Six-Star Strong Gluten Wheat Flour"
+                category="Flour Products · Strong Gluten Series"
+                description="A dependable strong gluten flour for premium high-gluten applications at a balanced cost. Milled from selected high-protein wheat. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/04.png"
+                name="Eight-Star Snowflake Flour"
+                category="Flour Products · General Purpose Series"
+                description="Premium snowflake flour milled from the wheat core — high whiteness and fine granularity. Suited to soup buns, steamed buns, noodles and flatbreads. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/05.png"
+                name="Seven-Star Snowflake Flour"
+                category="Flour Products · General Purpose Series"
+                description="A versatile snowflake flour for steamed buns, baozi, noodles and flatbreads, with consistent performance across applications. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/06.png"
+                name="6A Snowflake Flour"
+                category="Flour Products · General Purpose Series"
+                description="All-round snowflake flour for soup buns, steamed buns, noodles and flatbreads — a reliable workhorse for food businesses. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/07.png"
+                name="Special Refined Flour"
+                category="Flour Products · General Purpose Series"
+                description="Refined wheat flour well suited to flatbreads and pancake-style products. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/08.png"
+                name="Golden Fuqiang Flour"
+                category="Flour Products · General Purpose Series"
+                description="A classic refined flour for flatbreads and everyday wheat foods. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/09.png"
+                name="Seven-Star Snowflake Bun Flour"
+                category="Flour Products · Steamed Goods Series"
+                description="Mid-to-high grade flour developed for baozi and steamed pastries, giving a soft, white, evenly risen crumb. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/10.png"
+                name="Super Refined Flour"
+                category="Flour Products · Steamed Goods Series"
+                description="A versatile mid-grade flour for baozi, steamed buns, soup buns, pan-fried buns and baked flatbreads. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/11.png"
+                name="Six-Star Steamed Bun Flour"
+                category="Flour Products · Steamed Goods Series"
+                description="High-grade flour developed specifically for steamed buns — strong fermentation tolerance and a bright, fine crumb. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/12.png"
+                name="Golden Steamed Bun Flour"
+                category="Flour Products · Steamed Goods Series"
+                description="Mid-grade high-gluten steamed bun flour balancing chew, whiteness and cost for commercial steaming. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/13.png"
+                name="Four-Star Steamed Bun Flour"
+                category="Flour Products · Steamed Goods Series"
+                description="An economical flour for northern-style steamed buns with dependable daily performance. 25 kg bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/14.png"
+                name="Three-Star Steamed Bun Flour"
+                category="Flour Products · Steamed Goods Series"
+                description="A value-grade flour for northern-style steamed buns in volume production. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/15.png"
+                name="Eight-Star Dumpling Wrapper Flour"
+                category="Flour Products · Boiled Goods Series"
+                description="Strong gluten flour for premium dumpling wrappers, wonton wrappers and fresh noodles — wrappers stay translucent and elastic after boiling. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/16.png"
+                name="Six-Star Noodle King Flour"
+                category="Flour Products · Boiled Goods Series"
+                description="Specialised flour for fresh-cut noodles, dumpling wrappers and wonton wrappers, developed for noodle shops and food manufacturers. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/17.png"
+                name="Youtiao Special Flour"
+                category="Flour Products · Fried Goods Series"
+                description="Purpose-built flour for fried dough sticks (youtiao), suited to pre-formed dough factories and premium fried dough products — reliable expansion and a crisp bite. 25 kg woven bag."
+              />
+              <ProductCard
+                image="/images/products/flour1/18.png"
+                name="Eight-Star Snowflake Wheat Flour (Australian Wheat)"
+                category="Flour Products · Retail Pack Series"
+                description="Strong gluten snowflake flour blending Australian and Chinese wheat, for premium home and artisan baking. Cloth-style bag, 5 kg × 5 or 10 kg × 1."
+              />
+              <ProductCard
+                image="/images/products/flour1/19.png"
+                name="Professional Dumpling Flour"
+                category="Flour Products · Retail Pack Series"
+                description="Professional-grade flour for premium dumplings — strong, extensible dough and translucent wrappers. Cloth-style bag, 5 kg × 5 per carton."
+              />
+              <ProductCard
+                image="/images/products/flour1/20.png"
+                name="Superior Dumpling Flour 10 kg"
+                category="Flour Products · Retail Pack Series"
+                description="A 10 kg cloth-style bag of our superior dumpling flour for restaurants and bulk household use. Also available as 5 kg × 5."
+              />
+              <ProductCard
+                image="/images/products/flour1/21.png"
+                name="Superior Dumpling Flour 2.5 kg"
+                category="Flour Products · Retail Pack Series"
+                description="The convenient 2.5 kg retail pack of our superior dumpling flour for premium home-made dumplings. Carton: 4 × 2.5 kg."
+              />
+              <ProductCard
+                image="/images/products/flour1/22.png"
+                name="Household Dumpling Flour"
+                category="Flour Products · Retail Pack Series"
+                description="An accessible dumpling flour for everyday family dumpling making — easy handling and consistent results. Carton: 4 × 2.5 kg."
+              />
+            </div>
+
+            <!-- ============ Custom Solutions ============ -->
+            <div class="product-panel" data-product-panel="customization" hidden>
+              <ProductCard
+                image="/images/products/customization1/01-shanghai-yangchun.webp"
+                name="Shanghai Yangchun Noodles"
+                category="Custom Solutions"
+                description="A customised regional product developed for an overseas brand: classic Shanghai-style thin noodles in a 2 kg retail pack."
+              />
+              <ProductCard
+                image="/images/products/customization1/02-lanzhou-ramen.webp"
+                name="Lanzhou Ramen Noodles"
+                category="Custom Solutions"
+                description="Lanzhou-style ramen noodles produced under a customer brand, with custom size, texture and packaging artwork."
+              />
+              <ProductCard
+                image="/images/products/customization1/03-sichuan-dandan.webp"
+                name="Sichuan Dandan Noodles"
+                category="Custom Solutions"
+                description="Sichuan dandan-style noodles tailored for overseas retail, part of a regional Chinese noodle series."
+              />
+              <ProductCard
+                image="/images/products/customization1/04-shandong-ramen.webp"
+                name="Shandong Ramen Noodles"
+                category="Custom Solutions"
+                description="Shandong-style ramen noodles developed as an OEM program with customised formulation and 2 kg pack format."
+              />
+              <ProductCard
+                image="/images/products/customization1/05-shanxi-sliced.webp"
+                name="Shanxi Sliced Noodles"
+                category="Custom Solutions"
+                description="Shanxi knife-sliced style noodles reproduced for industrial production while keeping the traditional wide cut."
+              />
+              <ProductCard
+                image="/images/products/customization1/06-wuhan-hotdry.webp"
+                name="Wuhan Hot Dry Noodles"
+                category="Custom Solutions"
+                description="Wuhan reganmian-style noodles adapted for export retail, designed for the classic sesame-paste preparation."
+              />
+              <ProductCard
+                image="/images/products/customization1/07-henan-handrolled.webp"
+                name="Henan Hand-Rolled Style Noodles"
+                category="Custom Solutions"
+                description="Henan-style noodles with a hand-rolled texture, produced at scale for a private label program."
+              />
+              <ProductCard
+                image="/images/products/customization1/08-beijing-style.webp"
+                name="Old Beijing Style Noodles"
+                category="Custom Solutions"
+                description="Old Beijing-style noodles for zhajiang dishes, completing the regional Chinese noodle series."
+              />
+            </div>
+          </div>
+
+          <div class="products-cta">
+            <div>
+              <h2>Looking for a product not listed here?</h2>
+              <p>
+                We develop custom noodle and flour products to your
+                specifications — size, texture, formulation and packaging.
+              </p>
+            </div>
+            <a class="products-cta-link" href="/contact/">
+              Request a Quote <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+    <script src="/scripts/site.js" defer></script>
+
+    <script>
+      // Open the tab matching the URL hash (e.g. /products/#flour),
+      // including when a dropdown link is clicked while already on this page.
+      const activateFromHash = () => {
+        const cat = location.hash.replace("#", "");
+        if (!cat) return;
+        const tab = document.querySelector(`[data-product-tab="${cat}"]`);
+        if (tab instanceof HTMLElement) tab.click();
+      };
+      window.addEventListener("hashchange", activateFromHash);
+      activateFromHash();
+    </script>
+  </body>
+</html>

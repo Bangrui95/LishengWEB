@@ -1,0 +1,264 @@
+---
+import ContactCta from "../../components/ContactCta.astro";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/global.css";
+import "../../styles/subpage.css";
+import "../../styles/products-specs.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sample Specifications | Lisheng Noodles &amp; Flour</title>
+    <meta
+      name="description"
+      content="Technical reference for Lisheng base products: noodle cut sizes from extra-fine to knife-cut wide, dried noodle parameters and wheat flour specifications by series."
+    />
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <section class="page-hero" aria-labelledby="specs-hero-title">
+        <img
+          src="/images/products/products1.png"
+          alt="Lisheng plain noodle and flour samples"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Technical Reference</p>
+          <h1 id="specs-hero-title">Sample Specifications</h1>
+          <p class="page-hero-copy">
+            The plain products behind every program — noodle cuts and flour
+            bases with the technical details your QA team asks for.
+          </p>
+        </div>
+      </section>
+
+      <!-- Noodle cut sizes -->
+      <section class="page-section" aria-labelledby="specs-cuts-title">
+        <div class="page-section-inner">
+          <p class="specs-kicker">Plain noodle samples</p>
+          <h2 id="specs-cuts-title">Noodle cut sizes</h2>
+          <p>
+            All dried noodles are produced on automated 1000-type lines and
+            named by Chinese cut numbers. Width and cooking time are the two
+            parameters that define the eating experience — pick the cut, then
+            pair it with a flour base below.
+          </p>
+
+          <div class="specs-table-wrap">
+            <table class="specs-table">
+              <thead>
+                <tr>
+                  <th>Cut</th>
+                  <th>Approx. Width</th>
+                  <th>Profile</th>
+                  <th>Cooking Time</th>
+                  <th>Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0# Dragon Beard</td>
+                  <td class="num">≈ 1.0 mm</td>
+                  <td>Fine round</td>
+                  <td class="num">3–4 min</td>
+                  <td>Clear soups, quick-serve bowls, angel-hair style dishes</td>
+                </tr>
+                <tr>
+                  <td>1.5# Fine</td>
+                  <td class="num">≈ 1.5 mm</td>
+                  <td>Round or square</td>
+                  <td class="num">4–5 min</td>
+                  <td>Light soup noodles, dandan style, portion packs</td>
+                </tr>
+                <tr>
+                  <td>2# Classic</td>
+                  <td class="num">≈ 1.8 mm</td>
+                  <td>Round</td>
+                  <td class="num">5–6 min</td>
+                  <td>Everyday soup noodles, spaghetti-style applications</td>
+                </tr>
+                <tr>
+                  <td>3# Medium</td>
+                  <td class="num">≈ 2.5 mm</td>
+                  <td>Round or flat</td>
+                  <td class="num">6–7 min</td>
+                  <td>Stir-fry and lo mein, mixed-sauce noodles</td>
+                </tr>
+                <tr>
+                  <td>6# Wide Flat</td>
+                  <td class="num">≈ 6 mm</td>
+                  <td>Flat ribbon</td>
+                  <td class="num">7–9 min</td>
+                  <td>Braised dishes, heavy sauces, fettuccine-style plates</td>
+                </tr>
+                <tr>
+                  <td>10# Knife-Cut</td>
+                  <td class="num">10 mm</td>
+                  <td>Wide, wavy edge</td>
+                  <td class="num">8–10 min</td>
+                  <td>Hearty northern-style dishes, signature wide noodles</td>
+                </tr>
+                <tr>
+                  <td>Noodle Sheets</td>
+                  <td class="num">Custom</td>
+                  <td>Thin sheet</td>
+                  <td class="num">5–7 min</td>
+                  <td>Hotpot, soup sheets, regional sheet-noodle dishes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dried noodle base parameters -->
+      <section class="page-section alt" aria-labelledby="specs-base-title">
+        <div class="page-section-inner">
+          <p class="specs-kicker">Common parameters</p>
+          <h2 id="specs-base-title">Dried noodle base data</h2>
+
+          <dl class="specs-base">
+            <div>
+              <dt>Moisture ≤ 14.5%</dt>
+              <dd>
+                Controlled low-temperature drying to Chinese dried noodle
+                standards, for stable shelf life in transit.
+              </dd>
+            </div>
+            <div>
+              <dt>Shelf Life 12–24 Months</dt>
+              <dd>
+                Typical range depending on formula and packaging; confirmed per
+                product on the COA.
+              </dd>
+            </div>
+            <div>
+              <dt>Salt Content — Adjustable</dt>
+              <dd>
+                Standard or reduced-sodium recipes tuned to your market's
+                labelling requirements.
+              </dd>
+            </div>
+            <div>
+              <dt>Noodle Length — Customisable</dt>
+              <dd>
+                Standard stick length for retail packs, or cut to your
+                specification for foodservice.
+              </dd>
+            </div>
+            <div>
+              <dt>Net Weights 150 g – 4 kg</dt>
+              <dd>
+                From portion packs to bulk foodservice cartons, with carton
+                configurations to match.
+              </dd>
+            </div>
+            <div>
+              <dt>Batch Testing</dt>
+              <dd>
+                Every batch leaves with inspection records under ISO 22000 /
+                HACCP control.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Flour specifications -->
+      <section class="page-section" aria-labelledby="specs-flour-title">
+        <div class="page-section-inner">
+          <p class="specs-kicker">Flour bases</p>
+          <h2 id="specs-flour-title">Wheat flour by series</h2>
+          <p>
+            Flour determines the bite. These are the base series our mills
+            produce daily — typical values shown; exact figures are confirmed
+            on the certificate of analysis with each order.
+          </p>
+
+          <div class="specs-table-wrap">
+            <table class="specs-table">
+              <thead>
+                <tr>
+                  <th>Series</th>
+                  <th>Protein (typical)</th>
+                  <th>Wet Gluten</th>
+                  <th>Moisture</th>
+                  <th>Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Strong Gluten</td>
+                  <td class="num">≥ 12.5%</td>
+                  <td class="num">≥ 32%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>Firm noodles, premium baking, high-gluten products</td>
+                </tr>
+                <tr>
+                  <td>Wheat-Core</td>
+                  <td class="num">≈ 13%</td>
+                  <td class="num">30–33%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>Premium noodles and dumpling wrappers</td>
+                </tr>
+                <tr>
+                  <td>Snowflake</td>
+                  <td class="num">11–12.5%</td>
+                  <td class="num">28–32%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>Steamed buns, baozi, everyday noodles</td>
+                </tr>
+                <tr>
+                  <td>Special Refined</td>
+                  <td class="num">10.5–12%</td>
+                  <td class="num">26–30%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>Flatbreads and pan-fried products</td>
+                </tr>
+                <tr>
+                  <td>Dumpling</td>
+                  <td class="num">12–13%</td>
+                  <td class="num">≥ 30%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>Translucent, elastic dumpling and wonton wrappers</td>
+                </tr>
+                <tr>
+                  <td>Whole Wheat</td>
+                  <td class="num">12–13.5%</td>
+                  <td class="num">—</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>High-fibre noodles and whole grain baking</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="specs-note">
+            <p>
+              Values above are indicative, based on Chinese national standards
+              (GB/T, LS/T) and our regular production. A full certificate of
+              analysis accompanies every order, and samples are available for
+              your own lab verification.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <ContactCta
+        kicker="Need the full data sheet?"
+        title="Request complete specifications and samples."
+        text="Tell us the cut, flour base and target market — we send the full spec sheet, COA format and physical samples for your QA team."
+        buttonLabel="Request Spec Sheets"
+        buttonHref="/contact/"
+      />
+    </main>
+
+    <Footer showCta={false} />
+    <script src="/scripts/site.js" defer></script>
+  </body>
+</html>
