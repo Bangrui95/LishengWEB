@@ -1306,24 +1306,12 @@
     font-size: 16px;
   }
 
+  /* Keep the desktop collage (tall left + two stacked right), just smaller,
+     and show it above the R&D copy on phones */
   .about-rd-media {
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    height: auto;
-  }
-
-  .about-rd-media img,
-  .about-rd-media img:first-child,
-  .about-rd-media img:nth-child(2),
-  .about-rd-media img:nth-child(3) {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .about-rd-media img {
-    height: auto;
-    aspect-ratio: 1.48;
-    min-height: 220px;
+    order: -1;
+    gap: 10px;
+    height: clamp(220px, 58vw, 340px);
   }
 
   .about-rd-points {
@@ -1337,23 +1325,8 @@
   }
 
   .about-factory-media {
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    height: auto;
-  }
-
-  .about-factory-media img,
-  .about-factory-media img:first-child,
-  .about-factory-media img:nth-child(2),
-  .about-factory-media img:nth-child(3) {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .about-factory-media img {
-    height: auto;
-    aspect-ratio: 1.48;
-    min-height: 210px;
+    gap: 10px;
+    height: clamp(220px, 58vw, 340px);
   }
 
   .about-factory-copy h3 {
@@ -1546,17 +1519,190 @@
   }
 }
 
+/* Phone pass: tighter rhythm, 2×3 stats, compact cards */
 @media (max-width: 700px) {
   .company-overview .overview-copy {
     width: min(100% - 32px, 560px);
-    padding: 54px 0 42px;
+    padding: 36px 0 26px;
+  }
+
+  .company-overview .overview-copy h2 {
+    font-size: 28px;
   }
 
   .company-overview .overview-copy p {
-    margin-top: 22px;
+    margin-top: 14px;
     font-size: 14px;
     line-height: 1.45;
     font-weight: 400;
     overflow-wrap: break-word;
+  }
+
+  .section-heading h2 {
+    font-size: 30px;
+  }
+
+  .section-heading h2::after {
+    margin-top: 14px;
+  }
+
+  /* Six stats merge into one 2-column × 3-row grid */
+  .overview-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 18px;
+    width: min(100% - 32px, 560px);
+    margin: 0 auto;
+    padding: 20px 0 34px;
+  }
+
+  .stats-row {
+    display: contents;
+  }
+
+  /* OEM / private-label beige card — compact */
+  .featured-links {
+    padding: 34px 0 40px;
+  }
+
+  .featured-report {
+    gap: 16px;
+    padding: 16px 16px 22px;
+    min-height: 0;
+  }
+
+  .report-image {
+    aspect-ratio: 1.8;
+  }
+
+  .report-copy h3 {
+    font-size: 22px;
+  }
+
+  .report-copy p {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .report-actions {
+    margin-top: 16px;
+    gap: 8px;
+    max-width: none;
+  }
+
+  .report-action {
+    min-height: 38px;
+  }
+
+  /* Factory / product cards: small image beside the text */
+  .feature-card-grid {
+    gap: 24px;
+    margin-top: 26px;
+  }
+
+  .feature-card {
+    grid-template-rows: none;
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+  }
+
+  .feature-card > img {
+    aspect-ratio: 1;
+    height: auto;
+  }
+
+  .feature-card-copy {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .feature-card-copy h3 {
+    font-size: 18px;
+  }
+
+  .feature-card-copy p {
+    margin-top: 6px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .feature-card-copy a {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  /* About block */
+  .about-section {
+    padding: 40px 0 34px;
+  }
+
+  .about-inner {
+    gap: 24px;
+  }
+
+  .about-copy h2 {
+    font-size: 30px;
+  }
+
+  .about-copy p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .about-rd {
+    padding: 20px 16px;
+  }
+
+  .about-rd-main {
+    gap: 18px;
+  }
+
+  .about-rd-copy h3 {
+    font-size: 24px;
+  }
+
+  .about-factory {
+    gap: 18px;
+    padding-top: 20px;
+  }
+
+  .about-factory-copy h3 {
+    font-size: 24px;
+  }
+
+  /* Remaining sections: tighter blocks */
+  .products-section {
+    padding: 34px 0 32px;
+  }
+
+  .product-tabs {
+    margin-top: 22px;
+  }
+
+  .news-section {
+    padding: 34px 0 38px;
+  }
+
+  .news-layout {
+    margin-top: 24px;
+    gap: 24px;
+  }
+
+  .history-section {
+    padding: 34px 0 42px;
+  }
+
+  .history-carousel {
+    margin-top: 24px;
+  }
+
+  .world-section {
+    padding: 34px 0 42px;
+  }
+
+  .world-intro {
+    margin-top: 18px;
   }
 }

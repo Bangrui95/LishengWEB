@@ -1,5 +1,10 @@
 /* Company · Honors page (/company/honors/) */
 
+/* Section titles run the full content width so they stay on one line */
+.page-section-inner h2 {
+  max-width: none;
+}
+
 .company-kicker {
   margin: 0 0 12px;
   color: #b56c10;

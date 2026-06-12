@@ -25,16 +25,19 @@
 
 共享样式：global.css（令牌）、header.css、footer.css、subpage.css（子页 hero + page-section）、contact-cta.css（CTA 组件自带）。
 **约定：每页一个独立 CSS 文件，改一页不影响别页**；视觉规范见 DESIGN-SPEC.md（红 #d71920 / 金 #e39a24、Georgia 衬线标题、直角、米色 #f7f0e6 卡片）。
+逐页精修中的页面级覆盖模式（写在各页 CSS，参考 factory-certificates.css）：① 章节标题单行 `.page-section-inner h2 { max-width: none }`（honors、certificates 已用）；② 区块密集页统一节奏 `.page-section { padding: 48px 0 }`；③ 同底色相邻区块加 `has-divider` 类出内容区等宽细线；④ company-cta 默认透明、hover 米色。
+**certificates 页已精修完成**（2026-06-12）：顺序为国家荣誉→行业地位（白底，末尾 CTA）→ISO/HACCP/IQNET 证书卡（灰底，点图开 PDF）→绿色食品画廊（灰底+分割线）。
 
 ## 导航结构（Header.astro navItems）
 
 - Home `/`
 - Company ▾：About `/company/`、Honors & Awards `/company/honors/`、Subsidiaries `/company/subsidiaries/`
-- Factory ▾（主项点击→ `/factory/production/`）：Food Lab、Smart Factory、Product Certifications、Factory Tour
+- Factory ▾（主项点击→ `/factory/production/`）：Smart Factory、Food Lab、Product Certifications、Factory Tour（Smart Factory 居首，2026-06-12 调整）
 - Services ▾：OEM Manufacturing `/services/`、Product Customization `/services/customization/`
 - Products ▾：Noodle/Flour/Partner（`/products/#hash` 直达 Tab）、Sample Specifications
 - News `/news/`、Contact `/contact/`
 - 高亮规则：带下拉的主项用 `navActive`（子项精确匹配），Company 与 Factory 共享 `/company/` 前缀也不会串扰；顶级项 17px、整块可点；Request a Quote 按钮 hover 变红。
+- 移动端（≤900px，2026-06-12 定稿）：所有 hover/focus-within 展开规则锁在 `@media (min-width: 901px)`（不要用 hover:hover，桌面缩窗测试会失效）；展开菜单右对齐（对齐汉堡按钮）、高度由内容撑开（max-height 兜底滚动）、`nav-sweep` clip-path 上→下扫入 0.35s；点开时 header 加 `menu-open` 类瞬时同色（site.js 同步切换）；菜单内禁 tap-highlight 和 focus outline；语言项 `.nav-item.lang-switch` 移动端隐藏（无入口，待 i18n）。
 
 ## 可复用组件（src/components/）
 
@@ -49,7 +52,7 @@
 - LISHENG-NEWS-ARCHIVE.md：58 条官网新闻全集（中文正文 + 英文标题对照）
 - src/data/news/{id}.md：单篇新闻源（frontmatter: title/date/source/cover），新增 md 即自动生成详情页
 - 官网抓取：仅 HTTP；有 wtime/wtoken cookie 防爬门槛，需两步握手
-- 图片库：public/images/company/{about,about/honor,lab,production,subsidiaries,honors}/、products/{noodles1,flour1,customization1}/、news/。**替换图片直接覆盖 public 下页面引用的同名文件**（不要只改源素材夹）；注意旧相机图可能损坏或带 EXIF 旋转，必要时用 PIL 重编码烘焙方向
+- 图片库（2026-06-12 调整后）：public/images/company/{about,about/honor,subsidiaries,honors}/、factory/{lab,production,certificates/{certificate,green}}/（factory 根目录另有散图；certificate/ 内为 ISO/HACCP/IQNET PDF + 同名 -preview.jpg 预览图，green/ 为 5 张绿色食品证书扫描件，均已改为 URL 安全文件名）、products/{noodles1,flour1,customization1}/、news/、main/、icon/。**替换图片直接覆盖 public 下页面引用的同名文件**（不要只改源素材夹）；注意旧相机图可能损坏或带 EXIF 旋转，必要时用 PIL 重编码烘焙方向
 
 ## 交互脚本要点
 
@@ -64,4 +67,4 @@
 - 首页品牌墙（Our Brands）整段已 HTML 注释隐藏，待素材
 - "欢迎客户验厂"等服务承诺（services/factory tour 页）待公司确认
 - 规格页（specifications）的理化数值为行业典型值，待品控部核定
-- 大量改动未提交 git（上次 commit 339cfd1 之后全部累积）——建议尽快分批提交
+- Header 最右侧语言切换（EN ▾ 中文）为占位（`href="#"`，`data-lang="zh"` 钩子已留）；多语言方案已定：Astro i18n + `/zh/` 页面树复制式，待内容整理好后实施；移动端语言入口未做
