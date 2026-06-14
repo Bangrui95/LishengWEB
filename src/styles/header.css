@@ -247,19 +247,29 @@
     outline: none;
   }
 
-  /* Reset the desktop full-height hit area in the mobile list */
-  .site-nav.is-open > a,
-  .site-nav.is-open .nav-item.has-dropdown > a {
+  /* Each link shrinks to its own text and pins right, so ONLY the text is a
+     tap target. The empty area is non-link; site.js closes the menu on it. */
+  .site-nav.is-open > a {
+    justify-self: end;
     display: block;
     height: auto;
     align-self: auto;
     padding: 11px 0;
   }
 
-  /* Dropdown flattens into the mobile menu */
+  /* Dropdown groups flatten into right-aligned flex columns */
   .site-nav.is-open .nav-item.has-dropdown {
-    display: block;
+    justify-self: end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     align-self: auto;
+  }
+
+  .site-nav.is-open .nav-item.has-dropdown > a {
+    height: auto;
+    align-self: auto;
+    padding: 11px 0;
   }
 
   .site-nav.is-open .nav-dropdown {
@@ -271,6 +281,9 @@
     padding: 0 0 6px;
     background: transparent;
     border-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   .site-nav.is-open .nav-dropdown a {

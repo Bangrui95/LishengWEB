@@ -9,9 +9,21 @@ const updateHeader = () => {
 window.addEventListener("scroll", updateHeader);
 updateHeader();
 
+const setMenuOpen = (open) => {
+  nav?.classList.toggle("is-open", open);
+  header?.classList.toggle("menu-open", open);
+};
+
 navToggle?.addEventListener("click", () => {
-  const open = nav?.classList.toggle("is-open");
-  header?.classList.toggle("menu-open", Boolean(open));
+  setMenuOpen(!nav?.classList.contains("is-open"));
+});
+
+// Tapping the empty (non-link) area of the open mobile menu closes it;
+// only the link text itself navigates.
+nav?.addEventListener("click", (event) => {
+  if (nav.classList.contains("is-open") && !event.target.closest("a")) {
+    setMenuOpen(false);
+  }
 });
 
 const track = document.querySelector("[data-hero-track]");
