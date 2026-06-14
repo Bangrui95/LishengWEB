@@ -306,12 +306,71 @@
   }
 }
 
+/* Phone pass (see DESIGN-SPEC.md §6) */
 @media (max-width: 700px) {
-  .prod-steps {
-    grid-template-columns: 1fr;
+  .prod-stats-band {
+    margin-top: 24px;
+  }
+
+  .prod-stats-grid {
+    gap: 22px 18px;
+  }
+
+  .prod-stats-grid dt {
+    font-size: 30px;
   }
 
   .prod-stats-grid dd {
+    margin-top: 8px;
     font-size: 13px;
+  }
+
+  .equip-row,
+  .equip-row.reverse {
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .equip-copy h3 {
+    font-size: 22px;
+  }
+
+  .equip-copy p {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .prod-steps {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-top: 24px;
+  }
+
+  .prod-steps h3 {
+    font-size: 17px;
+  }
+
+  .prod-steps p {
+    font-size: 14px;
+  }
+
+  .prod-gallery {
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  .company-cta h2 {
+    font-size: 22px;
+  }
+
+  .company-cta p {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  .company-cta-link {
+    min-height: 46px;
+    font-size: 14px;
   }
 }

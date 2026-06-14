@@ -522,4 +522,132 @@
   .prod-timeline h3 {
     font-size: 20px;
   }
+
+  .prod-timeline p {
+    font-size: 14px;
+  }
+
+  /* Hero CTA button */
+  .services-hero-primary {
+    min-height: 46px;
+    font-size: 14px;
+  }
+
+  /* Pillars */
+  .pillar-grid {
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .pillar-card {
+    padding: 18px 18px 22px;
+  }
+
+  .pillar-card h3 {
+    font-size: 20px;
+  }
+
+  .pillar-card p {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  .pillar-card li {
+    font-size: 14px;
+  }
+
+  /* Customisation list */
+  .custom-grid {
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .custom-item h3 {
+    font-size: 16px;
+  }
+
+  .custom-item p {
+    font-size: 14px;
+  }
+
+  /* OEM workflow */
+  .oem-flow {
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .oem-flow li {
+    padding: 16px 18px 18px;
+  }
+
+  .oem-flow li::before {
+    font-size: 20px;
+  }
+
+  .oem-flow h3 {
+    font-size: 17px;
+  }
+
+  .oem-flow p {
+    font-size: 14px;
+  }
+
+  /* Split rows */
+  .services-split,
+  .services-split.reverse {
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .services-split-copy h3 {
+    font-size: 24px;
+  }
+
+  .services-split-copy h3::after {
+    margin: 10px 0 14px;
+  }
+
+  .services-split-copy p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .services-split-link {
+    margin-top: 14px;
+    font-size: 14px;
+  }
+
+  /* Equipment + cert chips + stats */
+  .equip-grid {
+    gap: 16px;
+  }
+
+  .equip-grid dt {
+    font-size: 16px;
+  }
+
+  .equip-grid dd {
+    margin-top: 7px;
+    font-size: 14px;
+  }
+
+  .cert-chip-grid {
+    gap: 14px;
+  }
+
+  .cert-chip {
+    padding: 16px 18px 18px;
+  }
+
+  .cert-chip p {
+    font-size: 14px;
+  }
+
+  .services-stats {
+    gap: 22px 18px;
+  }
+
+  .services-stats dt {
+    font-size: 30px;
+  }
 }

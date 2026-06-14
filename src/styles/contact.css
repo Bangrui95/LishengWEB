@@ -472,6 +472,119 @@
   }
 }
 
+/* Phone pass (see DESIGN-SPEC.md §6) — form inputs keep 16px (no iOS zoom) */
+@media (max-width: 700px) {
+  .quote-hero {
+    min-height: 520px;
+  }
+
+  .quote-hero-inner {
+    padding: 92px 0 40px;
+  }
+
+  .quote-kicker,
+  .quote-section-heading p,
+  .quote-form-intro p {
+    font-size: 12px;
+  }
+
+  .quote-hero h1 {
+    font-size: 30px;
+  }
+
+  .quote-hero-copy {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .quote-hero-actions {
+    margin-top: 24px;
+  }
+
+  .quote-primary,
+  .quote-secondary {
+    min-height: 46px;
+    font-size: 14px;
+  }
+
+  .quote-section-heading h2,
+  .quote-form-intro h2 {
+    font-size: 28px;
+  }
+
+  .quote-form-intro span {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  .quote-paths,
+  .quote-form-section,
+  .quote-process {
+    padding: 34px 0;
+  }
+
+  .quote-path-grid,
+  .quote-form-layout,
+  .quote-process-list {
+    margin-top: 24px;
+  }
+
+  .quote-path-card {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .quote-path-card span,
+  .quote-process-list span {
+    font-size: 30px;
+  }
+
+  .quote-path-card h3,
+  .quote-process-list h3,
+  .quote-side-panel h2 {
+    margin-top: 14px;
+    font-size: 22px;
+  }
+
+  .quote-path-card p,
+  .quote-process-list p {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  .quote-process-list li {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .quote-form {
+    padding: 18px;
+  }
+
+  .quote-form label {
+    font-size: 14px;
+  }
+
+  .quote-form-footer button {
+    min-height: 50px;
+    font-size: 15px;
+  }
+
+  .quote-side-panel {
+    padding: 20px;
+  }
+
+  .quote-side-panel li p {
+    font-size: 14px;
+  }
+
+  .quote-side-card {
+    margin-top: 24px;
+    padding: 18px;
+  }
+}
+
 @media (max-width: 560px) {
   .quote-primary,
   .quote-secondary {

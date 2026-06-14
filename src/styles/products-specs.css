@@ -105,3 +105,38 @@
     font-size: 14px;
   }
 }
+
+/* Phone pass (see DESIGN-SPEC.md §6) */
+@media (max-width: 700px) {
+  .specs-table-wrap,
+  .specs-base,
+  .specs-note {
+    margin-top: 24px;
+  }
+
+  .specs-base {
+    gap: 12px;
+  }
+
+  .specs-base > div {
+    padding-left: 14px;
+    border-left-width: 4px;
+  }
+
+  .specs-base dt {
+    font-size: 16px;
+  }
+
+  .specs-base dd {
+    margin-top: 7px;
+    font-size: 14px;
+  }
+
+  .specs-note {
+    padding: 16px 18px;
+  }
+
+  .specs-note p {
+    font-size: 14px;
+  }
+}

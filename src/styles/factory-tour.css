@@ -200,8 +200,82 @@
   }
 }
 
+/* Phone pass (see DESIGN-SPEC.md §6) */
 @media (max-width: 700px) {
+  .tour-reasons {
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .tour-reason {
+    padding: 18px 18px 20px;
+  }
+
+  .tour-reason h3 {
+    font-size: 20px;
+  }
+
+  .tour-reason p {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  .tour-stops {
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .tour-stops dt {
+    font-size: 16px;
+  }
+
+  .tour-stops dd {
+    margin-top: 7px;
+    font-size: 14px;
+  }
+
   .tour-flow {
     grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .tour-flow li {
+    padding: 16px 18px 18px;
+  }
+
+  .tour-flow li::before {
+    font-size: 20px;
+  }
+
+  .tour-flow h3 {
+    font-size: 17px;
+  }
+
+  .tour-flow p {
+    font-size: 14px;
+  }
+
+  .tour-split {
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .tour-split-copy h3 {
+    font-size: 24px;
+  }
+
+  .tour-split-copy h3::after {
+    margin: 10px 0 14px;
+  }
+
+  .tour-split-copy p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .tour-support li {
+    font-size: 12px;
+    padding: 5px 11px;
   }
 }

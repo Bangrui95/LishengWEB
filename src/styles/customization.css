@@ -149,15 +149,58 @@
   }
 }
 
+/* Phone pass (see DESIGN-SPEC.md §6) */
 @media (max-width: 700px) {
+  .config-step,
+  .config-step:first-of-type {
+    margin-top: 26px;
+  }
+
+  .config-step {
+    padding-top: 22px;
+  }
+
+  .config-step h3 {
+    font-size: 24px;
+  }
+
+  .config-step > p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .config-group-label {
+    margin-top: 18px;
+  }
+
   .config-options {
     gap: 10px;
+    margin-top: 12px;
   }
 
   .config-options button {
     flex: 1 1 calc(50% - 10px);
     min-width: 0;
+    min-height: 44px;
     padding: 0 12px;
+    font-size: 14px;
+  }
+
+  .config-save {
+    margin-top: 40px;
+  }
+
+  .config-save h2 {
+    font-size: 22px;
+  }
+
+  .config-save p {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  .config-save-link {
+    min-height: 46px;
     font-size: 14px;
   }
 }

@@ -261,17 +261,93 @@
   }
 }
 
+/* Phone pass (see DESIGN-SPEC.md §6) */
 @media (max-width: 700px) {
-  .value-grid {
-    grid-template-columns: 1fr;
+  .company-stats {
+    gap: 22px 18px;
   }
 
-  .process-flow {
-    grid-template-columns: 1fr;
+  .company-stats dt {
+    font-size: 30px;
   }
 
   .company-stats dd {
     font-size: 14px;
     font-weight: 400;
+  }
+
+  .value-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .value-card {
+    padding: 18px;
+  }
+
+  .value-card p {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  .process-flow {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .process-flow li {
+    padding: 16px 18px;
+  }
+
+  .process-flow li::before {
+    font-size: 20px;
+  }
+
+  .process-flow p {
+    font-size: 14px;
+  }
+
+  .split-row,
+  .split-row.reverse {
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .split-copy h3 {
+    font-size: 24px;
+  }
+
+  .split-copy h3::after {
+    margin: 10px 0 14px;
+  }
+
+  .split-copy p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .split-link {
+    margin-top: 14px;
+    font-size: 14px;
+  }
+
+  .company-cta {
+    margin-top: 40px;
+  }
+
+  .company-cta h2 {
+    font-size: 22px;
+  }
+
+  .company-cta p {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  .company-cta-link {
+    min-height: 46px;
+    font-size: 14px;
   }
 }

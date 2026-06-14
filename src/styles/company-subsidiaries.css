@@ -178,3 +178,59 @@
     padding: 28px 0;
   }
 }
+
+/* Phone pass (see DESIGN-SPEC.md §6) */
+@media (max-width: 700px) {
+  .subsidiary-card,
+  .subsidiary-card.reverse {
+    gap: 16px;
+    padding: 20px 0;
+  }
+
+  .subsidiary-year {
+    font-size: 28px;
+  }
+
+  .subsidiary-copy .company-kicker {
+    margin: 10px 0 8px;
+  }
+
+  .subsidiary-copy h3 {
+    font-size: 22px;
+  }
+
+  .subsidiary-copy > p {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .subsidiary-facts {
+    gap: 6px 8px;
+    margin-top: 12px;
+  }
+
+  .subsidiary-facts li {
+    font-size: 12px;
+    padding: 5px 11px;
+  }
+
+  .company-cta {
+    margin-top: 40px;
+    gap: 16px;
+  }
+
+  .company-cta h2 {
+    font-size: 22px;
+  }
+
+  .company-cta p {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  .company-cta-link {
+    min-height: 46px;
+    font-size: 14px;
+  }
+}

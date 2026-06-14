@@ -180,14 +180,29 @@
   }
 }
 
+/* Phone pass (see DESIGN-SPEC.md §6) */
 @media (max-width: 700px) {
   .products-catalog {
-    padding: 54px 0 76px;
+    padding: 34px 0 40px;
+  }
+
+  .products-catalog-intro p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .products-hero-button {
+    min-height: 46px;
+    font-size: 14px;
   }
 
   .product-tabs {
     gap: 10px;
-    margin-top: 34px;
+    margin-top: 20px;
+  }
+
+  .product-tabs button {
+    min-height: 44px;
   }
 
   .product-tabs button {
@@ -206,5 +221,23 @@
   .product-panel {
     grid-template-columns: repeat(2, 1fr);
     gap: 26px 18px;
+  }
+
+  .products-cta {
+    margin-top: 40px;
+  }
+
+  .products-cta h2 {
+    font-size: 22px;
+  }
+
+  .products-cta p {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  .products-cta-link {
+    min-height: 46px;
+    font-size: 14px;
   }
 }

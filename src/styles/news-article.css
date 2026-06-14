@@ -89,13 +89,38 @@
   line-height: 1.6;
 }
 
+/* Phone pass (see DESIGN-SPEC.md §6) — body stays readable for long-form */
 @media (max-width: 700px) {
   .article-section {
-    padding: 44px 0 64px;
+    padding: 34px 0 44px;
+  }
+
+  .article-meta {
+    margin-top: 20px;
+    padding-bottom: 18px;
   }
 
   .article-body {
-    font-size: 16px;
-    line-height: 1.85;
+    margin-top: 24px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .article-body p {
+    margin-bottom: 16px;
+  }
+
+  .article-body img {
+    margin: 20px auto;
+  }
+
+  .article-body h2,
+  .article-body h3 {
+    margin: 24px 0 10px;
+  }
+
+  .article-empty {
+    padding: 16px 18px;
+    font-size: 14px;
   }
 }
