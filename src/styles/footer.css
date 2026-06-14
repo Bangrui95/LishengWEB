@@ -47,7 +47,7 @@
 
 .footer-links {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 38px;
 }
 
@@ -123,25 +123,75 @@
   .footer-inner {
     width: min(100% - 32px, 620px);
     grid-template-columns: 1fr;
-    gap: 46px;
-    padding: 58px 0 42px;
+    gap: 30px;
+    padding: 44px 0 36px;
+  }
+
+  /* Brand block: description spans full width, smaller quote button */
+  .footer-brand p {
+    max-width: none;
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .footer-quote {
+    min-height: 42px;
+    margin-top: 18px;
+    padding: 0 16px;
+    font-size: 13px;
   }
 
   .footer-links {
     grid-template-columns: repeat(2, 1fr);
-    gap: 34px 24px;
+    gap: 22px 20px;
   }
 
+  /* Tighter footer link blocks on mobile */
+  .footer-links h2 {
+    font-size: 17px;
+  }
+
+  .footer-links h2::after {
+    width: 40px;
+    height: 3px;
+    margin: 11px 0;
+  }
+
+  .footer-links a {
+    font-size: 14px;
+  }
+
+  .footer-links a + a {
+    margin-top: 8px;
+  }
+
+  /* Legal strip: small, tight, pushed to the very bottom */
   .footer-bottom {
     width: min(100% - 32px, 620px);
     align-items: flex-start;
     flex-direction: column;
-    padding: 24px 0 30px;
+    gap: 8px;
+    padding: 14px 0 16px;
+  }
+
+  .footer-bottom p {
+    font-size: 12px;
+  }
+
+  .footer-bottom div {
+    gap: 14px;
+  }
+
+  .footer-bottom a {
+    font-size: 12px;
   }
 }
 
+/* Stay two columns on phones (Company|Factory, Services|Products, Contact|News) */
 @media (max-width: 560px) {
   .footer-links {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 16px;
   }
 }

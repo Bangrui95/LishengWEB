@@ -1816,12 +1816,48 @@
     padding-top: 16px;
   }
 
+  /* Hero slider controls scaled down */
+  .hero-controls {
+    gap: 10px;
+    bottom: 18px;
+  }
+
+  .hero-controls button {
+    width: 28px;
+    height: 28px;
+  }
+
+  .hero-dots {
+    gap: 9px;
+  }
+
+  .hero-dots button {
+    width: 9px;
+    height: 9px;
+  }
+
   .history-section {
     padding: 34px 0 42px;
   }
 
   .history-carousel {
     margin-top: 24px;
+  }
+
+  /* Timeline arrows: drop the circle, enlarge the glyph */
+  .history-nav {
+    width: auto;
+    height: auto;
+    padding: 4px 6px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    font-size: 40px;
+  }
+
+  .history-nav:hover {
+    color: var(--accent-red);
+    background: transparent;
   }
 
   .world-section {

@@ -27,35 +27,42 @@ const { showCta = true } = Astro.props;
 
     <nav class="footer-links" aria-label="Footer navigation">
       <div>
-        <h2>Products</h2>
-        <a href={withBase("/products/")}>Instant Noodles</a>
-        <a href={withBase("/products/")}>Dry Noodles</a>
-        <a href={withBase("/products/")}>Ramen Noodles</a>
-        <a href={withBase("/products/")}>Foodservice Bulk</a>
-      </div>
-
-      <div>
-        <h2>OEM Services</h2>
-        <a href={withBase("/services/")}>Private Label Manufacturing</a>
-        <a href={withBase("/services/customization/")}>Custom Packaging</a>
-        <a href={withBase("/services/customization/")}>Flavor Development</a>
-        <a href={withBase("/services/")}>Export Support</a>
-      </div>
-
-      <div>
         <h2>Company</h2>
         <a href={withBase("/company/")}>About us</a>
-        <a href={withBase("/factory/production/")}>Manufacturing</a>
-        <a href={withBase("/factory/certificates/")}>Quality</a>
-        <a href={withBase("/news/")}>News</a>
+        <a href={withBase("/company/honors/")}>Honors &amp; Awards</a>
+        <a href={withBase("/company/subsidiaries/")}>Subsidiaries</a>
+      </div>
+
+      <div>
+        <h2>Factory</h2>
+        <a href={withBase("/factory/production/")}>Smart Factory</a>
+        <a href={withBase("/factory/lab/")}>Food Lab</a>
+        <a href={withBase("/factory/certificates/")}>Certifications</a>
+        <a href={withBase("/factory/tour/")}>Factory Tour</a>
+      </div>
+
+      <div>
+        <h2>Services</h2>
+        <a href={withBase("/services/")}>OEM Manufacturing</a>
+        <a href={withBase("/services/customization/")}>Product Customization</a>
+      </div>
+
+      <div>
+        <h2>Products</h2>
+        <a href={withBase("/products/#noodles")}>Noodle Products</a>
+        <a href={withBase("/products/#flour")}>Flour Products</a>
+        <a href={withBase("/products/specifications/")}>Specifications</a>
       </div>
 
       <div>
         <h2>Contact</h2>
         <a href={withBase("/contact/")}>Start an OEM Project</a>
         <a href={withBase("/contact/")}>Request Samples</a>
-        <a href={withBase("/contact/")}>Packaging Consultation</a>
-        <a href={withBase("/contact/")}>Export Supply Planning</a>
+      </div>
+
+      <div>
+        <h2>News</h2>
+        <a href={withBase("/news/")}>Latest News</a>
       </div>
     </nav>
   </div>
