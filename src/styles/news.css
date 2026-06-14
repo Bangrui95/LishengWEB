@@ -22,11 +22,50 @@
   color: #555;
 }
 
+/* Category filter buttons (公司新闻 / 行业动态) */
+.news-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.news-tabs button {
+  min-width: 150px;
+  min-height: 46px;
+  padding: 0 24px;
+  border: 1px solid #c9c9c9;
+  background: #fff;
+  color: #303030;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.news-tabs button.active {
+  border-color: var(--accent-red);
+  background: var(--accent-red);
+  color: #fff;
+}
+
+@media (min-width: 901px) {
+  .news-tabs button:hover {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+  }
+
+  .news-tabs button.active:hover {
+    color: #fff;
+  }
+}
+
 .news-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 28px;
-  margin-top: 42px;
+  margin-top: 28px;
 }
 
 .news-grid .news-card[hidden] {
@@ -96,8 +135,21 @@
     line-height: 1.55;
   }
 
+  .news-tabs {
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .news-tabs button {
+    min-width: 0;
+    flex: 1 1 calc(50% - 10px);
+    min-height: 44px;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+
   .news-grid {
-    margin-top: 24px;
+    margin-top: 20px;
   }
 
   .news-pagination {

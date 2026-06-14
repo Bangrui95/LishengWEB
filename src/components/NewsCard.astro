@@ -18,12 +18,13 @@ const {
   title,
   excerpt = "",
   href = "",
+  category = "",
 } = Astro.props;
 
 const Tag = href ? "a" : "div";
 ---
 
-<article class="news-card">
+<article class="news-card" data-category={category || undefined}>
   <Tag class="news-card-link" href={href || undefined}>
     <span class="news-card-media">
       <img src={withBase(image)} alt={title} loading="lazy" />
