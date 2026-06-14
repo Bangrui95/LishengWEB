@@ -111,6 +111,9 @@
 
   .contact-cta-button {
     width: 100%;
-    max-width: 280px;
+    max-width: 240px;
+    min-height: 46px;
+    min-width: 0;
+    font-size: 14px;
   }
 }
