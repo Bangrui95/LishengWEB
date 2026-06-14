@@ -1,12 +1,13 @@
 ---
+import { withBase } from "../../lib/url";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
 import "../../styles/global.css";
 import "../../styles/subpage.css";
 import "../../styles/factory-certificates.css";
 
-const CERT = "/images/factory/certificates/certificate";
-const GREEN = "/images/factory/certificates/green";
+const CERT = withBase("/images/factory/certificates/certificate");
+const GREEN = withBase("/images/factory/certificates/green");
 ---
 
 <html lang="en">
@@ -24,7 +25,7 @@ const GREEN = "/images/factory/certificates/green";
 
     <main>
       <section class="page-hero" aria-labelledby="cert-hero-title">
-        <img src="/images/main/3.jpg" alt="Lisheng certificates and quality awards" />
+        <img src={withBase("/images/main/3.jpg")} alt="Lisheng certificates and quality awards" />
         <div class="page-hero-overlay"></div>
         <div class="page-hero-inner">
           <p class="page-kicker">Quality &amp; Recognition</p>
@@ -121,7 +122,7 @@ const GREEN = "/images/factory/certificates/green";
                 documentation for your import requirements.
               </p>
             </div>
-            <a class="company-cta-link" href="/contact/">
+            <a class="company-cta-link" href={withBase("/contact/")}>
               Contact Us <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -225,6 +226,6 @@ const GREEN = "/images/factory/certificates/green";
     </main>
 
     <Footer />
-    <script src="/scripts/site.js" defer></script>
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
   </body>
 </html>

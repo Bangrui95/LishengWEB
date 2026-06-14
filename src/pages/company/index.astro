@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../../lib/url";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
 import "../../styles/global.css";
@@ -21,7 +22,7 @@ import "../../styles/company-about.css";
 
     <main>
       <section class="page-hero" aria-labelledby="company-hero-title">
-        <img src="/images/main/2.jpg" alt="Lisheng Group headquarters and facilities" />
+        <img src={withBase("/images/main/2.jpg")} alt="Lisheng Group headquarters and facilities" />
         <div class="page-hero-overlay"></div>
         <div class="page-hero-inner">
           <p class="page-kicker">About Lisheng Group</p>
@@ -160,7 +161,7 @@ import "../../styles/company-about.css";
           <div class="split-row">
             <div class="split-media">
               <img
-                src="/images/factory/01.png"
+                src={withBase("/images/factory/01.png")}
                 alt="Automated production line at a Lisheng factory"
               />
             </div>
@@ -172,7 +173,7 @@ import "../../styles/company-about.css";
                 runs four intelligent milling lines under full PLC and MES
                 control — largely unmanned, remotely operated production.
               </p>
-              <a class="split-link" href="/factory/production/">
+              <a class="split-link" href={withBase("/factory/production/")}>
                 Explore our production facilities
               </a>
             </div>
@@ -186,7 +187,7 @@ import "../../styles/company-about.css";
           <div class="split-row reverse" style="margin-top: 0;">
             <div class="split-media">
               <img
-                src="/images/main/WHO.png"
+                src={withBase("/images/main/WHO.png")}
                 alt="Lisheng quality certifications display"
               />
             </div>
@@ -199,7 +200,7 @@ import "../../styles/company-about.css";
                 Product in 2007, and the Lisheng trademark was recognised as a
                 China Famous Trademark in 2011.
               </p>
-              <a class="split-link" href="/factory/certificates/">
+              <a class="split-link" href={withBase("/factory/certificates/")}>
                 View certificates &amp; awards
               </a>
             </div>
@@ -217,7 +218,7 @@ import "../../styles/company-about.css";
             Liangshan, each Lisheng subsidiary plays a defined role in the
             group's flour, noodle, food technology and packaging chain.
           </p>
-          <a class="split-link" href="/company/subsidiaries/">
+          <a class="split-link" href={withBase("/company/subsidiaries/")}>
             Meet the subsidiaries
           </a>
 
@@ -229,7 +230,7 @@ import "../../styles/company-about.css";
                 manufacturer, with OEM and private label support.
               </p>
             </div>
-            <a class="company-cta-link" href="/contact/">
+            <a class="company-cta-link" href={withBase("/contact/")}>
               Request a Quote <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -238,6 +239,6 @@ import "../../styles/company-about.css";
     </main>
 
     <Footer />
-    <script src="/scripts/site.js" defer></script>
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
   </body>
 </html>

@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../../lib/url";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
 import "../../styles/global.css";
@@ -22,7 +23,7 @@ import "../../styles/customization.css";
     <main>
       <section class="page-hero" aria-labelledby="customization-hero-title">
         <img
-          src="/images/main/products.png"
+          src={withBase("/images/main/products.png")}
           alt="Custom noodle products developed by Lisheng"
         />
         <div class="page-hero-overlay"></div>
@@ -224,7 +225,7 @@ import "../../styles/customization.css";
                 specifications and a quotation path.
               </p>
             </div>
-            <a class="config-save-link" href="/contact/">
+            <a class="config-save-link" href={withBase("/contact/")}>
               Save &amp; Send Inquiry <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -233,7 +234,7 @@ import "../../styles/customization.css";
     </main>
 
     <Footer showCta={false} />
-    <script src="/scripts/site.js" defer></script>
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
 
     <script>
       // Option selection: every group is multi-select.

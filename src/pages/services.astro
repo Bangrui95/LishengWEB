@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../lib/url";
 import ContactCta from "../components/ContactCta.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
@@ -23,7 +24,7 @@ import "../styles/services.css";
     <main>
       <section class="page-hero" aria-labelledby="services-hero-title">
         <img
-          src="/images/main/OEM.png"
+          src={withBase("/images/main/OEM.png")}
           alt="OEM noodle manufacturing and packaging at Lisheng"
         />
         <div class="page-hero-overlay"></div>
@@ -36,7 +37,7 @@ import "../styles/services.css";
             schedule.
           </p>
           <div class="services-hero-actions">
-            <a class="services-hero-primary" href="/contact/">
+            <a class="services-hero-primary" href={withBase("/contact/")}>
               Start an OEM Project <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -272,7 +273,7 @@ import "../styles/services.css";
           <div class="services-split">
             <div class="services-split-media">
               <img
-                src="/images/factory/02.png"
+                src={withBase("/images/factory/02.png")}
                 alt="Wheat quality inspection and milling at Lisheng"
               />
             </div>
@@ -300,7 +301,7 @@ import "../styles/services.css";
           <div class="services-split reverse">
             <div class="services-split-media">
               <img
-                src="/images/factory/11.png"
+                src={withBase("/images/factory/11.png")}
                 alt="Lisheng R&D laboratory and product development"
               />
             </div>
@@ -319,7 +320,7 @@ import "../styles/services.css";
                 stone-milled whole grain line with low-temperature grinding and
                 bran baking — shows how far the lab takes a recipe.
               </p>
-              <a class="services-split-link" href="/factory/lab/">
+              <a class="services-split-link" href={withBase("/factory/lab/")}>
                 Visit the Product Lab
               </a>
             </div>
@@ -328,7 +329,7 @@ import "../styles/services.css";
           <div class="services-split">
             <div class="services-split-media">
               <img
-                src="/images/factory/03.png"
+                src={withBase("/images/factory/03.png")}
                 alt="Automated noodle production lines at a Lisheng plant"
               />
             </div>
@@ -349,7 +350,7 @@ import "../styles/services.css";
                 smart plant — so your order is never tied to a single
                 factory's schedule.
               </p>
-              <a class="services-split-link" href="/company/subsidiaries/">
+              <a class="services-split-link" href={withBase("/company/subsidiaries/")}>
                 See our production bases
               </a>
             </div>
@@ -412,7 +413,7 @@ import "../styles/services.css";
               </dd>
             </div>
           </dl>
-          <a class="services-split-link" href="/factory/production/">
+          <a class="services-split-link" href={withBase("/factory/production/")}>
             Explore our production facilities
           </a>
         </div>
@@ -463,7 +464,7 @@ import "../styles/services.css";
               </p>
             </div>
           </div>
-          <a class="services-split-link" href="/factory/certificates/">
+          <a class="services-split-link" href={withBase("/factory/certificates/")}>
             View all certificates &amp; awards
           </a>
         </div>
@@ -522,6 +523,6 @@ import "../styles/services.css";
     </main>
 
     <Footer showCta={false} />
-    <script src="/scripts/site.js" defer></script>
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
   </body>
 </html>

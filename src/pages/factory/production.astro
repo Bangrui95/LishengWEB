@@ -1,11 +1,12 @@
 ---
+import { withBase } from "../../lib/url";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
 import "../../styles/global.css";
 import "../../styles/subpage.css";
 import "../../styles/factory-production.css";
 
-const IMG = "/images/factory/production";
+const IMG = withBase("/images/factory/production");
 ---
 
 <html lang="en">
@@ -89,7 +90,7 @@ const IMG = "/images/factory/production";
                 our export team — most visits run in a single day.
               </p>
             </div>
-            <a class="company-cta-link" href="/contact/">
+            <a class="company-cta-link" href={withBase("/contact/")}>
               Contact us <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -349,6 +350,6 @@ const IMG = "/images/factory/production";
     </main>
 
     <Footer />
-    <script src="/scripts/site.js" defer></script>
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
   </body>
 </html>

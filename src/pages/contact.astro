@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../lib/url";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import "../styles/global.css";
@@ -20,7 +21,7 @@ import "../styles/contact.css";
 
     <main>
       <section class="quote-hero" aria-labelledby="quote-hero-title">
-        <img src="/images/main/4.jpg" alt="Private label noodle packaging and OEM product display" />
+        <img src={withBase("/images/main/4.jpg")} alt="Private label noodle packaging and OEM product display" />
         <div class="quote-hero-overlay"></div>
         <div class="quote-hero-inner">
           <p class="quote-kicker">Request a Quote</p>
@@ -238,6 +239,6 @@ import "../styles/contact.css";
     </main>
 
     <Footer showCta={false} />
-    <script src="/scripts/site.js" defer></script>
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
   </body>
 </html>

@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../lib/url";
 /**
  * Reusable contact CTA band.
  *
@@ -30,10 +31,10 @@ const {
     <h2 id="contact-cta-title">{title}</h2>
     {text && <p class="contact-cta-text">{text}</p>}
     {secondaryLabel && secondaryHref && (
-      <a class="contact-cta-link" href={secondaryHref}>{secondaryLabel}</a>
+      <a class="contact-cta-link" href={withBase(secondaryHref)}>{secondaryLabel}</a>
     )}
     <div class="contact-cta-actions">
-      <a class="contact-cta-button" href={buttonHref}>
+      <a class="contact-cta-button" href={withBase(buttonHref)}>
         {buttonLabel} <span aria-hidden="true">→</span>
       </a>
     </div>

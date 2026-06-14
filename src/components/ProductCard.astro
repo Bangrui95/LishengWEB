@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../lib/url";
 /**
  * Reusable product card with a built-in detail popup.
  *
@@ -24,7 +25,7 @@ const imageAlt = alt || name;
 <article class="product-tile">
   <button class="product-tile-button" type="button" data-product-open>
     <span class="product-tile-media">
-      <img src={image} alt={imageAlt} loading="lazy" />
+      <img src={withBase(image)} alt={imageAlt} loading="lazy" />
     </span>
     <span class="product-tile-name">{name}</span>
   </button>
@@ -40,7 +41,7 @@ const imageAlt = alt || name;
     </button>
     <div class="product-modal-layout">
       <div class="product-modal-media">
-        <img src={image} alt={imageAlt} loading="lazy" />
+        <img src={withBase(image)} alt={imageAlt} loading="lazy" />
       </div>
       <div class="product-modal-copy">
         {category && <p class="product-modal-kicker">{category}</p>}
@@ -52,7 +53,7 @@ const imageAlt = alt || name;
           <li>Export documentation support</li>
         </ul>
         <div class="product-modal-actions">
-          <a class="product-modal-cta" href="/contact/">
+          <a class="product-modal-cta" href={withBase("/contact/")}>
             Start an OEM Project <span aria-hidden="true">→</span>
           </a>
         </div>

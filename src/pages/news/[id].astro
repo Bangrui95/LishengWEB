@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../../lib/url";
 import type { MarkdownInstance } from "astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
@@ -44,6 +45,13 @@ const date = (
 const cover = fm.cover || "/images/main/4.jpg";
 const source = fm.source || "";
 const hasBody = mod.rawContent().trim().length > 0;
+
+// Body images come from the markdown (`![](/images/news/...)`) and bypass
+// Astro's attribute handling, so prefix the base on the compiled HTML.
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const bodyHtml = hasBody
+  ? (await mod.compiledContent()).replaceAll('"/images/', `"${base}/images/`)
+  : "";
 ---
 
 <html lang="en">
@@ -58,7 +66,7 @@ const hasBody = mod.rawContent().trim().length > 0;
 
     <main>
       <section class="page-hero" aria-labelledby="article-title">
-        <img src={cover} alt={title} />
+        <img src={withBase(cover)} alt={title} />
         <div class="page-hero-overlay"></div>
         <div class="page-hero-inner">
           <p class="page-kicker">Company News</p>
@@ -68,7 +76,7 @@ const hasBody = mod.rawContent().trim().length > 0;
 
       <article class="article-section">
         <div class="article-inner">
-          <a class="article-back" href="/news/?from=article">← Back to News</a>
+          <a class="article-back" href={withBase("/news/?from=article")}>← Back to News</a>
 
           <div class="article-meta">
             <time datetime={date}>{date}</time>
@@ -81,7 +89,7 @@ const hasBody = mod.rawContent().trim().length > 0;
 
           <div class="article-body" lang="zh-CN">
             {hasBody ? (
-              <Content />
+              <Fragment set:html={bodyHtml} />
             ) : (
               <p class="article-empty">
                 本篇新闻官网原文为图片版，文字内容整理中。
@@ -93,6 +101,6 @@ const hasBody = mod.rawContent().trim().length > 0;
     </main>
 
     <Footer showCta={false} />
-    <script src="/scripts/site.js" defer></script>
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
   </body>
 </html>

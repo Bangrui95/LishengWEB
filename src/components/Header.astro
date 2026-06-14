@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../lib/url";
 import "../styles/header.css";
 
 const currentPath = Astro.url.pathname;
@@ -66,8 +67,8 @@ const navActive = (item: { href: string; children?: { href: string }[] }) =>
 ---
 
 <header class="site-header" data-header>
-  <a class="site-logo" href="/" aria-label="Home">
-    <img src="/images/icon/logo-white.png" alt="Lisheng logo" />
+  <a class="site-logo" href={withBase("/")} aria-label="Home">
+    <img src={withBase("/images/icon/logo-white.png")} alt="Lisheng logo" />
   </a>
 
   <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation">
@@ -81,7 +82,7 @@ const navActive = (item: { href: string; children?: { href: string }[] }) =>
       item.children ? (
         <div class={`nav-item has-dropdown ${navActive(item) ? "active" : ""}`}>
           <a
-            href={item.href}
+            href={withBase(item.href)}
             class={navActive(item) ? "active" : ""}
             aria-haspopup="true"
           >
@@ -90,7 +91,7 @@ const navActive = (item: { href: string; children?: { href: string }[] }) =>
           <div class="nav-dropdown" aria-label={`${item.label} sections`}>
             {item.children.map((child) => (
               <a
-                href={child.href}
+                href={withBase(child.href)}
                 class={isExactActive(child.href) ? "active" : ""}
               >
                 {child.label}
@@ -99,14 +100,14 @@ const navActive = (item: { href: string; children?: { href: string }[] }) =>
           </div>
         </div>
       ) : (
-        <a href={item.href} class={isActive(item.href) ? "active" : ""}>
+        <a href={withBase(item.href)} class={isActive(item.href) ? "active" : ""}>
           {item.label}
         </a>
       )
     )}
   </nav>
 
-  <a class="quote-link" href="/contact/">Request a Quote</a>
+  <a class="quote-link" href={withBase("/contact/")}>Request a Quote</a>
 
   <div class="nav-item has-dropdown lang-switch">
     <a href="#" aria-haspopup="true" aria-label="Language: English">EN</a>

@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../lib/url";
 /**
  * Reusable news preview card.
  *
@@ -25,7 +26,7 @@ const Tag = href ? "a" : "div";
 <article class="news-card">
   <Tag class="news-card-link" href={href || undefined}>
     <span class="news-card-media">
-      <img src={image} alt={title} loading="lazy" />
+      <img src={withBase(image)} alt={title} loading="lazy" />
     </span>
     <span class="news-card-copy">
       {date && <time datetime={date}>{date}</time>}

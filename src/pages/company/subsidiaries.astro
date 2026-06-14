@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../../lib/url";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
 import "../../styles/global.css";
@@ -88,7 +89,7 @@ const subsidiaries = [
 
     <main>
       <section class="page-hero" aria-labelledby="sub-hero-title">
-        <img src="/images/main/2.jpg" alt="Lisheng Group subsidiary facilities" />
+        <img src={withBase("/images/main/2.jpg")} alt="Lisheng Group subsidiary facilities" />
         <div class="page-hero-overlay"></div>
         <div class="page-hero-inner">
           <p class="page-kicker">Group Structure</p>
@@ -116,7 +117,7 @@ const subsidiaries = [
             {subsidiaries.map((sub, i) => (
               <article class={`subsidiary-card ${i % 2 === 1 ? "reverse" : ""}`}>
                 <div class="subsidiary-media">
-                  <img src={sub.image} alt={`${sub.name} facility`} />
+                  <img src={withBase(sub.image)} alt={`${sub.name} facility`} />
                 </div>
                 <div class="subsidiary-copy">
                   {sub.year && <span class="subsidiary-year">{sub.year}</span>}
@@ -141,7 +142,7 @@ const subsidiaries = [
                 single export team.
               </p>
             </div>
-            <a class="company-cta-link" href="/contact/">
+            <a class="company-cta-link" href={withBase("/contact/")}>
               Request a Quote <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -150,6 +151,6 @@ const subsidiaries = [
     </main>
 
     <Footer />
-    <script src="/scripts/site.js" defer></script>
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
   </body>
 </html>

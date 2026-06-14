@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../lib/url";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import ProductCard from "../components/ProductCard.astro";
@@ -23,7 +24,7 @@ import "../styles/products.css";
     <main>
       <section class="page-hero" aria-labelledby="products-hero-title">
         <img
-          src="/images/products/products.png"
+          src={withBase("/images/products/products.png")}
           alt="Lisheng noodle and flour product range"
         />
         <div class="page-hero-overlay"></div>
@@ -35,7 +36,7 @@ import "../styles/products.css";
             for retail, foodservice and export markets.
           </p>
           <div class="products-hero-actions">
-            <a class="products-hero-button" href="/services/customization/">
+            <a class="products-hero-button" href={withBase("/services/customization/")}>
               Customize Your Product <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -55,7 +56,7 @@ import "../styles/products.css";
           </div>
 
           <div class="product-tabs-extra">
-            <a class="tab-link" href="/products/specifications/">
+            <a class="tab-link" href={withBase("/products/specifications/")}>
               Sample Specifications
             </a>
           </div>
@@ -504,7 +505,7 @@ import "../styles/products.css";
                 specifications — size, texture, formulation and packaging.
               </p>
             </div>
-            <a class="products-cta-link" href="/contact/">
+            <a class="products-cta-link" href={withBase("/contact/")}>
               Request a Quote <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -513,7 +514,7 @@ import "../styles/products.css";
     </main>
 
     <Footer />
-    <script src="/scripts/site.js" defer></script>
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
 
     <script>
       // Open the tab matching the URL hash (e.g. /products/#flour),
