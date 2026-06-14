@@ -23,6 +23,22 @@ navToggle?.addEventListener("click", () => {
   setMenuOpen(!nav?.classList.contains("is-open"));
 });
 
+// Language switch button (mobile): its own click-dropdown, independent of the
+// hamburger menu. On desktop the dropdown is hover-driven, so .open is inert.
+const langSwitch = document.querySelector(".lang-switch");
+if (langSwitch) {
+  const langButton = langSwitch.querySelector(":scope > a");
+  langButton?.addEventListener("click", (event) => {
+    event.preventDefault();
+    langSwitch.classList.toggle("open");
+  });
+  document.addEventListener("click", (event) => {
+    if (!langSwitch.contains(event.target)) {
+      langSwitch.classList.remove("open");
+    }
+  });
+}
+
 // Mobile accordion: tapping a section header (a parent of a dropdown) expands
 // or collapses it instead of navigating. Leaf links navigate as usual.
 nav?.querySelectorAll(".nav-item.has-dropdown > a").forEach((link) => {

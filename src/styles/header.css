@@ -167,18 +167,65 @@
 
 /* Header responsive */
 @media (max-width: 900px) {
+  /* logo | language | hamburger */
   .site-header {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto auto;
+    gap: 8px;
     height: 74px;
-    padding: 0 22px;
+    padding: 0 18px;
+  }
+
+  .site-logo {
+    order: 1;
   }
 
   .site-logo img {
     max-width: 210px;
   }
 
+  /* Language switch button, left of the hamburger, with a click dropdown */
+  .nav-item.lang-switch {
+    display: flex;
+    order: 2;
+    position: relative;
+    align-items: center;
+    align-self: center;
+  }
+
+  .lang-switch > a {
+    display: inline-flex;
+    align-items: center;
+    height: auto;
+    padding: 8px 10px;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+  }
+
+  .lang-switch .nav-dropdown {
+    left: auto;
+    right: 0;
+    top: calc(100% + 4px);
+    transform: none;
+    min-width: 124px;
+    padding: 6px 0;
+  }
+
+  .lang-switch.open .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .lang-switch .nav-dropdown a {
+    display: block;
+    padding: 11px 20px;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
   .nav-toggle {
     display: grid;
+    order: 3;
     gap: 5px;
     width: 42px;
     height: 42px;
@@ -192,11 +239,8 @@
     background: #fff;
   }
 
-  /* .nav-item.has-dropdown sets display:flex with two-class specificity,
-     so the mobile hide needs to match it */
   .site-nav,
-  .quote-link,
-  .nav-item.lang-switch {
+  .quote-link {
     display: none;
   }
 

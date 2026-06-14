@@ -1,49 +1,60 @@
 ---
 import { withBase } from "../lib/url";
+import { getUI, type Lang } from "../lib/i18n";
 import "../styles/header.css";
+
+// `lang` selects the label set; `langAltHref` is the same page in the other
+// language (when omitted the switcher stays a placeholder).
+interface Props {
+  lang?: Lang;
+  langAltHref?: string;
+}
+const { lang = "en", langAltHref } = Astro.props;
+const t = getUI(lang).nav;
+const ui = getUI(lang);
 
 const currentPath = Astro.url.pathname;
 const navItems = [
-  { href: "/", label: "Home" },
+  { href: "/", label: t.home },
   {
     href: "/company/",
-    label: "Company",
+    label: t.company,
     children: [
-      { href: "/company/", label: "About" },
-      { href: "/company/honors/", label: "Honors & Awards" },
-      { href: "/company/subsidiaries/", label: "Subsidiaries" }
+      { href: "/company/", label: t.about },
+      { href: "/company/honors/", label: t.honors },
+      { href: "/company/subsidiaries/", label: t.subsidiaries }
     ]
   },
   {
     href: "/factory/production/",
-    label: "Factory",
+    label: t.factory,
     children: [
-      { href: "/factory/production/", label: "Smart Factory" },
-      { href: "/factory/lab/", label: "Food Lab" },
-      { href: "/factory/certificates/", label: "Product Certifications" },
-      { href: "/factory/tour/", label: "Factory Tour" }
+      { href: "/factory/production/", label: t.smartFactory },
+      { href: "/factory/lab/", label: t.foodLab },
+      { href: "/factory/certificates/", label: t.certifications },
+      { href: "/factory/tour/", label: t.factoryTour }
     ]
   },
   {
     href: "/services/",
-    label: "Services",
+    label: t.services,
     children: [
-      { href: "/services/", label: "OEM Manufacturing" },
-      { href: "/services/customization/", label: "Product Customization" }
+      { href: "/services/", label: t.oem },
+      { href: "/services/customization/", label: t.customization }
     ]
   },
   {
     href: "/products/",
-    label: "Products",
+    label: t.products,
     children: [
-      { href: "/products/#noodles", label: "Noodle Products" },
-      { href: "/products/#flour", label: "Flour Products" },
-      { href: "/products/#customization", label: "Partner Collaborations" },
-      { href: "/products/specifications/", label: "Sample Specifications" }
+      { href: "/products/#noodles", label: t.noodleProducts },
+      { href: "/products/#flour", label: t.flourProducts },
+      { href: "/products/#customization", label: t.partner },
+      { href: "/products/specifications/", label: t.specifications }
     ]
   },
-  { href: "/news/", label: "News" },
-  { href: "/contact/", label: "Contact" }
+  { href: "/news/", label: t.news },
+  { href: "/contact/", label: t.contact }
 ];
 
 const isActive = (href: string) => {
@@ -108,12 +119,12 @@ const navActive = (item: { href: string; children?: { href: string }[] }) =>
     )}
   </nav>
 
-  <a class="quote-link" href={withBase("/contact/")}>Request a Quote</a>
+  <a class="quote-link" href={withBase("/contact/")}>{ui.quote}</a>
 
   <div class="nav-item has-dropdown lang-switch">
-    <a href="#" aria-haspopup="true" aria-label="Language: English">EN</a>
+    <a href="#" aria-haspopup="true" aria-label="Language">{ui.langCurrent}</a>
     <div class="nav-dropdown" aria-label="Languages">
-      <a href="#" data-lang="zh">中文</a>
+      <a href={langAltHref ? withBase(langAltHref) : "#"}>{ui.langOther}</a>
     </div>
   </div>
 </header>

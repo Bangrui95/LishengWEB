@@ -1,0 +1,663 @@
+---
+import { withBase } from "../../lib/url";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import HeroSlider from "../../components/HeroSlider.astro";
+import "../../styles/global.css";
+import "../../styles/index.css";
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>利生集团 — 中国挂面 OEM 代加工与自有品牌制造商</title>
+    <meta
+      name="description"
+      content="为全球食品品牌、进口商与分销商提供挂面 OEM 代加工与自有品牌生产。"
+    />
+  </head>
+  <body>
+    <Header lang="zh" langAltHref="/" />
+    <main>
+      <HeroSlider />
+      <section class="company-overview" aria-labelledby="company-overview-title">
+        <div class="overview-copy">
+          <h2 id="company-overview-title">
+            面向全球食品品牌的<br />
+            出口级挂面制造
+          </h2>
+          <p>
+            利生为海外进口商、自有品牌商与餐饮渠道商提供定制化挂面与面粉生产、自有包装配套以及面向国际市场的稳定供应。</p>
+        </div>
+
+        <div class="overview-stats">
+          <div class="stats-row stats-row-primary">
+            <dl class="stat-item">
+              <dt>
+                <span class="stat-number" aria-label="30+">
+                  <span class="stat-digit" aria-hidden="true">3</span>
+                  <span class="stat-digit" aria-hidden="true">0</span>
+                  <span class="stat-symbol" aria-hidden="true">+</span>
+                </span>
+              </dt>
+              <dd>年食品制造经验</dd>
+            </dl>
+            <dl class="stat-item">
+              <dt>
+                <span class="stat-number" aria-label="20+">
+                  <span class="stat-digit" aria-hidden="true">2</span>
+                  <span class="stat-digit" aria-hidden="true">0</span>
+                  <span class="stat-symbol" aria-hidden="true">+</span>
+                </span>
+              </dt>
+              <dd>产品线与定制生产</dd>
+            </dl>
+            <dl class="stat-item">
+              <dt>
+                <span class="stat-number" aria-label="6+">
+                  <span class="stat-digit" aria-hidden="true">6</span>
+                  <span class="stat-symbol" aria-hidden="true">+</span>
+                </span>
+              </dt>
+              <dd>出口市场</dd>
+            </dl>
+          </div>
+
+          <div class="stats-row stats-row-secondary">
+            <dl class="stat-item">
+              <dt>
+                <span class="stat-number" aria-label="30亿">
+                  <span class="stat-digit" aria-hidden="true">3</span>
+                  <span class="stat-digit" aria-hidden="true">0</span>
+                </span>
+                <span class="stat-unit">亿元</span>
+              </dt>
+              <dd>年营业收入</dd>
+            </dl>
+            <dl class="stat-item">
+              <dt>
+                <span class="stat-number" aria-label="4,500">
+                  <span class="stat-digit" aria-hidden="true">4</span>
+                  <span class="stat-comma" aria-hidden="true">,</span>
+                  <span class="stat-digit" aria-hidden="true">5</span>
+                  <span class="stat-digit" aria-hidden="true">0</span>
+                  <span class="stat-digit" aria-hidden="true">0</span>
+                </span>
+                <span class="stat-unit">吨</span>
+              </dt>
+              <dd>日处理小麦量</dd>
+            </dl>
+            <dl class="stat-item">
+              <dt>
+                <span class="stat-number" aria-label="600">
+                  <span class="stat-digit" aria-hidden="true">6</span>
+                  <span class="stat-digit" aria-hidden="true">0</span>
+                  <span class="stat-digit" aria-hidden="true">0</span>
+                </span>
+                <span class="stat-unit">吨</span>
+              </dt>
+              <dd>日产挂面量</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="featured-links" aria-labelledby="featured-links-title">
+        <h2 id="featured-links-title" class="sr-only">公司精选入口</h2>
+
+        <article class="featured-report">
+          <div class="report-image">
+            <img
+              src={withBase("/images/main/OEM.png")}
+              alt="OEM 挂面包装与产品展示"
+            />
+          </div>
+          <div class="report-copy">
+            <h3>OEM 与自有品牌供应</h3>
+            <p>
+              为海外进口商、零售品牌与餐饮渠道商提供定制挂面与面粉生产，支持产品规格、包装形式与出口级供应。</p>
+            <div class="report-actions" aria-label="OEM 指南链接">
+              <a class="report-action" href={withBase("/services/")}>
+                <span>OEM 代加工指南</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a class="report-action" href={withBase("/services/customization/")}>
+                <span>产品定制</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a class="report-action" href={withBase("/contact/")}>
+                <span>启动 OEM 项目</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <div class="feature-card-grid">
+          <article class="feature-card">
+            <img
+              src={withBase("/images/main/WHO.png")}
+              alt="利生挂面制造企业概览"
+            />
+            <div class="feature-card-copy">
+              <h3>制造能力</h3>
+              <p>
+                涵盖小麦加工、挂面制造、包装与物流的一体化生产体系，保障稳定品质、可扩展产能与长期供应。</p>
+              <a href={withBase("/company/")}>了解更多</a>
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <img
+              src={withBase("/images/main/products.png")}
+              alt="定制挂面产品与服务"
+            />
+            <div class="feature-card-copy">
+              <h3>产品系列</h3>
+              <p>
+                从挂面到小麦粉与自有品牌包装，利生开发可适配零售、餐饮与出口渠道的产品线，并可围绕市场需求灵活调整。</p>
+              <a href={withBase("/products/")}>了解更多</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="about-section" aria-labelledby="about-section-title">
+        <div class="about-inner">
+          <div class="about-left-panel">
+            <div class="about-media">
+              <img
+                src={withBase("/images/icon/logo.png")}
+                alt="利生集团标志"
+              />
+            </div>
+
+            <div class="subsidiary-list" aria-label="利生集团下属公司">
+              <h2>集团下属公司</h2>
+              <ul>
+                <li>山东利生食品集团有限公司</li>
+                <li>山东利生集团成武食品有限公司</li>
+                <li>山东利生集团汶上面业有限公司</li>
+                <li>山东利生集团深州面业有限公司</li>
+                <li>河南利生面业有限公司</li>
+                <li>梁山利生食品有限公司</li>
+                <li>山东瑞利食品科技有限公司</li>
+                <li>济宁天宇彩印包装有限公司</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="about-copy">
+            <h2 id="about-section-title">公司简介</h2>
+            <p>
+              山东利生集团创建于1995年，坐落于山东省济宁高新技术产业开发区。利生始终秉承"做百姓放心食品"的企业使命，充分发挥品质、规模、诚信、品牌与服务优势，致力于发展成为特色鲜明、技术实力雄厚、具有核心竞争力的大型食品企业集团。
+            </p>
+            <p>
+              集团产品畅销全国30个省、市、自治区的260多个大中城市，挂面产品还远销东南亚、欧洲等国际市场。
+            </p>
+            <p>
+              集团拥有六大面粉生产基地、三家挂面生产车间和三家粮食收储公司，日处理小麦4,500吨、日产挂面600吨、粮食仓储能力20万吨，是一家集粮食收储、加工、销售与物流于一体的大型企业集团。
+            </p>
+            <a class="about-more" href={withBase("/company/")}>了解更多</a>
+          </div>
+
+          <div class="about-rd" aria-labelledby="about-rd-title">
+            <div class="about-rd-main">
+              <div class="about-rd-copy">
+                <p>研发与产品开发</p>
+                <h3 id="about-rd-title">研发中心</h3>
+                <span>
+                  利生拥有独立的产品开发体系，涵盖面粉、挂面及相关粮食制品。团队在原料检测、配方调整、面条质构开发与包装试验方面经验丰富，为不同市场需求提供产品改良支持。
+                </span>
+                <span>
+                  公司还拥有十余项食品生产发明专利，持续强化在产品创新、工艺优化与稳定工业化生产方面的长期能力。
+                </span>
+                <a class="about-more" href={withBase("/factory/lab/")}>了解更多</a>
+              </div>
+
+              <div
+                class="about-rd-media"
+                aria-label="研发与生产开发图片"
+              >
+                <img
+                  src={withBase("/images/factory/11.png")}
+                  alt="研发人员检测挂面产品样品"
+                />
+                <img
+                  src={withBase("/images/factory/22.png")}
+                  alt="研发团队评审产品开发细节"
+                />
+                <img
+                  src={withBase("/images/factory/33.png")}
+                  alt="挂面产品研究与样品检测"
+                />
+              </div>
+
+              <dl class="about-rd-points" aria-label="研发能力亮点">
+                <div>
+                  <dt>配方开发</dt>
+                  <dd>
+                    针对不同产品需求测试并调整面粉与面团配方
+                  </dd>
+                </div>
+                <div>
+                  <dt>工艺优化</dt>
+                  <dd>
+                    依托自主专利食品加工技术提升生产稳定性
+                  </dd>
+                </div>
+                <div>
+                  <dt>产品标准</dt>
+                  <dd>
+                    按多市场食品安全要求检测，支持零售、餐饮与出口级规格
+                  </dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="about-factory" aria-labelledby="about-factory-title">
+              <div
+                class="about-factory-media"
+                aria-label="工厂加工与自动化生产图片"
+              >
+                <img
+                  src={withBase("/images/factory/01.png")}
+                  alt="自动化工厂加工线概览"
+                />
+                <img
+                  src={withBase("/images/factory/02.png")}
+                  alt="挂面加工机械与生产设备"
+                />
+                <img
+                  src={withBase("/images/factory/03.png")}
+                  alt="工厂机械加工与自动化生产系统"
+                />
+              </div>
+
+              <div class="about-factory-copy">
+                <p>全链条生产</p>
+                <h3 id="about-factory-title">
+                  制造实力
+                </h3>
+                <span>
+                  利生建立了涵盖原料采购、面粉加工、挂面制造、包装、仓储、物流与销售支持的一体化食品生产体系，全链条能力为长期合作伙伴提供稳定品质、高效生产与可靠供应。
+                </span>
+                <span>
+                  针对不同市场需求，我们支持定制化挂面规格，包括产品尺寸、口感、配方、包装形式与订单要求。依托自有包装生产资源，还可为零售、餐饮、批发与自有品牌产品提供灵活的包装方案。
+                </span>
+                <a class="about-more" href={withBase("/factory/production/")}>了解更多</a>
+              </div>
+
+              <dl
+                class="about-factory-stats"
+                aria-label="工厂加工亮点"
+              >
+                <div>
+                  <dt>加工</dt>
+                  <dd>
+                    面粉与挂面一体化制造，生产管控稳定
+                  </dd>
+                </div>
+                <div>
+                  <dt>定制</dt>
+                  <dd>
+                    面条尺寸、口感、配方与包装可按市场定制
+                  </dd>
+                </div>
+                <div>
+                  <dt>包装</dt>
+                  <dd>
+                    为零售、餐饮与自有品牌产品提供自有包装配套
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="products-section" aria-labelledby="products-section-title">
+        <div class="products-inner">
+          <div class="section-heading">
+            <h2 id="products-section-title">产品</h2>
+          </div>
+
+          <div
+            class="product-tabs"
+            role="tablist"
+            aria-label="产品分类"
+          >
+            <button
+              class="active"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              data-product-tab="noodles"
+            >
+              挂面产品
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-product-tab="flour"
+            >
+              面粉产品
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-product-tab="customization"
+            >
+              定制方案
+            </button>
+          </div>
+
+          <div class="product-panels">
+            <div class="product-panel active" data-product-panel="noodles">
+              <article class="product-card">
+                <img
+                  src={withBase("/images/products/noodles1/01.png")}
+                  alt="挂面系列产品"
+                />
+                <h3>挂面系列产品</h3>
+              </article>
+              <article class="product-card">
+                <img
+                  src={withBase("/images/products/noodles1/02.png")}
+                  alt="包装挂面产品"
+                />
+                <h3>包装挂面产品</h3>
+              </article>
+              <article class="product-card">
+                <img
+                  src={withBase("/images/products/noodles1/03.png")}
+                  alt="零售挂面系列"
+                />
+                <h3>零售挂面系列</h3>
+              </article>
+              <article class="product-card">
+                <img
+                  src={withBase("/images/products/noodles1/04.png")}
+                  alt="出口挂面供应"
+                />
+                <h3>出口挂面供应</h3>
+              </article>
+            </div>
+
+            <div class="product-panel" data-product-panel="flour" hidden>
+              <article class="product-card">
+                <img
+                  src={withBase("/images/products/flour1/01.png")}
+                  alt="小麦粉产品"
+                />
+                <h3>小麦粉产品</h3>
+              </article>
+              <article class="product-card">
+                <img
+                  src={withBase("/images/products/flour1/02.png")}
+                  alt="高端面粉系列"
+                />
+                <h3>高端面粉系列</h3>
+              </article>
+              <article class="product-card">
+                <img
+                  src={withBase("/images/products/flour1/03.png")}
+                  alt="食品制造用粉"
+                />
+                <h3>食品制造用粉</h3>
+              </article>
+              <article class="product-card">
+                <img
+                  src={withBase("/images/products/flour1/04.png")}
+                  alt="出口面粉包装"
+                />
+                <h3>出口面粉包装</h3>
+              </article>
+            </div>
+
+            <div class="product-panel" data-product-panel="customization" hidden>
+              <article class="product-card">
+                <img
+                  src={withBase("/images/products/customization1/01-shanghai-yangchun.webp")}
+                  alt="上海阳春面定制"
+                />
+                <h3>上海阳春面</h3>
+              </article>
+              <article class="product-card">
+                <img
+                  src={withBase("/images/products/customization1/02-lanzhou-ramen.webp")}
+                  alt="兰州拉面定制"
+                />
+                <h3>兰州拉面</h3>
+              </article>
+              <article class="product-card">
+                <img
+                  src={withBase("/images/products/customization1/03-sichuan-dandan.webp")}
+                  alt="四川担担面定制"
+                />
+                <h3>四川担担面</h3>
+              </article>
+              <article class="product-card">
+                <img
+                  src={withBase("/images/products/customization1/04-shandong-ramen.webp")}
+                  alt="山东拉面定制"
+                />
+                <h3>山东拉面</h3>
+              </article>
+            </div>
+          </div>
+
+          <a class="products-more" href={withBase("/products/")}>
+            查看更多 <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="history-section" aria-labelledby="history-section-title">
+        <div class="history-inner">
+          <div class="section-heading">
+            <h2 id="history-section-title">发展历程</h2>
+          </div>
+
+          <div class="history-carousel" data-history-carousel>
+            <button
+              class="history-nav history-nav-prev"
+              type="button"
+              data-history-prev
+              aria-label="显示上一组历程"
+            >
+              &lsaquo;
+            </button>
+
+            <div
+              class="history-scroll"
+              aria-label="1995 年至今的公司发展时间线"
+            >
+              <ol class="history-track" data-history-track>
+                <li class="history-item">
+                  <time datetime="1995">1995</time>
+                  <span></span>
+                  <p>
+                    于山东济宁创立，从面粉加工与主食制造起步。
+                  </p>
+                </li>
+                <li class="history-item">
+                  <time datetime="2000">2000</time>
+                  <span></span>
+                  <p>
+                    济宁生产基地投产，利生迈入标准化食品制造。
+                  </p>
+                </li>
+                <li class="history-item">
+                  <time datetime="2005">2005</time>
+                  <span></span>
+                  <p>
+                    成武基地在鲁西南小麦主产区扩大面粉加工产能。
+                  </p>
+                </li>
+                <li class="history-item">
+                  <time datetime="2006">2006</time>
+                  <span></span>
+                  <p>
+                    汶上面粉与挂面生产基地建成投产。
+                  </p>
+                </li>
+                <li class="history-item">
+                  <time datetime="2007">2007</time>
+                  <span></span>
+                  <p>
+                    "利生"小麦粉获评中国名牌产品。
+                  </p>
+                </li>
+                <li class="history-item">
+                  <time datetime="2009">2009</time>
+                  <span></span>
+                  <p>
+                    深州面粉基地在河北建立，生产布局走出山东。
+                  </p>
+                </li>
+                <li class="history-item">
+                  <time datetime="2011">2011</time>
+                  <span></span>
+                  <p>
+                    利生商标被认定为中国驰名商标。
+                  </p>
+                </li>
+                <li class="history-item">
+                  <time datetime="2016">2016</time>
+                  <span></span>
+                  <p>
+                    河南利生在小麦核心产区滑县成立。
+                  </p>
+                </li>
+                <li class="history-item">
+                  <time datetime="2018">2018</time>
+                  <span></span>
+                  <p>
+                    梁山智能工厂建成——总投资10亿元、日处理小麦3,000吨。
+                  </p>
+                </li>
+                <li class="history-item">
+                  <time datetime="2020">2020</time>
+                  <span></span>
+                  <p>
+                    山东瑞利食品科技加入集团，拓展冷冻与深加工食品。
+                  </p>
+                </li>
+                <li class="history-item">
+                  <time datetime="2026">至今</time>
+                  <span></span>
+                  <p>
+                    形成从小麦采购、加工到出口级 OEM 挂面供应的一体化链条。
+                  </p>
+                </li>
+              </ol>
+            </div>
+
+            <button
+              class="history-nav history-nav-next"
+              type="button"
+              data-history-next
+              aria-label="显示下一组历程"
+            >
+              &rsaquo;
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="world-section" aria-labelledby="world-section-title">
+        <div class="world-inner">
+          <div class="section-heading">
+            <h2 id="world-section-title">全球布局</h2>
+          </div>
+
+          <p class="world-intro">
+            面向全球市场的海外品牌、进口商、分销商与餐饮客户，构建出口级挂面供应。
+          </p>
+
+          <ul class="world-legend" aria-label="出口能力图例">
+            <li><span class="legend-dot export"></span>出口市场</li>
+            <li><span class="legend-dot oem"></span>OEM 项目</li>
+            <li><span class="legend-dot supply"></span>供应伙伴</li>
+          </ul>
+
+          <div class="world-map-panel">
+            <img
+              src={withBase("/images/icon/map.png")}
+              alt="展示全球市场覆盖的世界地图"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="news-section" aria-labelledby="news-section-title">
+        <div class="news-inner">
+          <div class="section-heading">
+            <h2 id="news-section-title">新闻动态</h2>
+          </div>
+
+          <div class="news-layout">
+            <article class="news-featured">
+              <img
+                src={withBase("/images/news/news-567.jpg")}
+                alt="利生石磨全麦粉系列"
+              />
+              <div class="news-featured-copy">
+                <h3>利生全麦粉系列：更健康的选择</h3>
+                <p>
+                  我们专设全谷物车间，采用丹麦石磨低温研磨与麦麸烘焙工艺——完整保留麸皮、胚芽与胚乳，用于全麦粉与挂面产品。
+                </p>
+              </div>
+            </article>
+
+            <div class="news-list">
+              <article class="news-item">
+                <h3>
+                  <a href={withBase("/news/")}>
+                    利生新品上市
+                  </a>
+                </h3>
+                <p>
+                  梁山利生日处理小麦3,000吨，采用整套布勒智能生产系统并配备完整配粉能力。
+                </p>
+              </article>
+
+              <article class="news-item">
+                <h3>
+                  <a href={withBase("/news/")}>
+                    产能翻番：梁山 3,000 吨制粉项目签约
+                  </a>
+                </h3>
+                <p>
+                  利生签约梁山县日处理3,000吨面粉加工项目，成为集团重要的增长里程碑。
+                </p>
+              </article>
+
+              <article class="news-item">
+                <h3>
+                  <a href={withBase("/news/")}>
+                    300 吨高端挂面扩建项目通过验收
+                  </a>
+                </h3>
+                <p>
+                  高端挂面、面片与非油炸方便面扩建项目通过验收，日产挂面提升300吨。
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <a class="news-more" href={withBase("/news/")}>
+            查看更多 <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="zh" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>
