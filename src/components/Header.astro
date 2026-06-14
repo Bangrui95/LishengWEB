@@ -87,6 +87,7 @@ const navActive = (item: { href: string; children?: { href: string }[] }) =>
             aria-haspopup="true"
           >
             {item.label}
+            <span class="nav-chevron" aria-hidden="true"></span>
           </a>
           <div class="nav-dropdown" aria-label={`${item.label} sections`}>
             {item.children.map((child) => (

@@ -160,6 +160,11 @@
   display: none;
 }
 
+/* Accordion chevron is a mobile-only affordance */
+.nav-chevron {
+  display: none;
+}
+
 /* Header responsive */
 @media (max-width: 900px) {
   .site-header {
@@ -212,16 +217,8 @@
     /* auto height — just enough for the items, not full screen */
     max-height: calc(100dvh - 74px);
     overflow-y: auto;
-    display: grid;
-    /* full-width single column — cancels the desktop justify-content:center,
-       which otherwise floats the whole menu in the middle */
-    grid-template-columns: 1fr;
-    justify-content: stretch;
-    align-content: start;
-    gap: 0;
-    /* right-aligned under the hamburger button (header side padding 22px) */
-    padding: 18px 22px 32px;
-    text-align: right;
+    display: block;
+    padding: 0 0 24px;
     background: var(--header-menu-bg, rgba(20, 31, 27, 0.96));
     /* dark surface wipes in from top to bottom */
     animation: nav-sweep 0.35s ease;
@@ -236,59 +233,74 @@
     }
   }
 
-  /* No hover/tap visual feedback at phone sizes */
   .site-nav.is-open a {
-    padding: 9px 0;
     -webkit-tap-highlight-color: transparent;
   }
 
-  .site-nav.is-open a:hover,
   .site-nav.is-open a:focus {
     outline: none;
   }
 
-  /* Each link shrinks to its own text and pins right, so ONLY the text is a
-     tap target. The empty area is non-link; site.js closes the menu on it. */
-  .site-nav.is-open > a {
-    justify-self: end;
-    display: block;
-    height: auto;
-    align-self: auto;
-    padding: 11px 0;
-  }
-
-  /* Dropdown groups flatten into right-aligned flex columns */
-  .site-nav.is-open .nav-item.has-dropdown {
-    justify-self: end;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    align-self: auto;
-  }
-
+  /* Top-level rows: full width, label left, chevron right, divider below */
+  .site-nav.is-open > a,
   .site-nav.is-open .nav-item.has-dropdown > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     height: auto;
     align-self: auto;
-    padding: 11px 0;
+    padding: 16px 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 17px;
   }
 
+  .site-nav.is-open .nav-item.has-dropdown {
+    display: block;
+    width: 100%;
+  }
+
+  /* Chevron points down; flips up while its section is expanded */
+  .site-nav.is-open .nav-chevron {
+    display: block;
+    flex: 0 0 auto;
+    width: 9px;
+    height: 9px;
+    margin-left: 12px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 0.25s ease;
+  }
+
+  .nav-item.has-dropdown.open > a .nav-chevron {
+    transform: translateY(2px) rotate(-135deg);
+  }
+
+  /* Accordion panel: collapsed by default, expands when parent is .open */
   .site-nav.is-open .nav-dropdown {
     position: static;
     transform: none;
     opacity: 1;
     visibility: visible;
     min-width: 0;
-    padding: 0 0 6px;
-    background: transparent;
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.16);
     border-top: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav-item.has-dropdown.open .nav-dropdown {
+    max-height: 240px;
   }
 
   .site-nav.is-open .nav-dropdown a {
-    padding: 6px 18px 6px 0;
-    font-size: 14px;
-    border-right: 2px solid rgba(255, 255, 255, 0.25);
+    display: block;
+    padding: 13px 22px 13px 38px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 }

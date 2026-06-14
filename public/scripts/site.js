@@ -12,14 +12,29 @@ updateHeader();
 const setMenuOpen = (open) => {
   nav?.classList.toggle("is-open", open);
   header?.classList.toggle("menu-open", open);
+  if (!open) {
+    nav
+      ?.querySelectorAll(".nav-item.open")
+      .forEach((item) => item.classList.remove("open"));
+  }
 };
 
 navToggle?.addEventListener("click", () => {
   setMenuOpen(!nav?.classList.contains("is-open"));
 });
 
-// Tapping the empty (non-link) area of the open mobile menu closes it;
-// only the link text itself navigates.
+// Mobile accordion: tapping a section header (a parent of a dropdown) expands
+// or collapses it instead of navigating. Leaf links navigate as usual.
+nav?.querySelectorAll(".nav-item.has-dropdown > a").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    if (nav.classList.contains("is-open")) {
+      event.preventDefault();
+      link.parentElement.classList.toggle("open");
+    }
+  });
+});
+
+// Tapping the empty area below the open mobile menu closes it.
 nav?.addEventListener("click", (event) => {
   if (nav.classList.contains("is-open") && !event.target.closest("a")) {
     setMenuOpen(false);
