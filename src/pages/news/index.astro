@@ -1,16 +1,16 @@
 ---
-import { withBase } from "../lib/url";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import NewsCard from "../components/NewsCard.astro";
-import "../styles/global.css";
-import "../styles/subpage.css";
-import "../styles/news.css";
+import { withBase } from "../../lib/url";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import NewsCard from "../../components/NewsCard.astro";
+import "../../styles/global.css";
+import "../../styles/subpage.css";
+import "../../styles/news.css";
 
 // Data-driven list: one card per markdown file in src/data/news/.
 // Frontmatter `category` ("company" | "industry") drives the two filters.
 type NewsMod = { frontmatter: Record<string, any>; rawContent: () => string };
-const modules = import.meta.glob<NewsMod>("../data/news/*.md", { eager: true });
+const modules = import.meta.glob<NewsMod>("../../data/news/*.md", { eager: true });
 
 const articles = Object.entries(modules)
   .map(([path, mod]) => {

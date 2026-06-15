@@ -23,7 +23,7 @@ import "../../styles/company-about.css";
 
     <main>
       <section class="page-hero" aria-labelledby="company-hero-title">
-        <img src={withBase("/images/main/2.jpg")} alt="Lisheng Group headquarters and facilities" />
+        <img src={withBase("/images/company/about/lisheng.png")} alt="Lisheng Group logo" />
         <div class="page-hero-overlay"></div>
         <div class="page-hero-inner">
           <p class="page-kicker">About Lisheng Group</p>
@@ -43,21 +43,38 @@ import "../../styles/company-about.css";
           <h2 id="company-about-title">
             From a county flour mill to an integrated food group
           </h2>
+
+          <div class="about-lead">
+            <img
+              src={withBase("/images/company/about/company.png")}
+              alt="Shandong Lisheng Group headquarters in Jining"
+            />
+          </div>
+
           <p>
             Shandong Lisheng Group was founded in 1995 and is headquartered in
-            the Jining High-tech Industrial Development Zone, Shandong
-            Province. Today the Group consists of 11 companies — six production
-            bases and three grain storage companies — located across China's
-            premium wheat-growing regions in Shandong, Hebei and Henan.
+            the Jining High-tech Industrial Development Zone, Shandong Province.
+            From a single county flour mill it has grown into a group of 11
+            companies — six production bases and three grain storage companies —
+            spread across China's premium wheat-growing regions in Shandong,
+            Hebei and Henan, with a team of more than 1,300 people.
           </p>
           <p>
             Guided by the corporate mission of “building a business that
             benefits people's everyday lives”, Lisheng controls the full chain
-            from wheat sourcing and grain storage to flour milling, dried
-            noodle production, in-house packaging and logistics. Products are
-            sold in more than 300 cities across 30 provinces and reach
-            international retail chains including Walmart, Carrefour, RT-Mart
-            and China Resources Vanguard.
+            from wheat sourcing and grain storage to flour milling, dried noodle
+            production, in-house packaging and logistics. Its mills run complete
+            Bühler milling systems paired with Perten testing instruments,
+            processing up to 4,500 tons of wheat and 600 tons of dried noodles a
+            day with 200,000 tons of own grain storage behind them.
+          </p>
+          <p>
+            Flour, dried noodles and private-label ranges reach more than 300
+            cities across 30 provinces and international retail chains including
+            Walmart, Carrefour, RT-Mart and China Resources Vanguard, with dried
+            noodles also exported to Southeast Asia and Europe. Every base runs
+            under ISO 9001, ISO 22000 and HACCP systems and carries the national
+            “Reliable Grain &amp; Oil” and Green Food credentials.
           </p>
 
           <div class="company-stats" aria-label="Lisheng Group key figures">
@@ -85,6 +102,33 @@ import "../../styles/company-about.css";
               <dt>200,000<span>Tons</span></dt>
               <dd>Grain Storage Capacity</dd>
             </dl>
+          </div>
+
+          <div class="about-gallery" aria-label="Inside Lisheng">
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-lab.jpg")}
+                alt="Quality control laboratory at Lisheng"
+                loading="lazy"
+              />
+              <figcaption>Quality Control Center</figcaption>
+            </figure>
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-base-2.png")}
+                alt="Lisheng intelligent production base"
+                loading="lazy"
+              />
+              <figcaption>Intelligent production base</figcaption>
+            </figure>
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-silos.png")}
+                alt="Lisheng grain storage silos"
+                loading="lazy"
+              />
+              <figcaption>200,000-ton grain storage</figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -158,8 +202,40 @@ import "../../styles/company-about.css";
               </p>
             </li>
           </ol>
+        </div>
+      </section>
 
-          <div class="split-row">
+      <!-- Product lab teaser -->
+      <section class="page-section alt" aria-labelledby="company-lab-title">
+        <div class="page-section-inner">
+          <div class="split-row reverse" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src={withBase("/images/factory/11.png")}
+                alt="Lisheng product lab — R&amp;D and quality testing"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">Research &amp; quality</p>
+              <h3 id="company-lab-title">Product Lab</h3>
+              <p>
+                An independent product development and testing lab covering raw
+                material analysis, formula adjustment, noodle texture
+                development and food safety testing — supporting consistent
+                quality across flour and noodle products for different markets.
+              </p>
+              <a class="split-link" href={withBase("/factory/lab/")}>
+                Explore our product lab
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Production facilities teaser -->
+      <section class="page-section" aria-labelledby="company-facilities-title">
+        <div class="page-section-inner">
+          <div class="split-row" style="margin-top: 0;">
             <div class="split-media">
               <img
                 src={withBase("/images/factory/01.png")}
@@ -167,7 +243,8 @@ import "../../styles/company-about.css";
               />
             </div>
             <div class="split-copy">
-              <h3>Production facilities</h3>
+              <p class="company-kicker">Production scale</p>
+              <h3 id="company-facilities-title">Production facilities</h3>
               <p>
                 Six production bases process up to 4,500 tons of wheat and 600
                 tons of dried noodles per day. Our flagship Liangshan plant
@@ -212,16 +289,26 @@ import "../../styles/company-about.css";
       <!-- Subsidiaries teaser -->
       <section class="page-section" aria-labelledby="company-sub-title">
         <div class="page-section-inner">
-          <p class="company-kicker">Group structure</p>
-          <h2 id="company-sub-title">Eight subsidiaries, one supply chain</h2>
-          <p>
-            From the Jining headquarters to the flagship intelligent plant in
-            Liangshan, each Lisheng subsidiary plays a defined role in the
-            group's flour, noodle, food technology and packaging chain.
-          </p>
-          <a class="split-link" href={withBase("/company/subsidiaries/")}>
-            Meet the subsidiaries
-          </a>
+          <div class="sub-intro">
+            <div class="sub-intro-copy">
+              <p class="company-kicker">Group structure</p>
+              <h2 id="company-sub-title">Eight subsidiaries, one supply chain</h2>
+              <p>
+                From the Jining headquarters to the flagship intelligent plant
+                in Liangshan, each Lisheng subsidiary plays a defined role in
+                the group's flour, noodle, food technology and packaging chain.
+              </p>
+              <a class="split-link" href={withBase("/company/subsidiaries/")}>
+                Meet the subsidiaries
+              </a>
+            </div>
+            <div class="sub-intro-logo">
+              <img
+                src={withBase("/images/company/about/logo.png")}
+                alt="Lisheng Group logo"
+              />
+            </div>
+          </div>
 
           <div class="company-cta">
             <div>

@@ -127,10 +127,37 @@ a.cert-media:hover img {
 }
 
 .machine-grid dd {
-  margin: 10px 0 0;
+  margin: 4px 0 0;
   color: var(--text-muted);
   font-size: 16px;
   line-height: 1.58;
+}
+
+/* Titles-only variant: no description, so centre each title against the
+   gold accent bar and tighten the row rhythm. */
+.machine-grid.titles-only {
+  gap: 16px 22px;
+}
+
+.machine-grid.titles-only > div {
+  display: flex;
+  align-items: center;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.machine-grid.titles-only dt {
+  font-size: 21px;
+  text-align: left;
+}
+
+.machine-grid.titles-only .cert-year {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--text-dark);
 }
 
 /* CTA strip — sits above the certificates; beige fill appears on hover */

@@ -1,5 +1,77 @@
 /* Company · About page (/company/) */
 
+/* Intro paragraphs span the full content width (override subpage 820px cap) */
+.page-section-inner p {
+  max-width: none;
+}
+
+/* Hero shows the brand logo on a light backdrop with dark text (same
+   treatment as the subsidiaries page), not a cover photo. */
+.page-hero {
+  background: #97261e;
+}
+
+.page-hero img {
+  inset: auto 6vw 32px auto;
+  width: auto;
+  height: 60%;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.page-hero-overlay {
+  display: none;
+}
+
+.page-hero-inner .page-kicker {
+  color: var(--accent-gold);
+}
+
+.page-hero-inner h1 {
+  color: #fff;
+}
+
+.page-hero-inner .page-hero-copy {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Lead headquarters image under the "Who we are" heading */
+.about-lead {
+  margin: 30px 0 34px;
+}
+
+.about-lead img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Real-operations gallery below the key figures */
+.about-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 44px;
+}
+
+.about-gallery figure {
+  margin: 0;
+}
+
+.about-gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.4;
+  object-fit: cover;
+}
+
+.about-gallery figcaption {
+  margin-top: 12px;
+  color: var(--text-dark);
+  font-size: 15px;
+  font-weight: 700;
+}
+
 .company-kicker {
   margin: 0 0 12px;
   color: #b56c10;
@@ -184,6 +256,26 @@
   color: var(--accent-red);
 }
 
+/* Subsidiaries teaser: copy on the left, brand logo on the right,
+   vertically centred against the text block. */
+.sub-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.sub-intro-logo {
+  display: flex;
+  justify-content: center;
+}
+
+.sub-intro-logo img {
+  display: block;
+  width: min(100%, 400px);
+  height: auto;
+}
+
 /* CTA strip */
 .company-cta {
   margin-top: 86px;
@@ -237,6 +329,11 @@
     gap: 28px 18px;
   }
 
+  .about-gallery {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
   .value-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -255,6 +352,19 @@
     order: 0;
   }
 
+  .sub-intro {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .sub-intro-logo {
+    justify-content: flex-start;
+  }
+
+  .sub-intro-logo img {
+    width: min(72%, 300px);
+  }
+
   .company-cta {
     grid-template-columns: 1fr;
     padding: 28px 24px;
@@ -263,6 +373,31 @@
 
 /* Phone pass (see DESIGN-SPEC.md §6) */
 @media (max-width: 700px) {
+  .page-hero img {
+    height: 48%;
+    width: auto;
+    right: 18px;
+    bottom: 18px;
+    top: auto;
+    transform: none;
+  }
+
+  .about-lead {
+    margin: 20px 0 22px;
+  }
+
+  .about-gallery {
+    margin-top: 28px;
+  }
+
+  .about-gallery img {
+    aspect-ratio: 1.7;
+  }
+
+  .about-gallery figcaption {
+    font-size: 14px;
+  }
+
   .company-stats {
     gap: 22px 18px;
   }

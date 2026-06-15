@@ -5,6 +5,48 @@
   max-width: none;
 }
 
+/* Hero shows the colour brand logo (black text on transparent), not a photo:
+   light backdrop + dark hero text; logo contained and right-aligned at a
+   sensible size instead of cover-zoomed to fill the banner. */
+.page-hero {
+  background: #97261e;
+}
+
+.page-hero img {
+  inset: auto 6vw 32px auto;
+  width: auto;
+  height: 60%;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.page-hero-overlay {
+  display: none;
+}
+
+.page-hero-inner .page-kicker {
+  color: var(--accent-gold);
+}
+
+.page-hero-inner h1 {
+  color: #fff;
+}
+
+.page-hero-inner .page-hero-copy {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+@media (max-width: 700px) {
+  .page-hero img {
+    height: 48%;
+    width: auto;
+    right: 18px;
+    bottom: 18px;
+    top: auto;
+    transform: none;
+  }
+}
+
 .company-kicker {
   margin: 0 0 12px;
   color: #b56c10;

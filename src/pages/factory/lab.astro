@@ -5,6 +5,22 @@ import Header from "../../components/Header.astro";
 import "../../styles/global.css";
 import "../../styles/subpage.css";
 import "../../styles/factory-lab.css";
+
+const PAT = withBase("/images/factory/certificates/patent");
+
+// Patent certificate scans (portrait) — invention name in English + source file.
+const patents = [
+  { img: "patent-01.jpg", name: "Adjustable three-roll wheat dampener" },
+  { img: "patent-02.jpg", name: "Compact handheld vacuum for flour equipment" },
+  { img: "patent-03.jpg", name: "Plansifter with cooling function" },
+  { img: "patent-04.jpg", name: "Mobile, easy-install flour purifier" },
+  { img: "patent-05.jpg", name: "Shock-absorbing wheat-scourer base" },
+  { img: "patent-06.jpg", name: "High-efficiency, easy-clean vibrating sieve" },
+  { img: "patent-07.jpg", name: "Destoner with conveying function" },
+  { img: "patent-08.jpg", name: "Easy-clean wheat scourer" },
+  { img: "patent-09.jpg", name: "Flour packing-machine conveyor unit" },
+  { img: "patent-10.jpg", name: "Easy-to-use flour-bag holding device" },
+];
 ---
 
 <html lang="en">
@@ -42,26 +58,11 @@ import "../../styles/factory-lab.css";
           <h2 id="lab-rd-title">From raw wheat to a market-ready recipe</h2>
           <p>
             Lisheng's product team works across raw material testing, formula
-            adjustment, noodle texture development and packaging trials. Using
-            Perten grain analysis instruments, every batch of wheat and flour
-            is profiled before it enters development, so new products are built
-            on measured data rather than guesswork.
+            adjustment, noodle texture development and packaging trials. Beyond
+            development, our food-safety lab technicians stay involved at every
+            stage of production — sampling and checking along the line so the
+            whole process stays safe, traceable and firmly under control.
           </p>
-
-          <div class="media-trio" aria-label="Product lab and R&D photos">
-            <img
-              src={withBase("/images/factory/11.png")}
-              alt="R&D specialist checking noodle product samples"
-            />
-            <img
-              src={withBase("/images/factory/22.png")}
-              alt="R&D team reviewing product development details"
-            />
-            <img
-              src={withBase("/images/factory/33.png")}
-              alt="Noodle product research and sample testing"
-            />
-          </div>
 
           <div class="machine-grid">
             <div>
@@ -94,6 +95,64 @@ import "../../styles/factory-lab.css";
               </dd>
             </div>
           </div>
+
+          <div class="media-trio" aria-label="Product lab and R&D photos">
+            <img
+              src={withBase("/images/factory/11.png")}
+              alt="R&D specialist checking noodle product samples"
+            />
+            <img
+              src={withBase("/images/factory/22.png")}
+              alt="R&D team reviewing product development details"
+            />
+            <img
+              src={withBase("/images/factory/33.png")}
+              alt="Noodle product research and sample testing"
+            />
+          </div>
+
+          <div class="qc-flow" aria-label="Quality control across the production chain">
+            <div class="qc-card">
+              <p class="qc-step">Stage 01</p>
+              <h3>Raw material testing</h3>
+              <p>
+                Every wheat delivery is sampled and profiled on Perten
+                instruments — moisture, protein, wet gluten, falling number and
+                ash. Only grain that meets specification is accepted, and the
+                results decide how each lot is binned by variety and quality.
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">Stage 02</p>
+              <h3>Pre-processing checks</h3>
+              <p>
+                Before milling, the lab verifies cleaning and tempering
+                (dampening) and signs off the wheat blend — matching the
+                moisture and protein targets of each flour grade. This is the
+                basis of Lisheng's "blend by variety and quality" approach.
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">Stage 03</p>
+              <h3>Real-time in-process monitoring</h3>
+              <p>
+                Throughout milling and noodle production, flour streams are
+                sampled along the line and checked for ash, whiteness, moisture
+                and granularity. Readings feed back through the MES system so
+                rollers and purifiers can be corrected on the run.
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">Stage 04</p>
+              <h3>Finished-product inspection</h3>
+              <p>
+                Finished flour and noodles pass physico-chemical, sensory
+                (cooking and texture) and food-safety checks before release.
+                Retained samples and batch records back full traceability under
+                ISO 22000 and HACCP — and the export documentation buyers need.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -101,29 +160,85 @@ import "../../styles/factory-lab.css";
       <section class="page-section alt" aria-labelledby="lab-wholegrain-title">
         <div class="page-section-inner">
           <div class="split-row" style="margin-top: 0;">
-            <div class="split-media">
+            <div class="split-media wg-media">
               <img
-                src={withBase("/images/main/1.jpg")}
-                alt="Stone-milled whole grain flour production"
+                src={withBase("/images/factory/certificates/wholewheat-series.jpg")}
+                alt="Lisheng stone-milled whole wheat flour series packaging"
               />
             </div>
             <div class="split-copy">
-              <p class="company-kicker">Latest innovation</p>
-              <h3>Stone-milled whole grain line</h3>
+              <p class="company-kicker">Latest product · 2025</p>
+              <h3 id="lab-wholegrain-title">Stone-milled whole grain line</h3>
               <p>
-                Our dedicated whole grain workshop uses Danish stone mills with
-                low-speed, low-temperature grinding and precise automatic
-                temperature control — avoiding starch gelatinisation and
-                protein denaturation to keep the wheat's natural nutrition.
+                Lisheng runs a dedicated whole grain workshop — an independent
+                building of 1,200 m² across three floors, laid out to modern
+                processing standards. It carries the full in-house chain: raw
+                wheat cleaning, storage and blending, wheat scouring and
+                cleaning, colour sorting, stone milling and flour blending.
               </p>
               <p>
-                A bran-baking step improves taste, digestibility and storage
-                stability, supporting whole wheat flour and whole wheat noodle
-                products with significantly higher dietary fibre than refined
-                flour.
+                Every batch follows one controlled process — clean-wheat
+                handling → sterilisation → wheat colour sorting → cleaning →
+                Danish stone milling → bran baking and blending.
               </p>
             </div>
           </div>
+
+          <h4 class="wg-subhead">How the process protects nutrition</h4>
+          <div class="wg-feature-cards">
+            <div class="wg-card">
+              <p class="wg-card-tag">Low temperature</p>
+              <h5>Low-speed, low-temperature stone milling</h5>
+              <p>
+                A bottom rotating stone disc grinds at low speed while a precise
+                automatic temperature-control system holds the milling
+                temperature within a safe range — a clear advantage for
+                preserving the nutrients in whole wheat flour.
+              </p>
+            </div>
+            <div class="wg-card">
+              <p class="wg-card-tag">Nutrition kept</p>
+              <h5>Nutrition retention</h5>
+              <p>
+                The same automatic temperature control prevents starch
+                gelatinisation and protein denaturation, so the flour keeps the
+                wheat's natural nutritional profile.
+              </p>
+            </div>
+            <div class="wg-card">
+              <p class="wg-card-tag">Bran baking</p>
+              <h5>Bran-baking innovation</h5>
+              <p>
+                A high-temperature bran-baking step improves the taste and
+                storage stability of the bran and aids digestion — lifting the
+                overall eating quality of the whole wheat flour.
+              </p>
+            </div>
+          </div>
+
+          <h4 class="wg-subhead">What's inside whole wheat flour</h4>
+          <p class="wg-lead">
+            Whole wheat flour is milled from the entire wheat kernel, keeping
+            all three of its golden components intact.
+          </p>
+          <dl class="machine-grid tri">
+            <div>
+              <dt>Bran</dt>
+              <dd>Rich in dietary fibre, B vitamins and minerals.</dd>
+            </div>
+            <div>
+              <dt>Endosperm</dt>
+              <dd>Provides quality carbohydrates and protein.</dd>
+            </div>
+            <div>
+              <dt>Germ</dt>
+              <dd>
+                Packed with vitamin E, unsaturated fatty acids and
+                antioxidants.
+              </dd>
+            </div>
+          </dl>
+
         </div>
       </section>
 
@@ -131,39 +246,49 @@ import "../../styles/factory-lab.css";
       <section class="page-section" aria-labelledby="lab-patents-title">
         <div class="page-section-inner">
           <p class="company-kicker">Intellectual property</p>
-          <h2 id="lab-patents-title">10+ food production invention patents</h2>
+          <h2 id="lab-patents-title">Patented milling &amp; production technology</h2>
           <p>
-            The Group holds more than ten food production invention patents
-            covering processing technology, formulation and production
-            stability — long-term assets behind consistent industrial quality.
+            Lisheng holds a portfolio of national patents on its own milling
+            and flour-production equipment — from wheat dampening, scouring and
+            destoning to sifting, purifying and packing. These in-house
+            innovations improve cleaning efficiency, machine stability and
+            line uptime, underpinning consistent industrial quality. Click any
+            certificate to view the original.
           </p>
 
-          <!-- Placeholder tiles: replace images with real patent certificates later -->
-          <div class="cert-grid" aria-label="Patent certificates">
-            <div class="cert-card">
-              <div class="cert-media">
-                <img src={withBase("/images/main/1.jpg")} alt="Patent certificate placeholder" />
-              </div>
-              <h3>Invention Patent</h3>
-              <p>Food processing technology</p>
-              <span class="cert-tag">Patent</span>
-            </div>
-            <div class="cert-card">
-              <div class="cert-media">
-                <img src={withBase("/images/main/2.jpg")} alt="Patent certificate placeholder" />
-              </div>
-              <h3>Invention Patent</h3>
-              <p>Noodle production process</p>
-              <span class="cert-tag">Patent</span>
-            </div>
-            <div class="cert-card">
-              <div class="cert-media">
-                <img src={withBase("/images/main/3.jpg")} alt="Patent certificate placeholder" />
-              </div>
-              <h3>Invention Patent</h3>
-              <p>Flour formulation</p>
-              <span class="cert-tag">Patent</span>
-            </div>
+          <div class="patent-showcase">
+            <ul class="patent-list" role="tablist" aria-label="Patent list">
+              {patents.map((p, i) => (
+                <li>
+                  <button
+                    type="button"
+                    class="patent-tab"
+                    role="tab"
+                    aria-selected={i === 0 ? "true" : "false"}
+                    data-patent-src={`${PAT}/${p.img}`}
+                    data-patent-name={p.name}
+                  >
+                    <span class="patent-tab-name">{p.name}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            <figure class="patent-viewer">
+              <a
+                id="patent-link"
+                href={`${PAT}/${patents[0].img}`}
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  id="patent-image"
+                  src={`${PAT}/${patents[0].img}`}
+                  alt={`Lisheng patent certificate — ${patents[0].name}`}
+                />
+              </a>
+              <figcaption id="patent-caption">{patents[0].name}</figcaption>
+            </figure>
           </div>
 
           <div class="company-cta">
@@ -183,6 +308,44 @@ import "../../styles/factory-lab.css";
     </main>
 
     <Footer />
+    <script>
+      const tabs = document.querySelectorAll(".patent-tab");
+      const img = document.getElementById("patent-image");
+      const link = document.getElementById("patent-link");
+      const caption = document.getElementById("patent-caption");
+      const list = document.querySelector(".patent-list");
+
+      // Lock the certificate image height to the list (text) height on desktop,
+      // letting its width follow — pure CSS can't reference the sibling's height.
+      function fitPatentImage() {
+        if (!list || !img) return;
+        if (window.innerWidth <= 900) {
+          img.style.maxHeight = "";
+          return;
+        }
+        const padding = 36; // viewer top + bottom padding (18 × 2)
+        const capH = caption ? caption.offsetHeight + 16 : 0;
+        img.style.maxHeight =
+          Math.max(160, list.offsetHeight - padding - capH) + "px";
+      }
+      fitPatentImage();
+      window.addEventListener("resize", fitPatentImage);
+      window.addEventListener("load", fitPatentImage);
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const src = tab.dataset.patentSrc;
+          const name = tab.dataset.patentName;
+          img.src = src;
+          img.alt = `Lisheng patent certificate — ${name}`;
+          link.href = src;
+          caption.textContent = name;
+          tabs.forEach((t) => t.setAttribute("aria-selected", "false"));
+          tab.setAttribute("aria-selected", "true");
+          fitPatentImage();
+        });
+      });
+    </script>
     <script is:inline src={withBase("/scripts/site.js")} defer></script>
   </body>
 </html>
