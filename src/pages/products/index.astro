@@ -6,6 +6,177 @@ import ProductCard from "../../components/ProductCard.astro";
 import "../../styles/global.css";
 import "../../styles/subpage.css";
 import "../../styles/products.css";
+
+// Catalog scraped from the official site (lishengws.com) noodle section,
+// split into the two brand series. Lightweight image + name cards.
+const lishengNoodles = [
+  { img: "/images/products/noodles-lisheng/lisheng-clear-soup-wheat-core-noodles.webp", name: "Lisheng Clear-Soup Wheat-Core Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-silver-thread-wheat-core-noodles.webp", name: "Lisheng Silver-Thread Wheat-Core Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-hand-rolled-noodles.webp", name: "Lisheng Wheat-Core Hand-Rolled Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-dragon-beard-noodles.webp", name: "Lisheng Wheat-Core Dragon-Beard Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-hand-rolled-style-noodles.webp", name: "Lisheng Premium Hand-Rolled Style Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-silver-thread-noodles.webp", name: "Lisheng Premium Silver-Thread Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-noodles-i.webp", name: "Lisheng Wheat-Core Noodles I" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-noodles-ii.webp", name: "Lisheng Wheat-Core Noodles II" },
+  { img: "/images/products/noodles-lisheng/lisheng-knife-cut-noodles.webp", name: "Lisheng Knife-Cut Noodles" },
+  { img: "/images/products/noodles-lisheng/premium-refined-original-noodles.webp", name: "Premium Refined Original Noodles" },
+  { img: "/images/products/noodles-lisheng/high-gluten-clear-soup-noodles.webp", name: "High-Gluten Clear-Soup Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-i.webp", name: "Lisheng Original Noodles I" },
+  { img: "/images/products/noodles-lisheng/lisheng-yangchun-noodles.webp", name: "Lisheng Yangchun Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-wheat-aroma-noodles.webp", name: "Lisheng High-Gluten Wheat-Aroma Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-dragon-beard-noodles.webp", name: "Lisheng High-Gluten Dragon-Beard Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-wonton-noodles.webp", name: "Lisheng High-Gluten Wonton Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-double-happiness-noodles.webp", name: "Lisheng Double-Happiness Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-ii.webp", name: "Lisheng Original Noodles II" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-iii.webp", name: "Lisheng Original Noodles III" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-iv.webp", name: "Lisheng Original Noodles IV" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-aroma-noodles.webp", name: "Lisheng Wheat-Aroma Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-smooth-noodles.webp", name: "Lisheng Smooth Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-v.webp", name: "Lisheng Original Noodles V" },
+  { img: "/images/products/noodles-lisheng/lisheng-northern-wheat-hand-rolled-noodles.webp", name: "Lisheng Northern-Wheat Hand-Rolled Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-northern-wheat-dragon-beard-noodles.webp", name: "Lisheng Northern-Wheat Dragon-Beard Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-egg-wheat-core-noodles.webp", name: "Lisheng Egg Wheat-Core Noodles" },
+  { img: "/images/products/noodles-lisheng/premium-refined-egg-noodles.webp", name: "Premium Refined Egg Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-egg-noodles.webp", name: "Lisheng Wheat-Core Egg Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-golden-egg-noodles.webp", name: "Lisheng Premium Golden Egg Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-buckwheat-noodles.webp", name: "Lisheng Premium Buckwheat Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-egg-noodles-i.webp", name: "Lisheng High-Gluten Egg Noodles I" },
+  { img: "/images/products/noodles-lisheng/lisheng-homestyle-egg-noodles.webp", name: "Lisheng Homestyle Egg Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-egg-noodles-ii.webp", name: "Lisheng High-Gluten Egg Noodles II" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-mushroom-noodles.webp", name: "Lisheng High-Gluten Mushroom Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-egg-noodles-i.webp", name: "Lisheng Egg Noodles I" },
+  { img: "/images/products/noodles-lisheng/lisheng-northern-wheat-egg-noodles.webp", name: "Lisheng Northern-Wheat Egg Noodles" },
+  { img: "/images/products/noodles-lisheng/lisheng-egg-noodles-ii.webp", name: "Lisheng Egg Noodles II" },
+];
+
+const minshengNoodles = [
+  { img: "/images/products/noodles-minsheng/minsheng-premium-wheat-noodles-i-m-bag.webp", name: "Minsheng Premium Wheat Noodles I (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-premium-wheat-noodles-ii-m-bag.webp", name: "Minsheng Premium Wheat Noodles II (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-dragon-beard-noodles-m-bag.webp", name: "Minsheng Dragon-Beard Noodles (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-smooth-noodles-m-bag.webp", name: "Minsheng Wheat-Core Smooth Noodles (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-plain-noodles-paper-wrapped.webp", name: "Minsheng Wheat-Core Plain Noodles (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-smooth-noodles-paper-wrapped.webp", name: "Minsheng Wheat-Core Smooth Noodles (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-dragon-beard-noodles-paper-wrapped.webp", name: "Minsheng Wheat-Core Dragon-Beard Noodles (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-chongqing-xiaomian-noodles-paper-wrapped.webp", name: "Minsheng Chongqing Xiaomian Noodles (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-i-m-bag.webp", name: "Minsheng Egg Noodles I (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-i-m-bag.webp", name: "Minsheng Mushroom Noodles I (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-egg-noodles-m-bag.webp", name: "Minsheng Wheat-Core Egg Noodles (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-egg-noodles-paper-wrapped.webp", name: "Minsheng Wheat-Core Egg Noodles (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-mushroom-noodles-paper-wrapped.webp", name: "Minsheng Wheat-Core Mushroom Noodles (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-iron-stick-yam-noodles-m-bag.webp", name: "Minsheng Iron-Stick Yam Noodles (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-ii-m-bag.webp", name: "Minsheng Mushroom Noodles II (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-i-paper-wrapped.webp", name: "Minsheng Egg Noodles I (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-ii-paper-wrapped.webp", name: "Minsheng Egg Noodles II (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-iii-m-bag.webp", name: "Minsheng Mushroom Noodles III (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-i-paper-wrapped.webp", name: "Minsheng Mushroom Noodles I (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iii-paper-wrapped.webp", name: "Minsheng Egg Noodles III (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iv-paper-wrapped.webp", name: "Minsheng Egg Noodles IV (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-gift-pack.webp", name: "Minsheng Mushroom Noodles (Gift Pack)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-ii-paper-wrapped.webp", name: "Minsheng Mushroom Noodles II (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-ii-m-bag.webp", name: "Minsheng Egg Noodles II (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iii-m-bag.webp", name: "Minsheng Egg Noodles III (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iv-m-bag.webp", name: "Minsheng Egg Noodles IV (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-millet-and-mung-bean-noodles-m-bag.webp", name: "Minsheng Millet & Mung Bean Noodles (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-corn-and-pumpkin-noodles-m-bag.webp", name: "Minsheng Corn & Pumpkin Noodles (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-i-m-bag.webp", name: "Minsheng Buckwheat Noodles I (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-i-paper-wrapped.webp", name: "Minsheng Buckwheat Noodles I (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-ii-paper-wrapped.webp", name: "Minsheng Buckwheat Noodles II (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-ii-m-bag.webp", name: "Minsheng Buckwheat Noodles II (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mung-bean-noodles-paper-wrapped.webp", name: "Minsheng Mung Bean Noodles (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-corn-noodles-paper-wrapped.webp", name: "Minsheng Corn Noodles (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-alkaline-noodles-i-paper-wrapped.webp", name: "Minsheng Alkaline Noodles I (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-alkaline-noodles-ii-paper-wrapped.webp", name: "Minsheng Alkaline Noodles II (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-country-style-noodles-paper-wrapped.webp", name: "Minsheng Country-Style Noodles (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-plain-noodles-paper-wrapped.webp", name: "Minsheng Plain Noodles (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-i-paper-wrapped.webp", name: "Minsheng Original Noodles I (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-ii-paper-wrapped.webp", name: "Minsheng Original Noodles II (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-dragon-beard-noodles-paper-wrapped.webp", name: "Minsheng Dragon-Beard Noodles (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-jade-ribbon-noodles-paper-wrapped.webp", name: "Minsheng Jade-Ribbon Noodles (Paper-Wrapped)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-i-m-bag.webp", name: "Minsheng Original Noodles I (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-ii-m-bag.webp", name: "Minsheng Original Noodles II (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-red-double-happiness-noodles-m-bag.webp", name: "Minsheng Red Double-Happiness Noodles (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-iii-m-bag.webp", name: "Minsheng Original Noodles III (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-iv-m-bag.webp", name: "Minsheng Original Noodles IV (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-v-m-bag.webp", name: "Minsheng Original Noodles V (M-Bag)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-aroma-noodles-m-bag.webp", name: "Minsheng Wheat-Aroma Noodles (M-Bag)" },
+];
+
+const lishengFlour = [
+  { img: "/images/products/flour-lisheng/lisheng-seven-star-snowflake-flour-5-kg.webp", name: "Lisheng Seven-Star Snowflake Flour 5 kg" },
+  { img: "/images/products/flour-lisheng/lisheng-seven-star-snowflake-flour-10-kg.webp", name: "Lisheng Seven-Star Snowflake Flour 10 kg" },
+  { img: "/images/products/flour-lisheng/lisheng-eight-star-strong-gluten-snowflake-flour-25-kg.webp", name: "Lisheng Eight-Star Strong Gluten Snowflake Flour 25 kg" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-snowflake-flour-10-kg.webp", name: "Lisheng Premium Snowflake Flour 10 kg" },
+  { img: "/images/products/flour-lisheng/lisheng-eight-star-strong-gluten-snowflake-flour-10-kg.webp", name: "Lisheng Eight-Star Strong Gluten Snowflake Flour 10 kg" },
+  { img: "/images/products/flour-lisheng/lisheng-nine-star-premium-snowflake-flour.webp", name: "Lisheng Nine-Star Premium Snowflake Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-eight-star-strong-gluten-snowflake-flour-5-kg.webp", name: "Lisheng Eight-Star Strong Gluten Snowflake Flour 5 kg" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-snowflake-flour.webp", name: "Lisheng Premium Snowflake Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-strong-gluten-snowflake-flour.webp", name: "Lisheng Strong Gluten Snowflake Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-seven-star-snowflake-flour.webp", name: "Lisheng Seven-Star Snowflake Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-snowflake-flour.webp", name: "Lisheng Snowflake Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-strong-gluten-dumpling-wrapper-flour.webp", name: "Lisheng Strong Gluten Dumpling Wrapper Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-wheat-core-semolina-flour.webp", name: "Lisheng Wheat-Core Semolina Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-six-star-super-refined-flour.webp", name: "Lisheng Six-Star Super Refined Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-special-refined-flour.webp", name: "Lisheng Special Refined Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-super-special-refined-flour.webp", name: "Lisheng Super Special Refined Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-multi-purpose-wheat-core-flour-i.webp", name: "Lisheng Multi-Purpose Wheat-Core Flour I" },
+  { img: "/images/products/flour-lisheng/lisheng-multi-purpose-wheat-core-flour-ii.webp", name: "Lisheng Multi-Purpose Wheat-Core Flour II" },
+  { img: "/images/products/flour-lisheng/lisheng-king-flour.webp", name: "Lisheng King Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-silver-flour.webp", name: "Lisheng Silver Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-high-grade-flour.webp", name: "Lisheng High-Grade Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-golden-fuqiang-flour.webp", name: "Lisheng Golden Fuqiang Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-special-no1-flour-colour-pack.webp", name: "Lisheng Special No.1 Flour (Colour Pack)" },
+  { img: "/images/products/flour-lisheng/lisheng-special-no1-flour-plain-pack.webp", name: "Lisheng Special No.1 Flour (Plain Pack)" },
+  { img: "/images/products/flour-lisheng/lisheng-high-gluten-wheat-aroma-flour.webp", name: "Lisheng High-Gluten Wheat-Aroma Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-dumpling-flour-i.webp", name: "Lisheng Premium Dumpling Flour I" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-dumpling-flour-ii.webp", name: "Lisheng Premium Dumpling Flour II" },
+  { img: "/images/products/flour-lisheng/lisheng-dumpling-flour.webp", name: "Lisheng Dumpling Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-snowflake-bun-and-pastry-flour.webp", name: "Lisheng Snowflake Bun & Pastry Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-six-star-noodle-king-flour.webp", name: "Lisheng Six-Star Noodle King Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-fresh-noodle-king-flour.webp", name: "Lisheng Fresh Noodle King Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-five-star-steamed-bun-flour.webp", name: "Lisheng Five-Star Steamed Bun Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-four-star-steamed-bun-flour-colour-pack.webp", name: "Lisheng Four-Star Steamed Bun Flour (Colour Pack)" },
+  { img: "/images/products/flour-lisheng/lisheng-four-star-steamed-bun-flour-plain-pack.webp", name: "Lisheng Four-Star Steamed Bun Flour (Plain Pack)" },
+  { img: "/images/products/flour-lisheng/lisheng-three-star-steamed-bun-flour-colour-pack.webp", name: "Lisheng Three-Star Steamed Bun Flour (Colour Pack)" },
+  { img: "/images/products/flour-lisheng/lisheng-three-star-steamed-bun-flour-plain-pack.webp", name: "Lisheng Three-Star Steamed Bun Flour (Plain Pack)" },
+  { img: "/images/products/flour-lisheng/lisheng-steamed-bun-flour-new.webp", name: "Lisheng Steamed Bun Flour (New)" },
+  { img: "/images/products/flour-lisheng/lisheng-youtiao-flour-new.webp", name: "Lisheng Youtiao Flour (New)" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-bread-flour.webp", name: "Lisheng Premium Bread Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-bread-flour.webp", name: "Lisheng Bread Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-brown-bread-flour.webp", name: "Lisheng Brown Bread Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-hamburger-bun-flour.webp", name: "Lisheng Hamburger Bun Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-sachima-flour.webp", name: "Lisheng Sachima Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-600-pastry-flour.webp", name: "Lisheng 600 Pastry Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-300-pastry-flour.webp", name: "Lisheng 300 Pastry Flour" },
+  { img: "/images/products/flour-lisheng/lisheng-special-bread-flour.webp", name: "Lisheng Special Bread Flour" },
+];
+
+const minshengFlour = [
+  { img: "/images/products/flour-minsheng/minsheng-multi-purpose-wheat-core-flour-5-kg.webp", name: "Minsheng Multi-Purpose Wheat-Core Flour 5 kg" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-refined-flour-5-kg.webp", name: "Minsheng High-Gluten Refined Flour 5 kg" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-refined-flour-i.webp", name: "Minsheng High-Gluten Refined Flour I" },
+  { img: "/images/products/flour-minsheng/minsheng-multi-purpose-wheat-core-flour.webp", name: "Minsheng Multi-Purpose Wheat-Core Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-snowflake-flour-i.webp", name: "Minsheng Seven-Star Strong Gluten Snowflake Flour I" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-snowflake-flour-i.webp", name: "Minsheng Premium Snowflake Flour I" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-snowflake-flour-ii.webp", name: "Minsheng Premium Snowflake Flour II" },
+  { img: "/images/products/flour-minsheng/minsheng-eight-star-strong-gluten-snowflake-flour.webp", name: "Minsheng Eight-Star Strong Gluten Snowflake Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-snowflake-flour-ii.webp", name: "Minsheng Seven-Star Strong Gluten Snowflake Flour II" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-dumpling-wrapper-flour.webp", name: "Minsheng Seven-Star Strong Gluten Dumpling Wrapper Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-six-star-strong-gluten-snowflake-flour.webp", name: "Minsheng Six-Star Strong Gluten Snowflake Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-super-special-refined-flour.webp", name: "Minsheng Super Special Refined Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-six-star-super-snowflake-flour.webp", name: "Minsheng Six-Star Super Snowflake Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-five-star-special-refined-flour.webp", name: "Minsheng Five-Star Special Refined Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-multi-purpose-flour.webp", name: "Minsheng Multi-Purpose Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-fuqiang-flour.webp", name: "Minsheng High-Gluten Fuqiang Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-refined-flour-ii.webp", name: "Minsheng High-Gluten Refined Flour II" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-special-no1-flour.webp", name: "Minsheng High-Gluten Special No.1 Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-original-flour.webp", name: "Minsheng High-Gluten Original Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-bun-and-pastry-flour.webp", name: "Minsheng Seven-Star Strong Gluten Bun & Pastry Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-steamed-bun-flour.webp", name: "Minsheng High-Gluten Steamed Bun Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-steamed-bun-flour.webp", name: "Minsheng Premium Steamed Bun Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-six-star-strong-gluten-dumpling-wrapper-flour.webp", name: "Minsheng Six-Star Strong Gluten Dumpling Wrapper Flour" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-dumpling-flour-i.webp", name: "Minsheng Premium Dumpling Flour I" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-dumpling-flour-ii.webp", name: "Minsheng Premium Dumpling Flour II" },
+];
 ---
 
 <html lang="en">
@@ -58,7 +229,7 @@ import "../../styles/products.css";
 
           <div class="product-tabs-extra">
             <a class="tab-link" href={withBase("/products/specifications/")}>
-              Sample Specifications
+              Product Specifications <span aria-hidden="true">→</span>
             </a>
           </div>
 
@@ -67,23 +238,45 @@ import "../../styles/products.css";
             role="tablist"
             aria-label="Product categories"
           >
-            <button
-              class="active"
-              type="button"
-              role="tab"
-              aria-selected="true"
-              data-product-tab="noodles"
-            >
-              Noodle Products
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected="false"
-              data-product-tab="flour"
-            >
-              Flour Products
-            </button>
+            <div class="tab-group" data-tab-group>
+              <button
+                class="active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                data-product-tab="noodles"
+              >
+                Noodle Products
+                <span class="tab-caret" data-tab-caret aria-hidden="true">▾</span>
+              </button>
+              <div class="tab-dropdown" role="menu">
+                <button type="button" role="tab" aria-selected="false" data-product-tab="noodles-lisheng">
+                  Lisheng Series
+                </button>
+                <button type="button" role="tab" aria-selected="false" data-product-tab="noodles-minsheng">
+                  Minsheng Series
+                </button>
+              </div>
+            </div>
+            <div class="tab-group" data-tab-group>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-product-tab="flour"
+              >
+                Flour Products
+                <span class="tab-caret" data-tab-caret aria-hidden="true">▾</span>
+              </button>
+              <div class="tab-dropdown" role="menu">
+                <button type="button" role="tab" aria-selected="false" data-product-tab="flour-lisheng">
+                  Lisheng Series
+                </button>
+                <button type="button" role="tab" aria-selected="false" data-product-tab="flour-minsheng">
+                  Minsheng Series
+                </button>
+              </div>
+            </div>
             <button
               type="button"
               role="tab"
@@ -92,217 +285,225 @@ import "../../styles/products.css";
             >
               Custom Solutions
             </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-product-tab="frozen"
+            >
+              Frozen Products
+            </button>
           </div>
 
           <div class="product-panels">
             <!-- ============ Noodle Products ============ -->
-            <div class="product-panel active" data-product-panel="noodles">
+            <div class="product-panel active" data-product-panel="noodles" data-paginate>
               <ProductCard
-                image="/images/products/noodles1/01.png"
+                image="/images/products/noodles1/whole-wheat-noodles-500-g.webp"
                 name="Whole Wheat Noodles 500 g"
                 category="Noodle Products · Whole Wheat Series"
                 description="Milled from whole wheat kernels, keeping the bran and germ while preserving a refined noodle texture. Rich in dietary fibre. Ingredients: whole wheat flour, water, salt. Carton: 20 × 500 g."
               />
               <ProductCard
-                image="/images/products/noodles1/02.png"
+                image="/images/products/noodles1/whole-wheat-noodles-1-kg.webp"
                 name="Whole Wheat Noodles 1 kg"
                 category="Noodle Products · Whole Wheat Series"
                 description="The family-size pack of our whole wheat range — high in dietary fibre, low in fat, for a lighter daily staple. Ingredients: whole wheat flour, water, salt. Carton: 15 × 1 kg, paper-wrapped."
               />
               <ProductCard
-                image="/images/products/noodles1/03.png"
+                image="/images/products/noodles1/buckwheat-noodles.webp"
                 name="Buckwheat Noodles"
                 category="Noodle Products · Multigrain Series"
                 description="Wheat flour blended with buckwheat for a nutty flavour, high fibre and a lower glycemic index — a popular choice for sugar-conscious diets. Ingredients: wheat flour, buckwheat flour, water, salt. Carton: 15 × 800 g."
               />
               <ProductCard
-                image="/images/products/noodles1/04.png"
+                image="/images/products/noodles1/royal-egg-noodles.webp"
                 name="Royal Egg Noodles"
                 category="Noodle Products · Royal Series"
                 description="Green Food certified premium noodles with a springy bite and rich egg aroma. Ingredients: wheat flour, egg powder, water, salt. Carton: 15 × 1 kg, paper-wrapped."
               />
               <ProductCard
-                image="/images/products/noodles1/05.png"
+                image="/images/products/noodles1/royal-dragon-beard-noodles.webp"
                 name="Royal Dragon Beard Noodles"
                 category="Noodle Products · Royal Series"
                 description="Green Food certified extra-fine noodles made from selected wheat, smooth and springy with a rich wheat aroma. Ingredients: wheat flour, water, salt. Carton: 15 × 1 kg, paper-wrapped."
               />
               <ProductCard
-                image="/images/products/noodles1/06.png"
+                image="/images/products/noodles1/slim-silver-thread-noodles.webp"
                 name="Slim Silver-Thread Noodles"
                 category="Noodle Products · Australian Wheat Series"
                 description="Extra-thin noodles made from a blend of Australian and Chinese wheat — quick cooking yet firm and chewy. Ingredients: wheat flour (Australian and domestic wheat), water, salt. Carton: 15 × 1 kg, paper-wrapped."
               />
               <ProductCard
-                image="/images/products/noodles1/07.png"
+                image="/images/products/noodles1/wheat-core-dragon-beard-noodles.webp"
                 name="Wheat-Core Dragon Beard Noodles"
                 category="Noodle Products · Wheat-Core Series"
                 description="Extra-fine noodles milled from the wheat core with around 13% protein — soft without turning mushy, fine without sticking. Ingredients: wheat-core flour, water, salt. Carton: 15 × 900 g."
               />
               <ProductCard
-                image="/images/products/noodles1/08.png"
+                image="/images/products/noodles1/wheat-core-egg-noodles.webp"
                 name="Wheat-Core Egg Noodles"
                 category="Noodle Products · Wheat-Core Series"
                 description="Wheat-core flour enriched with egg for a tender yet springy chew. Ingredients: wheat-core flour, egg powder, water, salt. Carton: 15 × 900 g."
               />
               <ProductCard
-                image="/images/products/noodles1/09.png"
+                image="/images/products/noodles1/wheat-core-hand-rolled-style-noodles.webp"
                 name="Wheat-Core Hand-Rolled Style Noodles"
                 category="Noodle Products · Wheat-Core Series"
                 description="A thicker, hand-rolled style cut with an upgraded chewy texture. Ingredients: wheat-core flour, water, salt. Carton: 15 × 900 g."
               />
               <ProductCard
-                image="/images/products/noodles1/010.png"
+                image="/images/products/noodles1/wheat-core-wide-noodles.webp"
                 name="Wheat-Core Wide Noodles"
                 category="Noodle Products · Wheat-Core Series"
                 description="A wide-cut noodle with extra chew, made from selected wheat-core flour — ideal for stir-fried and braised noodle dishes. Ingredients: wheat-core flour, water, salt. Carton: 15 × 900 g."
               />
               <ProductCard
-                image="/images/products/noodles1/011.png"
+                image="/images/products/noodles1/premium-fine-round-noodles.webp"
                 name="Premium Fine Round Noodles"
                 category="Noodle Products · Premium Series"
                 description="Fine round-cut noodles with a smooth, springy mouthfeel. Ingredients: wheat flour, water, salt. Carton: 15 × 800 g."
               />
               <ProductCard
-                image="/images/products/noodles1/012.png"
+                image="/images/products/noodles1/premium-egg-noodles.webp"
                 name="Premium Egg Noodles"
                 category="Noodle Products · Premium Series"
                 description="Premium-series noodles enriched with egg for extra nutrition and a fuller flavour. Ingredients: wheat flour, egg powder, water, salt. Carton: 15 × 800 g."
               />
               <ProductCard
-                image="/images/products/noodles1/013.png"
+                image="/images/products/noodles1/premium-original-noodles.webp"
                 name="Premium Original Noodles"
                 category="Noodle Products · Premium Series"
                 description="Classic medium-cut noodles that stay firm through long boiling without breaking. Ingredients: wheat flour, water, salt. Carton: 15 × 800 g."
               />
               <ProductCard
-                image="/images/products/noodles1/014.png"
+                image="/images/products/noodles1/high-gluten-dragon-beard-noodles-1-kg.webp"
                 name="High-Gluten Dragon Beard Noodles 1 kg"
                 category="Noodle Products · High-Gluten Series"
                 description="Extra-fine high-gluten noodles — tender, smooth and fast to cook. Ingredients: high-gluten wheat flour, water, salt. Carton: 15 × 1 kg (also available 20 × 400 g)."
               />
               <ProductCard
-                image="/images/products/noodles1/015.png"
+                image="/images/products/noodles1/high-gluten-egg-noodles-1-kg.webp"
                 name="High-Gluten Egg Noodles 1 kg"
                 category="Noodle Products · High-Gluten Series"
                 description="Springy, smooth high-gluten noodles with a mild egg flavour, easy to cook through. Ingredients: high-gluten wheat flour, egg powder, water, salt. Carton: 15 × 1 kg."
               />
               <ProductCard
-                image="/images/products/noodles1/016.png"
+                image="/images/products/noodles1/high-gluten-clear-soup-noodles-1-kg.webp"
                 name="High-Gluten Clear Soup Noodles 1 kg"
                 category="Noodle Products · High-Gluten Series"
                 description="High-gluten noodles that cook up smooth and keep the broth clear. Ingredients: high-gluten wheat flour, water, salt. Carton: 15 × 1 kg (also available 20 × 400 g)."
               />
               <ProductCard
-                image="/images/products/noodles1/017.png"
+                image="/images/products/noodles1/high-gluten-dragon-beard-noodles-500-g.webp"
                 name="High-Gluten Dragon Beard Noodles 500 g"
                 category="Noodle Products · High-Gluten Series"
                 description="The retail 500 g pack of our extra-fine high-gluten noodles — tender, smooth and fast to cook. Ingredients: high-gluten wheat flour, water, salt. Carton: 20 × 500 g."
               />
               <ProductCard
-                image="/images/products/noodles1/018.png"
+                image="/images/products/noodles1/high-gluten-egg-noodles-500-g.webp"
                 name="High-Gluten Egg Noodles 500 g"
                 category="Noodle Products · High-Gluten Series"
                 description="The retail 500 g pack of our high-gluten egg noodles — springy, smooth, with a mild egg flavour. Ingredients: high-gluten wheat flour, egg powder, water, salt. Carton: 20 × 500 g."
               />
               <ProductCard
-                image="/images/products/noodles1/019.png"
+                image="/images/products/noodles1/high-gluten-clear-soup-noodles-500-g.webp"
                 name="High-Gluten Clear Soup Noodles 500 g"
                 category="Noodle Products · High-Gluten Series"
                 description="The retail 500 g pack of our clear-soup noodles — smooth and easy to cook without clouding the broth. Ingredients: high-gluten wheat flour, water, salt. Carton: 20 × 500 g."
               />
               <ProductCard
-                image="/images/products/noodles1/020.png"
+                image="/images/products/noodles1/superior-dragon-beard-noodles.webp"
                 name="Superior Dragon Beard Noodles"
                 category="Noodle Products · Superior Series"
                 description="Made from top-grade wheat-core flour with a full wheat aroma, in a traditional paper-wrapped format. Ingredients: wheat-core flour, water, salt. Carton: 15 × 1 kg or 20 × 500 g."
               />
               <ProductCard
-                image="/images/products/noodles1/021.png"
+                image="/images/products/noodles1/superior-egg-noodles.webp"
                 name="Superior Egg Noodles"
                 category="Noodle Products · Superior Series"
                 description="Top-grade wheat-core flour with added egg for a richer flavour, in a traditional paper-wrapped format. Ingredients: wheat-core flour, egg powder, water, salt. Carton: 15 × 1 kg or 20 × 500 g."
               />
               <ProductCard
-                image="/images/products/noodles1/022.png"
+                image="/images/products/noodles1/superior-original-noodles.webp"
                 name="Superior Original Noodles"
                 category="Noodle Products · Superior Series"
                 description="A strong wheat aroma and smooth texture from top-grade wheat-core flour, paper-wrapped. Ingredients: wheat-core flour, water, salt. Carton: 15 × 1 kg or 20 × 500 g."
               />
               <ProductCard
-                image="/images/products/noodles1/023.png"
+                image="/images/products/noodles1/superior-dragon-beard-noodles-800-g.webp"
                 name="Superior Dragon Beard Noodles 800 g"
                 category="Noodle Products · Superior Series"
                 description="The 800 g film-pack version of our Superior dragon beard noodles, made from top-grade wheat-core flour. Ingredients: wheat-core flour, water, salt. Carton: 15 × 800 g."
               />
               <ProductCard
-                image="/images/products/noodles1/024.png"
+                image="/images/products/noodles1/superior-original-noodles-800-g.webp"
                 name="Superior Original Noodles 800 g"
                 category="Noodle Products · Superior Series"
                 description="The 800 g film-pack version of our Superior original noodles — strong wheat aroma, smooth texture. Ingredients: wheat-core flour, water, salt. Carton: 15 × 800 g."
               />
               <ProductCard
-                image="/images/products/noodles1/025.png"
+                image="/images/products/noodles1/northern-wheat-dragon-beard-noodles.webp"
                 name="Northern Wheat Dragon Beard Noodles"
                 category="Noodle Products · Northern Wheat Series"
                 description="Made from northern Chinese wheat — springy and smooth, with no starch haze in the soup. Ingredients: wheat flour, water, salt. Carton: 15 × 800 g, paper-wrapped."
               />
               <ProductCard
-                image="/images/products/noodles1/026.png"
+                image="/images/products/noodles1/northern-wheat-egg-noodles.webp"
                 name="Northern Wheat Egg Noodles"
                 category="Noodle Products · Northern Wheat Series"
                 description="Northern wheat noodles enriched with egg — springy and smooth, with no starch haze in the soup. Ingredients: wheat flour, egg powder, water, salt. Carton: 15 × 800 g, paper-wrapped."
               />
               <ProductCard
-                image="/images/products/noodles1/027.png"
+                image="/images/products/noodles1/northern-wheat-hand-rolled-style-noodles.webp"
                 name="Northern Wheat Hand-Rolled Style Noodles"
                 category="Noodle Products · Northern Wheat Series"
                 description="A hand-rolled style cut from northern Chinese wheat — springy, smooth and substantial. Ingredients: wheat flour, water, salt. Carton: 15 × 800 g, paper-wrapped."
               />
               <ProductCard
-                image="/images/products/noodles1/028.png"
+                image="/images/products/noodles1/wheat-core-egg-noodle-sheets.webp"
                 name="Wheat-Core Egg Noodle Sheets"
                 category="Noodle Products · Noodle Sheet Series"
                 description="Paper-thin noodle sheets with a smooth, springy bite and rich egg aroma. Ingredients: wheat-core flour, egg powder, water, salt. Carton: 10 × 1 kg."
               />
               <ProductCard
-                image="/images/products/noodles1/029.png"
+                image="/images/products/noodles1/homestyle-original-noodles.webp"
                 name="Homestyle Original Noodles"
                 category="Noodle Products · Homestyle Series"
                 description="An everyday staple noodle — smooth, wholesome and great value. Ingredients: wheat flour, water, salt. Pack sizes from 350 g to 500 g, multiple cut widths available."
               />
               <ProductCard
-                image="/images/products/noodles1/030.png"
+                image="/images/products/noodles1/homestyle-egg-noodles.webp"
                 name="Homestyle Egg Noodles"
                 category="Noodle Products · Homestyle Series"
                 description="Everyday noodles with added egg powder for a fuller taste. Ingredients: wheat flour, egg powder, water, salt. Pack sizes 400 g / 500 g, multiple cut widths available."
               />
               <ProductCard
-                image="/images/products/noodles1/211.png"
+                image="/images/products/noodles1/chinese-yam-noodles.webp"
                 name="Chinese Yam Noodles"
                 category="Noodle Products · Multigrain Series"
                 description="Blended with Chinese yam, valued in traditional diets for gentle nourishment. A filling staple with natural flavour. Ingredients: wheat flour, Chinese yam powder, water, salt. Family pack, carton: 6 × 1.75 kg."
               />
               <ProductCard
-                image="/images/products/noodles1/222.png"
+                image="/images/products/noodles1/millet-noodles.webp"
                 name="Millet Noodles"
                 category="Noodle Products · Multigrain Series"
                 description="Multigrain noodles made with millet — high fibre and a lower glycemic index for sugar-conscious diets. Ingredients: wheat flour, millet flour, water, salt. Family pack, carton: 6 × 1.75 kg."
               />
               <ProductCard
-                image="/images/products/noodles1/223.png"
+                image="/images/products/noodles1/wheat-core-knife-cut-noodle-sheets.webp"
                 name="Wheat-Core Knife-Cut Noodle Sheets"
                 category="Noodle Products · Noodle Sheet Series"
                 description="Knife-cut style noodle sheets from selected wheat-core flour — silky outside with an upgraded chew. Ingredients: wheat-core flour, water, salt. Carton: 20 × 250 g (200 g size also available)."
               />
               <ProductCard
-                image="/images/products/noodles1/224.png"
+                image="/images/products/noodles1/wheat-core-egg-noodles-family-pack.webp"
                 name="Wheat-Core Egg Noodles Family Pack"
                 category="Noodle Products · Wheat-Core Series"
                 description="A 1.5 kg carry-handle family pack of our wheat-core egg noodles, made from quality raw materials. Ingredients: wheat-core flour, egg powder, water, salt. Carton: 7 × 1.5 kg."
               />
               <ProductCard
-                image="/images/products/noodles1/225.png"
+                image="/images/products/noodles1/millet-noodles-bulk-pack.webp"
                 name="Millet Noodles Bulk Pack"
                 category="Noodle Products · Foodservice Series"
                 description="A 4 kg bulk pack with millet essence added, for foodservice and wholesale channels. Ingredients: wheat flour, millet flour, water, salt. Carton: 3 × 4 kg."
@@ -310,193 +511,323 @@ import "../../styles/products.css";
             </div>
 
             <!-- ============ Flour Products ============ -->
-            <div class="product-panel" data-product-panel="flour" hidden>
+            <div class="product-panel" data-product-panel="flour" hidden data-paginate>
               <ProductCard
-                image="/images/products/flour1/01.png"
+                image="/images/products/flour1/eight-star-strong-gluten-wheat-flour.webp"
                 name="Eight-Star Strong Gluten Wheat Flour"
                 category="Flour Products · Strong Gluten Series"
                 description="The top grade of our strong gluten range, milled from selected high-protein wheat for premium bread, noodles and other high-gluten products. 25 kg woven bag with colour film."
               />
               <ProductCard
-                image="/images/products/flour1/02.png"
+                image="/images/products/flour1/seven-star-strong-gluten-wheat-flour.webp"
                 name="Seven-Star Strong Gluten Wheat Flour"
                 category="Flour Products · Strong Gluten Series"
                 description="High-grade general-purpose strong gluten flour for a wide range of premium high-gluten products. Milled from selected high-protein wheat. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/03.png"
+                image="/images/products/flour1/six-star-strong-gluten-wheat-flour.webp"
                 name="Six-Star Strong Gluten Wheat Flour"
                 category="Flour Products · Strong Gluten Series"
                 description="A dependable strong gluten flour for premium high-gluten applications at a balanced cost. Milled from selected high-protein wheat. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/04.png"
+                image="/images/products/flour1/eight-star-snowflake-flour.webp"
                 name="Eight-Star Snowflake Flour"
                 category="Flour Products · General Purpose Series"
                 description="Premium snowflake flour milled from the wheat core — high whiteness and fine granularity. Suited to soup buns, steamed buns, noodles and flatbreads. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/05.png"
+                image="/images/products/flour1/seven-star-snowflake-flour.webp"
                 name="Seven-Star Snowflake Flour"
                 category="Flour Products · General Purpose Series"
                 description="A versatile snowflake flour for steamed buns, baozi, noodles and flatbreads, with consistent performance across applications. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/06.png"
+                image="/images/products/flour1/6a-snowflake-flour.webp"
                 name="6A Snowflake Flour"
                 category="Flour Products · General Purpose Series"
                 description="All-round snowflake flour for soup buns, steamed buns, noodles and flatbreads — a reliable workhorse for food businesses. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/07.png"
+                image="/images/products/flour1/special-refined-flour.webp"
                 name="Special Refined Flour"
                 category="Flour Products · General Purpose Series"
                 description="Refined wheat flour well suited to flatbreads and pancake-style products. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/08.png"
+                image="/images/products/flour1/golden-fuqiang-flour.webp"
                 name="Golden Fuqiang Flour"
                 category="Flour Products · General Purpose Series"
                 description="A classic refined flour for flatbreads and everyday wheat foods. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/09.png"
+                image="/images/products/flour1/seven-star-snowflake-bun-flour.webp"
                 name="Seven-Star Snowflake Bun Flour"
                 category="Flour Products · Steamed Goods Series"
                 description="Mid-to-high grade flour developed for baozi and steamed pastries, giving a soft, white, evenly risen crumb. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/10.png"
+                image="/images/products/flour1/super-refined-flour.webp"
                 name="Super Refined Flour"
                 category="Flour Products · Steamed Goods Series"
                 description="A versatile mid-grade flour for baozi, steamed buns, soup buns, pan-fried buns and baked flatbreads. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/11.png"
+                image="/images/products/flour1/six-star-steamed-bun-flour.webp"
                 name="Six-Star Steamed Bun Flour"
                 category="Flour Products · Steamed Goods Series"
                 description="High-grade flour developed specifically for steamed buns — strong fermentation tolerance and a bright, fine crumb. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/12.png"
+                image="/images/products/flour1/golden-steamed-bun-flour.webp"
                 name="Golden Steamed Bun Flour"
                 category="Flour Products · Steamed Goods Series"
                 description="Mid-grade high-gluten steamed bun flour balancing chew, whiteness and cost for commercial steaming. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/13.png"
+                image="/images/products/flour1/four-star-steamed-bun-flour.webp"
                 name="Four-Star Steamed Bun Flour"
                 category="Flour Products · Steamed Goods Series"
                 description="An economical flour for northern-style steamed buns with dependable daily performance. 25 kg bag."
               />
               <ProductCard
-                image="/images/products/flour1/14.png"
+                image="/images/products/flour1/three-star-steamed-bun-flour.webp"
                 name="Three-Star Steamed Bun Flour"
                 category="Flour Products · Steamed Goods Series"
                 description="A value-grade flour for northern-style steamed buns in volume production. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/15.png"
+                image="/images/products/flour1/eight-star-dumpling-wrapper-flour.webp"
                 name="Eight-Star Dumpling Wrapper Flour"
                 category="Flour Products · Boiled Goods Series"
                 description="Strong gluten flour for premium dumpling wrappers, wonton wrappers and fresh noodles — wrappers stay translucent and elastic after boiling. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/16.png"
+                image="/images/products/flour1/six-star-noodle-king-flour.webp"
                 name="Six-Star Noodle King Flour"
                 category="Flour Products · Boiled Goods Series"
                 description="Specialised flour for fresh-cut noodles, dumpling wrappers and wonton wrappers, developed for noodle shops and food manufacturers. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/17.png"
+                image="/images/products/flour1/youtiao-special-flour.webp"
                 name="Youtiao Special Flour"
                 category="Flour Products · Fried Goods Series"
                 description="Purpose-built flour for fried dough sticks (youtiao), suited to pre-formed dough factories and premium fried dough products — reliable expansion and a crisp bite. 25 kg woven bag."
               />
               <ProductCard
-                image="/images/products/flour1/18.png"
+                image="/images/products/flour1/eight-star-snowflake-wheat-flour-australian-wheat.webp"
                 name="Eight-Star Snowflake Wheat Flour (Australian Wheat)"
                 category="Flour Products · Retail Pack Series"
                 description="Strong gluten snowflake flour blending Australian and Chinese wheat, for premium home and artisan baking. Cloth-style bag, 5 kg × 5 or 10 kg × 1."
               />
               <ProductCard
-                image="/images/products/flour1/19.png"
+                image="/images/products/flour1/professional-dumpling-flour.webp"
                 name="Professional Dumpling Flour"
                 category="Flour Products · Retail Pack Series"
                 description="Professional-grade flour for premium dumplings — strong, extensible dough and translucent wrappers. Cloth-style bag, 5 kg × 5 per carton."
               />
               <ProductCard
-                image="/images/products/flour1/20.png"
+                image="/images/products/flour1/superior-dumpling-flour-10-kg.webp"
                 name="Superior Dumpling Flour 10 kg"
                 category="Flour Products · Retail Pack Series"
                 description="A 10 kg cloth-style bag of our superior dumpling flour for restaurants and bulk household use. Also available as 5 kg × 5."
               />
               <ProductCard
-                image="/images/products/flour1/21.png"
+                image="/images/products/flour1/superior-dumpling-flour-25-kg.webp"
                 name="Superior Dumpling Flour 2.5 kg"
                 category="Flour Products · Retail Pack Series"
                 description="The convenient 2.5 kg retail pack of our superior dumpling flour for premium home-made dumplings. Carton: 4 × 2.5 kg."
               />
               <ProductCard
-                image="/images/products/flour1/22.png"
+                image="/images/products/flour1/household-dumpling-flour.webp"
                 name="Household Dumpling Flour"
                 category="Flour Products · Retail Pack Series"
                 description="An accessible dumpling flour for everyday family dumpling making — easy handling and consistent results. Carton: 4 × 2.5 kg."
               />
             </div>
 
+            <!-- ============ Flour Products · Lisheng Series ============ -->
+            <div class="product-panel" data-product-panel="flour-lisheng" hidden data-paginate>
+              {lishengFlour.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <!-- ============ Flour Products · Minsheng Series ============ -->
+            <div class="product-panel" data-product-panel="flour-minsheng" hidden data-paginate>
+              {minshengFlour.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+
             <!-- ============ Custom Solutions ============ -->
             <div class="product-panel" data-product-panel="customization" hidden>
               <ProductCard
-                image="/images/products/customization1/01-shanghai-yangchun.webp"
+                image="/images/products/customization1/shanghai-yangchun-noodles.webp"
                 name="Shanghai Yangchun Noodles"
                 category="Custom Solutions"
                 description="A customised regional product developed for an overseas brand: classic Shanghai-style thin noodles in a 2 kg retail pack."
               />
               <ProductCard
-                image="/images/products/customization1/02-lanzhou-ramen.webp"
+                image="/images/products/customization1/lanzhou-ramen-noodles.webp"
                 name="Lanzhou Ramen Noodles"
                 category="Custom Solutions"
                 description="Lanzhou-style ramen noodles produced under a customer brand, with custom size, texture and packaging artwork."
               />
               <ProductCard
-                image="/images/products/customization1/03-sichuan-dandan.webp"
+                image="/images/products/customization1/sichuan-dandan-noodles.webp"
                 name="Sichuan Dandan Noodles"
                 category="Custom Solutions"
                 description="Sichuan dandan-style noodles tailored for overseas retail, part of a regional Chinese noodle series."
               />
               <ProductCard
-                image="/images/products/customization1/04-shandong-ramen.webp"
+                image="/images/products/customization1/shandong-ramen-noodles.webp"
                 name="Shandong Ramen Noodles"
                 category="Custom Solutions"
                 description="Shandong-style ramen noodles developed as an OEM program with customised formulation and 2 kg pack format."
               />
               <ProductCard
-                image="/images/products/customization1/05-shanxi-sliced.webp"
+                image="/images/products/customization1/shanxi-sliced-noodles.webp"
                 name="Shanxi Sliced Noodles"
                 category="Custom Solutions"
                 description="Shanxi knife-sliced style noodles reproduced for industrial production while keeping the traditional wide cut."
               />
               <ProductCard
-                image="/images/products/customization1/06-wuhan-hotdry.webp"
+                image="/images/products/customization1/wuhan-hot-dry-noodles.webp"
                 name="Wuhan Hot Dry Noodles"
                 category="Custom Solutions"
                 description="Wuhan reganmian-style noodles adapted for export retail, designed for the classic sesame-paste preparation."
               />
               <ProductCard
-                image="/images/products/customization1/07-henan-handrolled.webp"
+                image="/images/products/customization1/henan-hand-rolled-style-noodles.webp"
                 name="Henan Hand-Rolled Style Noodles"
                 category="Custom Solutions"
                 description="Henan-style noodles with a hand-rolled texture, produced at scale for a private label program."
               />
               <ProductCard
-                image="/images/products/customization1/08-beijing-style.webp"
+                image="/images/products/customization1/old-beijing-style-noodles.webp"
                 name="Old Beijing Style Noodles"
                 category="Custom Solutions"
                 description="Old Beijing-style noodles for zhajiang dishes, completing the regional Chinese noodle series."
               />
             </div>
+
+            <!-- ============ Frozen Products ============ -->
+            <div class="product-panel" data-product-panel="frozen" hidden>
+              <ProductCard
+                image="/images/products/frozen1/pork-and-celery-dumplings.webp"
+                name="Pork & Celery Dumplings"
+                category="Frozen Products · Food Workshop"
+                description="Quick-frozen dumplings with a juicy pork and celery filling, wrapped in a thin Lisheng wheat-flour skin. Part of the “Food Workshop” line, ready for OEM and private-label supply."
+              />
+              <ProductCard
+                image="/images/products/frozen1/pork-and-chinese-chive-dumplings.webp"
+                name="Pork & Chinese Chive Dumplings"
+                category="Frozen Products · Food Workshop"
+                description="Quick-frozen pork and Chinese-chive dumplings with a fragrant, savoury filling and a smooth, springy wrapper. Available for private-label production."
+              />
+              <ProductCard
+                image="/images/products/frozen1/pork-and-scallion-dumplings.webp"
+                name="Pork & Scallion Dumplings"
+                category="Frozen Products · Food Workshop"
+                description="Classic pork and scallion dumplings, quick-frozen to lock in freshness, with a tender skin made from Lisheng flour. OEM-ready."
+              />
+              <ProductCard
+                image="/images/products/frozen1/pork-and-cabbage-dumplings.webp"
+                name="Pork & Cabbage Dumplings"
+                category="Frozen Products · Food Workshop"
+                description="A homestyle favourite — pork with napa cabbage in a thin, elastic wrapper, quick-frozen for easy boiling or steaming. Available for private-label supply."
+              />
+              <ProductCard
+                image="/images/products/frozen1/fresh-pork-wonton.webp"
+                name="Fresh Pork Wonton"
+                category="Frozen Products · Food Workshop"
+                description="Thin-skin wontons with a fresh pork filling, quick-frozen for quick-cook soups and broths. Part of the “Food Workshop” line."
+              />
+              <ProductCard
+                image="/images/products/frozen1/fresh-pork-wonton-classic-pack.webp"
+                name="Fresh Pork Wonton — Classic Pack"
+                category="Frozen Products · Food Workshop"
+                description="The classic retail pack of our fresh pork wontons — delicate wrappers and a juicy filling, ready in minutes. Available for OEM and private label."
+              />
+              <ProductCard
+                image="/images/products/frozen1/chinese-chive-and-egg-dumplings.webp"
+                name="Chinese Chive & Egg Dumplings"
+                category="Frozen Products · Food Workshop"
+                description="Quick-frozen dumplings filled with Chinese chives and egg — a lighter, vegetable-forward option in the “Food Workshop” line. OEM-ready."
+              />
+              <ProductCard
+                image="/images/products/frozen1/chinese-chive-and-egg-dumplings-2.webp"
+                name="Chinese Chive & Egg Dumplings"
+                category="Frozen Products · Lisheng Select"
+                description="The “Select” line take on chive-and-egg dumplings — a quick-frozen vegetarian-style filling in a smooth wheat-flour wrapper. Available for private-label supply."
+              />
+              <ProductCard
+                image="/images/products/frozen1/carrot-and-egg-dumplings.webp"
+                name="Carrot & Egg Dumplings"
+                category="Frozen Products · Food Workshop"
+                description="Quick-frozen dumplings with a carrot and egg filling — naturally sweet, colourful and vegetable-rich. OEM-ready."
+              />
+              <ProductCard
+                image="/images/products/frozen1/pork-and-sweet-corn-dumplings.webp"
+                name="Pork & Sweet Corn Dumplings"
+                category="Frozen Products · Lisheng Select"
+                description="Pork blended with sweet corn for a juicy, lightly sweet filling, quick-frozen in the “Select” line. Available for private-label production."
+              />
+              <ProductCard
+                image="/images/products/frozen1/pork-and-mushroom-dumplings.webp"
+                name="Pork & Mushroom Dumplings"
+                category="Frozen Products · Lisheng Select"
+                description="Pork and mushroom dumplings with a rich, umami filling, quick-frozen for convenient cooking. Part of the “Select” line, OEM-ready."
+              />
+              <ProductCard
+                image="/images/products/frozen1/pork-and-shepherd-s-purse-dumplings.webp"
+                name="Pork & Shepherd's Purse Dumplings"
+                category="Frozen Products · Lisheng Select"
+                description="A seasonal favourite — pork with shepherd's purse (jicai) greens, quick-frozen to keep the fresh, herbaceous flavour. Available for private-label supply."
+              />
+            </div>
+
+            <!-- ============ Noodle Products · Lisheng Series ============ -->
+            <div class="product-panel" data-product-panel="noodles-lisheng" hidden data-paginate>
+              {lishengNoodles.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <!-- ============ Noodle Products · Minsheng Series ============ -->
+            <div class="product-panel" data-product-panel="noodles-minsheng" hidden data-paginate>
+              {minshengNoodles.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
+
+          <nav class="products-pagination" aria-label="Product pages" data-products-pagination hidden>
+            <button class="products-page-nav" type="button" data-products-prev aria-label="Previous page">&lsaquo;</button>
+            <span class="products-page-status" data-products-status>1 / 1</span>
+            <button class="products-page-nav" type="button" data-products-next aria-label="Next page">&rsaquo;</button>
+          </nav>
 
           <div class="products-cta">
             <div>
@@ -528,6 +859,103 @@ import "../../styles/products.css";
       };
       window.addEventListener("hashchange", activateFromHash);
       activateFromHash();
+
+      // Tab dropdowns (Noodle + Flour, each with Lisheng / Minsheng series).
+      // Desktop reveals on hover (CSS); on touch the caret toggles it.
+      const tabGroups = Array.from(document.querySelectorAll("[data-tab-group]"));
+      tabGroups.forEach((group) => {
+        const caret = group.querySelector("[data-tab-caret]");
+        caret?.addEventListener("click", (event) => {
+          event.stopPropagation();
+          // close any other open group, then toggle this one
+          tabGroups.forEach((g) => g !== group && g.classList.remove("open"));
+          group.classList.toggle("open");
+        });
+        group
+          .querySelectorAll(".tab-dropdown [data-product-tab]")
+          .forEach((btn) =>
+            btn.addEventListener("click", () => {
+              group.classList.remove("open");
+              // drop focus so :focus-within doesn't keep the menu pinned open
+              (btn as HTMLElement).blur();
+            })
+          );
+      });
+      document.addEventListener("click", (event) => {
+        tabGroups.forEach((group) => {
+          if (!group.contains(event.target as Node)) group.classList.remove("open");
+        });
+      });
+
+      // Client-side pagination (12 per page) for the Noodle / Flour panels.
+      // Custom Solutions (8) and Frozen (12) have no [data-paginate] → nav hides.
+      const PAGE_SIZE = 12;
+      const pagNav = document.querySelector<HTMLElement>("[data-products-pagination]");
+      const pagPrev = document.querySelector<HTMLButtonElement>("[data-products-prev]");
+      const pagNext = document.querySelector<HTMLButtonElement>("[data-products-next]");
+      const pagStatus = document.querySelector("[data-products-status]");
+      const pageOf = new Map<Element, number>();
+
+      const itemsOf = (panel: Element) =>
+        Array.from(panel.querySelectorAll<HTMLElement>(".product-tile, .catalog-tile"));
+
+      // Track the active panel ourselves (independent of site.js tab toggling).
+      let currentPanel: Element | null = document.querySelector(
+        "[data-product-panel]:not([hidden])"
+      );
+
+      const renderPagination = () => {
+        const paged = !!currentPanel?.hasAttribute("data-paginate");
+        if (pagNav) pagNav.hidden = !paged;
+        if (!paged || !currentPanel) return;
+        const items = itemsOf(currentPanel);
+        const pages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
+        let page = pageOf.get(currentPanel) ?? 0;
+        if (page > pages - 1) page = pages - 1;
+        pageOf.set(currentPanel, page);
+        items.forEach((el, i) => {
+          el.hidden = i < page * PAGE_SIZE || i >= (page + 1) * PAGE_SIZE;
+        });
+        if (pagStatus) pagStatus.textContent = `${page + 1} / ${pages}`;
+        if (pagPrev) pagPrev.disabled = page === 0;
+        if (pagNext) pagNext.disabled = page === pages - 1;
+      };
+
+      const step = (delta: number) => {
+        if (!currentPanel?.hasAttribute("data-paginate")) return;
+        const pages = Math.max(
+          1,
+          Math.ceil(itemsOf(currentPanel).length / PAGE_SIZE)
+        );
+        const np = Math.max(
+          0,
+          Math.min((pageOf.get(currentPanel) ?? 0) + delta, pages - 1)
+        );
+        if (np === pageOf.get(currentPanel)) return;
+        pageOf.set(currentPanel, np);
+        renderPagination();
+        document
+          .querySelector(".product-tabs")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+
+      pagPrev?.addEventListener("click", () => step(-1));
+      pagNext?.addEventListener("click", () => step(1));
+
+      // On tab / sub-tab switch: point at the new panel and reset it to page 1.
+      document.querySelectorAll<HTMLElement>("[data-product-tab]").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const target = document.querySelector(
+            `[data-product-panel="${tab.dataset.productTab}"]`
+          );
+          if (!target) return;
+          currentPanel = target;
+          pageOf.set(target, 0);
+          renderPagination();
+        });
+      });
+
+      renderPagination();
     </script>
   </body>
 </html>
