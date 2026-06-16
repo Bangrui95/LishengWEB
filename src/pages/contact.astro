@@ -22,21 +22,21 @@ import "../styles/contact.css";
 
     <main>
       <section class="quote-hero" aria-labelledby="quote-hero-title">
-        <img src={withBase("/images/main/4.jpg")} alt="Private label noodle packaging and OEM product display" />
-        <div class="quote-hero-overlay"></div>
         <div class="quote-hero-inner">
-          <p class="quote-kicker">Request a Quote</p>
-          <h1 id="quote-hero-title">
-            Start your <span>OEM noodle project</span> with Lisheng
-          </h1>
-          <p class="quote-hero-copy">
-            Tell us about your market, product idea, packaging direction, and
-            target order plan. Our team will help turn your requirements into a
-            practical manufacturing proposal.
-          </p>
-          <div class="quote-hero-actions">
-            <a href="#quote-form" class="quote-primary">Send an Inquiry</a>
-            <a href="#quote-process" class="quote-secondary">View Process</a>
+          <div class="quote-hero-text">
+            <p class="quote-kicker">Request a Quote</p>
+            <h1 id="quote-hero-title">
+              Start your <span>private label noodle project</span> with Lisheng
+            </h1>
+            <p class="quote-hero-copy">
+              Tell us about your market, product idea, packaging direction, and
+              target order plan. Our team will help turn your requirements into a
+              practical manufacturing proposal.
+            </p>
+            <div class="quote-hero-actions">
+              <a href={withBase("/services/customization/")} class="quote-primary">Product Customization</a>
+              <a href="#quote-form" class="quote-secondary">Send an Inquiry</a>
+            </div>
           </div>
         </div>
       </section>
@@ -82,14 +82,14 @@ import "../styles/contact.css";
           <p>Inquiry Form</p>
           <h2 id="quote-form-title">Tell us about your noodle project.</h2>
           <span>
-            Fields marked with * help us prepare a clearer proposal. This form
-            is ready for design and structure now; form delivery can be wired to
-            email or CRM later.
+            Fields marked with * help us prepare a clearer, faster proposal.
           </span>
         </div>
 
         <div class="quote-form-layout">
           <form id="quote-form" class="quote-form" action="#" method="post">
+            <input type="hidden" name="customization" data-customization-input />
+
             <div class="form-grid">
               <label>
                 First name*
@@ -145,13 +145,52 @@ import "../styles/contact.css";
                 </select>
               </label>
 
-              <label class="form-wide">
-                Packaging needs
-                <input
-                  type="text"
-                  name="packaging"
-                  placeholder="Cup, bowl, pillow pack, family pack, foodservice carton..."
-                />
+              <div class="form-customization form-wide" data-customization-block>
+                <h3>Product Customization Details</h3>
+                <div class="form-customization-row">
+                  <div class="form-customization-display">
+                    <span class="form-customization-empty"
+                      >No customization saved yet</span
+                    >
+                    <span class="form-customization-saved"
+                      >Customization saved</span
+                    >
+                  </div>
+                  <div class="form-customization-actions">
+                    <a
+                      class="form-customization-button"
+                      href={withBase("/services/customization/")}
+                    >
+                      <span class="form-customization-cta-empty">Customize</span>
+                      <span class="form-customization-cta-filled">Edit</span>
+                    </a>
+                    <button
+                      type="button"
+                      class="form-customization-reset"
+                      data-customization-reset
+                      aria-label="Clear saved customization"
+                    >
+                      <span aria-hidden="true">✕</span>
+                    </button>
+                  </div>
+                </div>
+                <p class="form-customization-note">
+                  Prefer to define your product in more detail first? Use Product
+                  Customization to specify noodle type, formulation, packaging
+                  format and certification needs step by step — your selection is
+                  sent to us together with this inquiry.
+                </p>
+              </div>
+
+              <label class="form-wide customization-details-field">
+                Customization Details
+                <textarea
+                  name="customization-details"
+                  class="customization-details"
+                  data-customization-details
+                  readonly
+                  placeholder="Use the Customize button above to build your product spec — your selections will appear here."
+                ></textarea>
               </label>
 
               <label class="form-wide">
@@ -211,7 +250,7 @@ import "../styles/contact.css";
       <section id="quote-process" class="quote-process" aria-labelledby="quote-process-title">
         <div class="quote-section-heading">
           <p>From inquiry to production</p>
-          <h2 id="quote-process-title">A straightforward OEM workflow.</h2>
+          <h2 id="quote-process-title">A straightforward private label workflow.</h2>
         </div>
 
         <ol class="quote-process-list">
@@ -241,5 +280,69 @@ import "../styles/contact.css";
 
     <Footer showCta={false} />
     <script is:inline src={withBase("/scripts/site.js")} defer></script>
+
+    <script>
+      // Product customization status row.
+      // If the visitor arrives from the Product Customization page (or a saved
+      // selection already exists), show the "recorded" confirmation instead of
+      // the empty hint — without revealing the stored details.
+      // NOTE: the actual storage/transfer of selections is wired up later;
+      // for now we detect a URL flag or a sessionStorage marker.
+      (function () {
+        const block = document.querySelector("[data-customization-block]");
+        if (!block) return;
+        const hidden = document.querySelector("[data-customization-input]");
+        const detailsEl = document.querySelector("[data-customization-details]");
+
+        // One line per step: "Product Type: Udon Style / Ramen Style".
+        function formatSelections(sel) {
+          return Object.keys(sel)
+            .map((k) => k + ": " + sel[k].join(" / "))
+            .join("\n");
+        }
+
+        // Reflect saved customization (if any) from sessionStorage: the status
+        // box shows "saved", the full selection is listed line by line in the
+        // details field, and the raw object rides along in the hidden field so
+        // it ships with the form once the backend is wired.
+        let selections = null;
+        try {
+          const raw = sessionStorage.getItem("lisheng-customization");
+          if (raw) selections = JSON.parse(raw);
+        } catch (e) {}
+        const filled = selections && Object.keys(selections).length > 0;
+
+        block.dataset.customizationBlock = filled ? "filled" : "";
+        if (hidden) hidden.value = filled ? JSON.stringify(selections) : "";
+        if (detailsEl)
+          detailsEl.value = filled ? formatSelections(selections) : "";
+
+        // When something is saved the button is "Edit": send a flag so the
+        // customization page restores the saved picks instead of clearing.
+        if (filled) {
+          const editBtn = block.querySelector(".form-customization-button");
+          if (editBtn) {
+            const base = editBtn.getAttribute("href");
+            editBtn.setAttribute(
+              "href",
+              base + (base.indexOf("?") === -1 ? "?" : "&") + "edit=1"
+            );
+          }
+        }
+
+        // Reset: clear the saved customization on this page (storage + fields)
+        // and revert the status box to "not saved".
+        const resetBtn = block.querySelector("[data-customization-reset]");
+        if (resetBtn) {
+          resetBtn.addEventListener("click", () => {
+            sessionStorage.removeItem("lisheng-customization");
+            sessionStorage.removeItem("lisheng-customization-types");
+            block.dataset.customizationBlock = "";
+            if (hidden) hidden.value = "";
+            if (detailsEl) detailsEl.value = "";
+          });
+        }
+      })();
+    </script>
   </body>
 </html>

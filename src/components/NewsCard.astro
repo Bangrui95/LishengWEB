@@ -20,6 +20,7 @@ const {
   href = "",
   category = "",
   intlReady = false,
+  generated = false,
 } = Astro.props;
 
 const Tag = href ? "a" : "div";
@@ -29,11 +30,13 @@ const Tag = href ? "a" : "div";
   class="news-card"
   data-category={category || undefined}
   data-intl-ready={intlReady ? "true" : undefined}
+  data-generated={generated ? "true" : undefined}
 >
   <Tag class="news-card-link" href={href || undefined}>
     <span class="news-card-media">
       <img src={withBase(image)} alt={title} loading="lazy" />
       {intlReady && <span class="news-card-flag">国际站</span>}
+      {generated && <span class="news-card-flag news-card-flag-gen">新稿</span>}
     </span>
     <span class="news-card-copy">
       {date && <time datetime={date}>{date}</time>}
@@ -77,6 +80,12 @@ const Tag = href ? "a" : "div";
     box-shadow: inset 0 0 0 3px #2e8b57;
   }
 
+  /* Editorial marker: newly drafted articles (News batch D) — red */
+  .news-card[data-generated="true"] .news-card-media {
+    background: #fbe9e9;
+    box-shadow: inset 0 0 0 3px var(--accent-red);
+  }
+
   .news-card-flag {
     position: absolute;
     top: 10px;
@@ -88,6 +97,10 @@ const Tag = href ? "a" : "div";
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 0.06em;
+  }
+
+  .news-card-flag-gen {
+    background: var(--accent-red);
   }
 
   .news-card-media img {

@@ -1,5 +1,26 @@
 /* News listing page (/news/) */
 
+/* Red hero (same as the Company page), no background image / logo */
+.page-hero {
+  background: #97261e;
+}
+
+.page-hero-overlay {
+  display: none;
+}
+
+.page-hero-inner .page-kicker {
+  color: var(--accent-gold);
+}
+
+.page-hero-inner h1 {
+  color: #fff;
+}
+
+.page-hero-inner .page-hero-copy {
+  color: rgba(255, 255, 255, 0.88);
+}
+
 .news-listing {
   padding: 74px 0 112px;
 }

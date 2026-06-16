@@ -24,7 +24,7 @@ import "../../styles/customization.css";
     <main>
       <section class="page-hero" aria-labelledby="customization-hero-title">
         <img
-          src={withBase("/images/main/products.png")}
+          src={withBase("/images/main/products444.png")}
           alt="Custom noodle products developed by Lisheng"
         />
         <div class="page-hero-overlay"></div>
@@ -218,17 +218,20 @@ import "../../styles/customization.css";
           </div>
 
           <!-- Save & contact -->
-          <div class="config-save">
-            <div>
-              <h2>Happy with your configuration?</h2>
-              <p>
-                Send it to our export team — we reply with samples direction,
-                specifications and a quotation path.
-              </p>
+          <div class="config-step">
+            <h3>Happy with your configuration?</h3>
+            <p>
+              Send it to our export team — we reply with samples direction,
+              specifications and a quotation path.
+            </p>
+            <div class="config-save-actions">
+              <a class="config-save-link" href={withBase("/contact/")}>
+                Save &amp; Send Inquiry <span aria-hidden="true">→</span>
+              </a>
+              <button type="button" class="config-reset" data-config-reset>
+                Reset
+              </button>
             </div>
-            <a class="config-save-link" href={withBase("/contact/")}>
-              Save &amp; Send Inquiry <span aria-hidden="true">→</span>
-            </a>
           </div>
         </div>
       </section>
@@ -238,13 +241,98 @@ import "../../styles/customization.css";
     <script is:inline src={withBase("/scripts/site.js")} defer></script>
 
     <script>
-      // Option selection: every group is multi-select.
-      // Click toggles a button on/off. No data is stored yet.
+      // Storage key for a group = its sub-label (step 9 has two groups) or,
+      // failing that, the step's h3 title.
+      function groupKey(step, group) {
+        const prev = group.previousElementSibling;
+        if (prev && prev.classList.contains("config-group-label")) {
+          return prev.textContent.trim();
+        }
+        const h3 = step.querySelector("h3");
+        return h3 ? h3.textContent.trim() : "";
+      }
+
+      // Every group is multi-select: click toggles a button on/off.
       document.querySelectorAll("[data-config-group] button").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          btn.classList.toggle("selected");
-        });
+        btn.addEventListener("click", () => btn.classList.toggle("selected"));
       });
+
+      // Clear every selection and the stored data. The Reset button and a
+      // browser refresh both run this, which also resets the contact page
+      // (it reads these same sessionStorage keys).
+      function clearConfig() {
+        document
+          .querySelectorAll("[data-config-group] button.selected")
+          .forEach((b) => b.classList.remove("selected"));
+        sessionStorage.removeItem("lisheng-customization");
+        sessionStorage.removeItem("lisheng-customization-types");
+      }
+
+      // Re-apply the saved picks (used when returning via "Edit").
+      function restoreConfig() {
+        let saved = null;
+        try {
+          const raw = sessionStorage.getItem("lisheng-customization");
+          if (raw) saved = JSON.parse(raw);
+        } catch (e) {}
+        if (!saved) return;
+        document.querySelectorAll(".config-step").forEach((step) => {
+          step.querySelectorAll("[data-config-group]").forEach((group) => {
+            const picked = saved[groupKey(step, group)] || [];
+            group.querySelectorAll("button").forEach((b) => {
+              if (picked.indexOf(b.textContent.trim()) !== -1) {
+                b.classList.add("selected");
+              }
+            });
+          });
+        });
+      }
+
+      // On load: returning via "Edit" (?edit=1) restores the saved picks; any
+      // other load — a fresh visit or a plain refresh — starts clean (which
+      // also clears the contact page). After restoring we drop the ?edit flag,
+      // so a later refresh resets as expected.
+      if (new URLSearchParams(location.search).has("edit")) {
+        restoreConfig();
+        history.replaceState(null, "", location.pathname);
+      } else {
+        clearConfig();
+      }
+
+      const resetBtn = document.querySelector("[data-config-reset]");
+      if (resetBtn) resetBtn.addEventListener("click", clearConfig);
+
+      // Save & Send: collect selections, persist to sessionStorage, then jump
+      // to the contact page with a flag so it shows the "filled" state.
+      const saveLink = document.querySelector(".config-save-link");
+      if (saveLink) {
+        saveLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          const selections = {};
+          document.querySelectorAll(".config-step").forEach((step) => {
+            step.querySelectorAll("[data-config-group]").forEach((group) => {
+              const picked = Array.from(
+                group.querySelectorAll("button.selected")
+              ).map((b) => b.textContent.trim());
+              if (picked.length) selections[groupKey(step, group)] = picked;
+            });
+          });
+
+          sessionStorage.setItem(
+            "lisheng-customization",
+            JSON.stringify(selections)
+          );
+          sessionStorage.setItem(
+            "lisheng-customization-types",
+            JSON.stringify(selections["Product Type"] || [])
+          );
+
+          const href = saveLink.getAttribute("href");
+          const sep = href.indexOf("?") === -1 ? "?" : "&";
+          // Land directly on the inquiry form (#quote-form) instead of the top.
+          location.href = href + sep + "from=customization#quote-form";
+        });
+      }
     </script>
   </body>
 </html>

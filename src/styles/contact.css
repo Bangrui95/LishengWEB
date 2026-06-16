@@ -2,7 +2,7 @@
    cards, serif headings, square corners, white→soft-gray section rhythm). */
 .quote-page {
   --header-accent: var(--accent-gold);
-  --header-bg: rgba(47, 43, 37, 0.22);
+  --header-bg: rgba(47, 43, 37, 0.18);
   --header-bg-scrolled: rgba(47, 43, 37, 0.94);
   --header-menu-bg: rgba(47, 43, 37, 0.96);
   color: var(--text-dark);
@@ -15,41 +15,22 @@
 
 /* ---- Hero (matches the shared sub-page hero) ---- */
 .quote-hero {
-  position: relative;
-  min-height: clamp(360px, 48vh, 520px);
+  min-height: clamp(320px, 42vh, 460px);
   display: grid;
   align-items: end;
-  overflow: hidden;
   color: #fff;
-  background: #271f1a;
-}
-
-.quote-hero > img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-}
-
-.quote-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(20, 31, 27, 0.58) 0%,
-    rgba(20, 31, 27, 0.3) 45%,
-    rgba(20, 31, 27, 0.72) 100%
-  );
+  /* Same red as the Company page hero */
+  background: #97261e;
 }
 
 .quote-hero-inner {
-  position: relative;
-  z-index: 2;
   width: min(var(--page-max), calc(100% - var(--page-gutter)));
   margin: 0 auto;
-  padding: 132px 0 60px;
+  padding: 132px 0 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
 }
 
 .quote-kicker,
@@ -64,10 +45,10 @@
 }
 
 .quote-hero h1 {
-  max-width: 880px;
+  max-width: 620px;
   margin: 12px 0 0;
-  font-size: clamp(38px, 4.4vw, 60px);
-  line-height: 1.08;
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 1.1;
   font-weight: 800;
 }
 
@@ -157,7 +138,7 @@
   background: var(--accent-red);
 }
 
-.quote-form-intro span {
+.quote-form-intro > span {
   display: block;
   max-width: 760px;
   margin-top: 24px;
@@ -166,15 +147,138 @@
   line-height: 1.65;
 }
 
+/* ---- Product customization status row (top of the form) ---- */
+.form-customization {
+  margin-bottom: 0;
+}
+
+.form-customization-note {
+  margin: 12px 0 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.form-customization h3 {
+  margin: 0 0 10px;
+  color: var(--text-dark);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* Same two-column grid as the form fields below, so the box aligns with the
+   left column and the buttons with the right. */
+.form-customization-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Left box: matches the form fields below (border / height / fill) */
+.form-customization-display {
+  display: flex;
+  align-items: center;
+  min-height: 54px;
+  padding: 0 16px;
+  border: 1px solid #d9d1c4;
+  background: #fff;
+  color: #24211d;
+  font-size: 15px;
+}
+
+.form-customization-empty {
+  color: var(--text-muted);
+}
+
+.form-customization-saved {
+  display: none;
+  color: #24211d;
+  font-weight: 700;
+}
+
+/* Right cell: red Customize CTA (fills) + outline Reset */
+.form-customization-actions {
+  display: flex;
+  gap: 14px;
+}
+
+.form-customization-button,
+.form-customization-reset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 22px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.form-customization-button {
+  flex: 1;
+  color: #fff;
+  background: var(--accent-red);
+}
+
+.form-customization-button:hover {
+  transform: translateY(-1px);
+}
+
+.form-customization-reset {
+  flex: 1;
+  padding: 0;
+  color: #303030;
+  background: #fff;
+  border: 1px solid #c9c9c9;
+  font-family: inherit;
+  font-size: 18px;
+}
+
+.form-customization-reset:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+}
+
+.form-customization-cta-filled {
+  display: none;
+}
+
+/* Filled state: show "saved" status + "Edit" label */
+[data-customization-block="filled"] .form-customization-empty {
+  display: none;
+}
+
+[data-customization-block="filled"] .form-customization-saved {
+  display: inline;
+}
+
+[data-customization-block="filled"] .form-customization-cta-empty {
+  display: none;
+}
+
+[data-customization-block="filled"] .form-customization-cta-filled {
+  display: inline;
+}
+
 /* ---- Support paths (beige cards) ---- */
 .quote-paths {
-  padding: 84px 0 80px;
+  padding: 64px 0 60px;
   background: #fff;
 }
 
 .quote-path-grid {
   width: min(var(--page-max), calc(100% - var(--page-gutter)));
-  margin: 42px auto 0;
+  margin: 30px auto 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 22px;
@@ -219,13 +323,13 @@
 
 /* ---- Inquiry form ---- */
 .quote-form-section {
-  padding: 86px 0 96px;
+  padding: 56px 0 72px;
   background: #f6f6f6;
 }
 
 .quote-form-layout {
   width: min(var(--page-max), calc(100% - var(--page-gutter)));
-  margin: 46px auto 0;
+  margin: 26px auto 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(300px, 0.4fr);
   gap: 40px;
@@ -236,6 +340,9 @@
   padding: 42px;
   border: 1px solid #e6e0d6;
   background: #fff;
+  /* When arriving via #quote-form (after saving a customization), leave room
+     for the sticky header instead of hiding the form top behind it. */
+  scroll-margin-top: 110px;
 }
 
 .form-grid {
@@ -272,10 +379,38 @@
   border-color: var(--accent-gold);
 }
 
+/* Bigger custom dropdown arrow (native one can't be resized) */
+.quote-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 48px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23303030' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 22px;
+}
+
 .quote-form textarea {
   min-height: 220px;
   padding-top: 14px;
   resize: vertical;
+}
+
+/* Read-only customization summary: short, scrolls when it has many lines */
+.quote-form textarea.customization-details {
+  min-height: 0;
+  height: 120px;
+  padding-top: 12px;
+  line-height: 1.55;
+  resize: vertical;
+  overflow-y: auto;
+  cursor: default;
+}
+
+/* Sits right under the customization controls block — pull it up a little */
+.customization-details-field {
+  margin-top: -14px;
 }
 
 .form-wide {
@@ -422,13 +557,13 @@
 
 /* ---- Process strip ---- */
 .quote-process {
-  padding: 84px 0 92px;
+  padding: 64px 0 72px;
   background: #fff;
 }
 
 .quote-process-list {
   width: min(var(--page-max), calc(100% - var(--page-gutter)));
-  margin: 46px auto 0;
+  margin: 30px auto 0;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -475,16 +610,26 @@
   .quote-paths,
   .quote-form-section,
   .quote-process {
-    padding: 62px 0;
+    padding: 46px 0;
   }
 
   .quote-form {
     padding: 28px 22px;
   }
 
+  .quote-path-card,
+  .quote-process-list li {
+    min-height: 0;
+    padding: 24px 22px;
+  }
+
   .form-grid {
     grid-template-columns: 1fr;
     gap: 22px;
+  }
+
+  .form-customization-row {
+    grid-template-columns: 1fr;
   }
 
   .quote-form-footer {
@@ -499,12 +644,11 @@
 
 /* Phone pass (DESIGN-SPEC §6) — inputs keep 16px to avoid iOS zoom */
 @media (max-width: 700px) {
-  .quote-hero {
-    min-height: clamp(300px, 60vw, 420px);
-  }
-
   .quote-hero-inner {
-    padding: 92px 0 34px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    padding: 96px 0 30px;
   }
 
   .quote-kicker,
@@ -543,7 +687,7 @@
     margin-top: 12px;
   }
 
-  .quote-form-intro span {
+  .quote-form-intro > span {
     margin-top: 14px;
     font-size: 14px;
   }
@@ -564,24 +708,25 @@
   .quote-path-card,
   .quote-process-list li {
     min-height: 0;
-    padding: 22px 20px;
+    padding: 18px 18px;
   }
 
   .quote-path-card span,
   .quote-process-list span {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .quote-path-card h3,
   .quote-process-list h3 {
-    margin-top: 12px;
-    font-size: 22px;
+    margin-top: 10px;
+    font-size: 18px;
   }
 
   .quote-path-card p,
   .quote-process-list p {
-    margin-top: 10px;
+    margin-top: 8px;
     font-size: 14px;
+    line-height: 1.55;
   }
 
   .quote-form {

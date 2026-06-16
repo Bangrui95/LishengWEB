@@ -90,31 +90,35 @@
   color: #fff;
 }
 
-/* Save & contact strip */
-.config-save {
-  margin-top: 64px;
-  padding: 42px 52px;
-  background: #f7f0e6;
-  display: grid;
-  grid-template-columns: 1fr auto;
+/* Save & contact (styled as a config step, buttons left-aligned) */
+.config-save-actions {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.config-reset {
+  display: inline-flex;
   align-items: center;
-  gap: 28px;
-}
-
-.config-save h2 {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(24px, 2.4vw, 32px);
-  line-height: 1.18;
-  font-weight: 700;
-  color: #343434;
-}
-
-.config-save p {
-  margin: 12px 0 0;
+  min-height: 54px;
+  padding: 0 30px;
+  border: 1px solid #c9c9c9;
+  color: #303030;
+  background: #fff;
+  font: inherit;
   font-size: 16px;
-  line-height: 1.58;
-  color: #555;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.config-reset:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
 }
 
 .config-save-link {
@@ -123,7 +127,6 @@
   gap: 10px;
   min-height: 54px;
   padding: 0 30px;
-  border-radius: 999px;
   background: var(--accent-red);
   color: #fff;
   font-size: 16px;
@@ -141,11 +144,6 @@
   .config-step {
     margin-top: 38px;
     padding-top: 28px;
-  }
-
-  .config-save {
-    grid-template-columns: 1fr;
-    padding: 28px 24px;
   }
 }
 
@@ -186,20 +184,8 @@
     font-size: 14px;
   }
 
-  .config-save {
-    margin-top: 40px;
-  }
-
-  .config-save h2 {
-    font-size: 22px;
-  }
-
-  .config-save p {
-    margin-top: 8px;
-    font-size: 14px;
-  }
-
-  .config-save-link {
+  .config-save-link,
+  .config-reset {
     min-height: 46px;
     font-size: 14px;
   }
