@@ -1,0 +1,296 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/company-about.css";
+import "../../../styles/zh.css";
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>公司简介 | 利生集团</title>
+    <meta
+      name="description"
+      content="山东利生集团：创建于1995年，旗下11家公司、六大生产基地，集粮食收储、面粉加工、挂面制造与物流于一体的大型食品企业。"
+    />
+  </head>
+  <body>
+    <Header lang="zh" langAltHref="/company/" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="company-hero-title">
+        <img src={withBase("/images/company/about/lisheng.png")} alt="利生集团标志" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">关于利生集团</p>
+          <h1 id="company-hero-title">公司简介</h1>
+          <p class="page-hero-copy">
+            自1995年起，集粮食收储、面粉加工、挂面制造、包装与物流于一体的大型中国食品企业。
+          </p>
+        </div>
+      </section>
+
+      <!-- 我们是谁 + 关键数据 -->
+      <section class="page-section" aria-labelledby="company-about-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">我们是谁</p>
+          <h2 id="company-about-title">
+            从一家县级面粉厂到一体化食品集团
+          </h2>
+
+          <div class="about-lead">
+            <img
+              src={withBase("/images/company/about/company.png")}
+              alt="位于济宁的山东利生集团总部"
+            />
+          </div>
+
+          <p>
+            山东利生集团创建于1995年，总部位于山东省济宁高新技术产业开发区。从一家县级面粉厂起步，如今已发展为拥有11家公司的企业集团——涵盖六大生产基地与三家粮食收储公司，分布于山东、河北、河南等中国优质小麦主产区，员工逾1,300人。
+          </p>
+          <p>
+            秉承“做利于百姓生活的事业”的企业使命，利生掌控从小麦采购、粮食收储到面粉加工、挂面生产、自有包装与物流的全产业链。各面粉厂配备整套布勒（Bühler）制粉系统与波通（Perten）检测仪器，日处理小麦达4,500吨、日产挂面600吨，并拥有20万吨自有粮食仓储能力。
+          </p>
+          <p>
+            面粉、挂面及自有品牌产品畅销全国30个省、300多个城市，并进入沃尔玛、家乐福、大润发、华润万家等国际零售渠道，挂面更远销东南亚与欧洲。各基地均通过 ISO 9001、ISO 22000 与 HACCP 体系，并持有国家“放心粮油”与绿色食品资质。
+          </p>
+
+          <div class="company-stats" aria-label="利生集团关键数据">
+            <dl>
+              <dt>1995</dt>
+              <dd>创建于山东济宁</dd>
+            </dl>
+            <dl>
+              <dt>11</dt>
+              <dd>家公司（含6大生产基地）</dd>
+            </dl>
+            <dl>
+              <dt>1,300<span>+</span></dt>
+              <dd>员工</dd>
+            </dl>
+            <dl>
+              <dt>4,500<span>吨</span></dt>
+              <dd>日处理小麦量</dd>
+            </dl>
+            <dl>
+              <dt>600<span>吨</span></dt>
+              <dd>日产挂面量</dd>
+            </dl>
+            <dl>
+              <dt>200,000<span>吨</span></dt>
+              <dd>粮食仓储能力</dd>
+            </dl>
+          </div>
+
+          <div class="about-gallery" aria-label="走进利生">
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-lab.jpg")}
+                alt="利生质量管理中心"
+                loading="lazy"
+              />
+              <figcaption>质量管理中心</figcaption>
+            </figure>
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-base-2.png")}
+                alt="利生智能生产基地"
+                loading="lazy"
+              />
+              <figcaption>智能生产基地</figcaption>
+            </figure>
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-silos.png")}
+                alt="利生粮食仓储筒仓"
+                loading="lazy"
+              />
+              <figcaption>20万吨粮食仓储</figcaption>
+            </figure>
+          </div>
+
+          <div class="company-cta">
+            <div>
+              <h2>与利生合作</h2>
+              <p>
+                直接向制造商采购出口级挂面与面粉，提供 OEM 与自有品牌支持。
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/contact/")}>
+              获取报价 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 企业文化 -->
+      <section class="page-section alt" aria-labelledby="company-values-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">企业文化</p>
+          <h2 id="company-values-title">我们的价值理念</h2>
+
+          <div class="value-grid">
+            <div class="value-card">
+              <h3>使命</h3>
+              <p>做利于百姓生活的事业。</p>
+            </div>
+            <div class="value-card">
+              <h3>愿景</h3>
+              <p>百年利生——一体化绿色食品企业。</p>
+            </div>
+            <div class="value-card">
+              <h3>精神</h3>
+              <p>团结、进取、诚信、创新。</p>
+            </div>
+            <div class="value-card">
+              <h3>理念</h3>
+              <p>一流品质，诚信永远。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 从田间到餐桌：生产概览 -->
+      <section class="page-section" aria-labelledby="company-process-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">从田间到餐桌</p>
+          <h2 id="company-process-title">一体化生产链条</h2>
+          <p>
+            利生每一处基地都坐落于国家级优质小麦产区。原粮进入自有仓储系统，经国际级设备研磨，再以面粉或挂面的形态，通过一条连续、全程质控的链条产出。
+          </p>
+
+          <ol class="process-flow">
+            <li>
+              <h3>小麦采购与收储</h3>
+              <p>
+                来自山东、河北、河南的优质小麦，配 20 万吨自有粮食仓储。
+              </p>
+            </li>
+            <li>
+              <h3>面粉研磨</h3>
+              <p>
+                布勒制粉系统，低温加工、多道清粉。
+              </p>
+            </li>
+            <li>
+              <h3>挂面生产</h3>
+              <p>
+                1000 型自动化生产线，涵盖和面、切条、烘干与包装。
+              </p>
+            </li>
+            <li>
+              <h3>包装与物流</h3>
+              <p>
+                自有包装资源，物流网络服务国内与出口订单。
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 产品实验室入口 -->
+      <section class="page-section alt" aria-labelledby="company-lab-title">
+        <div class="page-section-inner">
+          <div class="split-row reverse" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src={withBase("/images/factory/11.png")}
+                alt="利生产品实验室——研发与品质检测"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">研发与品质</p>
+              <h3 id="company-lab-title">产品实验室</h3>
+              <p>
+                独立的产品开发与检测实验室，涵盖原料分析、配方调整、面条质构开发与食品安全检测——为面向不同市场的面粉与挂面产品提供稳定品质支撑。
+              </p>
+              <a class="split-link" href={withBase("/factory/lab/")}>
+                了解产品实验室
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 生产基地入口 -->
+      <section class="page-section" aria-labelledby="company-facilities-title">
+        <div class="page-section-inner">
+          <div class="split-row" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src={withBase("/images/factory/01.png")}
+                alt="利生工厂自动化生产线"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">生产规模</p>
+              <h3 id="company-facilities-title">生产基地</h3>
+              <p>
+                六大生产基地日处理小麦达 4,500 吨、日产挂面 600 吨。旗舰梁山工厂拥有四条智能制粉生产线，全程 PLC 与 MES 控制——基本实现无人化、远程操作生产。
+              </p>
+              <a class="split-link" href={withBase("/factory/production/")}>
+                了解生产基地
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 资质认证入口 -->
+      <section class="page-section alt" aria-labelledby="company-cert-title">
+        <div class="page-section-inner">
+          <div class="split-row reverse" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src={withBase("/images/main/WHO.png")}
+                alt="利生质量认证展示"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">品质与荣誉</p>
+              <h3>资质认证，屡获殊荣</h3>
+              <p>
+                利生在 ISO 9001、ISO 22000 与 HACCP 管理体系下运营。“利生”小麦粉于 2007 年获评“中国名牌”产品，利生商标于 2011 年被认定为“中国驰名商标”。
+              </p>
+              <a class="split-link" href={withBase("/factory/certificates/")}>
+                查看证书与荣誉
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 下属公司入口 -->
+      <section class="page-section" aria-labelledby="company-sub-title">
+        <div class="page-section-inner">
+          <div class="sub-intro">
+            <div class="sub-intro-copy">
+              <p class="company-kicker">集团结构</p>
+              <h2 id="company-sub-title">八家子公司，一条供应链</h2>
+              <p>
+                从济宁总部到梁山旗舰智能工厂，每一家利生子公司都在集团的面粉、挂面、食品科技与包装链条中扮演明确角色。
+              </p>
+              <a class="split-link" href={withBase("/zh/company/subsidiaries/")}>
+                认识下属公司
+              </a>
+            </div>
+            <div class="sub-intro-logo">
+              <img
+                src={withBase("/images/company/about/logo.png")}
+                alt="利生集团标志"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="zh" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

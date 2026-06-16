@@ -1,0 +1,318 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/factory-production.css";
+import "../../../styles/zh.css";
+
+const IMG = withBase("/images/factory/production");
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>智能工厂 | 利生集团</title>
+    <meta
+      name="description"
+      content="六大生产基地、布勒智能制粉系统、MES 全程控制：利生集团日处理小麦 4,500 吨、日产挂面 600 吨。"
+    />
+  </head>
+  <body>
+    <Header lang="zh" langAltHref="/factory/production/" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="production-hero-title">
+        <img
+          src={`${IMG}/C8BEDC21-1979-4392-8498-7E1B00619385.png`}
+          alt="利生自动化生产车间"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">智能制造</p>
+          <h1 id="production-hero-title">生产基地</h1>
+          <p class="page-hero-copy">
+            六大生产基地分布于中国优质小麦产区，建立在国际装备与智能工厂控制之上。
+          </p>
+        </div>
+      </section>
+
+      <!-- 产能：导语 + 深色数据带 -->
+      <section class="page-section" aria-labelledby="production-capacity-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">产能</p>
+          <h2 id="production-capacity-title">为规模而建，以稳定运行</h2>
+          <p>
+            利生在山东、河北、河南运营六大生产基地——每一处都坐落于国家级优质小麦产区。合计为海外伙伴提供制造商直供产能，并留有充足的扩展空间。
+          </p>
+        </div>
+
+        <div class="prod-stats-band">
+          <div class="prod-stats-grid" aria-label="生产产能数据">
+            <dl>
+              <dt>4,500<span>吨</span></dt>
+              <dd>全集团日处理小麦量</dd>
+            </dl>
+            <dl>
+              <dt>600<span>吨</span></dt>
+              <dd>日产挂面量</dd>
+            </dl>
+            <dl>
+              <dt>100<span>万吨</span></dt>
+              <dd>梁山工厂年加工小麦量</dd>
+            </dl>
+            <dl>
+              <dt>200,000<span>吨</span></dt>
+              <dd>自有粮食仓储能力</dd>
+            </dl>
+            <dl>
+              <dt>7<span>条</span></dt>
+              <dd>1000 型自动化挂面生产线</dd>
+            </dl>
+            <dl>
+              <dt>2<span>兆瓦</span></dt>
+              <dd>梁山屋顶光伏发电</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="page-section-inner">
+          <div class="company-cta">
+            <div>
+              <h2>亲眼见证产能</h2>
+              <p>
+                走访制粉车间与挂面生产线，再与我们的出口团队面对面——多数参观一天即可完成。
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/contact/")}>
+              联系我们 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 车间图集 -->
+      <section class="page-section tight-top" aria-labelledby="production-gallery-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">走进车间</p>
+          <h2 id="production-gallery-title">您的产品在这里诞生</h2>
+
+          <div class="prod-gallery" aria-label="工厂图片集">
+            <img
+              src={`${IMG}/866C968F-F12E-4A9F-B2BF-89580E3894D2.png`}
+              alt="生产线上的细挂面"
+            />
+            <img
+              src={`${IMG}/EFAC5AD0-D5F8-4E67-9027-40E764F72892.png`}
+              alt="运行中的自动化生产线"
+            />
+            <img
+              src={`${IMG}/463A6028-5BD3-4E82-A5BE-CD93145F5B63.png`}
+              alt="包装机下线的成品挂面"
+            />
+          </div>
+
+        </div>
+      </section>
+      <!-- 生产流程（配图） -->
+      <section class="page-section alt" aria-labelledby="production-process-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">生产如何运转</p>
+          <h2 id="production-process-title">从小麦到码垛，一条可控链条</h2>
+
+          <ol class="prod-steps">
+            <li>
+              <img
+                src={`${IMG}/5BB27579-F866-46C3-A651-F02EAA49FBEB.png`}
+                alt="小麦清理与制粉车间"
+              />
+              <span class="step-arrow" aria-hidden="true">第 1 步</span>
+              <h3>清理与研磨</h3>
+              <p>
+                小麦经检测、按品种储存、按需配麦，并低温研磨。
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/D05E664D-3913-4315-9C3B-53F91DA8C3AD.png`}
+                alt="和面与压片机"
+              />
+              <span class="step-arrow" aria-hidden="true">第 2 步</span>
+              <h3>和面与压片</h3>
+              <p>
+                面粉、水与配方原料混合，压延成均匀面带。
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/3314AB7C-DC8C-43B7-94A6-2BE50C2267CB.png`}
+                alt="挂面切条与成型生产线"
+              />
+              <span class="step-arrow" aria-hidden="true">第 3 步</span>
+              <h3>切条与成型</h3>
+              <p>
+                可换刀具切出各种宽度——从 0# 龙须面到 10# 刀切面。
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/08DA00E9-CF0E-4F25-A195-04A89D0D5234.png`}
+                alt="烘房中悬挂的挂面"
+              />
+              <span class="step-arrow" aria-hidden="true">第 4 步</span>
+              <h3>低温烘干</h3>
+              <p>
+                挂面在控温烘房中缓慢干燥——梁山工厂采用太阳能供热。
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/8839792A-8F9B-400D-A3A1-8C92E677D91A.png`}
+                alt="自动化挂面包装机"
+              />
+              <span class="step-arrow" aria-hidden="true">第 5 步</span>
+              <h3>包装</h3>
+              <p>
+                零售、家庭与餐饮规格在自动化生产线上包装，使用自有包装材料。
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/1703B9E3-E547-460F-8187-C474D9870A1D.png`}
+                alt="仓库中码放的成品"
+              />
+              <span class="step-arrow" aria-hidden="true">第 6 步</span>
+              <h3>仓储与发运</h3>
+              <p>
+                成品按批入库记录，经集团物流网络发运。
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 装备图文卡 -->
+      <section class="page-section" aria-labelledby="production-equipment-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">装备与技术</p>
+          <h2 id="production-equipment-title">国际装备，智能控制</h2>
+
+          <div class="equip-row">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/F2A9AEB8-EF12-4CA2-8160-034E9ECA18FB.png`}
+                alt="利生工厂的布勒制粉车间"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>布勒（Bühler）智能制粉系统</h3>
+              <p>
+                瑞士布勒制粉设备贯穿全集团——济宁总部与成武工厂为整套布勒设备，旗舰梁山工厂配备整套智能面粉生产系统，四条生产线日产专用粉 3,000 吨、全配粉工艺。
+              </p>
+              <p>
+                对买家而言，这意味着批批一致的面粉规格：配粉配方由系统执行，而非人工。
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row reverse">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/6360FA8C-B9D1-4D84-9DDE-B5C36B107846.png`}
+                alt="技术人员操作粮食分析仪器"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>波通（Perten）粮食检测仪器</h3>
+              <p>
+                瑞典波通分析仪对每批入厂小麦与出厂面粉进行检测——蛋白、水分与面筋品质是实测而非估算。小麦随后按品种储存，依实测数据配麦。
+              </p>
+              <p>
+                每笔订单都有批次记录支撑，这正是贵方品控团队所收到质检报告（COA）的依据。
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/AE1D12D2-A0DE-490C-8D09-3011B26DBBA4.png`}
+                alt="MDDK 辊式磨粉机与清粉机"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>MDDK 辊式磨粉机与多道清粉</h3>
+              <p>
+                MDDK 辊式磨粉机采用五皮八心制粉工艺（由郑州粮食学院制粉专家设计），配五道清粉与中路出粉。
+              </p>
+              <p>
+                温和的分道研磨保留蛋白与淀粉——高纯度粉路，白度高、麦香浓、烘焙性能稳定。
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row reverse">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/1B01EC50-0146-463A-9E9B-DDFB6E370177.png`}
+                alt="智能控制下的自动化加工设备"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>PLC + MES 智能工厂控制</h3>
+              <p>
+                旗舰梁山工厂每个环节都在 PLC 控制与 MES 管理系统下运行——小麦检验、入仓、配麦、研磨、分类储存、配粉、打包与装车全部自动化。
+              </p>
+              <p>
+                工厂基本实现无人化远程操作，每一批次从原麦到码垛都留有完整数字记录。
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/DF48BEB5-7893-495E-8152-5A1497F0ECF7.png`}
+                alt="低温制粉车间"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>低温研磨</h3>
+              <p>
+                精确控制研磨温度，避免破坏维生素与高分子营养的热损伤——面粉保留营养与小麦天然麦香。
+              </p>
+              <p>
+                同样的理念延伸到全谷物生产线，丹麦石磨在自动控温下低速研磨。
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row reverse">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/78EA50FB-6C15-45A8-835A-71DEDE416C51.png`}
+                alt="1000 型自动化挂面生产线"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>1000 型自动化挂面生产线</h3>
+              <p>
+                七条 1000 型自动化生产线覆盖完整挂面工序——喂料、压片、切条、上杆、烘干与包装——日产挂面达 600 吨，含发酵、空心、杂粮与蔬菜等品种。
+              </p>
+              <p>
+                梁山烘房由 1,200 平方米太阳能集热板供热，外加 2 兆瓦屋顶光伏——更低能耗、更绿色生产。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <Footer lang="zh" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

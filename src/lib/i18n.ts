@@ -27,6 +27,7 @@ export const ui = {
       oem: "OEM Manufacturing",
       customization: "Product Customization",
       products: "Products",
+      ownProducts: "Own Products",
       noodleProducts: "Noodle Products",
       flourProducts: "Flour Products",
       partner: "Partner Collaborations",
@@ -83,6 +84,7 @@ export const ui = {
       oem: "OEM 代加工",
       customization: "产品定制",
       products: "产品",
+      ownProducts: "自营产品",
       noodleProducts: "挂面产品",
       flourProducts: "面粉产品",
       partner: "合作定制",
@@ -126,4 +128,25 @@ export const ui = {
 
 export function getUI(lang: Lang) {
   return ui[lang] ?? ui.en;
+}
+
+// Routes that already have a Chinese version under /zh/. Header and Footer use
+// `localizeHref` to point their links at the zh page when lang === "zh";
+// everything else stays on the shared English page. Add routes here as the
+// matching zh page is built — both nav and footer pick it up automatically.
+export const zhReady = new Set<string>([
+  "/",
+  "/company/",
+  "/company/honors/",
+  "/company/subsidiaries/",
+  "/factory/production/",
+  "/factory/lab/",
+  "/factory/certificates/",
+]);
+
+export function localizeHref(href: string, lang: Lang): string {
+  if (lang !== "zh") return href;
+  const path = href.split("#")[0];
+  if (!zhReady.has(path)) return href;
+  return path === "/" ? "/zh/" : "/zh" + href;
 }

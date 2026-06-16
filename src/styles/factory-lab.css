@@ -318,15 +318,20 @@
   color: var(--text-dark);
 }
 
-/* CTA strip */
+/* CTA strip — transparent by default, beige fill on hover */
 .company-cta {
-  margin-top: 86px;
+  margin-top: 56px;
   padding: 42px 52px;
-  background: #f7f0e6;
+  background: transparent;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: 28px;
+  transition: background-color 0.25s ease;
+}
+
+.company-cta:hover {
+  background: #f7f0e6;
 }
 
 .company-cta h2 {

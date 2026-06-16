@@ -1,0 +1,38 @@
+/* Chinese-page typography adjustments.
+ *
+ * The English pages set wide letter-spacing on uppercase "eyebrow" labels and
+ * CTA text, which reads as awkwardly loose gaps between Chinese characters.
+ * Here we relax that tracking for zh pages. Heading FONTS are left untouched:
+ * Latin glyphs keep Georgia / Arial, while CJK glyphs already fall back to the
+ * system serif (for Georgia headings) or sans (for Arial headings) through the
+ * existing font stacks — so the serif/sans heading distinction is preserved.
+ */
+
+html[lang="zh-CN"] .page-kicker,
+html[lang="zh-CN"] .company-kicker,
+html[lang="zh-CN"] .quote-kicker,
+html[lang="zh-CN"] .quote-section-heading p,
+html[lang="zh-CN"] .quote-form-intro p,
+html[lang="zh-CN"] .qc-step,
+html[lang="zh-CN"] .wg-card-tag,
+html[lang="zh-CN"] .news-card-copy time {
+  letter-spacing: 0.06em;
+}
+
+/* CTA / button text: English uses uppercase + tracking; Chinese needs neither */
+html[lang="zh-CN"] .company-cta-link,
+html[lang="zh-CN"] .split-link,
+html[lang="zh-CN"] .about-more,
+html[lang="zh-CN"] .quote-primary,
+html[lang="zh-CN"] .quote-secondary,
+html[lang="zh-CN"] .quote-form-footer button {
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+/* Slightly looser line-height improves CJK body readability */
+html[lang="zh-CN"] .page-section-inner p,
+html[lang="zh-CN"] .split-copy p,
+html[lang="zh-CN"] .sub-card p {
+  line-height: 1.78;
+}

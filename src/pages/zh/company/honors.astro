@@ -1,0 +1,171 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/company-honors.css";
+import "../../../styles/zh.css";
+
+const IMG = withBase("/images/company/honors");
+
+// 荣誉证书墙——新增一项时复制一块并替换图片即可。
+const honors = [
+  { img: "china-top-brand-2007.jpg", title: "中国名牌产品", year: "2007" },
+  { img: "china-famous-trademark-2011.jpg", title: "中国驰名商标", year: "2011" },
+  { img: "key-leading-enterprise-2005.jpg", title: "农业产业化重点龙头企业", year: "2005" },
+  { img: "national-noodle-brand-2006.jpg", title: "全国知名挂面品牌", year: "2006" },
+  { img: "top50-2011.png", title: "中国制粉企业五十强", year: "2011" },
+  { img: "top50-2013.jpg", title: "中国制粉企业五十强", year: "2013" },
+  { img: "top50-2015.jpg", title: "中国制粉企业五十强", year: "2015" },
+  { img: "top50-2017.jpg", title: "中国制粉企业五十强", year: "2017" },
+  { img: "top10-grain-oil-2016.jpg", title: "中国十佳粮油（食品）品牌", year: "2016" },
+  { img: "shandong-brand-flour.jpg", title: "山东名牌——小麦粉", year: "山东" },
+  { img: "shandong-brand-noodles.jpg", title: "山东名牌——挂面", year: "山东" },
+  { img: "shandong-trademark-2009.jpg", title: "山东省著名商标", year: "2009" },
+  { img: "shandong-top20-2007.jpg", title: "山东食品工业二十强", year: "2007" },
+  { img: "aaa-credit-2010.jpg", title: "AAA 级信用企业（中国农业银行）", year: "2010" },
+  { img: "contract-trust-2011.jpg", title: "省级守合同重信用企业", year: "2011" },
+  { img: "grain-emergency-2008.jpg", title: "粮食应急供应定点企业", year: "2008" },
+  { img: "demonstration-enterprise-2010.jpg", title: "国家级示范加工企业", year: "2010" },
+  { img: "grain-assoc-member.jpg", title: "中国粮食行业协会会员", year: "会员" },
+  { img: "most-influential-brand.jpg", title: "最具影响力品牌", year: "行业" },
+];
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>荣誉资质 | 利生集团</title>
+    <meta
+      name="description"
+      content="三十年荣誉积累：中国名牌产品、中国驰名商标、中国制粉企业五十强等利生集团获得的国家级与省级荣誉。"
+    />
+  </head>
+  <body>
+    <Header lang="zh" langAltHref="/company/honors/" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="honors-hero-title">
+        <img
+          src={withBase("/images/company/about/lisheng.png")}
+          alt="利生集团标志"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">荣誉</p>
+          <h1 id="honors-hero-title">荣誉资质</h1>
+          <p class="page-hero-copy">
+            三十年来积累的国家级与省级荣誉，以稳定的品质与制造标准为根基。
+          </p>
+        </div>
+      </section>
+
+      <!-- 逐年里程碑 -->
+      <section class="page-section" aria-labelledby="honors-milestones-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">里程碑</p>
+          <h2 id="honors-milestones-title">逐年积累的荣誉记录</h2>
+
+          <ol class="honor-timeline">
+            <li>
+              <span class="honor-year">2022</span>
+              <p>
+                入选首批<strong>“好品山东”</strong>省级质量品牌名单。
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2019</span>
+              <p>
+                获中国粮油学会评定<strong>“最具影响力品牌”</strong>。
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2017</span>
+              <p>
+                <strong>“中国制粉企业五十强”</strong>——再度入榜国家级排名。
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2016</span>
+              <p>
+                入选<strong>“中国十佳粮油（食品）品牌”</strong>。
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2015</span>
+              <p>
+                连续入选<strong>“中国制粉企业五十强”</strong>。
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2011</span>
+              <p>
+                获认定<strong>“中国驰名商标”</strong>——并首次入选
+                <strong>“中国制粉企业五十强”</strong>。
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2009</span>
+              <p>
+                “利生”获评<strong>“山东省著名商标”</strong>。
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2007</span>
+              <p>
+                “利生”小麦粉获评<strong>“中国名牌”产品</strong>。
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2006</span>
+              <p>
+                荣获<strong>“全国知名挂面品牌”</strong>。
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2005</span>
+              <p>
+                获评省级<strong>“农业产业化重点龙头企业”</strong>。
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2003</span>
+              <p>
+                通过 <strong>ISO 9001、ISO 22000 与 HACCP</strong> 管理体系认证。
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 荣誉证书墙 -->
+      <section class="page-section alt" aria-labelledby="honors-wall-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">荣誉证书</p>
+          <h2 id="honors-wall-title">行业认可</h2>
+          <p>
+            官方认证、奖项与行业认可，支撑我们的生产品质与食品安全标准。
+          </p>
+
+          <div class="honor-grid">
+            {honors.map((h) => (
+              <article class="honor-card">
+                <div class="honor-media">
+                  <img src={`${IMG}/${h.img}`} alt={h.title} loading="lazy" />
+                </div>
+                <h3>{h.title}</h3>
+                <p>{h.year}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="zh" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

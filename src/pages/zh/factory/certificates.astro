@@ -1,0 +1,209 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/factory-certificates.css";
+import "../../../styles/zh.css";
+
+const CERT = withBase("/images/factory/certificates/certificate");
+const GREEN = withBase("/images/factory/certificates/green");
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>产品认证 | 利生集团</title>
+    <meta
+      name="description"
+      content="利生集团认证：ISO 9001、ISO 22000 与 HACCP（含 IQNET 国际互认）、绿色食品 A 级产品、中国名牌产品及行业奖项。"
+    />
+  </head>
+  <body>
+    <Header lang="zh" langAltHref="/factory/certificates/" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="cert-hero-title">
+        <img src={withBase("/images/main/3.jpg")} alt="利生证书与质量荣誉" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">品质与荣誉</p>
+          <h1 id="cert-hero-title">产品认证</h1>
+          <p class="page-hero-copy">
+            管理体系认证、国家级品牌荣誉与行业奖项——三十年食品制造积淀而成。
+          </p>
+        </div>
+      </section>
+
+      <!-- 国家认可 -->
+      <section class="page-section" aria-labelledby="cert-national-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">国家认可</p>
+          <h2 id="cert-national-title">获国家级认可</h2>
+
+          <dl class="machine-grid titles-only">
+            <div>
+              <dt><span class="cert-year">2007</span>中国名牌产品</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2011</span>中国驰名商标</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2006</span>全国知名挂面品牌</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2016</span>中国十佳粮油（食品）品牌</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2010</span>农业产业化重点龙头企业</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2010</span>国家级示范加工企业</dt>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 行业荣誉 -->
+      <section class="page-section" aria-labelledby="cert-awards-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">行业荣誉</p>
+          <h2 id="cert-awards-title">行业地位</h2>
+
+          <dl class="machine-grid">
+            <div>
+              <dt>中国制粉企业五十强</dt>
+              <dd>
+                连续多届入选全国制粉企业五十强排名。
+              </dd>
+            </div>
+            <div>
+              <dt>最具影响力品牌</dt>
+              <dd>
+                由中国粮油学会粮油营销分支机构评定。
+              </dd>
+            </div>
+            <div>
+              <dt>山东名牌——面粉与挂面</dt>
+              <dd>
+                面粉与挂面系列均获评山东名牌；“利生”亦为山东省著名商标。
+              </dd>
+            </div>
+            <div>
+              <dt>食品安全诚信单位</dt>
+              <dd>
+                获评山东省食品安全诚信单位与高新技术企业。
+              </dd>
+            </div>
+          </dl>
+
+          <div class="company-cta">
+            <div>
+              <h2>需要面向您市场的合规资料？</h2>
+              <p>
+                向我们索取证书副本、产品规格与出口文件，匹配您的进口要求。
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/contact/")}>
+              联系我们 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 管理体系 -->
+      <section class="page-section alt" aria-labelledby="cert-systems-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">管理体系</p>
+          <h2 id="cert-systems-title">食品安全管理认证</h2>
+          <p>
+            利生自 2003 年起即在认证管理体系下运营。质量、食品安全与 HACCP 认证由 CQC（中国质量认证中心）颁发，具备 IQNET 国际互认，并定期复审。点击任一证书查看原始 PDF。
+          </p>
+
+          <div class="cert-grid" aria-label="管理体系证书">
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/iso9001-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/iso9001-en-preview.jpg`} alt="CQC 颁发的 ISO 9001:2015 质量管理体系证书" loading="lazy" />
+              </a>
+              <h3>ISO 9001:2015</h3>
+              <p>质量管理体系——挂面与小麦粉</p>
+            </div>
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/iso22000-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/iso22000-en-preview.jpg`} alt="CQC 颁发的 ISO 22000:2018 食品安全管理体系证书" loading="lazy" />
+              </a>
+              <h3>ISO 22000:2018</h3>
+              <p>涵盖面粉与挂面生产的食品安全管理体系</p>
+            </div>
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/haccp-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/haccp-en-preview.jpg`} alt="CQC 颁发的 HACCP 体系证书" loading="lazy" />
+              </a>
+              <h3>HACCP</h3>
+              <p>危害分析与关键控制点</p>
+            </div>
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/iso9001-iqnet-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/iqnet-preview.jpg`} alt="认可利生 ISO 9001 管理体系的 IQNET 国际证书" loading="lazy" />
+              </a>
+              <h3>IQNET 国际互认</h3>
+              <p>ISO 9001 与 ISO 22000 的 IQNET 国际证书</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 绿色食品认证 -->
+      <section class="page-section alt has-divider" aria-labelledby="cert-green-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">绿色食品</p>
+          <h2 id="cert-green-title">绿色食品 A 级认证产品</h2>
+          <p>
+            利生五款产品获中国绿色食品发展中心认证为绿色食品 A 级——中国对残留管控与可追溯食品最严格的国家标准。现行证书有效期至 2026 年 8 月。
+          </p>
+
+          <div class="green-grid" aria-label="绿色食品证书">
+            <figure class="green-card">
+              <a href={`${GREEN}/green-super-refined-flour.jpg`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-super-refined-flour.jpg`} alt="特精粉绿色食品 A 级证书" loading="lazy" />
+              </a>
+              <figcaption>特精粉</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-wheat-core-flour.jpg`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-wheat-core-flour.jpg`} alt="多用途麦芯粉绿色食品 A 级证书" loading="lazy" />
+              </a>
+              <figcaption>多用途麦芯粉</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-dragon-beard-noodles.jpg`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-dragon-beard-noodles.jpg`} alt="优质龙须挂面绿色食品 A 级证书" loading="lazy" />
+              </a>
+              <figcaption>优质龙须挂面</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-egg-noodles.jpg`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-egg-noodles.jpg`} alt="优质鸡蛋挂面绿色食品 A 级证书" loading="lazy" />
+              </a>
+              <figcaption>优质鸡蛋挂面</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-original-noodles.jpg`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-original-noodles.jpg`} alt="优质原味挂面绿色食品 A 级证书" loading="lazy" />
+              </a>
+              <figcaption>优质原味挂面</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+
+    </main>
+
+    <Footer lang="zh" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

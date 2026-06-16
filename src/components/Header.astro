@@ -1,6 +1,6 @@
 ---
 import { withBase } from "../lib/url";
-import { getUI, type Lang } from "../lib/i18n";
+import { getUI, localizeHref, type Lang } from "../lib/i18n";
 import "../styles/header.css";
 
 // `lang` selects the label set; `langAltHref` is the same page in the other
@@ -13,48 +13,49 @@ const { lang = "en", langAltHref } = Astro.props;
 const t = getUI(lang).nav;
 const ui = getUI(lang);
 
+// Nav links point at /zh/... on Chinese pages for routes that have a zh
+// version (see `zhReady` in lib/i18n.ts); everything else stays English.
+const localize = (href: string) => localizeHref(href, lang);
+
 const currentPath = Astro.url.pathname;
 const navItems = [
-  { href: "/", label: t.home },
+  { href: localize("/"), label: t.home },
   {
-    href: "/company/",
+    href: localize("/company/"),
     label: t.company,
     children: [
-      { href: "/company/", label: t.about },
-      { href: "/company/honors/", label: t.honors },
-      { href: "/company/subsidiaries/", label: t.subsidiaries }
+      { href: localize("/company/"), label: t.about },
+      { href: localize("/company/honors/"), label: t.honors },
+      { href: localize("/company/subsidiaries/"), label: t.subsidiaries }
     ]
   },
   {
-    href: "/factory/production/",
+    href: localize("/factory/production/"),
     label: t.factory,
     children: [
-      { href: "/factory/production/", label: t.smartFactory },
-      { href: "/factory/lab/", label: t.foodLab },
-      { href: "/factory/certificates/", label: t.certifications },
-      { href: "/factory/tour/", label: t.factoryTour }
+      { href: localize("/factory/production/"), label: t.smartFactory },
+      { href: localize("/factory/lab/"), label: t.foodLab },
+      { href: localize("/factory/certificates/"), label: t.certifications }
     ]
   },
   {
-    href: "/services/",
+    href: localize("/services/"),
     label: t.services,
     children: [
-      { href: "/services/", label: t.oem },
-      { href: "/services/customization/", label: t.customization }
+      { href: localize("/services/"), label: t.oem },
+      { href: localize("/services/customization/"), label: t.customization }
     ]
   },
   {
-    href: "/products/",
+    href: localize("/products/"),
     label: t.products,
     children: [
-      { href: "/products/#noodles", label: t.noodleProducts },
-      { href: "/products/#flour", label: t.flourProducts },
-      { href: "/products/#customization", label: t.partner },
-      { href: "/products/specifications/", label: t.specifications }
+      { href: localize("/products/"), label: t.ownProducts },
+      { href: localize("/products/specifications/"), label: t.specifications }
     ]
   },
-  { href: "/news/", label: t.news },
-  { href: "/contact/", label: t.contact }
+  { href: localize("/news/"), label: t.news },
+  { href: localize("/contact/"), label: t.contact }
 ];
 
 const isActive = (href: string) => {
@@ -78,7 +79,7 @@ const navActive = (item: { href: string; children?: { href: string }[] }) =>
 ---
 
 <header class="site-header" data-header>
-  <a class="site-logo" href={withBase("/")} aria-label="Home">
+  <a class="site-logo" href={withBase(localize("/"))} aria-label="Home">
     <img src={withBase("/images/icon/logo-white.png")} alt="Lisheng logo" />
   </a>
 

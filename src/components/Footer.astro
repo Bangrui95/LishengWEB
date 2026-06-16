@@ -1,6 +1,6 @@
 ---
 import { withBase } from "../lib/url";
-import { getUI, type Lang } from "../lib/i18n";
+import { getUI, localizeHref, type Lang } from "../lib/i18n";
 import ContactCta from "./ContactCta.astro";
 import "../styles/footer.css";
 
@@ -12,6 +12,7 @@ const { showCta = true, lang = "en" } = Astro.props;
 const ui = getUI(lang);
 const f = ui.footer;
 const nav = ui.nav;
+const localize = (href: string) => localizeHref(href, lang);
 ---
 
 {showCta && (
@@ -36,41 +37,40 @@ const nav = ui.nav;
     <nav class="footer-links" aria-label="Footer navigation">
       <div>
         <h2>{f.company}</h2>
-        <a href={withBase("/company/")}>{f.about}</a>
-        <a href={withBase("/company/honors/")}>{nav.honors}</a>
-        <a href={withBase("/company/subsidiaries/")}>{nav.subsidiaries}</a>
+        <a href={withBase(localize("/company/"))}>{f.about}</a>
+        <a href={withBase(localize("/company/honors/"))}>{nav.honors}</a>
+        <a href={withBase(localize("/company/subsidiaries/"))}>{nav.subsidiaries}</a>
       </div>
 
       <div>
         <h2>{f.factory}</h2>
-        <a href={withBase("/factory/production/")}>{nav.smartFactory}</a>
-        <a href={withBase("/factory/lab/")}>{nav.foodLab}</a>
-        <a href={withBase("/factory/certificates/")}>{f.certifications}</a>
-        <a href={withBase("/factory/tour/")}>{nav.factoryTour}</a>
+        <a href={withBase(localize("/factory/production/"))}>{nav.smartFactory}</a>
+        <a href={withBase(localize("/factory/lab/"))}>{nav.foodLab}</a>
+        <a href={withBase(localize("/factory/certificates/"))}>{f.certifications}</a>
       </div>
 
       <div>
         <h2>{f.services}</h2>
-        <a href={withBase("/services/")}>{f.oemShort}</a>
-        <a href={withBase("/services/customization/")}>{nav.customization}</a>
+        <a href={withBase(localize("/services/"))}>{f.oemShort}</a>
+        <a href={withBase(localize("/services/customization/"))}>{nav.customization}</a>
       </div>
 
       <div>
         <h2>{f.products}</h2>
-        <a href={withBase("/products/#noodles")}>{f.noodleProducts}</a>
-        <a href={withBase("/products/#flour")}>{f.flourProducts}</a>
-        <a href={withBase("/products/specifications/")}>{f.specifications}</a>
+        <a href={withBase(localize("/products/#noodles"))}>{f.noodleProducts}</a>
+        <a href={withBase(localize("/products/#flour"))}>{f.flourProducts}</a>
+        <a href={withBase(localize("/products/specifications/"))}>{f.specifications}</a>
       </div>
 
       <div>
         <h2>{f.contact}</h2>
-        <a href={withBase("/contact/")}>{f.startProject}</a>
-        <a href={withBase("/contact/")}>{f.requestSamples}</a>
+        <a href={withBase(localize("/contact/"))}>{f.startProject}</a>
+        <a href={withBase(localize("/contact/"))}>{f.requestSamples}</a>
       </div>
 
       <div>
         <h2>{f.news}</h2>
-        <a href={withBase("/news/")}>{f.latestNews}</a>
+        <a href={withBase(localize("/news/"))}>{f.latestNews}</a>
       </div>
     </nav>
   </div>

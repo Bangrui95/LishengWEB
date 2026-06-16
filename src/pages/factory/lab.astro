@@ -35,7 +35,7 @@ const patents = [
     />
   </head>
   <body>
-    <Header />
+    <Header langAltHref="/zh/factory/lab/" />
 
     <main>
       <section class="page-hero" aria-labelledby="lab-hero-title">
@@ -152,6 +152,19 @@ const patents = [
                 ISO 22000 and HACCP — and the export documentation buyers need.
               </p>
             </div>
+          </div>
+
+          <div class="company-cta">
+            <div>
+              <h2>Develop your product with our lab</h2>
+              <p>
+                Bring a target product or market brief — our team handles
+                formula, texture, packaging and sampling.
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/contact/")}>
+              Start a Project <span aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
       </section>
@@ -289,19 +302,6 @@ const patents = [
               </a>
               <figcaption id="patent-caption">{patents[0].name}</figcaption>
             </figure>
-          </div>
-
-          <div class="company-cta">
-            <div>
-              <h2>Develop your product with our lab</h2>
-              <p>
-                Bring a target product or market brief — our team handles
-                formula, texture, packaging and sampling.
-              </p>
-            </div>
-            <a class="company-cta-link" href={withBase("/contact/")}>
-              Start a Project <span aria-hidden="true">→</span>
-            </a>
           </div>
         </div>
       </section>

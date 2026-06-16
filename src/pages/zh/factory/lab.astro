@@ -1,0 +1,308 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/factory-lab.css";
+import "../../../styles/zh.css";
+
+const PAT = withBase("/images/factory/certificates/patent");
+
+// 专利证书扫描件（竖版）——中文专利名 + 源文件。
+const patents = [
+  { img: "patent-01.jpg", name: "可调节固定式三辊着水机" },
+  { img: "patent-02.jpg", name: "面粉设备用便携式小型吸尘器" },
+  { img: "patent-03.jpg", name: "带降温功能的高方筛" },
+  { img: "patent-04.jpg", name: "移动式易安装清粉机" },
+  { img: "patent-05.jpg", name: "减震型打麦机底座" },
+  { img: "patent-06.jpg", name: "高效易清理振动筛" },
+  { img: "patent-07.jpg", name: "带输送功能的去石机" },
+  { img: "patent-08.jpg", name: "易清理打麦机" },
+  { img: "patent-09.jpg", name: "面粉打包机输送装置" },
+  { img: "patent-10.jpg", name: "便用型面粉袋固定装置" },
+];
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>食品实验室 | 利生集团</title>
+    <meta
+      name="description"
+      content="利生集团产品研发实验室：面粉与挂面配方开发、质构研究、石磨全谷物创新，以及十余项食品生产发明专利。"
+    />
+  </head>
+  <body>
+    <Header lang="zh" langAltHref="/factory/lab/" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="lab-hero-title">
+        <img src={withBase("/images/main/4.jpg")} alt="利生产品研发实验室" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">研发</p>
+          <h1 id="lab-hero-title">产品实验室</h1>
+          <p class="page-hero-copy">
+            涵盖面粉、挂面与谷物制品的独立研发体系——从原料检测到包装试验。
+          </p>
+        </div>
+      </section>
+
+      <!-- 研发能力 -->
+      <section class="page-section" aria-labelledby="lab-rd-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">实验室做什么</p>
+          <h2 id="lab-rd-title">从原麦到可上市的配方</h2>
+          <p>
+            利生产品团队负责原料检测、配方调整、面条质构开发与包装试验。除研发之外，我们的食品安全实验室人员还全程参与生产的每个环节——沿线取样与检测，使整个流程安全、可追溯、可控。
+          </p>
+
+          <div class="machine-grid">
+            <div>
+              <dt>配方开发</dt>
+              <dd>
+                针对不同产品需求测试并调整面粉与面团配方——从高筋挂面到杂粮与蔬菜配方。
+              </dd>
+            </div>
+            <div>
+              <dt>质构与蒸煮研究</dt>
+              <dd>
+                面条的尺寸、粗细、弹性与蒸煮特性，按每个目标市场与烹饪方式调校。
+              </dd>
+            </div>
+            <div>
+              <dt>工艺优化</dt>
+              <dd>
+                在产品进入生产线之前，依托自主专利食品加工技术提升生产稳定性。
+              </dd>
+            </div>
+            <div>
+              <dt>包装试验</dt>
+              <dd>
+                包装形式、材料与保质期表现均依托集团内部包装资源进行验证。
+              </dd>
+            </div>
+          </div>
+
+          <div class="media-trio" aria-label="产品实验室与研发图片">
+            <img
+              src={withBase("/images/factory/11.png")}
+              alt="研发人员检测挂面产品样品"
+            />
+            <img
+              src={withBase("/images/factory/22.png")}
+              alt="研发团队评审产品开发细节"
+            />
+            <img
+              src={withBase("/images/factory/33.png")}
+              alt="挂面产品研究与样品检测"
+            />
+          </div>
+
+          <div class="qc-flow" aria-label="贯穿生产链条的质量控制">
+            <div class="qc-card">
+              <p class="qc-step">第一阶段</p>
+              <h3>原材料检测</h3>
+              <p>
+                每批入厂小麦取样，用波通仪器检测水分、蛋白、湿面筋、降落数值与灰分。只有符合规格的谷物才被接收，检测结果决定每批小麦按品种与质量分拣的方式。
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">第二阶段</p>
+              <h3>预处理检查</h3>
+              <p>
+                研磨前，实验室核验清理与润麦（着水）效果，并签核配麦方案——匹配各等级面粉的水分与蛋白目标值。这是利生“分质配麦”方法的基础。
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">第三阶段</p>
+              <h3>实时过程监控</h3>
+              <p>
+                在制粉与挂面生产全过程中，生产线沿线取样，检测灰分、白度、水分与颗粒度。检测结果回传至 MES 系统，以便实时调整磨辊与清粉机。
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">第四阶段</p>
+              <h3>成品检验</h3>
+              <p>
+                成品面粉与挂面在出厂前须通过理化、感官（蒸煮与质地）以及食品安全检测。留样与批次记录支撑 ISO 22000 与 HACCP 体系下的全程可追溯，并提供买家所需的出口文件。
+              </p>
+            </div>
+          </div>
+
+          <div class="company-cta">
+            <div>
+              <h2>借助我们的实验室开发您的产品</h2>
+              <p>
+                带上目标产品或市场简报——我们的团队负责配方、质构、包装与样品制作。
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/contact/")}>
+              启动项目 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 全谷物创新 -->
+      <section class="page-section alt" aria-labelledby="lab-wholegrain-title">
+        <div class="page-section-inner">
+          <div class="split-row" style="margin-top: 0;">
+            <div class="split-media wg-media">
+              <img
+                src={withBase("/images/factory/certificates/wholewheat-series.jpg")}
+                alt="利生石磨全麦粉系列包装"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">最新产品 · 2025</p>
+              <h3 id="lab-wholegrain-title">石磨全谷物生产线</h3>
+              <p>
+                利生设有独立的全谷物车间——一栋 1,200 平方米、共三层的独立建筑，按现代生产工艺布局，具备完整的内部链条：毛麦清理、储存与配麦、净麦擦洗清理、色选、石磨研磨与配粉。
+              </p>
+              <p>
+                每一批均遵循一条可控工艺——净麦处理 → 灭菌消毒 → 小麦色选 → 清理 → 丹麦石磨研磨 → 麸皮烘焙混合。
+              </p>
+            </div>
+          </div>
+
+          <h4 class="wg-subhead">工艺如何保护营养</h4>
+          <div class="wg-feature-cards">
+            <div class="wg-card">
+              <p class="wg-card-tag">低温</p>
+              <h5>低速低温石磨研磨</h5>
+              <p>
+                以底层石磨盘为旋转磨盘低速研磨，配精确的自动控温系统将磨粉温度始终控制在合理范围——在保持全麦粉营养成分方面具有明显优势。
+              </p>
+            </div>
+            <div class="wg-card">
+              <p class="wg-card-tag">营养保持</p>
+              <h5>营养保留</h5>
+              <p>
+                同样的自动控温系统有效避免淀粉糊化与蛋白质变性，使面粉保留小麦的天然营养构成。
+              </p>
+            </div>
+            <div class="wg-card">
+              <p class="wg-card-tag">麦麸烘焙</p>
+              <h5>麦麸烘焙创新</h5>
+              <p>
+                高温麦麸烘焙工艺改善麦麸的口感与储存稳定性、促进消化吸收——整体提升全麦粉的食用品质。
+              </p>
+            </div>
+          </div>
+
+          <h4 class="wg-subhead">全麦粉里有什么</h4>
+          <p class="wg-lead">
+            全麦粉由整颗小麦籽粒研磨而成，完整保留麦粒的三大黄金组成部分。
+          </p>
+          <dl class="machine-grid tri">
+            <div>
+              <dt>麦麸</dt>
+              <dd>富含膳食纤维、B 族维生素和矿物质。</dd>
+            </div>
+            <div>
+              <dt>胚乳</dt>
+              <dd>提供优质碳水化合物和蛋白质。</dd>
+            </div>
+            <div>
+              <dt>胚芽</dt>
+              <dd>
+                蕴含丰富维生素 E、不饱和脂肪酸和抗氧化物质。
+              </dd>
+            </div>
+          </dl>
+
+        </div>
+      </section>
+
+      <!-- 专利 -->
+      <section class="page-section" aria-labelledby="lab-patents-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">知识产权</p>
+          <h2 id="lab-patents-title">专利制粉与生产技术</h2>
+          <p>
+            利生在自主研发的制粉与面粉生产设备上拥有多项国家专利——涵盖小麦着水、打麦、去石、筛分、清粉与打包等环节。这些自主创新提升了清理效率、机器稳定性与产线正常运行时间，从而保障始终如一的工业品质。点击任一证书即可查看原件。
+          </p>
+
+          <div class="patent-showcase">
+            <ul class="patent-list" role="tablist" aria-label="专利列表">
+              {patents.map((p, i) => (
+                <li>
+                  <button
+                    type="button"
+                    class="patent-tab"
+                    role="tab"
+                    aria-selected={i === 0 ? "true" : "false"}
+                    data-patent-src={`${PAT}/${p.img}`}
+                    data-patent-name={p.name}
+                  >
+                    <span class="patent-tab-name">{p.name}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            <figure class="patent-viewer">
+              <a
+                id="patent-link"
+                href={`${PAT}/${patents[0].img}`}
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  id="patent-image"
+                  src={`${PAT}/${patents[0].img}`}
+                  alt={`利生专利证书 — ${patents[0].name}`}
+                />
+              </a>
+              <figcaption id="patent-caption">{patents[0].name}</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="zh" />
+    <script>
+      const tabs = document.querySelectorAll(".patent-tab");
+      const img = document.getElementById("patent-image");
+      const link = document.getElementById("patent-link");
+      const caption = document.getElementById("patent-caption");
+      const list = document.querySelector(".patent-list");
+
+      // 将证书图高度锁定为列表（文字）高度，宽度自适应——纯 CSS 无法引用同级高度。
+      function fitPatentImage() {
+        if (!list || !img) return;
+        if (window.innerWidth <= 900) {
+          img.style.maxHeight = "";
+          return;
+        }
+        const padding = 36;
+        const capH = caption ? caption.offsetHeight + 16 : 0;
+        img.style.maxHeight =
+          Math.max(160, list.offsetHeight - padding - capH) + "px";
+      }
+      fitPatentImage();
+      window.addEventListener("resize", fitPatentImage);
+      window.addEventListener("load", fitPatentImage);
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const src = tab.dataset.patentSrc;
+          const name = tab.dataset.patentName;
+          img.src = src;
+          img.alt = `利生专利证书 — ${name}`;
+          link.href = src;
+          caption.textContent = name;
+          tabs.forEach((t) => t.setAttribute("aria-selected", "false"));
+          tab.setAttribute("aria-selected", "true");
+          fitPatentImage();
+        });
+      });
+    </script>
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

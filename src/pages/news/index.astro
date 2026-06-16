@@ -30,7 +30,8 @@ const articles = Object.entries(modules)
       );
     let excerpt = (firstText ?? "").replace(/\s+/g, "");
     if (excerpt.length > 64) excerpt = excerpt.slice(0, 64) + "…";
-    return { id, title: fm.title as string, date, cover: fm.cover as string, category, excerpt };
+    const intlReady = fm.intlReady === true;
+    return { id, title: fm.title as string, date, cover: fm.cover as string, category, excerpt, intlReady };
   })
   .sort((a, b) => (a.date < b.date ? 1 : -1));
 ---
@@ -83,6 +84,7 @@ const articles = Object.entries(modules)
                 date={a.date}
                 title={a.title}
                 excerpt={a.excerpt}
+                intlReady={a.intlReady}
               />
             ))}
           </div>
