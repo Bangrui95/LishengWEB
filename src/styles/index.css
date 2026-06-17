@@ -1339,6 +1339,12 @@
     padding: 0 14px;
   }
 
+  /* Year font clamps to 28px here (vs 36px on desktop), so the dot rides
+     ~6px above the fixed timeline rule — push it down to sit on the line. */
+  .history-item span {
+    margin-top: 34px;
+  }
+
   .history-item p {
     font-size: 13px;
   }

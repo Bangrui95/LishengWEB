@@ -45,6 +45,11 @@
     top: auto;
     transform: none;
   }
+
+  /* Keep the intro copy clear of the brand logo pinned bottom-right */
+  .page-hero-inner .page-hero-copy {
+    max-width: 60%;
+  }
 }
 
 .company-kicker {

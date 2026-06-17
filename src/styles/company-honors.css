@@ -202,6 +202,11 @@
     transform: none;
   }
 
+  /* Keep the intro copy clear of the brand logo pinned bottom-right */
+  .page-hero-inner .page-hero-copy {
+    max-width: 60%;
+  }
+
   /* push the axis right of the years and shrink the dot so neither the
      year nor the body text collides with the marker */
   .honor-timeline::before,
@@ -230,6 +235,20 @@
 
 @media (max-width: 480px) {
   .honor-grid {
-    columns: 1;
+    columns: 2;
+    column-gap: 12px;
+  }
+
+  .honor-card {
+    padding: 10px;
+    margin-bottom: 12px;
+  }
+
+  .honor-card h3 {
+    font-size: 13px;
+  }
+
+  .honor-card p {
+    font-size: 12px;
   }
 }
