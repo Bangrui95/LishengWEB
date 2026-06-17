@@ -1099,16 +1099,17 @@
   display: inline-block;
 }
 
+/* dot colours mirror the map: HQ red, export orange, raw-material green */
+.legend-dot.hq {
+  background: #c5322c;
+}
+
 .legend-dot.export {
-  background: var(--accent-red);
+  background: #d99d41;
 }
 
-.legend-dot.oem {
-  background: var(--accent-gold);
-}
-
-.legend-dot.supply {
-  background: #303030;
+.legend-dot.material {
+  background: #8fcf72;
 }
 
 .world-map-panel {
@@ -1117,11 +1118,8 @@
   place-items: center;
 }
 
-.world-map-panel img {
+.world-map-panel .world-map {
   width: min(1040px, 100%);
-  max-height: 520px;
-  object-fit: contain;
-  display: block;
 }
 
 /* Home page responsive */
@@ -1822,6 +1820,13 @@
 
   .world-intro {
     margin-top: 18px;
+  }
+
+  /* Phone legend: Headquarters on its own first row, the two cooperation
+     types share the second row. */
+  .world-legend li:first-child {
+    flex-basis: 100%;
+    justify-content: center;
   }
 }
 

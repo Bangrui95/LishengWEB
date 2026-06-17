@@ -3,6 +3,7 @@ import { withBase } from "../../lib/url";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
 import HeroSlider from "../../components/HeroSlider.astro";
+import WorldMap from "../../components/WorldMap.astro";
 import "../../styles/global.css";
 import "../../styles/index.css";
 ---
@@ -580,17 +581,14 @@ import "../../styles/index.css";
             面向全球市场的海外品牌、进口商、分销商与餐饮客户，构建出口级挂面供应。
           </p>
 
-          <ul class="world-legend" aria-label="出口能力图例">
-            <li><span class="legend-dot export"></span>出口市场</li>
-            <li><span class="legend-dot oem"></span>OEM 项目</li>
-            <li><span class="legend-dot supply"></span>供应伙伴</li>
+          <ul class="world-legend" aria-label="全球合作图例">
+            <li><span class="legend-dot hq"></span>总部</li>
+            <li><span class="legend-dot export"></span>出口合作</li>
+            <li><span class="legend-dot material"></span>原材料合作</li>
           </ul>
 
           <div class="world-map-panel">
-            <img
-              src={withBase("/images/icon/map.png")}
-              alt="展示全球市场覆盖的世界地图"
-            />
+            <WorldMap lang="zh" />
           </div>
         </div>
       </section>

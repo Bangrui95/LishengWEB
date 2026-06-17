@@ -1,0 +1,166 @@
+/* Interactive world map (homepage "Around the world").
+   Markup + hover behaviour adapted from the design reference at
+   public/images/map/index.html. Kept global (not Astro-scoped) because the
+   script creates #Map_Background and the cooperation-shape classes at runtime,
+   which scoped selectors would not match. All rules are namespaced under
+   .world-map so they stay contained to this component. */
+
+.world-map {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  /* viewBox is 1192.6 × 566.7 ≈ 2.1:1 */
+  aspect-ratio: 1192.6 / 566.7;
+}
+
+.world-map svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.world-map g[data-interactive="true"] {
+  cursor: pointer;
+}
+
+.world-map g[data-interactive="true"] path,
+.world-map g[data-interactive="true"] polygon {
+  transition: filter 160ms ease, opacity 160ms ease;
+}
+
+.world-map g[data-interactive="true"]:hover path,
+.world-map g[data-interactive="true"]:hover polygon {
+  filter: brightness(1.12);
+}
+
+.world-map svg path,
+.world-map svg polygon {
+  transition: fill 180ms ease, filter 180ms ease, opacity 180ms ease;
+}
+
+.world-map svg g {
+  transition: opacity 180ms ease;
+}
+
+.world-map #Map_Background,
+.world-map #Map_Background .cls-4,
+.world-map #Map_Background .st3,
+.world-map #Map_Background .st4,
+.world-map #Map_Background .st11 {
+  opacity: 1 !important;
+}
+
+.world-map #Map_Background path,
+.world-map #Map_Background polygon,
+.world-map.is-export-hover #Map_Background path,
+.world-map.is-export-hover #Map_Background polygon,
+.world-map.is-material-hover #Map_Background path,
+.world-map.is-material-hover #Map_Background polygon {
+  fill: #dceeff !important;
+  opacity: 1 !important;
+  filter: none;
+}
+
+.world-map.is-export-hover #Map_Background,
+.world-map.is-material-hover #Map_Background {
+  opacity: 0.28 !important;
+}
+
+.world-map.is-export-hover .export-cooperation-shape {
+  opacity: 1 !important;
+  filter: brightness(1.04);
+}
+
+.world-map.is-material-hover .material-cooperation-shape {
+  opacity: 1 !important;
+  filter: brightness(1.04);
+}
+
+.world-map #AUSTRALIA path,
+.world-map #AUSTRALIA polygon {
+  fill: #8fcf72;
+}
+
+.world-map #CHINA path,
+.world-map #CHINA polygon {
+  fill: #c5322c;
+}
+
+.world-map #AUSTRALIA .cls-4,
+.world-map #AUSTRALIA .st3,
+.world-map #AUSTRALIA .st4,
+.world-map #AUSTRALIA .st11 {
+  opacity: 1;
+}
+
+.world-map.is-export-hover [data-material-cooperation="true"],
+.world-map.is-material-hover [data-export-cooperation="true"] {
+  opacity: 0.28;
+}
+
+.world-map [data-export-cooperation="true"],
+.world-map [data-material-cooperation="true"] {
+  cursor: pointer;
+}
+
+/* The interactive regions are focusable (tabindex) for keyboard users, so a
+   tap/click focuses them and the browser draws its default outline — the blue
+   box around the region's bounding rect. Hide it for pointer focus, but keep
+   it for genuine keyboard navigation (:focus-visible) so accessibility holds. */
+.world-map [data-export-cooperation="true"]:focus,
+.world-map [data-material-cooperation="true"]:focus {
+  outline: none;
+}
+
+.world-map [data-export-cooperation="true"]:focus-visible,
+.world-map [data-material-cooperation="true"]:focus-visible {
+  outline: 2px solid #d99d41;
+  outline-offset: 2px;
+}
+
+.world-map #Map_Background,
+.world-map .map-background-shape {
+  pointer-events: none;
+}
+
+/* Tooltip — fixed to the viewport, follows the cursor (positioned by JS) */
+.map-tooltip {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  padding: 7px 10px;
+  border-radius: 5px;
+  color: #fff;
+  background: rgba(25, 31, 38, 0.9);
+  font-size: 13px;
+  line-height: 1;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(12px, 12px);
+  transition: opacity 120ms ease;
+}
+
+.map-tooltip.is-visible {
+  opacity: 1;
+}
+
+.map-tooltip.is-export {
+  padding: 9px 14px;
+  background: #d99d41;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  box-shadow: 0 5px 16px rgba(122, 79, 18, 0.2);
+}
+
+.map-tooltip.is-material {
+  padding: 9px 14px;
+  background: #73ad5c;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  box-shadow: 0 5px 16px rgba(62, 105, 44, 0.22);
+}

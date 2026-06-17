@@ -1,0 +1,254 @@
+---
+// Interactive world map for the homepage "Around the world" section.
+// The SVG is imported as a raw string (?raw) and injected verbatim so Astro's
+// asset pipeline never parses its internal Illustrator <style>/.st classes or
+// xmlns:xlink colons. Interaction CSS lives in world-map.css.
+import mapSvg from "./world-map.svg?raw";
+import "../styles/world-map.css";
+
+interface Props {
+  lang?: "en" | "zh";
+}
+const { lang = "en" } = Astro.props;
+
+// NB: `export` is a reserved word — using it as an object key here trips the
+// Astro frontmatter compiler ("Unexpected ':'"), so use plain names.
+const labels = {
+  en: {
+    group: "Global cooperation map",
+    exportText: "Export Cooperation",
+    materialText: "Raw Material Sourcing",
+  },
+  zh: {
+    group: "全球合作地图",
+    exportText: "出口合作",
+    materialText: "原材料合作",
+  },
+};
+const t = labels[lang];
+---
+
+<div
+  id="world-map"
+  class="world-map"
+  role="group"
+  aria-label={t.group}
+  data-export-label={t.exportText}
+  data-material-label={t.materialText}
+>
+  <Fragment set:html={mapSvg} />
+</div>
+<div id="map-tooltip" class="map-tooltip" role="status"></div>
+
+<script>
+  const mapContainer = document.querySelector("#world-map");
+  const tooltip = document.querySelector("#map-tooltip");
+  const svg = mapContainer ? mapContainer.querySelector("svg") : null;
+
+  const exportLabel =
+    (mapContainer && mapContainer.dataset.exportLabel) || "Export Cooperation";
+  const materialLabel =
+    (mapContainer && mapContainer.dataset.materialLabel) ||
+    "Raw Material Sourcing";
+
+  const showTooltip = (event, name, type = "") => {
+    if (!tooltip) return;
+    tooltip.textContent = name;
+    tooltip.style.left = "0";
+    tooltip.style.top = "0";
+    tooltip.classList.toggle("is-export", type === "export");
+    tooltip.classList.toggle("is-material", type === "material");
+    tooltip.classList.add("is-visible");
+
+    const gap = 12;
+    const rect = tooltip.getBoundingClientRect();
+    const targetRect =
+      event.currentTarget && event.currentTarget.getBoundingClientRect
+        ? event.currentTarget.getBoundingClientRect()
+        : null;
+    const baseX = Number.isFinite(event.clientX)
+      ? event.clientX
+      : targetRect
+        ? targetRect.left + targetRect.width / 2
+        : window.innerWidth / 2;
+    const baseY = Number.isFinite(event.clientY)
+      ? event.clientY
+      : targetRect
+        ? targetRect.top + targetRect.height / 2
+        : window.innerHeight / 2;
+    const left = Math.min(baseX + gap, window.innerWidth - rect.width - gap);
+    const top = Math.min(baseY + gap, window.innerHeight - rect.height - gap);
+    tooltip.style.left = `${Math.max(gap, left)}px`;
+    tooltip.style.top = `${Math.max(gap, top)}px`;
+  };
+
+  const hideTooltip = () => {
+    if (!tooltip) return;
+    tooltip.classList.remove("is-visible", "is-export", "is-material");
+  };
+
+  if (mapContainer && tooltip && svg) {
+    svg.setAttribute("width", "100%");
+    svg.setAttribute("height", "100%");
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+
+    const southeastAsiaGroup = svg.querySelector("#BRUNEI");
+    const russiaGroup = [
+      ...svg.querySelectorAll("#Europe_Countries > g"),
+    ].find((group) => group.querySelector(".cls-6, .st6, .st17"));
+
+    if (russiaGroup && !russiaGroup.id) {
+      russiaGroup.id = "RUSSIA";
+      russiaGroup.dataset.name = "RUSSIA";
+    }
+
+    const exportGroups = [russiaGroup, southeastAsiaGroup].filter(Boolean);
+
+    const makeKeyboardAction = (action) => (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      action(event);
+    };
+
+    const activateExportCooperation = (event) => {
+      mapContainer.classList.add("is-export-hover");
+      showTooltip(event, exportLabel, "export");
+    };
+
+    const deactivateExportCooperation = () => {
+      mapContainer.classList.remove("is-export-hover");
+      hideTooltip();
+    };
+
+    exportGroups.forEach((group) => {
+      group.dataset.exportCooperation = "true";
+      group.setAttribute("role", "button");
+      group.setAttribute("tabindex", "0");
+      group.setAttribute("aria-label", exportLabel);
+
+      group.querySelectorAll("path, polygon").forEach((shape) => {
+        shape.classList.add("export-cooperation-shape");
+      });
+
+      group.addEventListener("pointerenter", activateExportCooperation);
+      group.addEventListener("pointermove", activateExportCooperation);
+      group.addEventListener("pointerleave", deactivateExportCooperation);
+      group.addEventListener("focus", activateExportCooperation);
+      group.addEventListener("blur", deactivateExportCooperation);
+      group.addEventListener(
+        "keydown",
+        makeKeyboardAction((event) => {
+          showTooltip(event, exportLabel, "export");
+        }),
+      );
+    });
+
+    const australiaGroup = svg.querySelector("#AUSTRALIA");
+
+    if (australiaGroup) {
+      australiaGroup.dataset.materialCooperation = "true";
+      australiaGroup.setAttribute("role", "button");
+      australiaGroup.setAttribute("tabindex", "0");
+      australiaGroup.setAttribute("aria-label", materialLabel);
+
+      australiaGroup.querySelectorAll("path, polygon").forEach((shape) => {
+        shape.classList.add("material-cooperation-shape");
+      });
+
+      const activateMaterialCooperation = (event) => {
+        mapContainer.classList.add("is-material-hover");
+        showTooltip(event, materialLabel, "material");
+      };
+
+      const deactivateMaterialCooperation = () => {
+        mapContainer.classList.remove("is-material-hover");
+        hideTooltip();
+      };
+
+      australiaGroup.addEventListener(
+        "pointerenter",
+        activateMaterialCooperation,
+      );
+      australiaGroup.addEventListener("pointermove", activateMaterialCooperation);
+      australiaGroup.addEventListener(
+        "pointerleave",
+        deactivateMaterialCooperation,
+      );
+      australiaGroup.addEventListener("focus", activateMaterialCooperation);
+      australiaGroup.addEventListener("blur", deactivateMaterialCooperation);
+      australiaGroup.addEventListener(
+        "keydown",
+        makeKeyboardAction((event) => {
+          showTooltip(event, materialLabel, "material");
+        }),
+      );
+    }
+
+    const chinaGroup = svg.querySelector("#CHINA");
+
+    const backgroundGroup = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "g",
+    );
+    backgroundGroup.id = "Map_Background";
+    backgroundGroup.dataset.background = "true";
+    backgroundGroup.setAttribute("aria-hidden", "true");
+
+    const topLevelMapGroupIds = new Set([
+      "Oceania_Countries",
+      "Asia_Countries",
+      "Africa_Countries",
+      "Europe_Countries",
+      "South_America_Countries",
+      "North_America_and_South_America_Countries",
+    ]);
+    const customOverlayGroups = [...svg.children].filter((node) => {
+      const tagName = node.tagName ? node.tagName.toLowerCase() : "";
+      return tagName === "g" && !node.id && !topLevelMapGroupIds.has(node.id);
+    });
+    const preservedGroups = [
+      russiaGroup,
+      southeastAsiaGroup,
+      australiaGroup,
+      chinaGroup,
+      ...customOverlayGroups,
+    ].filter(Boolean);
+    const isPreservedNode = (node) =>
+      preservedGroups.some((group) => group === node || group.contains(node));
+    const markAsBackgroundShape = (shape) => {
+      shape.classList.add("map-background-shape");
+    };
+
+    const backgroundCountries = [...svg.querySelectorAll("g[id]")].filter(
+      (group) => {
+        const shapes = [...group.querySelectorAll("path, polygon")];
+        const containsNamedRegion = group.querySelector(":scope > g[id]");
+        return (
+          shapes.length > 0 && !containsNamedRegion && !isPreservedNode(group)
+        );
+      },
+    );
+
+    backgroundCountries.forEach((country) => {
+      country.dataset.background = "true";
+      country.querySelectorAll("path, polygon").forEach(markAsBackgroundShape);
+      backgroundGroup.append(country);
+    });
+
+    [...svg.querySelectorAll("path, polygon")]
+      .filter(
+        (shape) => !backgroundGroup.contains(shape) && !isPreservedNode(shape),
+      )
+      .forEach((shape) => {
+        markAsBackgroundShape(shape);
+        backgroundGroup.append(shape);
+      });
+
+    const defs = svg.querySelector(":scope > defs");
+    if (defs && defs.parentNode) {
+      defs.parentNode.insertBefore(backgroundGroup, defs.nextSibling);
+    } else {
+      svg.insertBefore(backgroundGroup, svg.firstChild);
+    }
+  }
+</script>

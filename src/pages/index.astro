@@ -3,6 +3,7 @@ import { withBase } from "../lib/url";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import HeroSlider from "../components/HeroSlider.astro";
+import WorldMap from "../components/WorldMap.astro";
 import "../styles/global.css";
 import "../styles/index.css";
 ---
@@ -673,17 +674,14 @@ import "../styles/index.css";
             distributors, and foodservice customers across global markets.
           </p>
 
-          <ul class="world-legend" aria-label="Export capability legend">
-            <li><span class="legend-dot export"></span>Export markets</li>
-            <li><span class="legend-dot oem"></span>OEM programs</li>
-            <li><span class="legend-dot supply"></span>Supply partners</li>
+          <ul class="world-legend" aria-label="Global cooperation legend">
+            <li><span class="legend-dot hq"></span>Headquarters</li>
+            <li><span class="legend-dot export"></span>Export Cooperation</li>
+            <li><span class="legend-dot material"></span>Raw Material Sourcing</li>
           </ul>
 
           <div class="world-map-panel">
-            <img
-              src={withBase("/images/icon/map.png")}
-              alt="World map showing global market coverage"
-            />
+            <WorldMap lang="en" />
           </div>
         </div>
       </section>

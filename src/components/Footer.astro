@@ -78,8 +78,9 @@ const localize = (href: string) => localizeHref(href, lang);
   <div class="footer-bottom">
     <p>{f.rights}</p>
     <div>
-      <a href={withBase("/privacy/")}>{f.privacy}</a>
-      <a href={withBase("/terms/")}>{f.terms}</a>
+      {/* Privacy / Terms pages not built yet — render as non-clickable text */}
+      <span class="footer-disabled">{f.privacy}</span>
+      <span class="footer-disabled">{f.terms}</span>
       <a href={withBase("/contact/")}>{f.contact}</a>
     </div>
   </div>

@@ -112,10 +112,16 @@
   gap: 22px;
 }
 
-.footer-bottom a {
+.footer-bottom a,
+.footer-bottom .footer-disabled {
   color: rgba(255, 255, 255, 0.78);
   text-decoration: none;
   font-size: 15px;
+}
+
+/* Disabled legal links (Privacy / Terms): styled like links but inert */
+.footer-bottom .footer-disabled {
+  cursor: default;
 }
 
 /* Footer responsive */
@@ -183,7 +189,8 @@
     gap: 14px;
   }
 
-  .footer-bottom a {
+  .footer-bottom a,
+  .footer-bottom .footer-disabled {
     font-size: 12px;
   }
 }
