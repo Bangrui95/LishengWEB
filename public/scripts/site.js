@@ -45,7 +45,13 @@ nav?.querySelectorAll(".nav-item.has-dropdown > a").forEach((link) => {
   link.addEventListener("click", (event) => {
     if (nav.classList.contains("is-open")) {
       event.preventDefault();
-      link.parentElement.classList.toggle("open");
+      const item = link.parentElement;
+      const willOpen = !item.classList.contains("open");
+      // Exclusive accordion: collapse every other open section first.
+      nav
+        .querySelectorAll(".nav-item.open")
+        .forEach((other) => other.classList.remove("open"));
+      item.classList.toggle("open", willOpen);
     }
   });
 });
@@ -53,6 +59,19 @@ nav?.querySelectorAll(".nav-item.has-dropdown > a").forEach((link) => {
 // Tapping the empty area below the open mobile menu closes it.
 nav?.addEventListener("click", (event) => {
   if (nav.classList.contains("is-open") && !event.target.closest("a")) {
+    setMenuOpen(false);
+  }
+});
+
+// Tapping anywhere outside the open mobile menu (page content, header gaps —
+// anything but the nav itself or the toggle button) closes it. Navigation
+// links inside the nav still navigate normally and close on page change.
+document.addEventListener("click", (event) => {
+  if (
+    nav?.classList.contains("is-open") &&
+    !event.target.closest("[data-site-nav]") &&
+    !event.target.closest("[data-nav-toggle]")
+  ) {
     setMenuOpen(false);
   }
 });

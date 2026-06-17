@@ -341,8 +341,8 @@
   }
 
   .about-gallery {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
   }
 
   .value-grid {
@@ -379,6 +379,12 @@
   .company-cta {
     grid-template-columns: 1fr;
     padding: 28px 24px;
+  }
+
+  /* stacked layout: keep the button at content width, left-aligned —
+     not stretched across the whole row */
+  .company-cta-link {
+    justify-self: start;
   }
 }
 

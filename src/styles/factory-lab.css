@@ -377,23 +377,11 @@
 }
 
 @media (max-width: 900px) {
+  /* keep the collage layout (homepage about-media pattern, DESIGN-SPEC §6.5)
+     — don't stack to one tall column; just shrink height + gap */
   .media-trio {
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    height: auto;
-    overflow: visible;
-  }
-
-  .media-trio img {
-    aspect-ratio: 1.48;
-    height: auto;
-  }
-
-  .media-trio img:first-child,
-  .media-trio img:nth-child(2),
-  .media-trio img:nth-child(3) {
-    grid-column: auto;
-    grid-row: auto;
+    gap: 10px;
+    height: clamp(220px, 58vw, 340px);
   }
 
   .machine-grid {
@@ -438,6 +426,12 @@
   .company-cta {
     grid-template-columns: 1fr;
     padding: 28px 24px;
+  }
+
+  /* stacked layout: keep the button at content width, left-aligned —
+     not stretched across the whole row */
+  .company-cta-link {
+    justify-self: start;
   }
 }
 

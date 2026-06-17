@@ -202,16 +202,24 @@
     transform: none;
   }
 
-  /* pull the line/dot left and widen the gap so text clears the dot
-     (≤900px left:72px + 22px gap landed text on top of the marker) */
+  /* push the axis right of the years and shrink the dot so neither the
+     year nor the body text collides with the marker */
   .honor-timeline::before,
   .honor-timeline li::before {
-    left: 56px;
+    left: 64px;
+  }
+
+  /* smaller dot: 9px core + 2px ring + 1px halo → ~15px outer (was ~23px) */
+  .honor-timeline li::before {
+    width: 9px;
+    height: 9px;
+    border-width: 2px;
+    box-shadow: 0 0 0 1px var(--accent-red);
   }
 
   .honor-timeline li {
-    grid-template-columns: 48px 1fr;
-    gap: 26px;
+    grid-template-columns: 50px 1fr;
+    gap: 30px;
     padding-bottom: 24px;
   }
 

@@ -289,21 +289,12 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* keep the collage layout (homepage about-media pattern, DESIGN-SPEC §6.5)
+     — don't stack to one tall column; just shrink height + gap */
   .prod-gallery {
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    height: auto;
-    overflow: visible;
-  }
-
-  .prod-gallery img {
-    aspect-ratio: 1.6;
-    height: auto;
-  }
-
-  .prod-gallery img:first-child {
-    grid-column: auto;
-    grid-row: auto;
+    gap: 10px;
+    height: clamp(240px, 62vw, 400px);
+    margin-top: 24px;
   }
 
   .company-cta {
@@ -312,6 +303,12 @@
        bleed exactly to that edge (not the desktop -32px) to avoid overflow */
     margin: 28px calc(var(--page-gutter) / -2) -28px;
     padding: 28px calc(var(--page-gutter) / 2);
+  }
+
+  /* stacked layout: keep the button at content width, left-aligned —
+     not stretched across the whole row */
+  .company-cta-link {
+    justify-self: start;
   }
 }
 
@@ -351,13 +348,13 @@
   }
 
   .prod-steps {
-    grid-template-columns: 1fr;
-    gap: 22px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 14px;
     margin-top: 24px;
   }
 
   .prod-steps h3 {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .prod-steps p {

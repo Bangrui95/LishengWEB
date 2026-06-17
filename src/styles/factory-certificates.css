@@ -231,11 +231,22 @@ a.cert-media:hover img {
     grid-template-columns: 1fr;
     padding: 28px 24px;
   }
+
+  /* stacked layout: keep the button at content width, left-aligned —
+     not stretched across the whole row */
+  .company-cta-link {
+    justify-self: start;
+  }
 }
 
 @media (max-width: 700px) {
   .cert-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .cert-card {
+    padding: 14px;
   }
 
   .green-grid {
