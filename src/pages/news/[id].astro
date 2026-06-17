@@ -55,7 +55,7 @@ const title = fm.title;
 const date = (
   fm.date instanceof Date ? fm.date.toISOString() : String(fm.date)
 ).slice(0, 10);
-const cover = fm.cover || "/images/main/4.jpg";
+const cover = fm.cover || "/images/news/default-news-cover.webp";
 const source = fm.source || "";
 const hasBody = mod.rawContent().trim().length > 0;
 
