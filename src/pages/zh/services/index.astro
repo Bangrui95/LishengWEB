@@ -1,0 +1,472 @@
+---
+import { withBase } from "../../../lib/url";
+import ContactCta from "../../../components/ContactCta.astro";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/services.css";
+import "../../../styles/zh.css";
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>OEM 代加工 | 利生集团</title>
+    <meta
+      name="description"
+      content="OEM 与自有品牌挂面代加工：自有研发与定制配方、国家级粮源保障、日产 600 吨产能，稳定供应出口订单。"
+    />
+  </head>
+  <body>
+    <Header lang="zh" langAltHref="/services/" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="services-hero-title">
+        <img
+          src={withBase("/images/main/OEM.png")}
+          alt="利生挂面 OEM 代加工与包装"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">代工生产</p>
+          <h1 id="services-hero-title">自有品牌挂面代加工</h1>
+          <p class="page-hero-copy">
+            您的品牌，我们的工厂。以国家级企业规模定制生产挂面，按期供应、出口就绪。
+          </p>
+          <div class="services-hero-actions">
+            <a class="services-hero-primary" href={withBase("/zh/contact/")}>
+              启动自有品牌项目 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- OEM 流程 -->
+      <section class="page-section" aria-labelledby="services-flow-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">从询盘到装柜</p>
+          <h2 id="services-flow-title">自有品牌项目如何推进</h2>
+
+          <ol class="oem-flow">
+            <li>
+              <h3>询盘与沟通</h3>
+              <p>
+                分享您的目标市场、产品构想、产量计划与包装方向，我们确认可行性与方向。
+              </p>
+            </li>
+            <li>
+              <h3>配方与打样</h3>
+              <p>
+                由我们的研发实验室开发配方并寄送样品，直至口味、口感与规格获得确认。
+              </p>
+            </li>
+            <li>
+              <h3>报价与协议</h3>
+              <p>
+                基于配方、包装形式、订单量与交付条款给出清晰报价，随后签订生产协议。
+              </p>
+            </li>
+            <li>
+              <h3>设计稿与试产</h3>
+              <p>
+                由内部包装资源完成您的设计稿定稿；试产在生产线上验证产品。
+              </p>
+            </li>
+            <li>
+              <h3>批量生产与质检</h3>
+              <p>
+                自动化生产线在 ISO 22000 / HACCP 管控下规模化生产，从原麦到成品逐批检测。
+              </p>
+            </li>
+            <li>
+              <h3>出口与交付</h3>
+              <p>
+                装柜、出口单证与物流支持直达您的港口——并为返单提供稳定排期。
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 三大保障 -->
+      <section class="page-section tight-top" aria-labelledby="services-pillars-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">品牌选择利生代加工的理由</p>
+          <h2 id="services-pillars-title">
+            每一笔订单背后的三重保障
+          </h2>
+
+          <div class="pillar-grid">
+            <article class="pillar-card">
+              <span class="pillar-num">01</span>
+              <h3>自有研发，定制配方</h3>
+              <p>
+                我们自有的产品开发体系，将您的需求转化为可量产的配方——含配比方案。
+              </p>
+              <ul>
+                <li>定制面粉拼配与原料配比</li>
+                <li>面条口感、粗细与煮制时间调校</li>
+                <li>10 余项食品生产发明专利</li>
+                <li>采用 Perten 谷物分析仪实验室检测</li>
+              </ul>
+            </article>
+
+            <article class="pillar-card">
+              <span class="pillar-num">02</span>
+              <h3>国家级粮源保障</h3>
+              <p>
+                国家农业产业化重点龙头企业，优先获得优质小麦配额。
+              </p>
+              <ul>
+                <li>生产基地坐落于中国优质小麦产区</li>
+                <li>17 万亩订单小麦基地，1.8 万户农户</li>
+                <li>20 万吨自有粮食仓储</li>
+                <li>ISO 9001 / ISO 22000 / HACCP 认证生产</li>
+              </ul>
+            </article>
+
+            <article class="pillar-card">
+              <span class="pillar-num">03</span>
+              <h3>稳定出口的产能</h3>
+              <p>
+                六大生产基地预留产能，让供应随您的品牌成长而稳定。
+              </p>
+              <ul>
+                <li>集团日产挂面 560 吨</li>
+                <li>7 条自动化 1000 型挂面生产线</li>
+                <li>内部包装，设计稿快速周转</li>
+                <li>为海外订单提供出口单证支持</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 可定制内容 -->
+      <section class="page-section alt" aria-labelledby="services-custom-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">按您的规格打造</p>
+          <h2 id="services-custom-title">您可以定制的内容</h2>
+
+          <div class="custom-grid">
+            <div class="custom-item">
+              <h3>配方与配比</h3>
+              <p>
+                面粉拼配、蛋白含量、鸡蛋或蔬菜成分、多谷物配比——可在您的配方上调整，或从零开发。
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>形状与切型</h3>
+              <p>
+                从极细龙须到宽刀切，圆形或扁形，另含面叶与地方特色规格。
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>口感与煮制时间</h3>
+              <p>
+                弹性、筋道度与煮制表现，依据您所在市场的烹调习惯调校。
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>包装形式</h3>
+              <p>
+                枕式袋、纸把捆装、带提手家庭装、餐饮散装箱——配以您的设计稿。
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>净含量与装箱</h3>
+              <p>
+                净含量从 150 克到 4 公斤，装箱方式匹配您的零售或批发渠道。
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>地方风味</h3>
+              <p>
+                阳春面、拉面、担担面、热干面及其他地方中式面型的成熟 OEM 方案。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 生产历程：纵向时间线（概览，详情页后续推出） -->
+      <section class="page-section" aria-labelledby="services-journey-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">生产历程</p>
+          <h2 id="services-journey-title">从原麦到您的港口</h2>
+
+          <ol class="prod-timeline">
+            <li>
+              <span class="prod-step-num">步骤 01</span>
+              <h3>原料甄选</h3>
+              <p>
+                来自国家小麦产区订单基地的优质小麦，入库前按品种检测、分储。
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">步骤 02</span>
+              <h3>配方与配比</h3>
+              <p>
+                配方在我们自有研发实验室中开发——支持完全定制的原料配比。
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">步骤 03</span>
+              <h3>规格与形状定制</h3>
+              <p>
+                切型、宽度与厚度按单成型，涵盖不同地方面型。
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">步骤 04</span>
+              <h3>定制包装设计</h3>
+              <p>
+                包装形式与设计稿由集团内部包装资源完成。
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">步骤 05</span>
+              <h3>质量检验</h3>
+              <p>
+                在 ISO 22000 与 HACCP 管控下，从面粉到成品逐批检测。
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">步骤 06</span>
+              <h3>出口与发运</h3>
+              <p>
+                装柜、出口单证与按期交付，直达您的港口。
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 公司实力：原料 / 研发 / 全国工厂 -->
+      <section class="page-section tight-top" aria-label="利生的交付优势">
+        <div class="page-section-inner">
+          <div class="services-split">
+            <div class="services-split-media">
+              <img
+                src={withBase("/images/factory/02.png")}
+                alt="利生小麦品质检验与制粉"
+              />
+            </div>
+            <div class="services-split-copy">
+              <p class="services-kicker">原料保障</p>
+              <h3 id="services-quality-title">
+                品质始于麦田
+              </h3>
+              <p>
+                利生每一处生产基地都坐落于国家优质小麦产区。通过“公司 + 基地 + 农户”模式，我们订单种植 17 万亩小麦，统一供种、种植与收购——进入工厂的小麦，来料前便已知根知底。
+              </p>
+              <p>
+                来料小麦按品种检测、分储，按需拼配，并低温研磨。作为国家级重点龙头企业，利生享有优质粮食优先配额——您的产品永不缺好麦。
+              </p>
+            </div>
+          </div>
+
+          <div class="services-split reverse">
+            <div class="services-split-media">
+              <img
+                src={withBase("/images/factory/11.png")}
+                alt="利生研发实验室与产品开发"
+              />
+            </div>
+            <div class="services-split-copy">
+              <p class="services-kicker">自有研发</p>
+              <h3 id="services-rd-title">掌握配方的实验室</h3>
+              <p>
+                利生运行独立的产品开发体系，涵盖原料检测、配方调整、面条口感开发与包装试验——您的产品是被精心设计的，而非临时拼凑。
+              </p>
+              <p>
+                集团拥有 <strong>10 余项食品生产发明专利</strong>，其最新创新——一条采用低温研磨与麦麸烘焙的丹麦石磨全谷物生产线——足见实验室对配方的深耕。
+              </p>
+              <a class="services-split-link" href={withBase("/zh/factory/lab/")}>
+                参观食品实验室
+              </a>
+            </div>
+          </div>
+
+          <div class="services-split">
+            <div class="services-split-media">
+              <img
+                src={withBase("/images/factory/03.png")}
+                alt="利生工厂自动化挂面生产线"
+              />
+            </div>
+            <div class="services-split-copy">
+              <p class="services-kicker">工厂产能</p>
+              <h3 id="services-network-title">
+                遍布中国的自动化工厂
+              </h3>
+              <p>
+                六大生产基地横跨山东、河北与河南——每一处都建在优质小麦产区，每一处都运行自动化加工线。合计日处理小麦 7,000 吨、日产挂面 560 吨。
+              </p>
+              <p>
+                7 条 1000 型自动化挂面线覆盖喂料、切条、烘干与包装，并以旗舰梁山智能工厂为核心——您的订单不再被单一工厂的排期所牵制。
+              </p>
+              <a class="services-split-link" href={withBase("/zh/company/subsidiaries/")}>
+                了解我们的生产基地
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 生产环境与装备 -->
+      <section class="page-section alt" aria-labelledby="services-equip-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">生产环境</p>
+          <h2 id="services-equip-title">现代化工厂，智能化生产线</h2>
+          <p>
+            您的订单运行在与全球大型制粉企业同级的国际级装备上——在洁净、专为生产打造、欢迎客户验厂的工厂中完成。
+          </p>
+
+          <dl class="equip-grid">
+            <div>
+              <dt>布勒智能制粉系统</dt>
+              <dd>
+                全集团采用瑞士布勒设备，梁山工厂配备具备完整配粉能力的全智能面粉生产线。
+              </dd>
+            </div>
+            <div>
+              <dt>Perten 谷物分析仪</dt>
+              <dd>
+                每批小麦与面粉均建立指标档案，使规格可量化、可复现，订单一致如一。
+              </dd>
+            </div>
+            <div>
+              <dt>MDDK 辊式磨粉机，五道净化</dt>
+              <dd>
+                柔和的中路取粉保护蛋白与淀粉——高纯度面粉，营养留存。
+              </dd>
+            </div>
+            <div>
+              <dt>PLC + MES 无人化控制</dt>
+              <dd>
+                从小麦入库到码垛，旗舰工厂在远程智能控制下基本实现无人化运行。
+              </dd>
+            </div>
+            <div>
+              <dt>低温研磨</dt>
+              <dd>
+                受控的研磨温度，在每一袋中保留维生素与小麦天然麦香。
+              </dd>
+            </div>
+            <div>
+              <dt>绿色能源生产</dt>
+              <dd>
+                2 兆瓦屋顶光伏与太阳能加热烘房，降低我们发运的每一根面条的碳足迹。
+              </dd>
+            </div>
+          </dl>
+          <a class="services-split-link" href={withBase("/zh/factory/production/")}>
+            探索我们的生产基地
+          </a>
+        </div>
+      </section>
+
+      <!-- 认证与出口资质 -->
+      <section class="page-section" aria-labelledby="services-cert-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">面向全球贸易的认证</p>
+          <h2 id="services-cert-title">
+            您的进口团队可核验的资质
+          </h2>
+          <p>
+            通过认证的管理体系、国家级品牌认可与出口单证支持——证书副本可应正式 OEM 询盘提供。
+          </p>
+
+          <div class="cert-chip-grid">
+            <div class="cert-chip">
+              <h3>ISO 9001</h3>
+              <p>质量管理体系认证。</p>
+            </div>
+            <div class="cert-chip">
+              <h3>ISO 22000</h3>
+              <p>食品安全管理体系认证。</p>
+            </div>
+            <div class="cert-chip">
+              <h3>HACCP</h3>
+              <p>危害分析与关键控制点体系。</p>
+            </div>
+            <div class="cert-chip">
+              <h3>ISO 14001</h3>
+              <p>环境管理体系认证。</p>
+            </div>
+            <div class="cert-chip">
+              <h3>中国绿色食品</h3>
+              <p>
+                部分产品获得中国绿色食品认证及无公害农产品标志。
+              </p>
+            </div>
+            <div class="cert-chip">
+              <h3>出口单证</h3>
+              <p>
+                原产地证、卫生与检验单证，按您目的市场的要求备齐。
+              </p>
+            </div>
+          </div>
+          <a class="services-split-link" href={withBase("/zh/factory/certificates/")}>
+            查看全部证书与荣誉
+          </a>
+        </div>
+      </section>
+
+      <!-- 产能与出口 -->
+      <section class="page-section alt" aria-labelledby="services-capacity-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">产能与出口就绪</p>
+          <h2 id="services-capacity-title">
+            产能有储备，供应有保障
+          </h2>
+          <p>
+            产能耗尽时，OEM 项目便会失败。利生六大生产基地远低于产能上限运行，为您的成长预留空间——出口团队负责单证，让集装箱每一次都按时离港。
+          </p>
+
+          <div class="services-stats" aria-label="产能数据">
+            <dl>
+              <dt>600<span>吨</span></dt>
+              <dd>集团日产挂面</dd>
+            </dl>
+            <dl>
+              <dt>7,000<span>吨</span></dt>
+              <dd>日处理小麦</dd>
+            </dl>
+            <dl>
+              <dt>7</dt>
+              <dd>条自动化 1000 型挂面线</dd>
+            </dl>
+            <dl>
+              <dt>200,000<span>吨</span></dt>
+              <dd>自有粮食仓储能力</dd>
+            </dl>
+            <dl>
+              <dt>6</dt>
+              <dd>个生产基地，分布 3 省</dd>
+            </dl>
+            <dl>
+              <dt>30<span>+</span></dt>
+              <dd>年食品制造经验</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <ContactCta
+        kicker="启动您的 OEM 项目"
+        title="把您的产品构想发给我们——获取一份生产方案。"
+        text="告诉我们您的目标市场、首选规格与预计产量。我们的出口团队将回复打样方向、规格参数与切实可行的报价路径。"
+        buttonLabel="获取报价"
+        buttonHref="/zh/contact/"
+      />
+    </main>
+
+    <Footer lang="zh" showCta={false} />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

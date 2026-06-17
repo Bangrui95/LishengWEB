@@ -21,9 +21,13 @@ const {
   category = "",
   intlReady = false,
   generated = false,
+  lang = "en",
 } = Astro.props;
 
 const Tag = href ? "a" : "div";
+// Editorial flags localised to the page language.
+const intlFlag = lang === "zh" ? "国际站" : "Featured";
+const newFlag = lang === "zh" ? "新稿" : "New";
 ---
 
 <article
@@ -35,8 +39,8 @@ const Tag = href ? "a" : "div";
   <Tag class="news-card-link" href={href || undefined}>
     <span class="news-card-media">
       <img src={withBase(image)} alt={title} loading="lazy" />
-      {intlReady && <span class="news-card-flag">国际站</span>}
-      {generated && <span class="news-card-flag news-card-flag-gen">新稿</span>}
+      {intlReady && <span class="news-card-flag">{intlFlag}</span>}
+      {generated && <span class="news-card-flag news-card-flag-gen">{newFlag}</span>}
     </span>
     <span class="news-card-copy">
       {date && <time datetime={date}>{date}</time>}

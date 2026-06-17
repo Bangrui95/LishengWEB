@@ -1,0 +1,332 @@
+---
+import { withBase } from "../../lib/url";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/global.css";
+import "../../styles/contact.css";
+import "../../styles/zh.css";
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>获取报价 | 利生集团</title>
+    <meta
+      name="description"
+      content="联系利生，咨询挂面 OEM 代加工、自有品牌生产、定制包装、样品索取与出口供货支持。"
+    />
+  </head>
+  <body class="quote-page">
+    <Header lang="zh" langAltHref="/contact/" />
+
+    <main>
+      <section class="quote-hero" aria-labelledby="quote-hero-title">
+        <div class="quote-hero-inner">
+          <div class="quote-hero-text">
+            <p class="quote-kicker">获取报价</p>
+            <h1 id="quote-hero-title">
+              携手利生，<span>开启您的自有品牌挂面项目</span>
+            </h1>
+            <div class="quote-hero-actions">
+              <a href={withBase("/zh/services/customization/")} class="quote-primary">产品定制</a>
+              <a href="#quote-form" class="quote-secondary">发送询盘</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote-paths" aria-labelledby="quote-paths-title">
+        <div class="quote-section-heading">
+          <p>我们能提供的帮助</p>
+          <h2 id="quote-paths-title">我们提供的服务支持。</h2>
+        </div>
+
+        <div class="quote-path-grid">
+          <article class="quote-path-card">
+            <span>01</span>
+            <h3>自有品牌开发</h3>
+            <p>
+              在您自己的品牌下，为您开发即售型方便面、挂面、拉面类产品及地方特色配方。
+            </p>
+          </article>
+
+          <article class="quote-path-card">
+            <span>02</span>
+            <h3>包装与规格建议</h3>
+            <p>
+              依据您的包装形式、目标价格、市场语言与货架需求，为您匹配生产线可实现的方案。
+            </p>
+          </article>
+
+          <article class="quote-path-card">
+            <span>03</span>
+            <h3>样品与出口支持</h3>
+            <p>
+              为您备好样品、原料方向、出口单证，以及面向进口商或餐饮渠道商的供货方案。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="quote-form-section" aria-labelledby="quote-form-title">
+        <div class="quote-form-intro">
+          <p>询盘表单</p>
+          <h2 id="quote-form-title">向我们介绍您的挂面项目。</h2>
+          <span>
+            带 * 的字段有助于我们更快、更清晰地为您准备方案。
+          </span>
+        </div>
+
+        <div class="quote-form-layout">
+          <form id="quote-form" class="quote-form" action="#" method="post">
+            <input type="hidden" name="customization" data-customization-input />
+
+            <div class="form-grid">
+              <label>
+                名*
+                <input type="text" name="first-name" autocomplete="given-name" required />
+              </label>
+
+              <label>
+                姓*
+                <input type="text" name="last-name" autocomplete="family-name" required />
+              </label>
+
+              <label>
+                企业邮箱*
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+
+              <label>
+                电话 / WhatsApp
+                <input type="tel" name="phone" autocomplete="tel" />
+              </label>
+
+              <label>
+                公司名称*
+                <input type="text" name="company" autocomplete="organization" required />
+              </label>
+
+              <label>
+                国家 / 市场*
+                <input type="text" name="country" autocomplete="country-name" required />
+              </label>
+
+              <label>
+                产品类别*
+                <select name="product-category" required>
+                  <option value="">请选择产品类别</option>
+                  <option>方便面</option>
+                  <option>挂面</option>
+                  <option>拉面</option>
+                  <option>餐饮散装面</option>
+                  <option>定制 OEM 产品</option>
+                </select>
+              </label>
+
+              <label>
+                预计订单量
+                <select name="order-volume">
+                  <option value="">请选择预计订单量</option>
+                  <option>试订单 / 打样阶段</option>
+                  <option>一个集装箱</option>
+                  <option>每月集装箱供货</option>
+                  <option>经销商计划</option>
+                  <option>暂不确定</option>
+                </select>
+              </label>
+
+              <div class="form-customization form-wide" data-customization-block>
+                <h3>产品定制详情</h3>
+                <div class="form-customization-row">
+                  <div class="form-customization-display">
+                    <span class="form-customization-empty"
+                      >尚未保存定制方案</span
+                    >
+                    <span class="form-customization-saved"
+                      >已保存定制方案</span
+                    >
+                  </div>
+                  <div class="form-customization-actions">
+                    <a
+                      class="form-customization-button"
+                      href={withBase("/zh/services/customization/")}
+                    >
+                      <span class="form-customization-cta-empty">去定制</span>
+                      <span class="form-customization-cta-filled">编辑</span>
+                    </a>
+                    <button
+                      type="button"
+                      class="form-customization-reset"
+                      data-customization-reset
+                      aria-label="清除已保存的定制方案"
+                    >
+                      <span aria-hidden="true">✕</span>
+                    </button>
+                  </div>
+                </div>
+                <p class="form-customization-note">
+                  想先更详细地定义您的产品？使用“产品定制”逐步设定面型、配方、包装形式与认证需求——您的选择将随本询盘一并发送给我们。
+                </p>
+              </div>
+
+              <label class="form-wide customization-details-field">
+                定制详情
+                <textarea
+                  name="customization-details"
+                  class="customization-details"
+                  data-customization-details
+                  readonly
+                  placeholder="使用上方的“去定制”按钮构建您的产品规格——您的选择将显示在此处。"
+                ></textarea>
+              </label>
+
+              <label class="form-wide">
+                您的留言*
+                <textarea
+                  name="message"
+                  required
+                  placeholder="请告诉我们您的目标市场、口味方向、包装构想、认证要求与时间安排。"
+                ></textarea>
+              </label>
+            </div>
+
+            <label class="quote-check">
+              <input type="checkbox" name="updates" />
+              <span>我愿意接收产品与 OEM 代加工相关资讯。</span>
+            </label>
+
+            <div class="quote-form-footer">
+              <button type="submit">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M21 3 10.8 13.2" />
+                  <path d="m21 3-6.5 18-3.7-7.8L3 9.5 21 3Z" />
+                </svg>
+                提交询盘
+              </button>
+              <p>
+                提交本表单即表示您同意利生就您的询盘与您联系。带 * 的字段为必填项。
+              </p>
+            </div>
+          </form>
+
+          <aside class="quote-side-panel" aria-label="询盘支持说明">
+            <h2>接下来会怎样？</h2>
+            <ul>
+              <li>
+                <span>1</span>
+                <p>我们评估您的产品类型、市场、包装与目标产量。</p>
+              </li>
+              <li>
+                <span>2</span>
+                <p>我们的团队确认可行性、打样方向与关键规格。</p>
+              </li>
+              <li>
+                <span>3</span>
+                <p>您将获得一条切实可行的 OEM 生产报价路径。</p>
+              </li>
+            </ul>
+            <div class="quote-side-card">
+              <p>为便于清晰报价，请准备：</p>
+              <strong>产品类型、包装规格、市场、数量与认证需求。</strong>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="quote-process" class="quote-process" aria-labelledby="quote-process-title">
+        <div class="quote-section-heading">
+          <p>从询盘到生产</p>
+          <h2 id="quote-process-title">清晰直接的自有品牌合作流程。</h2>
+        </div>
+
+        <ol class="quote-process-list">
+          <li>
+            <span>01</span>
+            <h3>提交需求</h3>
+            <p>发送您的产品方向、目标市场、包装构想与时间安排。</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h3>确认样品</h3>
+            <p>我们就配方、口感、风味、包装与规格细节达成一致。</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h3>获取报价</h3>
+            <p>依据产品范围、起订量、包装与出口需求，得到完整方案。</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h3>安排生产</h3>
+            <p>进入设计稿确认、生产排期、质量检测与发运规划。</p>
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <Footer lang="zh" showCta={false} />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+
+    <script>
+      // 产品定制状态行：若访客来自“产品定制”页（或已存在保存的选择），
+      // 显示“已保存”确认，而不暴露具体内容。
+      // 注：选择的实际存储/传输逻辑后续再接后端；当前通过 URL 标记或
+      // sessionStorage 记录检测。
+      (function () {
+        const block = document.querySelector("[data-customization-block]");
+        if (!block) return;
+        const hidden = document.querySelector("[data-customization-input]");
+        const detailsEl = document.querySelector("[data-customization-details]");
+
+        // 每个步骤一行："产品类型：日式拉面 / 乌冬风格"。
+        function formatSelections(sel) {
+          return Object.keys(sel)
+            .map((k) => k + "：" + sel[k].join(" / "))
+            .join("\n");
+        }
+
+        // 从 sessionStorage 反映已保存的定制（如有）：状态框显示“已保存”，
+        // 完整选择逐行列在详情字段，原始对象保存在隐藏字段中，待后端接通后
+        // 随表单一并发送。
+        let selections = null;
+        try {
+          const raw = sessionStorage.getItem("lisheng-customization");
+          if (raw) selections = JSON.parse(raw);
+        } catch (e) {}
+        const filled = selections && Object.keys(selections).length > 0;
+
+        block.dataset.customizationBlock = filled ? "filled" : "";
+        if (hidden) hidden.value = filled ? JSON.stringify(selections) : "";
+        if (detailsEl)
+          detailsEl.value = filled ? formatSelections(selections) : "";
+
+        // 已保存时按钮变为“编辑”：携带标记，让定制页恢复已保存的选择而非清空。
+        if (filled) {
+          const editBtn = block.querySelector(".form-customization-button");
+          if (editBtn) {
+            const base = editBtn.getAttribute("href");
+            editBtn.setAttribute(
+              "href",
+              base + (base.indexOf("?") === -1 ? "?" : "&") + "edit=1"
+            );
+          }
+        }
+
+        // 重置：清除本页保存的定制（存储 + 字段），状态框恢复为“尚未保存”。
+        const resetBtn = block.querySelector("[data-customization-reset]");
+        if (resetBtn) {
+          resetBtn.addEventListener("click", () => {
+            sessionStorage.removeItem("lisheng-customization");
+            sessionStorage.removeItem("lisheng-customization-types");
+            block.dataset.customizationBlock = "";
+            if (hidden) hidden.value = "";
+            if (detailsEl) detailsEl.value = "";
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

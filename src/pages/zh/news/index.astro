@@ -1,0 +1,206 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import NewsCard from "../../../components/NewsCard.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/news.css";
+import "../../../styles/zh.css";
+
+// 数据驱动列表：src/data/news/ 下每个 markdown 文件一张卡片。
+// frontmatter 的 `category`（"company" | "industry"）驱动两个筛选标签。
+type NewsMod = { frontmatter: Record<string, any>; rawContent: () => string };
+const modules = import.meta.glob<NewsMod>("../../../data/news/*.md", { eager: true });
+
+const articles = Object.entries(modules)
+  .map(([path, mod]) => {
+    const id = (path.split("/").pop() ?? "").replace(".md", "");
+    const fm = mod.frontmatter;
+    const date = (
+      fm.date instanceof Date ? fm.date.toISOString() : String(fm.date)
+    ).slice(0, 10);
+    const category = fm.category === "industry" ? "industry" : "company";
+    // 摘要：正文第一行真实文字（跳过重复标题 / 图片）。
+    const firstText = mod
+      .rawContent()
+      .split("\n")
+      .map((l) => l.trim())
+      .find(
+        (l) => l && !l.startsWith("![") && !l.startsWith("#") && l !== fm.title
+      );
+    let excerpt = (firstText ?? "").replace(/\s+/g, "");
+    if (excerpt.length > 64) excerpt = excerpt.slice(0, 64) + "…";
+    const intlReady = fm.intlReady === true;
+    const generated = fm.generated === true;
+    return { id, title: fm.title as string, date, cover: fm.cover as string, category, excerpt, intlReady, generated };
+  })
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>新闻 | 利生集团</title>
+    <meta
+      name="description"
+      content="利生集团企业新闻：新产品、生产里程碑、荣誉奖项、社会公益与行业动态。"
+    />
+  </head>
+  <body>
+    <Header lang="zh" langAltHref="/news/" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="news-hero-title">
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">企业动态</p>
+          <h1 id="news-hero-title">新闻</h1>
+          <p class="page-hero-copy">
+            来自利生集团的新品发布、生产里程碑、荣誉奖项与企业故事。
+          </p>
+        </div>
+      </section>
+
+      <section class="news-listing" aria-labelledby="news-listing-title">
+        <div class="news-listing-inner">
+          <h2 id="news-listing-title" class="sr-only">全部新闻</h2>
+
+          <div class="news-tabs" role="tablist" aria-label="新闻分类">
+            <button class="active" type="button" data-news-cat="company">
+              公司新闻
+            </button>
+            <button type="button" data-news-cat="industry">行业动态</button>
+          </div>
+
+          <div class="news-grid" data-news-grid>
+            {articles.map((a) => (
+              <NewsCard
+                lang="zh"
+                category={a.category}
+                image={a.cover}
+                href={withBase(`/zh/news/${a.id}/`)}
+                date={a.date}
+                title={a.title}
+                excerpt={a.excerpt}
+                intlReady={a.intlReady}
+                generated={a.generated}
+              />
+            ))}
+          </div>
+
+          <nav class="news-pagination" aria-label="新闻分页">
+            <button
+              class="news-page-nav"
+              type="button"
+              data-news-prev
+              aria-label="上一页"
+            >
+              &lsaquo;
+            </button>
+            <span class="news-page-status" data-news-status>1 / 1</span>
+            <button
+              class="news-page-nav"
+              type="button"
+              data-news-next
+              aria-label="下一页"
+            >
+              &rsaquo;
+            </button>
+          </nav>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="zh" showCta={false} />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+
+    <script>
+      // 分类筛选 + 客户端分页（每页 8 张）。
+      const PAGE_SIZE = 8;
+      const grid = document.querySelector("[data-news-grid]");
+      const allCards = grid
+        ? Array.from(grid.querySelectorAll<HTMLElement>(".news-card"))
+        : [];
+      const tabs = Array.from(
+        document.querySelectorAll<HTMLButtonElement>("[data-news-cat]")
+      );
+      const prev =
+        document.querySelector<HTMLButtonElement>("[data-news-prev]");
+      const next =
+        document.querySelector<HTMLButtonElement>("[data-news-next]");
+      const status = document.querySelector("[data-news-status]");
+
+      let category = "company";
+      let page = 0;
+
+      const visible = () =>
+        allCards.filter((c) => c.dataset.category === category);
+
+      const render = () => {
+        const cards = visible();
+        const pages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
+        if (page > pages - 1) page = pages - 1;
+        allCards.forEach((c) => (c.hidden = true));
+        cards.forEach((card, i) => {
+          card.hidden = i < page * PAGE_SIZE || i >= (page + 1) * PAGE_SIZE;
+        });
+        if (status) status.textContent = `${page + 1} / ${pages}`;
+        if (prev) prev.disabled = page === 0;
+        if (next) next.disabled = page === pages - 1;
+      };
+
+      const goTo = (target: number) => {
+        const pages = Math.max(1, Math.ceil(visible().length / PAGE_SIZE));
+        const clamped = Math.max(0, Math.min(target, pages - 1));
+        if (clamped === page) return;
+        page = clamped;
+        sessionStorage.setItem("lisheng-news-page", String(page));
+        render();
+      };
+
+      const tabCat = (t: HTMLButtonElement) => t.dataset.newsCat || "company";
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const nextCat = tabCat(tab);
+          if (nextCat === category) return;
+          category = nextCat;
+          page = 0;
+          tabs.forEach((t) => t.classList.toggle("active", t === tab));
+          sessionStorage.removeItem("lisheng-news-page");
+          render();
+        });
+      });
+
+      // 仅在从文章返回时恢复页码 + 分类。
+      const params = new URLSearchParams(location.search);
+      if (params.has("from")) {
+        const savedCat = sessionStorage.getItem("lisheng-news-cat");
+        if (savedCat === "industry") {
+          category = "industry";
+          tabs.forEach((t) =>
+            t.classList.toggle("active", tabCat(t) === "industry")
+          );
+        }
+        const saved = Number(sessionStorage.getItem("lisheng-news-page"));
+        if (Number.isFinite(saved) && saved > 0) page = saved;
+        history.replaceState(null, "", location.pathname);
+      } else {
+        sessionStorage.removeItem("lisheng-news-page");
+      }
+
+      prev?.addEventListener("click", () => goTo(page - 1));
+      next?.addEventListener("click", () => goTo(page + 1));
+      // 记住当前分类，供从文章返回时恢复。
+      tabs.forEach((tab) =>
+        tab.addEventListener("click", () =>
+          sessionStorage.setItem("lisheng-news-cat", category)
+        )
+      );
+      render();
+    </script>
+  </body>
+</html>

@@ -1,5 +1,10 @@
 /* Product customization configurator (/services/customization/) */
 
+/* Let the section heading span the full content width (single line) */
+#config-title {
+  max-width: none;
+}
+
 .config-kicker {
   margin: 0 0 12px;
   color: #b56c10;

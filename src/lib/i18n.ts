@@ -142,6 +142,12 @@ export const zhReady = new Set<string>([
   "/factory/production/",
   "/factory/lab/",
   "/factory/certificates/",
+  "/services/",
+  "/services/customization/",
+  "/contact/",
+  "/products/",
+  "/products/specifications/",
+  "/news/",
 ]);
 
 export function localizeHref(href: string, lang: Lang): string {

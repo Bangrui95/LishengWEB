@@ -56,19 +56,11 @@
   color: var(--accent-gold);
 }
 
-.quote-hero-copy {
-  max-width: 680px;
-  margin: 18px 0 0;
-  color: rgba(255, 255, 255, 0.88);
-  font-size: 17px;
-  line-height: 1.6;
-}
-
 .quote-hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 32px;
+  margin-top: 24px;
 }
 
 .quote-primary,
@@ -659,12 +651,6 @@
 
   .quote-hero h1 {
     font-size: 30px;
-  }
-
-  .quote-hero-copy {
-    margin-top: 14px;
-    font-size: 14px;
-    line-height: 1.55;
   }
 
   .quote-hero-actions {

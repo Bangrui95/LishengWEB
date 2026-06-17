@@ -23,7 +23,7 @@
   gap: 10px;
   min-height: 52px;
   padding: 0 28px;
-  border-radius: 999px;
+  border-radius: 0;
   background: var(--accent-red);
   color: #fff;
   font-size: 15px;
@@ -35,6 +35,12 @@
 
 .services-hero-primary:hover {
   transform: translateY(-1px);
+}
+
+/* Let these two section headings span the full content width (single line) */
+#services-flow-title,
+#services-pillars-title {
+  max-width: none;
 }
 
 /* Three pillars */

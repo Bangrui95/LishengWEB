@@ -1,0 +1,958 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import ProductCard from "../../../components/ProductCard.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/products.css";
+import "../../../styles/zh.css";
+
+// Catalog scraped from the official site (lishengws.com) noodle section,
+// split into the two brand series. Lightweight image + name cards.
+const lishengNoodles = [
+  { img: "/images/products/noodles-lisheng/lisheng-clear-soup-wheat-core-noodles.webp", name: "利生清汤麦芯挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-silver-thread-wheat-core-noodles.webp", name: "利生银丝麦芯挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-hand-rolled-noodles.webp", name: "利生麦芯手擀挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-dragon-beard-noodles.webp", name: "利生麦芯龙须挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-hand-rolled-style-noodles.webp", name: "利生珍品手擀风味挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-silver-thread-noodles.webp", name: "利生珍品银丝挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-noodles-i.webp", name: "利生麦芯挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-noodles-ii.webp", name: "利生麦芯挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-knife-cut-noodles.webp", name: "利生刀削挂面" },
+  { img: "/images/products/noodles-lisheng/premium-refined-original-noodles.webp", name: "高精原味挂面" },
+  { img: "/images/products/noodles-lisheng/high-gluten-clear-soup-noodles.webp", name: "高筋清汤挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-i.webp", name: "利生原味挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-yangchun-noodles.webp", name: "利生阳春挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-wheat-aroma-noodles.webp", name: "利生高筋麦香挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-dragon-beard-noodles.webp", name: "利生高筋龙须挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-wonton-noodles.webp", name: "利生高筋云吞挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-double-happiness-noodles.webp", name: "利生双喜挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-ii.webp", name: "利生原味挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-iii.webp", name: "利生原味挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-iv.webp", name: "利生原味挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-aroma-noodles.webp", name: "利生麦香挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-smooth-noodles.webp", name: "利生爽滑挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-v.webp", name: "利生原味挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-northern-wheat-hand-rolled-noodles.webp", name: "利生劲爽北麦手擀挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-northern-wheat-dragon-beard-noodles.webp", name: "利生劲爽北麦龙须挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-egg-wheat-core-noodles.webp", name: "利生鸡蛋麦芯挂面" },
+  { img: "/images/products/noodles-lisheng/premium-refined-egg-noodles.webp", name: "高精鸡蛋挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-egg-noodles.webp", name: "利生麦芯鸡蛋挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-golden-egg-noodles.webp", name: "利生珍品金丝鸡蛋挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-buckwheat-noodles.webp", name: "利生珍品荞麦风味挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-egg-noodles-i.webp", name: "利生高筋鸡蛋挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-homestyle-egg-noodles.webp", name: "利生家常鸡蛋挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-egg-noodles-ii.webp", name: "利生高筋鸡蛋挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-mushroom-noodles.webp", name: "利生高筋香菇挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-egg-noodles-i.webp", name: "利生鸡蛋挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-northern-wheat-egg-noodles.webp", name: "利生劲爽北麦鸡蛋挂面" },
+  { img: "/images/products/noodles-lisheng/lisheng-egg-noodles-ii.webp", name: "利生鸡蛋挂面" },
+];
+
+const minshengNoodles = [
+  { img: "/images/products/noodles-minsheng/minsheng-premium-wheat-noodles-i-m-bag.webp", name: "民生加麦尚品M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-premium-wheat-noodles-ii-m-bag.webp", name: "民生加麦尚品M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-dragon-beard-noodles-m-bag.webp", name: "民生龙须M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-smooth-noodles-m-bag.webp", name: "民生麦芯爽滑M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-plain-noodles-paper-wrapped.webp", name: "民生麦芯清水纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-smooth-noodles-paper-wrapped.webp", name: "民生麦芯爽滑纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-dragon-beard-noodles-paper-wrapped.webp", name: "民生麦芯龙须纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-chongqing-xiaomian-noodles-paper-wrapped.webp", name: "民生重庆小面纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-i-m-bag.webp", name: "民生鸡蛋M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-i-m-bag.webp", name: "民生香菇M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-egg-noodles-m-bag.webp", name: "民生麦芯鸡蛋M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-egg-noodles-paper-wrapped.webp", name: "民生麦芯鸡蛋纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-mushroom-noodles-paper-wrapped.webp", name: "民生麦芯香菇纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-iron-stick-yam-noodles-m-bag.webp", name: "民生铁棍山药M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-ii-m-bag.webp", name: "民生香菇M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-i-paper-wrapped.webp", name: "民生鸡蛋纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-ii-paper-wrapped.webp", name: "民生鸡蛋纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-iii-m-bag.webp", name: "民生香菇M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-i-paper-wrapped.webp", name: "民生香菇纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iii-paper-wrapped.webp", name: "民生鸡蛋纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iv-paper-wrapped.webp", name: "民生鸡蛋纸把挂面(仁)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-gift-pack.webp", name: "民生香菇挂面(礼)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-ii-paper-wrapped.webp", name: "民生香菇纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-ii-m-bag.webp", name: "民生鸡蛋M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iii-m-bag.webp", name: "民生鸡蛋M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iv-m-bag.webp", name: "民生鸡蛋M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-millet-and-mung-bean-noodles-m-bag.webp", name: "民生小米绿豆M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-corn-and-pumpkin-noodles-m-bag.webp", name: "民生玉米南瓜M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-i-m-bag.webp", name: "民生荞麦M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-i-paper-wrapped.webp", name: "民生荞麦纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-ii-paper-wrapped.webp", name: "民生荞麦纸把挂面(智)" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-ii-m-bag.webp", name: "民生荞麦M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-mung-bean-noodles-paper-wrapped.webp", name: "民生绿豆风味纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-corn-noodles-paper-wrapped.webp", name: "民生玉米风味纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-alkaline-noodles-i-paper-wrapped.webp", name: "民生碱水纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-alkaline-noodles-ii-paper-wrapped.webp", name: "民生碱水纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-country-style-noodles-paper-wrapped.webp", name: "民生土面香纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-plain-noodles-paper-wrapped.webp", name: "民生清水纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-i-paper-wrapped.webp", name: "民生原味纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-ii-paper-wrapped.webp", name: "民生原味纸把挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-dragon-beard-noodles-paper-wrapped.webp", name: "民生龙须纸把挂面(义)" },
+  { img: "/images/products/noodles-minsheng/minsheng-jade-ribbon-noodles-paper-wrapped.webp", name: "民生玉带纸把挂面(信)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-i-m-bag.webp", name: "民生原味M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-ii-m-bag.webp", name: "民生原味M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-red-double-happiness-noodles-m-bag.webp", name: "民生红双喜M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-iii-m-bag.webp", name: "民生原味M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-iv-m-bag.webp", name: "民生原味M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-v-m-bag.webp", name: "民生原味M袋挂面" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-aroma-noodles-m-bag.webp", name: "民生麦香M袋挂面" },
+];
+
+const lishengFlour = [
+  { img: "/images/products/flour-lisheng/lisheng-seven-star-snowflake-flour-5-kg.webp", name: "利生5千克七星雪花粉" },
+  { img: "/images/products/flour-lisheng/lisheng-seven-star-snowflake-flour-10-kg.webp", name: "利生10千克七星雪花粉" },
+  { img: "/images/products/flour-lisheng/lisheng-eight-star-strong-gluten-snowflake-flour-25-kg.webp", name: "利生25千克八星强筋雪花粉" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-snowflake-flour-10-kg.webp", name: "利生10千克特级雪花粉" },
+  { img: "/images/products/flour-lisheng/lisheng-eight-star-strong-gluten-snowflake-flour-10-kg.webp", name: "利生10千克八星强筋雪花粉" },
+  { img: "/images/products/flour-lisheng/lisheng-nine-star-premium-snowflake-flour.webp", name: "利生九星特级雪花" },
+  { img: "/images/products/flour-lisheng/lisheng-eight-star-strong-gluten-snowflake-flour-5-kg.webp", name: "利生5千克八星强筋雪花粉" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-snowflake-flour.webp", name: "利生特级雪花面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-strong-gluten-snowflake-flour.webp", name: "利生强筋雪花面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-seven-star-snowflake-flour.webp", name: "利生七星雪花面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-snowflake-flour.webp", name: "利生雪花面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-strong-gluten-dumpling-wrapper-flour.webp", name: "利生强筋饺皮面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-wheat-core-semolina-flour.webp", name: "利生麦芯砂子面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-six-star-super-refined-flour.webp", name: "利生六星超精面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-special-refined-flour.webp", name: "利生特精面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-super-special-refined-flour.webp", name: "利生超级特精面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-multi-purpose-wheat-core-flour-i.webp", name: "利生多用途麦芯面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-multi-purpose-wheat-core-flour-ii.webp", name: "利生多用途麦芯面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-king-flour.webp", name: "利生王面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-silver-flour.webp", name: "利生银利生面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-high-grade-flour.webp", name: "利生高精面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-golden-fuqiang-flour.webp", name: "利生金富强面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-special-no1-flour-colour-pack.webp", name: "利生特一粉面粉(彩)" },
+  { img: "/images/products/flour-lisheng/lisheng-special-no1-flour-plain-pack.webp", name: "利生特一粉面粉(普)" },
+  { img: "/images/products/flour-lisheng/lisheng-high-gluten-wheat-aroma-flour.webp", name: "利生高筋麦香粉面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-dumpling-flour-i.webp", name: "利生高级饺子面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-dumpling-flour-ii.webp", name: "利生高级饺子面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-dumpling-flour.webp", name: "利生饺子面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-snowflake-bun-and-pastry-flour.webp", name: "利生雪花包点面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-six-star-noodle-king-flour.webp", name: "利生六星切面王面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-fresh-noodle-king-flour.webp", name: "利生湿面王面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-five-star-steamed-bun-flour.webp", name: "利生五星馒头面粉" },
+  { img: "/images/products/flour-lisheng/lisheng-four-star-steamed-bun-flour-colour-pack.webp", name: "利生四星馒头面粉(彩)" },
+  { img: "/images/products/flour-lisheng/lisheng-four-star-steamed-bun-flour-plain-pack.webp", name: "利生四星馒头面粉(普)" },
+  { img: "/images/products/flour-lisheng/lisheng-three-star-steamed-bun-flour-colour-pack.webp", name: "利生三星馒头面粉(彩)" },
+  { img: "/images/products/flour-lisheng/lisheng-three-star-steamed-bun-flour-plain-pack.webp", name: "利生三星馒头面粉(普)" },
+  { img: "/images/products/flour-lisheng/lisheng-steamed-bun-flour-new.webp", name: "利生馒头面粉(新)" },
+  { img: "/images/products/flour-lisheng/lisheng-youtiao-flour-new.webp", name: "利生油条专用面粉(新)" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-bread-flour.webp", name: "高级面包粉" },
+  { img: "/images/products/flour-lisheng/lisheng-bread-flour.webp", name: "面包专用粉" },
+  { img: "/images/products/flour-lisheng/lisheng-brown-bread-flour.webp", name: "棕色面包粉" },
+  { img: "/images/products/flour-lisheng/lisheng-hamburger-bun-flour.webp", name: "汉堡粉" },
+  { img: "/images/products/flour-lisheng/lisheng-sachima-flour.webp", name: "沙琪玛" },
+  { img: "/images/products/flour-lisheng/lisheng-600-pastry-flour.webp", name: "糕点" },
+  { img: "/images/products/flour-lisheng/lisheng-300-pastry-flour.webp", name: "糕点粉" },
+  { img: "/images/products/flour-lisheng/lisheng-special-bread-flour.webp", name: "特制面包粉" },
+];
+
+const minshengFlour = [
+  { img: "/images/products/flour-minsheng/minsheng-multi-purpose-wheat-core-flour-5-kg.webp", name: "民生5千克多用途麦芯粉" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-refined-flour-5-kg.webp", name: "民生5千克高筋精粉" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-refined-flour-i.webp", name: "民生高筋精粉25千克" },
+  { img: "/images/products/flour-minsheng/minsheng-multi-purpose-wheat-core-flour.webp", name: "民生多用途麦芯粉25千克" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-snowflake-flour-i.webp", name: "民生七星强筋雪花粉25千克" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-snowflake-flour-i.webp", name: "民生特级雪花面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-snowflake-flour-ii.webp", name: "民生特级雪花粉面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-eight-star-strong-gluten-snowflake-flour.webp", name: "民生八星强筋雪花面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-snowflake-flour-ii.webp", name: "民生七星强筋雪花面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-dumpling-wrapper-flour.webp", name: "民生七星强筋饺皮面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-six-star-strong-gluten-snowflake-flour.webp", name: "民生六星强筋雪花面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-super-special-refined-flour.webp", name: "民生超级特精面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-six-star-super-snowflake-flour.webp", name: "民生六星超级雪花面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-five-star-special-refined-flour.webp", name: "民生五星特精面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-multi-purpose-flour.webp", name: "民生多用途面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-fuqiang-flour.webp", name: "民生高筋富强面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-refined-flour-ii.webp", name: "民生高筋精粉面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-special-no1-flour.webp", name: "民生高筋特一面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-original-flour.webp", name: "民生高筋原味面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-bun-and-pastry-flour.webp", name: "民生七星强筋包点面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-steamed-bun-flour.webp", name: "民生高筋馒头面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-steamed-bun-flour.webp", name: "民生尚品馒头面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-six-star-strong-gluten-dumpling-wrapper-flour.webp", name: "民生六星强筋饺皮面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-dumpling-flour-i.webp", name: "民生高级饺子面粉" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-dumpling-flour-ii.webp", name: "民生高级饺子面粉" },
+];
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>产品 | 利生集团</title>
+    <meta
+      name="description"
+      content="利生集团产品系列：挂面系列、小麦面粉系列与定制 OEM 面条方案，面向零售、餐饮与出口市场。"
+    />
+  </head>
+  <body>
+    <Header lang="zh" langAltHref="/products/" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="products-hero-title">
+        <img
+          src={withBase("/images/products/products.png")}
+          alt="利生挂面与面粉产品系列"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">挂面与面粉</p>
+          <h1 id="products-hero-title">产品</h1>
+          <p class="page-hero-copy">
+            挂面系列、小麦面粉系列与自有品牌定制方案，面向零售、餐饮与出口市场。
+          </p>
+          <div class="products-hero-actions">
+            <a class="products-hero-button" href={withBase("/zh/services/customization/")}>
+              定制您的产品 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="products-catalog" aria-labelledby="products-catalog-title">
+        <div class="products-catalog-inner">
+          <h2 id="products-catalog-title" class="sr-only">产品目录</h2>
+
+          <div class="products-catalog-intro">
+            <p>
+              以下每款产品都可在您自己的品牌下生产。点击任一产品查看详情，再以您偏好的规格与包装形式启动 OEM 项目。
+            </p>
+          </div>
+
+          <div class="product-tabs-extra">
+            <a class="tab-link" href={withBase("/zh/products/specifications/")}>
+              产品规格 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <div
+            class="product-tabs"
+            role="tablist"
+            aria-label="产品分类"
+          >
+            <div class="tab-group" data-tab-group>
+              <button
+                class="active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                data-product-tab="noodles"
+              >
+                挂面产品
+                <span class="tab-caret" data-tab-caret aria-hidden="true">▾</span>
+              </button>
+              <div class="tab-dropdown" role="menu">
+                <button type="button" role="tab" aria-selected="false" data-product-tab="noodles-lisheng">
+                  利生系列
+                </button>
+                <button type="button" role="tab" aria-selected="false" data-product-tab="noodles-minsheng">
+                  民生系列
+                </button>
+              </div>
+            </div>
+            <div class="tab-group" data-tab-group>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-product-tab="flour"
+              >
+                面粉产品
+                <span class="tab-caret" data-tab-caret aria-hidden="true">▾</span>
+              </button>
+              <div class="tab-dropdown" role="menu">
+                <button type="button" role="tab" aria-selected="false" data-product-tab="flour-lisheng">
+                  利生系列
+                </button>
+                <button type="button" role="tab" aria-selected="false" data-product-tab="flour-minsheng">
+                  民生系列
+                </button>
+              </div>
+            </div>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-product-tab="customization"
+            >
+              定制方案
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-product-tab="frozen"
+            >
+              速冻产品
+            </button>
+          </div>
+
+          <div class="product-panels">
+            <!-- ============ Noodle Products ============ -->
+            <div class="product-panel active" data-product-panel="noodles" data-paginate>
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/whole-wheat-noodles-500-g.webp"
+                name="全麦挂面 500 克"
+                category="挂面 · 全麦系列"
+                description="以全麦麦粒研磨，保留麦麸与胚芽，同时保持细腻面条口感，富含膳食纤维。配料：全麦粉、水、食盐。整箱：20 × 500 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/whole-wheat-noodles-1-kg.webp"
+                name="全麦挂面 1 公斤"
+                category="挂面 · 全麦系列"
+                description="全麦系列的家庭装——高纤维、低脂肪，作为更清爽的日常主食。配料：全麦粉、水、食盐。整箱：15 × 1 公斤，纸把装。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/buckwheat-noodles.webp"
+                name="荞麦挂面"
+                category="挂面 · 杂粮系列"
+                description="小麦粉拌入荞麦，带坚果风味，高纤维、升糖指数较低——控糖人群的热门之选。配料：小麦粉、荞麦粉、水、食盐。整箱：15 × 800 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/royal-egg-noodles.webp"
+                name="御品鸡蛋挂面"
+                category="挂面 · 御品系列"
+                description="通过绿色食品认证的优质挂面，口感弹爽、蛋香浓郁。配料：小麦粉、鸡蛋粉、水、食盐。整箱：15 × 1 公斤，纸把装。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/royal-dragon-beard-noodles.webp"
+                name="御品龙须挂面"
+                category="挂面 · 御品系列"
+                description="通过绿色食品认证的极细挂面，选用优质小麦，爽滑弹韧、麦香浓郁。配料：小麦粉、水、食盐。整箱：15 × 1 公斤，纸把装。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/slim-silver-thread-noodles.webp"
+                name="细银丝挂面"
+                category="挂面 · 澳麦系列"
+                description="以澳麦与国产小麦拼配制成的超细挂面——熟得快又筋道有嚼劲。配料：小麦粉（澳麦及国产小麦）、水、食盐。整箱：15 × 1 公斤，纸把装。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/wheat-core-dragon-beard-noodles.webp"
+                name="麦芯龙须挂面"
+                category="挂面 · 麦芯系列"
+                description="取麦芯研磨的极细挂面，蛋白约 13%——软而不烂、细而不黏。配料：麦芯粉、水、食盐。整箱：15 × 900 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/wheat-core-egg-noodles.webp"
+                name="麦芯鸡蛋挂面"
+                category="挂面 · 麦芯系列"
+                description="麦芯粉加蛋，口感柔韧弹爽。配料：麦芯粉、鸡蛋粉、水、食盐。整箱：15 × 900 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/wheat-core-hand-rolled-style-noodles.webp"
+                name="麦芯手擀风味挂面"
+                category="挂面 · 麦芯系列"
+                description="较厚的手擀风味切型，口感更加筋道。配料：麦芯粉、水、食盐。整箱：15 × 900 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/wheat-core-wide-noodles.webp"
+                name="麦芯宽面"
+                category="挂面 · 麦芯系列"
+                description="选用麦芯粉制成的宽切挂面，嚼劲十足——适合炒面与烩面菜式。配料：麦芯粉、水、食盐。整箱：15 × 900 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/premium-fine-round-noodles.webp"
+                name="精品细圆挂面"
+                category="挂面 · 精品系列"
+                description="细圆切型，口感爽滑弹韧。配料：小麦粉、水、食盐。整箱：15 × 800 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/premium-egg-noodles.webp"
+                name="精品鸡蛋挂面"
+                category="挂面 · 精品系列"
+                description="精品系列加蛋，营养更丰富、风味更饱满。配料：小麦粉、鸡蛋粉、水、食盐。整箱：15 × 800 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/premium-original-noodles.webp"
+                name="精品原味挂面"
+                category="挂面 · 精品系列"
+                description="经典中切挂面，久煮不糊、耐煮不断。配料：小麦粉、水、食盐。整箱：15 × 800 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/high-gluten-dragon-beard-noodles-1-kg.webp"
+                name="高筋龙须挂面 1 公斤"
+                category="挂面 · 高筋系列"
+                description="极细高筋挂面——柔嫩爽滑、熟得快。配料：高筋小麦粉、水、食盐。整箱：15 × 1 公斤（另有 20 × 400 克）。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/high-gluten-egg-noodles-1-kg.webp"
+                name="高筋鸡蛋挂面 1 公斤"
+                category="挂面 · 高筋系列"
+                description="弹爽顺滑的高筋挂面，带淡淡蛋香、易煮透。配料：高筋小麦粉、鸡蛋粉、水、食盐。整箱：15 × 1 公斤。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/high-gluten-clear-soup-noodles-1-kg.webp"
+                name="高筋清汤挂面 1 公斤"
+                category="挂面 · 高筋系列"
+                description="高筋挂面，煮后爽滑、汤色清澈。配料：高筋小麦粉、水、食盐。整箱：15 × 1 公斤（另有 20 × 400 克）。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/high-gluten-dragon-beard-noodles-500-g.webp"
+                name="高筋龙须挂面 500 克"
+                category="挂面 · 高筋系列"
+                description="极细高筋挂面的零售 500 克装——柔嫩爽滑、熟得快。配料：高筋小麦粉、水、食盐。整箱：20 × 500 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/high-gluten-egg-noodles-500-g.webp"
+                name="高筋鸡蛋挂面 500 克"
+                category="挂面 · 高筋系列"
+                description="高筋鸡蛋挂面的零售 500 克装——弹爽顺滑、带淡淡蛋香。配料：高筋小麦粉、鸡蛋粉、水、食盐。整箱：20 × 500 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/high-gluten-clear-soup-noodles-500-g.webp"
+                name="高筋清汤挂面 500 克"
+                category="挂面 · 高筋系列"
+                description="清汤挂面的零售 500 克装——爽滑易煮、不浑汤。配料：高筋小麦粉、水、食盐。整箱：20 × 500 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/superior-dragon-beard-noodles.webp"
+                name="特级龙须挂面"
+                category="挂面 · 特级系列"
+                description="选用顶级麦芯粉，麦香十足，传统纸把装。配料：麦芯粉、水、食盐。整箱：15 × 1 公斤或 20 × 500 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/superior-egg-noodles.webp"
+                name="特级鸡蛋挂面"
+                category="挂面 · 特级系列"
+                description="顶级麦芯粉加蛋，风味更醇，传统纸把装。配料：麦芯粉、鸡蛋粉、水、食盐。整箱：15 × 1 公斤或 20 × 500 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/superior-original-noodles.webp"
+                name="特级原味挂面"
+                category="挂面 · 特级系列"
+                description="顶级麦芯粉制成，麦香浓郁、口感爽滑，纸把装。配料：麦芯粉、水、食盐。整箱：15 × 1 公斤或 20 × 500 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/superior-dragon-beard-noodles-800-g.webp"
+                name="特级龙须挂面 800 克"
+                category="挂面 · 特级系列"
+                description="特级龙须挂面的 800 克膜袋装，选用顶级麦芯粉。配料：麦芯粉、水、食盐。整箱：15 × 800 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/superior-original-noodles-800-g.webp"
+                name="特级原味挂面 800 克"
+                category="挂面 · 特级系列"
+                description="特级原味挂面的 800 克膜袋装——麦香浓郁、口感爽滑。配料：麦芯粉、水、食盐。整箱：15 × 800 克。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/northern-wheat-dragon-beard-noodles.webp"
+                name="北麦龙须挂面"
+                category="挂面 · 北麦系列"
+                description="选用中国北方小麦——弹爽顺滑，汤不浑浊。配料：小麦粉、水、食盐。整箱：15 × 800 克，纸把装。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/northern-wheat-egg-noodles.webp"
+                name="北麦鸡蛋挂面"
+                category="挂面 · 北麦系列"
+                description="北方小麦挂面加蛋——弹爽顺滑，汤不浑浊。配料：小麦粉、鸡蛋粉、水、食盐。整箱：15 × 800 克，纸把装。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/northern-wheat-hand-rolled-style-noodles.webp"
+                name="北麦手擀风味挂面"
+                category="挂面 · 北麦系列"
+                description="选用中国北方小麦的手擀风味切型——弹爽顺滑、分量扎实。配料：小麦粉、水、食盐。整箱：15 × 800 克，纸把装。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/wheat-core-egg-noodle-sheets.webp"
+                name="麦芯鸡蛋面叶"
+                category="挂面 · 面叶系列"
+                description="薄如纸的面叶，口感爽滑弹韧、蛋香浓郁。配料：麦芯粉、鸡蛋粉、水、食盐。整箱：10 × 1 公斤。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/homestyle-original-noodles.webp"
+                name="家常原味挂面"
+                category="挂面 · 家常系列"
+                description="日常主食挂面——爽滑实惠、物美价廉。配料：小麦粉、水、食盐。规格 350 克至 500 克，多种切型可选。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/homestyle-egg-noodles.webp"
+                name="家常鸡蛋挂面"
+                category="挂面 · 家常系列"
+                description="日常挂面加鸡蛋粉，风味更饱满。配料：小麦粉、鸡蛋粉、水、食盐。规格 400 克 / 500 克，多种切型可选。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/chinese-yam-noodles.webp"
+                name="山药挂面"
+                category="挂面 · 杂粮系列"
+                description="拌入山药，传统食养中以温和滋补著称。口感扎实、风味自然的主食。配料：小麦粉、山药粉、水、食盐。家庭装，整箱：6 × 1.75 公斤。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/millet-noodles.webp"
+                name="小米挂面"
+                category="挂面 · 杂粮系列"
+                description="加入小米的杂粮挂面——高纤维、升糖指数较低，适合控糖饮食。配料：小麦粉、小米粉、水、食盐。家庭装，整箱：6 × 1.75 公斤。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/wheat-core-knife-cut-noodle-sheets.webp"
+                name="麦芯刀削面叶"
+                category="挂面 · 面叶系列"
+                description="选用麦芯粉的刀削风味面叶——外滑内韧、嚼劲升级。配料：麦芯粉、水、食盐。整箱：20 × 250 克（另有 200 克装）。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/wheat-core-egg-noodles-family-pack.webp"
+                name="麦芯鸡蛋挂面家庭装"
+                category="挂面 · 麦芯系列"
+                description="1.5 公斤手提家庭装麦芯鸡蛋挂面，选用优质原料。配料：麦芯粉、鸡蛋粉、水、食盐。整箱：7 × 1.5 公斤。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/noodles1/millet-noodles-bulk-pack.webp"
+                name="小米挂面散装"
+                category="挂面 · 餐饮系列"
+                description="4 公斤散装，添加小米精华，面向餐饮与批发渠道。配料：小麦粉、小米粉、水、食盐。整箱：3 × 4 公斤。"
+              />
+            </div>
+
+            <!-- ============ Flour Products ============ -->
+            <div class="product-panel" data-product-panel="flour" hidden data-paginate>
+              <ProductCard lang="zh"
+                image="/images/products/flour1/eight-star-strong-gluten-wheat-flour.webp"
+                name="八星强筋小麦粉"
+                category="面粉 · 强筋系列"
+                description="强筋系列的最高等级，选用高蛋白小麦研磨，适用于高端面包、面条及其他高筋制品。25 公斤编织袋，彩膜包装。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/seven-star-strong-gluten-wheat-flour.webp"
+                name="七星强筋小麦粉"
+                category="面粉 · 强筋系列"
+                description="高等级通用强筋面粉，适用于多种高端高筋制品。选用高蛋白小麦研磨。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/six-star-strong-gluten-wheat-flour.webp"
+                name="六星强筋小麦粉"
+                category="面粉 · 强筋系列"
+                description="可靠的强筋面粉，以均衡成本满足高端高筋应用。选用高蛋白小麦研磨。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/eight-star-snowflake-flour.webp"
+                name="八星雪花粉"
+                category="面粉 · 通用系列"
+                description="取麦芯研磨的优质雪花粉——白度高、颗粒细。适用于灌汤包、馒头、面条与烙饼。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/seven-star-snowflake-flour.webp"
+                name="七星雪花粉"
+                category="面粉 · 通用系列"
+                description="多用途雪花粉，适用于馒头、包子、面条与烙饼，各类应用表现稳定。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/6a-snowflake-flour.webp"
+                name="6A 雪花粉"
+                category="面粉 · 通用系列"
+                description="全能型雪花粉，适用于灌汤包、馒头、面条与烙饼——食品商户的可靠之选。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/special-refined-flour.webp"
+                name="特精面粉"
+                category="面粉 · 通用系列"
+                description="精制小麦粉，非常适合烙饼与煎饼类制品。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/golden-fuqiang-flour.webp"
+                name="金富强面粉"
+                category="面粉 · 通用系列"
+                description="经典精制面粉，适用于烙饼及日常面食。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/seven-star-snowflake-bun-flour.webp"
+                name="七星雪花包点粉"
+                category="面粉 · 馒头包点系列"
+                description="为包子与蒸制点心研发的中高端面粉，成品松软洁白、发起均匀。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/super-refined-flour.webp"
+                name="超精面粉"
+                category="面粉 · 馒头包点系列"
+                description="多用途中端面粉，适用于包子、馒头、灌汤包、煎包与烙饼。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/six-star-steamed-bun-flour.webp"
+                name="六星馒头粉"
+                category="面粉 · 馒头包点系列"
+                description="专为馒头研发的高端面粉——耐发酵、瓤色洁白细腻。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/golden-steamed-bun-flour.webp"
+                name="金馒头粉"
+                category="面粉 · 馒头包点系列"
+                description="中端高筋馒头粉，兼顾嚼劲、白度与成本，适合商用蒸制。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/four-star-steamed-bun-flour.webp"
+                name="四星馒头粉"
+                category="面粉 · 馒头包点系列"
+                description="经济型面粉，适用于北方风味馒头，日常表现稳定。25 公斤袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/three-star-steamed-bun-flour.webp"
+                name="三星馒头粉"
+                category="面粉 · 馒头包点系列"
+                description="实惠等级面粉，适用于北方风味馒头的量产。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/eight-star-dumpling-wrapper-flour.webp"
+                name="八星饺皮粉"
+                category="面粉 · 水煮制品系列"
+                description="强筋面粉，适用于高端饺子皮、馄饨皮与湿面——煮后皮子晶莹有弹性。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/six-star-noodle-king-flour.webp"
+                name="六星切面王面粉"
+                category="面粉 · 水煮制品系列"
+                description="为鲜切面、饺子皮与馄饨皮研发的专用面粉，适合面馆与食品厂。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/youtiao-special-flour.webp"
+                name="油条专用面粉"
+                category="面粉 · 油炸制品系列"
+                description="专为油条研发，适合预制面团工厂与高端油炸面制品——膨发稳定、口感酥脆。25 公斤编织袋。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/eight-star-snowflake-wheat-flour-australian-wheat.webp"
+                name="八星雪花小麦粉（澳麦）"
+                category="面粉 · 零售装系列"
+                description="澳麦与国产小麦拼配的强筋雪花粉，适合高端家庭与手工烘焙。布袋装，5 公斤 × 5 或 10 公斤 × 1。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/professional-dumpling-flour.webp"
+                name="专业饺子粉"
+                category="面粉 · 零售装系列"
+                description="专业级饺子面粉——面团筋道延展、饺皮晶莹。布袋装，每箱 5 公斤 × 5。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/superior-dumpling-flour-10-kg.webp"
+                name="特级饺子粉 10 公斤"
+                category="面粉 · 零售装系列"
+                description="10 公斤布袋装特级饺子粉，适合餐厅与家庭大量使用。另有 5 公斤 × 5 装。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/superior-dumpling-flour-25-kg.webp"
+                name="特级饺子粉 2.5 公斤"
+                category="面粉 · 零售装系列"
+                description="特级饺子粉的便携 2.5 公斤零售装，适合高端家庭包饺。整箱：4 × 2.5 公斤。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/flour1/household-dumpling-flour.webp"
+                name="家用饺子粉"
+                category="面粉 · 零售装系列"
+                description="亲民的饺子面粉，适合日常家庭包饺——好用、效果稳定。整箱：4 × 2.5 公斤。"
+              />
+            </div>
+
+            <!-- ============ Flour Products · Lisheng Series ============ -->
+            <div class="product-panel" data-product-panel="flour-lisheng" hidden data-paginate>
+              {lishengFlour.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <!-- ============ Flour Products · Minsheng Series ============ -->
+            <div class="product-panel" data-product-panel="flour-minsheng" hidden data-paginate>
+              {minshengFlour.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <!-- ============ Custom Solutions ============ -->
+            <div class="product-panel" data-product-panel="customization" hidden>
+              <ProductCard lang="zh"
+                image="/images/products/customization1/shanghai-yangchun-noodles.webp"
+                name="上海阳春面"
+                category="定制方案"
+                description="为海外品牌开发的地方定制产品：经典上海风味细面，2 公斤零售装。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/customization1/lanzhou-ramen-noodles.webp"
+                name="兰州拉面"
+                category="定制方案"
+                description="以客户品牌生产的兰州风味拉面，规格、口感与包装设计均可定制。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/customization1/sichuan-dandan-noodles.webp"
+                name="四川担担面"
+                category="定制方案"
+                description="为海外零售量身定制的四川担担风味面，属地方中式面系列。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/customization1/shandong-ramen-noodles.webp"
+                name="山东拉面"
+                category="定制方案"
+                description="作为 OEM 项目开发的山东风味拉面，配方定制，2 公斤包装规格。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/customization1/shanxi-sliced-noodles.webp"
+                name="山西刀削面"
+                category="定制方案"
+                description="将山西刀削风味面还原为工业化生产，同时保留传统宽切型。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/customization1/wuhan-hot-dry-noodles.webp"
+                name="武汉热干面"
+                category="定制方案"
+                description="为出口零售改良的武汉热干面风味，专为经典芝麻酱做法设计。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/customization1/henan-hand-rolled-style-noodles.webp"
+                name="河南手擀风味面"
+                category="定制方案"
+                description="具手擀口感的河南风味面，为自有品牌项目规模化生产。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/customization1/old-beijing-style-noodles.webp"
+                name="老北京风味面"
+                category="定制方案"
+                description="用于炸酱菜式的老北京风味面，完善地方中式面系列。"
+              />
+            </div>
+
+            <!-- ============ Frozen Products ============ -->
+            <div class="product-panel" data-product-panel="frozen" hidden>
+              <ProductCard lang="zh"
+                image="/images/products/frozen1/pork-and-celery-dumplings.webp"
+                name="猪肉芹菜水饺"
+                category="速冻产品 · 食品工坊"
+                description="猪肉芹菜馅速冻水饺，多汁鲜香，包裹利生薄擀小麦面皮。属「食品工坊」系列，可供 OEM 与自有品牌。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/frozen1/pork-and-chinese-chive-dumplings.webp"
+                name="猪肉韭菜水饺"
+                category="速冻产品 · 食品工坊"
+                description="猪肉韭菜馅速冻水饺，馅料咸香浓郁，面皮爽滑弹韧。可供自有品牌生产。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/frozen1/pork-and-scallion-dumplings.webp"
+                name="猪肉大葱水饺"
+                category="速冻产品 · 食品工坊"
+                description="经典猪肉大葱水饺，速冻锁鲜，利生面粉制薄嫩面皮。支持 OEM。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/frozen1/pork-and-cabbage-dumplings.webp"
+                name="猪肉白菜水饺"
+                category="速冻产品 · 食品工坊"
+                description="家常人气款——猪肉配大白菜，薄而弹的面皮，速冻易煮易蒸。可供自有品牌。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/frozen1/fresh-pork-wonton.webp"
+                name="鲜肉馄饨"
+                category="速冻产品 · 食品工坊"
+                description="薄皮鲜猪肉馅馄饨，速冻便于快煮汤品。属「食品工坊」系列。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/frozen1/fresh-pork-wonton-classic-pack.webp"
+                name="鲜肉馄饨 · 经典装"
+                category="速冻产品 · 食品工坊"
+                description="鲜肉馄饨的经典零售装——皮薄馅多汁，几分钟即成。可供 OEM 与自有品牌。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/frozen1/chinese-chive-and-egg-dumplings.webp"
+                name="韭菜鸡蛋水饺"
+                category="速冻产品 · 食品工坊"
+                description="韭菜鸡蛋馅速冻水饺——属「食品工坊」系列中更清爽、以蔬为主的选择。支持 OEM。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/frozen1/chinese-chive-and-egg-dumplings-2.webp"
+                name="韭菜鸡蛋水饺"
+                category="速冻产品 · 利生优选"
+                description="「优选」系列的韭菜鸡蛋水饺——素馅速冻，爽滑小麦面皮。可供自有品牌。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/frozen1/carrot-and-egg-dumplings.webp"
+                name="胡萝卜鸡蛋水饺"
+                category="速冻产品 · 食品工坊"
+                description="胡萝卜鸡蛋馅速冻水饺——自然清甜、色彩鲜亮、蔬菜丰富。支持 OEM。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/frozen1/pork-and-sweet-corn-dumplings.webp"
+                name="猪肉甜玉米水饺"
+                category="速冻产品 · 利生优选"
+                description="猪肉拌甜玉米，馅料多汁微甜，「优选」系列速冻。可供自有品牌生产。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/frozen1/pork-and-mushroom-dumplings.webp"
+                name="猪肉香菇水饺"
+                category="速冻产品 · 利生优选"
+                description="猪肉香菇水饺，馅料鲜香醇厚，速冻便于烹煮。属「优选」系列，支持 OEM。"
+              />
+              <ProductCard lang="zh"
+                image="/images/products/frozen1/pork-and-shepherd-s-purse-dumplings.webp"
+                name="猪肉荠菜水饺"
+                category="速冻产品 · 利生优选"
+                description="时令人气款——猪肉配荠菜，速冻保留清新草本风味。可供自有品牌。"
+              />
+            </div>
+
+            <!-- ============ Noodle Products · Lisheng Series ============ -->
+            <div class="product-panel" data-product-panel="noodles-lisheng" hidden data-paginate>
+              {lishengNoodles.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <!-- ============ Noodle Products · Minsheng Series ============ -->
+            <div class="product-panel" data-product-panel="noodles-minsheng" hidden data-paginate>
+              {minshengNoodles.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+
+          <nav class="products-pagination" aria-label="产品分页" data-products-pagination hidden>
+            <button class="products-page-nav" type="button" data-products-prev aria-label="上一页">&lsaquo;</button>
+            <span class="products-page-status" data-products-status>1 / 1</span>
+            <button class="products-page-nav" type="button" data-products-next aria-label="下一页">&rsaquo;</button>
+          </nav>
+
+          <div class="products-cta">
+            <div>
+              <h2>没找到想要的产品？</h2>
+              <p>
+                我们按您的规格定制开发面条与面粉产品——尺寸、口感、配方与包装。
+              </p>
+            </div>
+            <a class="products-cta-link" href={withBase("/zh/contact/")}>
+              获取报价 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="zh" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+
+    <script>
+      // Open the tab matching the URL hash (e.g. /products/#flour),
+      // including when a dropdown link is clicked while already on this page.
+      const activateFromHash = () => {
+        const cat = location.hash.replace("#", "");
+        if (!cat) return;
+        const tab = document.querySelector(`[data-product-tab="${cat}"]`);
+        if (tab instanceof HTMLElement) tab.click();
+      };
+      window.addEventListener("hashchange", activateFromHash);
+      activateFromHash();
+
+      // Tab dropdowns (Noodle + Flour, each with Lisheng / Minsheng series).
+      // Desktop reveals on hover (CSS); on touch the caret toggles it.
+      const tabGroups = Array.from(document.querySelectorAll("[data-tab-group]"));
+      tabGroups.forEach((group) => {
+        const caret = group.querySelector("[data-tab-caret]");
+        caret?.addEventListener("click", (event) => {
+          event.stopPropagation();
+          // close any other open group, then toggle this one
+          tabGroups.forEach((g) => g !== group && g.classList.remove("open"));
+          group.classList.toggle("open");
+        });
+        group
+          .querySelectorAll(".tab-dropdown [data-product-tab]")
+          .forEach((btn) =>
+            btn.addEventListener("click", () => {
+              group.classList.remove("open");
+              // drop focus so :focus-within doesn't keep the menu pinned open
+              (btn as HTMLElement).blur();
+            })
+          );
+      });
+      document.addEventListener("click", (event) => {
+        tabGroups.forEach((group) => {
+          if (!group.contains(event.target as Node)) group.classList.remove("open");
+        });
+      });
+
+      // Client-side pagination (12 per page) for the Noodle / Flour panels.
+      // Custom Solutions (8) and Frozen (12) have no [data-paginate] → nav hides.
+      const PAGE_SIZE = 12;
+      const pagNav = document.querySelector<HTMLElement>("[data-products-pagination]");
+      const pagPrev = document.querySelector<HTMLButtonElement>("[data-products-prev]");
+      const pagNext = document.querySelector<HTMLButtonElement>("[data-products-next]");
+      const pagStatus = document.querySelector("[data-products-status]");
+      const pageOf = new Map<Element, number>();
+
+      const itemsOf = (panel: Element) =>
+        Array.from(panel.querySelectorAll<HTMLElement>(".product-tile, .catalog-tile"));
+
+      // Track the active panel ourselves (independent of site.js tab toggling).
+      let currentPanel: Element | null = document.querySelector(
+        "[data-product-panel]:not([hidden])"
+      );
+
+      const renderPagination = () => {
+        const paged = !!currentPanel?.hasAttribute("data-paginate");
+        if (pagNav) pagNav.hidden = !paged;
+        if (!paged || !currentPanel) return;
+        const items = itemsOf(currentPanel);
+        const pages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
+        let page = pageOf.get(currentPanel) ?? 0;
+        if (page > pages - 1) page = pages - 1;
+        pageOf.set(currentPanel, page);
+        items.forEach((el, i) => {
+          el.hidden = i < page * PAGE_SIZE || i >= (page + 1) * PAGE_SIZE;
+        });
+        if (pagStatus) pagStatus.textContent = `${page + 1} / ${pages}`;
+        if (pagPrev) pagPrev.disabled = page === 0;
+        if (pagNext) pagNext.disabled = page === pages - 1;
+      };
+
+      const step = (delta: number) => {
+        if (!currentPanel?.hasAttribute("data-paginate")) return;
+        const pages = Math.max(
+          1,
+          Math.ceil(itemsOf(currentPanel).length / PAGE_SIZE)
+        );
+        const np = Math.max(
+          0,
+          Math.min((pageOf.get(currentPanel) ?? 0) + delta, pages - 1)
+        );
+        if (np === pageOf.get(currentPanel)) return;
+        pageOf.set(currentPanel, np);
+        renderPagination();
+        document
+          .querySelector(".product-tabs")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+
+      pagPrev?.addEventListener("click", () => step(-1));
+      pagNext?.addEventListener("click", () => step(1));
+
+      // On tab / sub-tab switch: point at the new panel and reset it to page 1.
+      document.querySelectorAll<HTMLElement>("[data-product-tab]").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const target = document.querySelector(
+            `[data-product-panel="${tab.dataset.productTab}"]`
+          );
+          if (!target) return;
+          currentPanel = target;
+          pageOf.set(target, 0);
+          renderPagination();
+        });
+      });
+
+      renderPagination();
+    </script>
+  </body>
+</html>

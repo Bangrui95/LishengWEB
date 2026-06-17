@@ -202,8 +202,16 @@
     transform: none;
   }
 
+  /* pull the line/dot left and widen the gap so text clears the dot
+     (≤900px left:72px + 22px gap landed text on top of the marker) */
+  .honor-timeline::before,
+  .honor-timeline li::before {
+    left: 56px;
+  }
+
   .honor-timeline li {
-    gap: 22px;
+    grid-template-columns: 48px 1fr;
+    gap: 26px;
     padding-bottom: 24px;
   }
 

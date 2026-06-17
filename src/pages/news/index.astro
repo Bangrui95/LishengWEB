@@ -8,19 +8,27 @@ import "../../styles/subpage.css";
 import "../../styles/news.css";
 
 // Data-driven list: one card per markdown file in src/data/news/.
+// English copy lives in src/data/news-en/{id}.md and takes precedence when
+// present; any article not yet translated falls back to the Chinese source.
 // Frontmatter `category` ("company" | "industry") drives the two filters.
 type NewsMod = { frontmatter: Record<string, any>; rawContent: () => string };
-const modules = import.meta.glob<NewsMod>("../../data/news/*.md", { eager: true });
+const zhModules = import.meta.glob<NewsMod>("../../data/news/*.md", { eager: true });
+const enModules = import.meta.glob<NewsMod>("../../data/news-en/*.md", { eager: true });
+const idOf = (p: string) => (p.split("/").pop() ?? "").replace(".md", "");
+const enById = new Map(Object.entries(enModules).map(([p, m]) => [idOf(p), m]));
 
-const articles = Object.entries(modules)
-  .map(([path, mod]) => {
-    const id = (path.split("/").pop() ?? "").replace(".md", "");
+const articles = Object.entries(zhModules)
+  .map(([path, zhMod]) => {
+    const id = idOf(path);
+    const en = enById.get(id);
+    const mod = en ?? zhMod;
     const fm = mod.frontmatter;
     const date = (
       fm.date instanceof Date ? fm.date.toISOString() : String(fm.date)
     ).slice(0, 10);
     const category = fm.category === "industry" ? "industry" : "company";
-    // Excerpt: first real text line of the body (skip repeated title / images).
+    // Excerpt: first real text line of the body (skip repeated title / images),
+    // stripped of markdown markers.
     const firstText = mod
       .rawContent()
       .split("\n")
@@ -28,8 +36,16 @@ const articles = Object.entries(modules)
       .find(
         (l) => l && !l.startsWith("![") && !l.startsWith("#") && l !== fm.title
       );
-    let excerpt = (firstText ?? "").replace(/\s+/g, "");
-    if (excerpt.length > 64) excerpt = excerpt.slice(0, 64) + "…";
+    let excerpt = (firstText ?? "").replace(/[*_>`]/g, "").trim();
+    if (en) {
+      // English: keep word spacing, truncate by length.
+      excerpt = excerpt.replace(/\s+/g, " ");
+      if (excerpt.length > 120) excerpt = excerpt.slice(0, 120).trim() + "…";
+    } else {
+      // Chinese (untranslated fallback): collapse stray spaces, shorter cap.
+      excerpt = excerpt.replace(/\s+/g, "");
+      if (excerpt.length > 64) excerpt = excerpt.slice(0, 64) + "…";
+    }
     const intlReady = fm.intlReady === true;
     const generated = fm.generated === true;
     return { id, title: fm.title as string, date, cover: fm.cover as string, category, excerpt, intlReady, generated };
@@ -49,7 +65,7 @@ const articles = Object.entries(modules)
     />
   </head>
   <body>
-    <Header />
+    <Header langAltHref="/zh/news/" />
 
     <main>
       <section class="page-hero" aria-labelledby="news-hero-title">
@@ -70,9 +86,9 @@ const articles = Object.entries(modules)
 
           <div class="news-tabs" role="tablist" aria-label="News categories">
             <button class="active" type="button" data-news-cat="company">
-              公司新闻
+              Company News
             </button>
-            <button type="button" data-news-cat="industry">行业动态</button>
+            <button type="button" data-news-cat="industry">Industry News</button>
           </div>
 
           <div class="news-grid" data-news-grid>

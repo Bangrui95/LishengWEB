@@ -1,0 +1,108 @@
+---
+import { withBase } from "../../../lib/url";
+import type { MarkdownInstance } from "astro";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/news-article.css";
+import "../../../styles/zh.css";
+
+type NewsFrontmatter = {
+  title: string;
+  date: string | Date;
+  source?: string;
+  cover?: string;
+  category?: string;
+};
+
+type NewsModule = MarkdownInstance<NewsFrontmatter>;
+
+// 复用文章模板：src/data/news/ 下每个 markdown 文件自动生成一页（/zh/news/{id}/）。
+export async function getStaticPaths() {
+  const mods = import.meta.glob<NewsModule>("../../../data/news/*.md", {
+    eager: true,
+  });
+  return Object.entries(mods).map(([path, mod]) => ({
+    params: { id: (path.split("/").pop() ?? "").replace(".md", "") },
+    props: { mod },
+  }));
+}
+
+interface Props {
+  mod: NewsModule;
+}
+
+const { mod } = Astro.props;
+const fm = mod.frontmatter;
+const id = Astro.params.id;
+
+const title = fm.title;
+// frontmatter 日期可能是 Date 或完整 ISO 字符串——统一归一化为 YYYY-MM-DD。
+const date = (
+  fm.date instanceof Date ? fm.date.toISOString() : String(fm.date)
+).slice(0, 10);
+const cover = fm.cover || "/images/main/4.jpg";
+const source = fm.source || "";
+const kicker = fm.category === "industry" ? "行业动态" : "公司新闻";
+const hasBody = mod.rawContent().trim().length > 0;
+
+// 正文图片来自 markdown（`![](/images/news/...)`），绕过 Astro 的属性处理，
+// 因此在编译后的 HTML 上手动补全 base 前缀。
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const bodyHtml = hasBody
+  ? (await mod.compiledContent()).replaceAll('"/images/', `"${base}/images/`)
+  : "";
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>{title} | 利生集团</title>
+    <meta name="description" content={`利生集团新闻：${title}`} />
+  </head>
+  <body>
+    <Header lang="zh" langAltHref={`/news/${id}/`} />
+
+    <main>
+      <section class="page-hero" aria-labelledby="article-title">
+        <img src={withBase(cover)} alt={title} />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">{kicker}</p>
+          <h1 id="article-title">{title}</h1>
+        </div>
+      </section>
+
+      <article class="article-section">
+        <div class="article-inner">
+          <a class="article-back" href={withBase("/zh/news/?from=article")}>← 返回新闻</a>
+
+          <div class="article-meta">
+            <time datetime={date}>{date}</time>
+            {source && (
+              <a href={source} target="_blank" rel="noopener">
+                原文链接 (lishengmf.com)
+              </a>
+            )}
+          </div>
+
+          <div class="article-body" lang="zh-CN">
+            {hasBody ? (
+              <Fragment set:html={bodyHtml} />
+            ) : (
+              <p class="article-empty">
+                本篇新闻官网原文为图片版，文字内容整理中。
+              </p>
+            )}
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <Footer lang="zh" showCta={false} />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

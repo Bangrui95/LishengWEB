@@ -1,5 +1,11 @@
 /* Company · About page (/company/) */
 
+/* Let these two section headings span the full content width (single line) */
+#company-about-title,
+#company-process-title {
+  max-width: none;
+}
+
 /* Intro paragraphs span the full content width (override subpage 820px cap) */
 .page-section-inner p {
   max-width: none;
@@ -385,6 +391,11 @@
     bottom: 18px;
     top: auto;
     transform: none;
+  }
+
+  /* Keep the intro copy clear of the brand logo pinned bottom-right */
+  .page-hero-inner .page-hero-copy {
+    max-width: 60%;
   }
 
   .about-lead {

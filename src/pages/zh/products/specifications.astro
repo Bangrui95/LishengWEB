@@ -1,0 +1,252 @@
+---
+import { withBase } from "../../../lib/url";
+import ContactCta from "../../../components/ContactCta.astro";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/products-specs.css";
+import "../../../styles/zh.css";
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>规格样品 | 利生集团</title>
+    <meta
+      name="description"
+      content="利生基础产品技术参考：从极细龙须到宽刀切的面条切型、挂面通用参数，以及按系列划分的小麦面粉规格。"
+    />
+  </head>
+  <body>
+    <Header lang="zh" langAltHref="/products/specifications/" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="specs-hero-title">
+        <img
+          src={withBase("/images/products/products.png")}
+          alt="利生原味挂面与面粉样品"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">技术参考</p>
+          <h1 id="specs-hero-title">规格样品</h1>
+          <p class="page-hero-copy">
+            每个项目背后的原味产品——面条切型与面粉基底，附您品控团队所需的技术细节。
+          </p>
+        </div>
+      </section>
+
+      <!-- 面条切型 -->
+      <section class="page-section" aria-labelledby="specs-cuts-title">
+        <div class="page-section-inner">
+          <p class="specs-kicker">原味挂面样品</p>
+          <h2 id="specs-cuts-title">面条切型规格</h2>
+          <p>
+            所有挂面均在自动化 1000 型生产线上生产，并以中式切型编号命名。宽度与煮制时间是定义口感体验的两个关键参数——先选切型，再搭配下方的面粉基底。
+          </p>
+
+          <div class="specs-table-wrap">
+            <table class="specs-table">
+              <thead>
+                <tr>
+                  <th>切型</th>
+                  <th>约宽度</th>
+                  <th>截面</th>
+                  <th>煮制时间</th>
+                  <th>适用</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0# 龙须</td>
+                  <td class="num">≈ 1.0 mm</td>
+                  <td>细圆</td>
+                  <td class="num">3–4 分钟</td>
+                  <td>清汤、快出餐面碗、天使细面类菜式</td>
+                </tr>
+                <tr>
+                  <td>1.5# 细面</td>
+                  <td class="num">≈ 1.5 mm</td>
+                  <td>圆形或方形</td>
+                  <td class="num">4–5 分钟</td>
+                  <td>清淡汤面、担担面风格、份装</td>
+                </tr>
+                <tr>
+                  <td>2# 经典</td>
+                  <td class="num">≈ 1.8 mm</td>
+                  <td>圆形</td>
+                  <td class="num">5–6 分钟</td>
+                  <td>日常汤面、意面风格应用</td>
+                </tr>
+                <tr>
+                  <td>3# 中等</td>
+                  <td class="num">≈ 2.5 mm</td>
+                  <td>圆形或扁形</td>
+                  <td class="num">6–7 分钟</td>
+                  <td>炒面与捞面、拌酱面</td>
+                </tr>
+                <tr>
+                  <td>6# 宽扁</td>
+                  <td class="num">≈ 6 mm</td>
+                  <td>扁带形</td>
+                  <td class="num">7–9 分钟</td>
+                  <td>红烧菜式、浓酱、宽意面风格</td>
+                </tr>
+                <tr>
+                  <td>10# 刀切</td>
+                  <td class="num">10 mm</td>
+                  <td>宽、波浪边</td>
+                  <td class="num">8–10 分钟</td>
+                  <td>北方风味硬菜、招牌宽面</td>
+                </tr>
+                <tr>
+                  <td>面叶 / 面片</td>
+                  <td class="num">定制</td>
+                  <td>薄片</td>
+                  <td class="num">5–7 分钟</td>
+                  <td>火锅、汤面片、地方面片类菜式</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 挂面基础参数 -->
+      <section class="page-section alt" aria-labelledby="specs-base-title">
+        <div class="page-section-inner">
+          <p class="specs-kicker">通用参数</p>
+          <h2 id="specs-base-title">挂面基础数据</h2>
+
+          <dl class="specs-base">
+            <div>
+              <dt>水分 ≤ 14.5%</dt>
+              <dd>
+                按中式挂面标准控制低温烘干，确保运输途中货架期稳定。
+              </dd>
+            </div>
+            <div>
+              <dt>保质期 12–24 个月</dt>
+              <dd>
+                依配方与包装而定的典型区间；每款产品以 COA 为准确认。
+              </dd>
+            </div>
+            <div>
+              <dt>含盐量——可调</dt>
+              <dd>
+                标准或低钠配方，按您市场的标签要求调校。
+              </dd>
+            </div>
+            <div>
+              <dt>面条长度——可定制</dt>
+              <dd>
+                零售装采用标准面棒长度，餐饮装可按您的规格切制。
+              </dd>
+            </div>
+            <div>
+              <dt>净含量 150 克 – 4 公斤</dt>
+              <dd>
+                从份装到餐饮散装箱，并配以相应的装箱方式。
+              </dd>
+            </div>
+            <div>
+              <dt>逐批检测</dt>
+              <dd>
+                在 ISO 22000 / HACCP 管控下，每批出厂均附检验记录。
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 面粉规格 -->
+      <section class="page-section" aria-labelledby="specs-flour-title">
+        <div class="page-section-inner">
+          <p class="specs-kicker">面粉基底</p>
+          <h2 id="specs-flour-title">按系列划分的小麦面粉</h2>
+          <p>
+            面粉决定口感。以下是我们工厂每日生产的基础系列——所示为典型值；确切数据随每笔订单的分析证书（COA）确认。
+          </p>
+
+          <div class="specs-table-wrap">
+            <table class="specs-table">
+              <thead>
+                <tr>
+                  <th>系列</th>
+                  <th>蛋白（典型）</th>
+                  <th>湿面筋</th>
+                  <th>水分</th>
+                  <th>适用</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>强筋</td>
+                  <td class="num">≥ 12.5%</td>
+                  <td class="num">≥ 32%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>筋道面条、高端烘焙、高筋产品</td>
+                </tr>
+                <tr>
+                  <td>麦芯</td>
+                  <td class="num">≈ 13%</td>
+                  <td class="num">30–33%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>高端面条与饺子皮</td>
+                </tr>
+                <tr>
+                  <td>雪花</td>
+                  <td class="num">11–12.5%</td>
+                  <td class="num">28–32%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>馒头、包子、日常面条</td>
+                </tr>
+                <tr>
+                  <td>特制精粉</td>
+                  <td class="num">10.5–12%</td>
+                  <td class="num">26–30%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>烙饼与煎制类产品</td>
+                </tr>
+                <tr>
+                  <td>饺子粉</td>
+                  <td class="num">12–13%</td>
+                  <td class="num">≥ 30%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>晶莹有弹性的饺子皮与馄饨皮</td>
+                </tr>
+                <tr>
+                  <td>全麦</td>
+                  <td class="num">12–13.5%</td>
+                  <td class="num">—</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>高纤面条与全谷物烘焙</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="specs-note">
+            <p>
+              上述数值为参考值，依据中国国家标准（GB/T、LS/T）及我们的常规生产。每笔订单均附完整分析证书（COA），并可提供样品供您自行实验室验证。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <ContactCta
+        kicker="需要完整数据表？"
+        title="索取完整规格与样品。"
+        text="告诉我们切型、面粉基底与目标市场——我们将寄送完整规格表、COA 格式与实物样品，供您的品控团队使用。"
+        buttonLabel="索取规格表"
+        buttonHref="/zh/contact/"
+      />
+    </main>
+
+    <Footer lang="zh" showCta={false} />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

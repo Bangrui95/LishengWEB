@@ -16,24 +16,38 @@ type NewsFrontmatter = {
 
 type NewsModule = MarkdownInstance<NewsFrontmatter>;
 
-// Reusable article template: one page is generated automatically for every
-// markdown file in src/data/news/ — add a new .md file to publish a new article.
+// Reusable article template: one page per markdown file in src/data/news/.
+// English copy in src/data/news-en/{id}.md takes precedence; articles not yet
+// translated fall back to the Chinese source so every page still builds.
 export async function getStaticPaths() {
-  const mods = import.meta.glob<NewsModule>("../../data/news/*.md", {
+  const zhMods = import.meta.glob<NewsModule>("../../data/news/*.md", {
     eager: true,
   });
-  return Object.entries(mods).map(([path, mod]) => ({
-    params: { id: (path.split("/").pop() ?? "").replace(".md", "") },
-    props: { mod },
-  }));
+  const enMods = import.meta.glob<NewsModule>("../../data/news-en/*.md", {
+    eager: true,
+  });
+  const idOf = (p: string) => (p.split("/").pop() ?? "").replace(".md", "");
+  const enById = new Map(Object.entries(enMods).map(([p, m]) => [idOf(p), m]));
+  return Object.entries(zhMods).map(([path, zhMod]) => {
+    const id = idOf(path);
+    const en = enById.get(id);
+    return { params: { id }, props: { mod: en ?? zhMod, translated: !!en } };
+  });
 }
 
 interface Props {
   mod: NewsModule;
+  translated: boolean;
 }
 
-const { mod } = Astro.props;
+const { mod, translated } = Astro.props;
 const fm = mod.frontmatter;
+// English article when translated; otherwise the body is still the Chinese source.
+const bodyLang = translated ? "en" : "zh-CN";
+const kicker = fm.category === "industry" ? "Industry News" : "Company News";
+const emptyText = translated
+  ? "The original article on the company website is image-only; the text is being prepared."
+  : "本篇新闻官网原文为图片版，文字内容整理中。";
 
 const title = fm.title;
 // Frontmatter dates may arrive as Date objects or full ISO strings —
@@ -62,14 +76,14 @@ const bodyHtml = hasBody
     <meta name="description" content={`Lisheng Group news: ${title}`} />
   </head>
   <body>
-    <Header />
+    <Header langAltHref={`/zh/news/${Astro.params.id}/`} />
 
     <main>
       <section class="page-hero" aria-labelledby="article-title">
         <img src={withBase(cover)} alt={title} />
         <div class="page-hero-overlay"></div>
         <div class="page-hero-inner">
-          <p class="page-kicker">Company News</p>
+          <p class="page-kicker">{kicker}</p>
           <h1 id="article-title">{title}</h1>
         </div>
       </section>
@@ -82,18 +96,16 @@ const bodyHtml = hasBody
             <time datetime={date}>{date}</time>
             {source && (
               <a href={source} target="_blank" rel="noopener">
-                原文链接 (lishengmf.com)
+                Original article (lishengmf.com)
               </a>
             )}
           </div>
 
-          <div class="article-body" lang="zh-CN">
+          <div class="article-body" lang={bodyLang}>
             {hasBody ? (
               <Fragment set:html={bodyHtml} />
             ) : (
-              <p class="article-empty">
-                本篇新闻官网原文为图片版，文字内容整理中。
-              </p>
+              <p class="article-empty">{emptyText}</p>
             )}
           </div>
         </div>

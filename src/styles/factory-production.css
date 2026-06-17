@@ -1,5 +1,11 @@
 /* Factory · Smart Factory page (/factory/production/) */
 
+/* Let these two section headings span the full content width (single line) */
+#production-capacity-title,
+#production-gallery-title {
+  max-width: none;
+}
+
 .company-kicker {
   margin: 0 0 12px;
   color: #b56c10;
@@ -302,7 +308,10 @@
 
   .company-cta {
     grid-template-columns: 1fr;
-    padding: 28px 0;
+    /* gutter is 32px ≤900px → inner sits 16px from the viewport edge;
+       bleed exactly to that edge (not the desktop -32px) to avoid overflow */
+    margin: 28px calc(var(--page-gutter) / -2) -28px;
+    padding: 28px calc(var(--page-gutter) / 2);
   }
 }
 

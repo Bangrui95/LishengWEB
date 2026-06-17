@@ -1,5 +1,11 @@
 /* Factory · Food Lab page (/factory/lab/) */
 
+/* Let these two section headings span the full content width (single line) */
+#lab-rd-title,
+#lab-patents-title {
+  max-width: none;
+}
+
 /* Section intro paragraphs run the full content width (override subpage 820px cap) */
 .page-section-inner > p {
   max-width: none;

@@ -1,0 +1,323 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/customization.css";
+import "../../../styles/zh.css";
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>产品定制 | 利生集团</title>
+    <meta
+      name="description"
+      content="逐步构建您的定制面条产品：原料、配方、形状、打样、质量标准、产量、包装与出口条款。"
+    />
+  </head>
+  <body>
+    <Header lang="zh" langAltHref="/services/customization/" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="customization-hero-title">
+        <img
+          src={withBase("/images/main/products444.png")}
+          alt="利生开发的定制面条产品"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">按您的规格打造</p>
+          <h1 id="customization-hero-title">产品定制</h1>
+          <p class="page-hero-copy">
+            走完九个步骤，挑选契合您市场的选项，把产品需求发给我们——其余交给我们实现。
+          </p>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="config-title">
+        <div class="page-section-inner">
+          <p class="config-kicker">构建您的产品需求</p>
+          <h2 id="config-title">配置您的面条产品方案</h2>
+          <p>
+            以下每个选项都是我们工厂的真实能力。在每一步选择您所需的——不确定的可跳过，我们的团队会为您建议。
+          </p>
+
+          <!-- 步骤 01 -->
+          <div class="config-step">
+            <span class="config-step-num">步骤 01</span>
+            <h3>出口市场</h3>
+            <p>
+              这款产品将在哪里销售？您的市场将指引我们在合规、规格与口味方向上的建议——可多选。
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">东南亚</button>
+              <button type="button">东亚（日本 / 韩国）</button>
+              <button type="button">欧洲</button>
+              <button type="button">北美</button>
+              <button type="button">南美</button>
+              <button type="button">中东与非洲</button>
+              <button type="button">大洋洲</button>
+              <button type="button">多个 / 其他市场</button>
+            </div>
+          </div>
+
+          <!-- 步骤 02 -->
+          <div class="config-step">
+            <span class="config-step-num">步骤 02</span>
+            <h3>产品类型</h3>
+            <p>
+              选择您品牌所需的基础产品——中式经典或国际风格，皆出自同一套小麦工艺。
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">中式挂面</button>
+              <button type="button">日式拉面</button>
+              <button type="button">乌冬风格</button>
+              <button type="button">荞麦面（Soba）</button>
+              <button type="button">意面风格</button>
+              <button type="button">非油炸方便面</button>
+              <button type="button">面叶 / 面片</button>
+              <button type="button">地方中式系列</button>
+              <button type="button">定制产品类型</button>
+            </div>
+          </div>
+
+          <!-- 步骤 03 -->
+          <div class="config-step">
+            <span class="config-step-num">步骤 03</span>
+            <h3>原料</h3>
+            <p>
+              按定位选择面粉基底——从经济的日常款到高端及健康系列（$ = 参考价格档位）。
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">标准小麦粉 $</button>
+              <button type="button">麦芯粉 $$</button>
+              <button type="button">高筋粉 $$</button>
+              <button type="button">全麦粉 $$$</button>
+              <button type="button">多谷物拼配 $$$</button>
+              <button type="button">指定您的原料</button>
+            </div>
+          </div>
+
+          <!-- 步骤 04 -->
+          <div class="config-step">
+            <span class="config-step-num">步骤 04</span>
+            <h3>配方方向</h3>
+            <p>
+              告诉我们您市场所期待的口感体验——或带来您自己的配方，我们将其工程化用于工业生产。
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">筋道弹牙（东亚）</button>
+              <button type="button">柔软速煮</button>
+              <button type="button">意面口感（Al Dente）</button>
+              <button type="button">高纤全谷物</button>
+              <button type="button">加蛋配方</button>
+              <button type="button">蔬菜拼配</button>
+              <button type="button">使用我的配方</button>
+            </div>
+          </div>
+
+          <!-- 步骤 05 -->
+          <div class="config-step">
+            <span class="config-step-num">步骤 05</span>
+            <h3>形状与规格</h3>
+            <p>
+              切型宽度、截面与长度——附中式切型编号及其最接近的西式意面对应款。
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">极细圆面（0# / 天使细面）</button>
+              <button type="button">细圆面（2# / 意面）</button>
+              <button type="button">中等（3# / 扁意面）</button>
+              <button type="button">宽扁面（6# / 宽意面）</button>
+              <button type="button">宽刀切（10# / 宽带面）</button>
+              <button type="button">定制规格</button>
+            </div>
+          </div>
+
+          <!-- 步骤 06 -->
+          <div class="config-step">
+            <span class="config-step-num">步骤 06</span>
+            <h3>样品测试</h3>
+            <p>在任何批量承诺之前先验证产品。</p>
+            <div class="config-options" data-config-group>
+              <button type="button">国际样品寄送</button>
+              <button type="button">视频看样</button>
+              <button type="button">工厂参观与验厂</button>
+            </div>
+          </div>
+
+          <!-- 步骤 07 -->
+          <div class="config-step">
+            <span class="config-step-num">步骤 07</span>
+            <h3>质量与认证</h3>
+            <p>
+              选择您的产品必须满足的每一项标准——欢迎多选。
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">ISO 9001 / 22000 / HACCP（基础）</button>
+              <button type="button">欧盟市场合规</button>
+              <button type="button">美国市场合规</button>
+              <button type="button">清真要求</button>
+              <button type="button">第三方实验室检测</button>
+              <button type="button">客户指定标准</button>
+            </div>
+          </div>
+
+          <!-- 步骤 08 -->
+          <div class="config-step">
+            <span class="config-step-num">步骤 08</span>
+            <h3>产量与排期</h3>
+            <p>
+              契合您渠道的订货节奏——可小批起步，依托我们的储备产能扩量。
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">试订单（≤ 1 个集装箱）</button>
+              <button type="button">每月集装箱供货</button>
+              <button type="button">季度计划</button>
+              <button type="button">年度框架协议</button>
+              <button type="button">暂不确定</button>
+            </div>
+          </div>
+
+          <!-- 步骤 09 -->
+          <div class="config-step">
+            <span class="config-step-num">步骤 09</span>
+            <h3>包装与出口</h3>
+            <p>
+              为您的渠道选择一种包装形式，再告诉我们您希望货物如何运输。
+            </p>
+            <p class="config-group-label">包装形式</p>
+            <div class="config-options" data-config-group>
+              <button type="button">零售枕式袋</button>
+              <button type="button">纸把捆装</button>
+              <button type="button">带提手家庭装</button>
+              <button type="button">餐饮散装箱</button>
+              <button type="button">全定制包装</button>
+            </div>
+            <p class="config-group-label">出口条款</p>
+            <div class="config-options" data-config-group>
+              <button type="button">我方送达您的港口（CIF）</button>
+              <button type="button">您安排运输（FOB）</button>
+              <button type="button">工厂自提（EXW）</button>
+              <button type="button">需要建议</button>
+            </div>
+          </div>
+
+          <!-- 保存并联系 -->
+          <div class="config-step">
+            <h3>对您的配置满意吗？</h3>
+            <p>
+              发送给我们的出口团队——我们将回复打样方向、规格参数与报价路径。
+            </p>
+            <div class="config-save-actions">
+              <a class="config-save-link" href={withBase("/zh/contact/")}>
+                保存并发送询盘 <span aria-hidden="true">→</span>
+              </a>
+              <button type="button" class="config-reset" data-config-reset>
+                重置
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="zh" showCta={false} />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+
+    <script>
+      // 某个选项组的存储键 = 其子标签（步骤 9 有两个组），若无则取所属步骤的 h3 标题。
+      function groupKey(step, group) {
+        const prev = group.previousElementSibling;
+        if (prev && prev.classList.contains("config-group-label")) {
+          return prev.textContent.trim();
+        }
+        const h3 = step.querySelector("h3");
+        return h3 ? h3.textContent.trim() : "";
+      }
+
+      // 每个组均为多选：点击切换按钮的选中状态。
+      document.querySelectorAll("[data-config-group] button").forEach((btn) => {
+        btn.addEventListener("click", () => btn.classList.toggle("selected"));
+      });
+
+      // 清空所有选择与已存数据。重置按钮与浏览器刷新都会执行此函数，
+      // 同时也会重置联系页（它读取同一批 sessionStorage 键）。
+      function clearConfig() {
+        document
+          .querySelectorAll("[data-config-group] button.selected")
+          .forEach((b) => b.classList.remove("selected"));
+        sessionStorage.removeItem("lisheng-customization");
+        sessionStorage.removeItem("lisheng-customization-types");
+      }
+
+      // 重新应用已保存的选择（通过“编辑”返回时使用）。
+      function restoreConfig() {
+        let saved = null;
+        try {
+          const raw = sessionStorage.getItem("lisheng-customization");
+          if (raw) saved = JSON.parse(raw);
+        } catch (e) {}
+        if (!saved) return;
+        document.querySelectorAll(".config-step").forEach((step) => {
+          step.querySelectorAll("[data-config-group]").forEach((group) => {
+            const picked = saved[groupKey(step, group)] || [];
+            group.querySelectorAll("button").forEach((b) => {
+              if (picked.indexOf(b.textContent.trim()) !== -1) {
+                b.classList.add("selected");
+              }
+            });
+          });
+        });
+      }
+
+      // 加载时：通过“编辑”（?edit=1）返回则恢复已保存的选择；其他加载方式——
+      // 全新访问或普通刷新——均从空白开始（同时清空联系页）。恢复后移除
+      // ?edit 标记，使后续刷新按预期重置。
+      if (new URLSearchParams(location.search).has("edit")) {
+        restoreConfig();
+        history.replaceState(null, "", location.pathname);
+      } else {
+        clearConfig();
+      }
+
+      const resetBtn = document.querySelector("[data-config-reset]");
+      if (resetBtn) resetBtn.addEventListener("click", clearConfig);
+
+      // 保存并发送：收集选择、写入 sessionStorage，再跳转至联系页并带上标记，
+      // 使其显示“已填写”状态。
+      const saveLink = document.querySelector(".config-save-link");
+      if (saveLink) {
+        saveLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          const selections = {};
+          document.querySelectorAll(".config-step").forEach((step) => {
+            step.querySelectorAll("[data-config-group]").forEach((group) => {
+              const picked = Array.from(
+                group.querySelectorAll("button.selected")
+              ).map((b) => b.textContent.trim());
+              if (picked.length) selections[groupKey(step, group)] = picked;
+            });
+          });
+
+          sessionStorage.setItem(
+            "lisheng-customization",
+            JSON.stringify(selections)
+          );
+          sessionStorage.setItem(
+            "lisheng-customization-types",
+            JSON.stringify(selections["产品类型"] || [])
+          );
+
+          const href = saveLink.getAttribute("href");
+          const sep = href.indexOf("?") === -1 ? "?" : "&";
+          // 直接落到询盘表单（#quote-form），而非页面顶部。
+          location.href = href + sep + "from=customization#quote-form";
+        });
+      }
+    </script>
+  </body>
+</html>
