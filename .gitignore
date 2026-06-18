@@ -3,3 +3,7 @@ dist/
 .astro/
 .DS_Store
 npm-debug.log*
+
+# 本地设计/开发文档，不上传 GitHub（仅本地保存）
+/CLAUDE.md
+/_local-docs/
