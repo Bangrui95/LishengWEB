@@ -1,0 +1,181 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/company-honors.css";
+import "../../../styles/ru.css";
+
+const IMG = withBase("/images/company/honors");
+
+// Certificate wall — add a new honor by copying one block and swapping the image.
+const honors = [
+  { img: "china-top-brand-2007.webp", title: "Топ-бренд Китая", year: "2007" },
+  { img: "china-famous-trademark-2011.webp", title: "Известная торговая марка Китая", year: "2011" },
+  { img: "key-leading-enterprise-2005.webp", title: "Ключевое ведущее предприятие индустриализации сельского хозяйства", year: "2005" },
+  { img: "national-noodle-brand-2006.webp", title: "Известный национальный бренд сухой лапши", year: "2006" },
+  { img: "top50-2011.webp", title: "Топ-50 мукомольных предприятий Китая", year: "2011" },
+  { img: "top50-2013.webp", title: "Топ-50 мукомольных предприятий Китая", year: "2013" },
+  { img: "top50-2015.webp", title: "Топ-50 мукомольных предприятий Китая", year: "2015" },
+  { img: "top50-2017.webp", title: "Топ-50 мукомольных предприятий Китая", year: "2017" },
+  { img: "top10-grain-oil-2016.webp", title: "Топ-10 брендов зерна и масла (продовольствия) Китая", year: "2016" },
+  { img: "shandong-brand-flour.webp", title: "Известный бренд Шаньдуна — пшеничная мука", year: "Шаньдун" },
+  { img: "shandong-brand-noodles.webp", title: "Известный бренд Шаньдуна — сухая лапша", year: "Шаньдун" },
+  { img: "shandong-trademark-2009.webp", title: "Известная торговая марка Шаньдуна", year: "2009" },
+  { img: "shandong-top20-2007.webp", title: "Топ-20 пищевой промышленности Шаньдуна", year: "2007" },
+  { img: "aaa-credit-2010.webp", title: "Предприятие с кредитным рейтингом AAA (Сельскохозяйственный банк Китая)", year: "2010" },
+  { img: "contract-trust-2011.webp", title: "Провинциальное предприятие, соблюдающее договоры и заслуживающее доверия", year: "2011" },
+  { img: "grain-emergency-2008.webp", title: "Уполномоченное предприятие аварийных поставок зерна", year: "2008" },
+  { img: "demonstration-enterprise-2010.webp", title: "Национальное образцовое перерабатывающее предприятие", year: "2010" },
+  { img: "grain-assoc-member.webp", title: "Китайская ассоциация зерновой торговли — член", year: "Член" },
+  { img: "most-influential-brand.webp", title: "Самый влиятельный бренд", year: "Отрасль" },
+];
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>Награды и сертификаты | Lisheng International</title>
+    <meta
+      name="description"
+      content="Три десятилетия признания: топ-бренд Китая, известная торговая марка Китая, топ-50 мукомольных предприятий и другие награды Lisheng Group."
+    />
+  </head>
+  <body>
+    <Header lang="ru" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="honors-hero-title">
+        <img
+          src={withBase("/images/company/about/lisheng.webp")}
+          alt="Логотип Lisheng Group"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Признание</p>
+          <h1 id="honors-hero-title">Награды и сертификаты</h1>
+          <p class="page-hero-copy">
+            Опираясь на три десятилетия национального и провинциального признания, подкреплённого стабильным качеством и производственными стандартами.
+          </p>
+        </div>
+      </section>
+
+      <!-- Milestones by year -->
+      <section class="page-section" aria-labelledby="honors-milestones-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Вехи</p>
+          <h2 id="honors-milestones-title">Достижения, выстроенные год за годом</h2>
+
+          <ol class="honor-timeline">
+            <li>
+              <span class="honor-year">2022</span>
+              <p>
+                Включены в первый провинциальный список качественных брендов
+                <strong>«Хорошие товары Шаньдуна»</strong>.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2019</span>
+              <p>
+                Признаны <strong>Самым конкурентоспособным брендом</strong>
+                Китайской ассоциацией зерна и масел.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2017</span>
+              <p>
+                <strong>Топ-50 мукомольных предприятий Китая</strong> — вновь в
+                национальном рейтинге.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2016</span>
+              <p>
+                Вошли в
+                <strong>Топ-10 брендов зерна и масла (продовольствия) Китая</strong>.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2015</span>
+              <p>
+                <strong>Топ-50 мукомольных предприятий Китая</strong> — уже не
+                первый год подряд.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2011</span>
+              <p>
+                <strong>Известная торговая марка Китая</strong> — и первое
+                попадание в <strong>Топ-50 мукомольных предприятий Китая</strong>.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2009</span>
+              <p>
+                «Lisheng» признана
+                <strong>Известной торговой маркой Шаньдуна</strong>.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2007</span>
+              <p>
+                Пшеничная мука «Lisheng» удостоена звания
+                <strong>Топ-бренд Китая</strong>.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2006</span>
+              <p>
+                Удостоены звания <strong>Известный национальный бренд сухой лапши</strong>.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2005</span>
+              <p>
+                Признаны провинциальным <strong>Ключевым ведущим предприятием
+                индустриализации сельского хозяйства</strong>.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2003</span>
+              <p>
+                Сертифицированы по системам менеджмента
+                <strong>ISO 9001, ISO 22000 и HACCP</strong>.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Certificate wall -->
+      <section class="page-section alt" aria-labelledby="honors-wall-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Сертификаты</p>
+          <h2 id="honors-wall-title">Отраслевое признание</h2>
+          <p>
+            Официальные сертификаты, награды и отраслевое признание, подтверждающие качество производства и стандарты пищевой безопасности.
+          </p>
+
+          <div class="honor-grid">
+            {honors.map((h) => (
+              <article class="honor-card">
+                <div class="honor-media">
+                  <img src={`${IMG}/${h.img}`} alt={h.title} loading="lazy" />
+                </div>
+                <h3>{h.title}</h3>
+                <p>{h.year}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="ru" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

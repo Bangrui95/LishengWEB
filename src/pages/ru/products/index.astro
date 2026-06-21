@@ -1,0 +1,963 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import ProductCard from "../../../components/ProductCard.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/products.css";
+import "../../../styles/ru.css";
+
+// Catalog scraped from the official site (lishengws.com) noodle section,
+// split into the two brand series. Lightweight image + name cards.
+const lishengNoodles = [
+  { img: "/images/products/noodles-lisheng/lisheng-clear-soup-wheat-core-noodles.webp", name: "Лапша Lisheng из сердцевины пшеницы для прозрачного супа" },
+  { img: "/images/products/noodles-lisheng/lisheng-silver-thread-wheat-core-noodles.webp", name: "Лапша Lisheng «серебряная нить» из сердцевины пшеницы" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-hand-rolled-noodles.webp", name: "Лапша Lisheng из сердцевины пшеницы ручной раскатки" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-dragon-beard-noodles.webp", name: "Лапша Lisheng «драконья борода» из сердцевины пшеницы" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-hand-rolled-style-noodles.webp", name: "Лапша Lisheng премиальная в стиле ручной раскатки" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-silver-thread-noodles.webp", name: "Премиальная лапша Lisheng «серебряная нить»" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-noodles-i.webp", name: "Лапша Lisheng из сердцевины пшеницы I" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-noodles-ii.webp", name: "Лапша Lisheng из сердцевины пшеницы II" },
+  { img: "/images/products/noodles-lisheng/lisheng-knife-cut-noodles.webp", name: "Лапша Lisheng ножевой резки" },
+  { img: "/images/products/noodles-lisheng/premium-refined-original-noodles.webp", name: "Премиальная рафинированная классическая лапша" },
+  { img: "/images/products/noodles-lisheng/high-gluten-clear-soup-noodles.webp", name: "Высокоглютеновая лапша для прозрачного супа" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-i.webp", name: "Классическая лапша Lisheng I" },
+  { img: "/images/products/noodles-lisheng/lisheng-yangchun-noodles.webp", name: "Лапша Lisheng янчунь" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-wheat-aroma-noodles.webp", name: "Высокоглютеновая лапша Lisheng с ароматом пшеницы" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-dragon-beard-noodles.webp", name: "Высокоглютеновая лапша Lisheng «драконья борода»" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-wonton-noodles.webp", name: "Высокоглютеновая лапша Lisheng для вонтонов" },
+  { img: "/images/products/noodles-lisheng/lisheng-double-happiness-noodles.webp", name: "Лапша Lisheng «двойное счастье»" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-ii.webp", name: "Классическая лапша Lisheng II" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-iii.webp", name: "Классическая лапша Lisheng III" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-iv.webp", name: "Классическая лапша Lisheng IV" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-aroma-noodles.webp", name: "Лапша Lisheng с ароматом пшеницы" },
+  { img: "/images/products/noodles-lisheng/lisheng-smooth-noodles.webp", name: "Гладкая лапша Lisheng" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-v.webp", name: "Классическая лапша Lisheng V" },
+  { img: "/images/products/noodles-lisheng/lisheng-northern-wheat-hand-rolled-noodles.webp", name: "Лапша Lisheng из северной пшеницы ручной раскатки" },
+  { img: "/images/products/noodles-lisheng/lisheng-northern-wheat-dragon-beard-noodles.webp", name: "Лапша Lisheng «драконья борода» из северной пшеницы" },
+  { img: "/images/products/noodles-lisheng/lisheng-egg-wheat-core-noodles.webp", name: "Лапша Lisheng с яйцом из сердцевины пшеницы" },
+  { img: "/images/products/noodles-lisheng/premium-refined-egg-noodles.webp", name: "Премиальная рафинированная яичная лапша" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-egg-noodles.webp", name: "Яичная лапша Lisheng из сердцевины пшеницы" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-golden-egg-noodles.webp", name: "Премиальная золотая яичная лапша Lisheng" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-buckwheat-noodles.webp", name: "Премиальная гречневая лапша Lisheng" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-egg-noodles-i.webp", name: "Высокоглютеновая яичная лапша Lisheng I" },
+  { img: "/images/products/noodles-lisheng/lisheng-homestyle-egg-noodles.webp", name: "Домашняя яичная лапша Lisheng" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-egg-noodles-ii.webp", name: "Высокоглютеновая яичная лапша Lisheng II" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-mushroom-noodles.webp", name: "Высокоглютеновая грибная лапша Lisheng" },
+  { img: "/images/products/noodles-lisheng/lisheng-egg-noodles-i.webp", name: "Яичная лапша Lisheng I" },
+  { img: "/images/products/noodles-lisheng/lisheng-northern-wheat-egg-noodles.webp", name: "Яичная лапша Lisheng из северной пшеницы" },
+  { img: "/images/products/noodles-lisheng/lisheng-egg-noodles-ii.webp", name: "Яичная лапша Lisheng II" },
+];
+
+const minshengNoodles = [
+  { img: "/images/products/noodles-minsheng/minsheng-premium-wheat-noodles-i-m-bag.webp", name: "Премиальная пшеничная лапша Minsheng I (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-premium-wheat-noodles-ii-m-bag.webp", name: "Премиальная пшеничная лапша Minsheng II (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-dragon-beard-noodles-m-bag.webp", name: "Лапша Minsheng «драконья борода» (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-smooth-noodles-m-bag.webp", name: "Гладкая лапша Minsheng из сердцевины пшеницы (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-plain-noodles-paper-wrapped.webp", name: "Классическая лапша Minsheng из сердцевины пшеницы (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-smooth-noodles-paper-wrapped.webp", name: "Гладкая лапша Minsheng из сердцевины пшеницы (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-dragon-beard-noodles-paper-wrapped.webp", name: "Лапша Minsheng «драконья борода» из сердцевины пшеницы (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-chongqing-xiaomian-noodles-paper-wrapped.webp", name: "Лапша Minsheng чунцинская сяомянь (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-i-m-bag.webp", name: "Яичная лапша Minsheng I (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-i-m-bag.webp", name: "Грибная лапша Minsheng I (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-egg-noodles-m-bag.webp", name: "Яичная лапша Minsheng из сердцевины пшеницы (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-egg-noodles-paper-wrapped.webp", name: "Яичная лапша Minsheng из сердцевины пшеницы (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-mushroom-noodles-paper-wrapped.webp", name: "Грибная лапша Minsheng из сердцевины пшеницы (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-iron-stick-yam-noodles-m-bag.webp", name: "Лапша Minsheng с ямсом «железный стержень» (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-ii-m-bag.webp", name: "Грибная лапша Minsheng II (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-i-paper-wrapped.webp", name: "Яичная лапша Minsheng I (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-ii-paper-wrapped.webp", name: "Яичная лапша Minsheng II (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-iii-m-bag.webp", name: "Грибная лапша Minsheng III (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-i-paper-wrapped.webp", name: "Грибная лапша Minsheng I (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iii-paper-wrapped.webp", name: "Яичная лапша Minsheng III (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iv-paper-wrapped.webp", name: "Яичная лапша Minsheng IV (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-gift-pack.webp", name: "Грибная лапша Minsheng (подарочная упаковка)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-ii-paper-wrapped.webp", name: "Грибная лапша Minsheng II (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-ii-m-bag.webp", name: "Яичная лапша Minsheng II (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iii-m-bag.webp", name: "Яичная лапша Minsheng III (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iv-m-bag.webp", name: "Яичная лапша Minsheng IV (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-millet-and-mung-bean-noodles-m-bag.webp", name: "Пшённо-машевая лапша Minsheng (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-corn-and-pumpkin-noodles-m-bag.webp", name: "Кукурузно-тыквенная лапша Minsheng (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-i-m-bag.webp", name: "Гречневая лапша Minsheng I (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-i-paper-wrapped.webp", name: "Гречневая лапша Minsheng I (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-ii-paper-wrapped.webp", name: "Гречневая лапша Minsheng II (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-ii-m-bag.webp", name: "Гречневая лапша Minsheng II (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-mung-bean-noodles-paper-wrapped.webp", name: "Машевая лапша Minsheng (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-corn-noodles-paper-wrapped.webp", name: "Кукурузная лапша Minsheng (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-alkaline-noodles-i-paper-wrapped.webp", name: "Щелочная лапша Minsheng I (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-alkaline-noodles-ii-paper-wrapped.webp", name: "Щелочная лапша Minsheng II (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-country-style-noodles-paper-wrapped.webp", name: "Деревенская лапша Minsheng (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-plain-noodles-paper-wrapped.webp", name: "Простая лапша Minsheng (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-i-paper-wrapped.webp", name: "Классическая лапша Minsheng I (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-ii-paper-wrapped.webp", name: "Классическая лапша Minsheng II (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-dragon-beard-noodles-paper-wrapped.webp", name: "Лапша Minsheng «драконья борода» (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-jade-ribbon-noodles-paper-wrapped.webp", name: "Лапша Minsheng «нефритовая лента» (в бумажной обёртке)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-i-m-bag.webp", name: "Классическая лапша Minsheng I (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-ii-m-bag.webp", name: "Классическая лапша Minsheng II (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-red-double-happiness-noodles-m-bag.webp", name: "Красная лапша Minsheng «двойное счастье» (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-iii-m-bag.webp", name: "Классическая лапша Minsheng III (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-iv-m-bag.webp", name: "Классическая лапша Minsheng IV (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-v-m-bag.webp", name: "Классическая лапша Minsheng V (М-пакет)" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-aroma-noodles-m-bag.webp", name: "Лапша Minsheng с ароматом пшеницы (М-пакет)" },
+];
+
+const lishengFlour = [
+  { img: "/images/products/flour-lisheng/lisheng-seven-star-snowflake-flour-5-kg.webp", name: "Мука Lisheng «снежинка» семизвёздная, 5 кг" },
+  { img: "/images/products/flour-lisheng/lisheng-seven-star-snowflake-flour-10-kg.webp", name: "Мука Lisheng «снежинка» семизвёздная, 10 кг" },
+  { img: "/images/products/flour-lisheng/lisheng-eight-star-strong-gluten-snowflake-flour-25-kg.webp", name: "Мука Lisheng «снежинка» сильной клейковины, восьмизвёздная, 25 кг" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-snowflake-flour-10-kg.webp", name: "Премиальная мука Lisheng «снежинка», 10 кг" },
+  { img: "/images/products/flour-lisheng/lisheng-eight-star-strong-gluten-snowflake-flour-10-kg.webp", name: "Мука Lisheng «снежинка» сильной клейковины, восьмизвёздная, 10 кг" },
+  { img: "/images/products/flour-lisheng/lisheng-nine-star-premium-snowflake-flour.webp", name: "Премиальная мука Lisheng «снежинка», девятизвёздная" },
+  { img: "/images/products/flour-lisheng/lisheng-eight-star-strong-gluten-snowflake-flour-5-kg.webp", name: "Мука Lisheng «снежинка» сильной клейковины, восьмизвёздная, 5 кг" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-snowflake-flour.webp", name: "Премиальная мука Lisheng «снежинка»" },
+  { img: "/images/products/flour-lisheng/lisheng-strong-gluten-snowflake-flour.webp", name: "Мука Lisheng «снежинка» сильной клейковины" },
+  { img: "/images/products/flour-lisheng/lisheng-seven-star-snowflake-flour.webp", name: "Мука Lisheng «снежинка» семизвёздная" },
+  { img: "/images/products/flour-lisheng/lisheng-snowflake-flour.webp", name: "Мука Lisheng «снежинка»" },
+  { img: "/images/products/flour-lisheng/lisheng-strong-gluten-dumpling-wrapper-flour.webp", name: "Мука Lisheng сильной клейковины для пельменных обёрток" },
+  { img: "/images/products/flour-lisheng/lisheng-wheat-core-semolina-flour.webp", name: "Мука-семолина Lisheng из сердцевины пшеницы" },
+  { img: "/images/products/flour-lisheng/lisheng-six-star-super-refined-flour.webp", name: "Высокорафинированная мука Lisheng, шестизвёздная" },
+  { img: "/images/products/flour-lisheng/lisheng-special-refined-flour.webp", name: "Специальная рафинированная мука Lisheng" },
+  { img: "/images/products/flour-lisheng/lisheng-super-special-refined-flour.webp", name: "Высшая специальная рафинированная мука Lisheng" },
+  { img: "/images/products/flour-lisheng/lisheng-multi-purpose-wheat-core-flour-i.webp", name: "Универсальная мука Lisheng из сердцевины пшеницы I" },
+  { img: "/images/products/flour-lisheng/lisheng-multi-purpose-wheat-core-flour-ii.webp", name: "Универсальная мука Lisheng из сердцевины пшеницы II" },
+  { img: "/images/products/flour-lisheng/lisheng-king-flour.webp", name: "Королевская мука Lisheng" },
+  { img: "/images/products/flour-lisheng/lisheng-silver-flour.webp", name: "Серебряная мука Lisheng" },
+  { img: "/images/products/flour-lisheng/lisheng-high-grade-flour.webp", name: "Мука Lisheng высшего сорта" },
+  { img: "/images/products/flour-lisheng/lisheng-golden-fuqiang-flour.webp", name: "Золотая мука Lisheng фуцян" },
+  { img: "/images/products/flour-lisheng/lisheng-special-no1-flour-colour-pack.webp", name: "Специальная мука Lisheng №1 (цветная упаковка)" },
+  { img: "/images/products/flour-lisheng/lisheng-special-no1-flour-plain-pack.webp", name: "Специальная мука Lisheng №1 (простая упаковка)" },
+  { img: "/images/products/flour-lisheng/lisheng-high-gluten-wheat-aroma-flour.webp", name: "Высокоглютеновая мука Lisheng с ароматом пшеницы" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-dumpling-flour-i.webp", name: "Премиальная пельменная мука Lisheng I" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-dumpling-flour-ii.webp", name: "Премиальная пельменная мука Lisheng II" },
+  { img: "/images/products/flour-lisheng/lisheng-dumpling-flour.webp", name: "Пельменная мука Lisheng" },
+  { img: "/images/products/flour-lisheng/lisheng-snowflake-bun-and-pastry-flour.webp", name: "Мука Lisheng «снежинка» для булочек и выпечки" },
+  { img: "/images/products/flour-lisheng/lisheng-six-star-noodle-king-flour.webp", name: "Мука Lisheng «король лапши», шестизвёздная" },
+  { img: "/images/products/flour-lisheng/lisheng-fresh-noodle-king-flour.webp", name: "Мука Lisheng «король» для свежей лапши" },
+  { img: "/images/products/flour-lisheng/lisheng-five-star-steamed-bun-flour.webp", name: "Мука Lisheng для паровых булочек, пятизвёздная" },
+  { img: "/images/products/flour-lisheng/lisheng-four-star-steamed-bun-flour-colour-pack.webp", name: "Мука Lisheng для паровых булочек, четырёхзвёздная (цветная упаковка)" },
+  { img: "/images/products/flour-lisheng/lisheng-four-star-steamed-bun-flour-plain-pack.webp", name: "Мука Lisheng для паровых булочек, четырёхзвёздная (простая упаковка)" },
+  { img: "/images/products/flour-lisheng/lisheng-three-star-steamed-bun-flour-colour-pack.webp", name: "Мука Lisheng для паровых булочек, трёхзвёздная (цветная упаковка)" },
+  { img: "/images/products/flour-lisheng/lisheng-three-star-steamed-bun-flour-plain-pack.webp", name: "Мука Lisheng для паровых булочек, трёхзвёздная (простая упаковка)" },
+  { img: "/images/products/flour-lisheng/lisheng-steamed-bun-flour-new.webp", name: "Мука Lisheng для паровых булочек (новинка)" },
+  { img: "/images/products/flour-lisheng/lisheng-youtiao-flour-new.webp", name: "Мука Lisheng для ютяо (новинка)" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-bread-flour.webp", name: "Премиальная хлебопекарная мука Lisheng" },
+  { img: "/images/products/flour-lisheng/lisheng-bread-flour.webp", name: "Хлебопекарная мука Lisheng" },
+  { img: "/images/products/flour-lisheng/lisheng-brown-bread-flour.webp", name: "Мука Lisheng для тёмного хлеба" },
+  { img: "/images/products/flour-lisheng/lisheng-hamburger-bun-flour.webp", name: "Мука Lisheng для булочек для гамбургеров" },
+  { img: "/images/products/flour-lisheng/lisheng-sachima-flour.webp", name: "Мука Lisheng для сачимы" },
+  { img: "/images/products/flour-lisheng/lisheng-600-pastry-flour.webp", name: "Мука Lisheng 600 для выпечки" },
+  { img: "/images/products/flour-lisheng/lisheng-300-pastry-flour.webp", name: "Мука Lisheng 300 для выпечки" },
+  { img: "/images/products/flour-lisheng/lisheng-special-bread-flour.webp", name: "Специальная хлебопекарная мука Lisheng" },
+];
+
+const minshengFlour = [
+  { img: "/images/products/flour-minsheng/minsheng-multi-purpose-wheat-core-flour-5-kg.webp", name: "Универсальная мука Minsheng из сердцевины пшеницы, 5 кг" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-refined-flour-5-kg.webp", name: "Высокоглютеновая рафинированная мука Minsheng, 5 кг" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-refined-flour-i.webp", name: "Высокоглютеновая рафинированная мука Minsheng I" },
+  { img: "/images/products/flour-minsheng/minsheng-multi-purpose-wheat-core-flour.webp", name: "Универсальная мука Minsheng из сердцевины пшеницы" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-snowflake-flour-i.webp", name: "Мука Minsheng «снежинка» сильной клейковины, семизвёздная I" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-snowflake-flour-i.webp", name: "Премиальная мука Minsheng «снежинка» I" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-snowflake-flour-ii.webp", name: "Премиальная мука Minsheng «снежинка» II" },
+  { img: "/images/products/flour-minsheng/minsheng-eight-star-strong-gluten-snowflake-flour.webp", name: "Мука Minsheng «снежинка» сильной клейковины, восьмизвёздная" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-snowflake-flour-ii.webp", name: "Мука Minsheng «снежинка» сильной клейковины, семизвёздная II" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-dumpling-wrapper-flour.webp", name: "Мука Minsheng сильной клейковины для пельменных обёрток, семизвёздная" },
+  { img: "/images/products/flour-minsheng/minsheng-six-star-strong-gluten-snowflake-flour.webp", name: "Мука Minsheng «снежинка» сильной клейковины, шестизвёздная" },
+  { img: "/images/products/flour-minsheng/minsheng-super-special-refined-flour.webp", name: "Высшая специальная рафинированная мука Minsheng" },
+  { img: "/images/products/flour-minsheng/minsheng-six-star-super-snowflake-flour.webp", name: "Высшая мука Minsheng «снежинка», шестизвёздная" },
+  { img: "/images/products/flour-minsheng/minsheng-five-star-special-refined-flour.webp", name: "Специальная рафинированная мука Minsheng, пятизвёздная" },
+  { img: "/images/products/flour-minsheng/minsheng-multi-purpose-flour.webp", name: "Универсальная мука Minsheng" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-fuqiang-flour.webp", name: "Высокоглютеновая мука Minsheng фуцян" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-refined-flour-ii.webp", name: "Высокоглютеновая рафинированная мука Minsheng II" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-special-no1-flour.webp", name: "Высокоглютеновая специальная мука Minsheng №1" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-original-flour.webp", name: "Высокоглютеновая классическая мука Minsheng" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-bun-and-pastry-flour.webp", name: "Мука Minsheng сильной клейковины для булочек и выпечки, семизвёздная" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-steamed-bun-flour.webp", name: "Высокоглютеновая мука Minsheng для паровых булочек" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-steamed-bun-flour.webp", name: "Премиальная мука Minsheng для паровых булочек" },
+  { img: "/images/products/flour-minsheng/minsheng-six-star-strong-gluten-dumpling-wrapper-flour.webp", name: "Мука Minsheng сильной клейковины для пельменных обёрток, шестизвёздная" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-dumpling-flour-i.webp", name: "Премиальная пельменная мука Minsheng I" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-dumpling-flour-ii.webp", name: "Премиальная пельменная мука Minsheng II" },
+];
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>Продукция | Lisheng International</title>
+    <meta
+      name="description"
+      content="Ассортимент Lisheng Group: серии сухой лапши, серии пшеничной муки и индивидуальные OEM-решения по лапше для розницы, HoReCa и экспортных рынков."
+    />
+  </head>
+  <body>
+    <Header lang="ru" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="products-hero-title">
+        <img
+          src={withBase("/images/products/products.webp")}
+          alt="Ассортимент лапши и муки Lisheng"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Лапша и мука</p>
+          <h1 id="products-hero-title">Продукция</h1>
+          <p class="page-hero-copy">
+            Серии сухой лапши, серии пшеничной муки и индивидуальные решения под
+            частной маркой для розницы, HoReCa и экспортных рынков.
+          </p>
+          <div class="products-hero-actions">
+            <a class="products-hero-button" href={withBase("/ru/services/customization/")}>
+              Настроить продукт <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="products-catalog" aria-labelledby="products-catalog-title">
+        <div class="products-catalog-inner">
+          <h2 id="products-catalog-title" class="sr-only">Каталог продукции</h2>
+
+          <div class="products-catalog-intro">
+            <p>
+              Каждый продукт ниже может производиться под вашим брендом. Нажмите
+              на любой товар, чтобы посмотреть детали, затем начните OEM-проект с
+              нужными спецификациями и форматом упаковки.
+            </p>
+          </div>
+
+          <div class="product-tabs-extra">
+            <a class="tab-link" href={withBase("/ru/products/specifications/")}>
+              Спецификации продукции <span aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <div
+            class="product-tabs"
+            role="tablist"
+            aria-label="Категории продукции"
+          >
+            <div class="tab-group" data-tab-group>
+              <button
+                class="active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                data-product-tab="noodles"
+              >
+                Лапша
+                <span class="tab-caret" data-tab-caret aria-hidden="true">▾</span>
+              </button>
+              <div class="tab-dropdown" role="menu">
+                <button type="button" role="tab" aria-selected="false" data-product-tab="noodles-lisheng">
+                  Серия Lisheng
+                </button>
+                <button type="button" role="tab" aria-selected="false" data-product-tab="noodles-minsheng">
+                  Серия Minsheng
+                </button>
+              </div>
+            </div>
+            <div class="tab-group" data-tab-group>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-product-tab="flour"
+              >
+                Мука
+                <span class="tab-caret" data-tab-caret aria-hidden="true">▾</span>
+              </button>
+              <div class="tab-dropdown" role="menu">
+                <button type="button" role="tab" aria-selected="false" data-product-tab="flour-lisheng">
+                  Серия Lisheng
+                </button>
+                <button type="button" role="tab" aria-selected="false" data-product-tab="flour-minsheng">
+                  Серия Minsheng
+                </button>
+              </div>
+            </div>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-product-tab="customization"
+            >
+              Индивидуальные решения
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-product-tab="frozen"
+            >
+              Замороженные продукты
+            </button>
+          </div>
+
+          <div class="product-panels">
+            <!-- ============ Noodle Products ============ -->
+            <div class="product-panel active" data-product-panel="noodles" data-paginate>
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/whole-wheat-noodles-500-g.webp"
+                name="Цельнозерновая лапша 500 г"
+                category="Лапша · Серия «цельнозерновая»"
+                description="Перемолота из цельного зерна пшеницы с сохранением отрубей и зародыша при изящной текстуре лапши. Богата пищевыми волокнами. Состав: цельнозерновая мука, вода, соль. Короб: 20 × 500 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/whole-wheat-noodles-1-kg.webp"
+                name="Цельнозерновая лапша 1 кг"
+                category="Лапша · Серия «цельнозерновая»"
+                description="Семейная упаковка нашей цельнозерновой линейки — много пищевых волокон, мало жира, для более лёгкого ежедневного рациона. Состав: цельнозерновая мука, вода, соль. Короб: 15 × 1 кг, в бумажной обёртке."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/buckwheat-noodles.webp"
+                name="Гречневая лапша"
+                category="Лапша · Серия «многозлаковая»"
+                description="Пшеничная мука в сочетании с гречкой даёт ореховый вкус, много клетчатки и более низкий гликемический индекс — популярный выбор для рациона с контролем сахара. Состав: пшеничная мука, гречневая мука, вода, соль. Короб: 15 × 800 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/royal-egg-noodles.webp"
+                name="Яичная лапша «роял»"
+                category="Лапша · Серия «роял»"
+                description="Премиальная лапша с сертификатом «Зелёный продукт», упругая, с насыщенным яичным ароматом. Состав: пшеничная мука, яичный порошок, вода, соль. Короб: 15 × 1 кг, в бумажной обёртке."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/royal-dragon-beard-noodles.webp"
+                name="Лапша «роял драконья борода»"
+                category="Лапша · Серия «роял»"
+                description="Сверхтонкая лапша с сертификатом «Зелёный продукт» из отборной пшеницы, гладкая и упругая, с насыщенным ароматом пшеницы. Состав: пшеничная мука, вода, соль. Короб: 15 × 1 кг, в бумажной обёртке."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/slim-silver-thread-noodles.webp"
+                name="Тонкая лапша «серебряная нить»"
+                category="Лапша · Серия «австралийская пшеница»"
+                description="Сверхтонкая лапша из смеси австралийской и китайской пшеницы — быстро варится, но остаётся плотной и упругой. Состав: пшеничная мука (австралийская и местная пшеница), вода, соль. Короб: 15 × 1 кг, в бумажной обёртке."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/wheat-core-dragon-beard-noodles.webp"
+                name="Лапша «драконья борода» из сердцевины пшеницы"
+                category="Лапша · Серия «сердцевина пшеницы»"
+                description="Сверхтонкая лапша из сердцевины пшеницы с содержанием белка около 13% — мягкая, но не разваривается, тонкая, но не слипается. Состав: мука из сердцевины пшеницы, вода, соль. Короб: 15 × 900 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/wheat-core-egg-noodles.webp"
+                name="Яичная лапша из сердцевины пшеницы"
+                category="Лапша · Серия «сердцевина пшеницы»"
+                description="Мука из сердцевины пшеницы, обогащённая яйцом, для нежной и при этом упругой текстуры. Состав: мука из сердцевины пшеницы, яичный порошок, вода, соль. Короб: 15 × 900 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/wheat-core-hand-rolled-style-noodles.webp"
+                name="Лапша из сердцевины пшеницы в стиле ручной раскатки"
+                category="Лапша · Серия «сердцевина пшеницы»"
+                description="Более толстая нарезка в стиле ручной раскатки с улучшенной упругой текстурой. Состав: мука из сердцевины пшеницы, вода, соль. Короб: 15 × 900 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/wheat-core-wide-noodles.webp"
+                name="Широкая лапша из сердцевины пшеницы"
+                category="Лапша · Серия «сердцевина пшеницы»"
+                description="Широкая лапша с повышенной упругостью из отборной муки сердцевины пшеницы — идеальна для жареных и тушёных блюд. Состав: мука из сердцевины пшеницы, вода, соль. Короб: 15 × 900 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/premium-fine-round-noodles.webp"
+                name="Премиальная тонкая круглая лапша"
+                category="Лапша · Серия «премиум»"
+                description="Тонкая круглая лапша с гладкой, упругой текстурой. Состав: пшеничная мука, вода, соль. Короб: 15 × 800 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/premium-egg-noodles.webp"
+                name="Премиальная яичная лапша"
+                category="Лапша · Серия «премиум»"
+                description="Лапша серии «премиум», обогащённая яйцом для дополнительной питательности и более полного вкуса. Состав: пшеничная мука, яичный порошок, вода, соль. Короб: 15 × 800 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/premium-original-noodles.webp"
+                name="Премиальная классическая лапша"
+                category="Лапша · Серия «премиум»"
+                description="Классическая лапша средней нарезки, которая держит форму при долгой варке. Состав: пшеничная мука, вода, соль. Короб: 15 × 800 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/high-gluten-dragon-beard-noodles-1-kg.webp"
+                name="Высокоглютеновая лапша «драконья борода» 1 кг"
+                category="Лапша · Серия «высокоглютеновая»"
+                description="Сверхтонкая высокоглютеновая лапша — нежная, гладкая и быстрого приготовления. Состав: высокоглютеновая пшеничная мука, вода, соль. Короб: 15 × 1 кг (также доступно 20 × 400 г)."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/high-gluten-egg-noodles-1-kg.webp"
+                name="Высокоглютеновая яичная лапша 1 кг"
+                category="Лапша · Серия «высокоглютеновая»"
+                description="Упругая, гладкая высокоглютеновая лапша с лёгким яичным вкусом, легко проваривается. Состав: высокоглютеновая пшеничная мука, яичный порошок, вода, соль. Короб: 15 × 1 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/high-gluten-clear-soup-noodles-1-kg.webp"
+                name="Высокоглютеновая лапша для прозрачного супа 1 кг"
+                category="Лапша · Серия «высокоглютеновая»"
+                description="Высокоглютеновая лапша, которая варится гладко и сохраняет бульон прозрачным. Состав: высокоглютеновая пшеничная мука, вода, соль. Короб: 15 × 1 кг (также доступно 20 × 400 г)."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/high-gluten-dragon-beard-noodles-500-g.webp"
+                name="Высокоглютеновая лапша «драконья борода» 500 г"
+                category="Лапша · Серия «высокоглютеновая»"
+                description="Розничная упаковка 500 г нашей сверхтонкой высокоглютеновой лапши — нежная, гладкая, быстрого приготовления. Состав: высокоглютеновая пшеничная мука, вода, соль. Короб: 20 × 500 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/high-gluten-egg-noodles-500-g.webp"
+                name="Высокоглютеновая яичная лапша 500 г"
+                category="Лапша · Серия «высокоглютеновая»"
+                description="Розничная упаковка 500 г нашей высокоглютеновой яичной лапши — упругая, гладкая, с лёгким яичным вкусом. Состав: высокоглютеновая пшеничная мука, яичный порошок, вода, соль. Короб: 20 × 500 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/high-gluten-clear-soup-noodles-500-g.webp"
+                name="Высокоглютеновая лапша для прозрачного супа 500 г"
+                category="Лапша · Серия «высокоглютеновая»"
+                description="Розничная упаковка 500 г нашей лапши для прозрачного супа — гладкая и легко варится, не замутняя бульон. Состав: высокоглютеновая пшеничная мука, вода, соль. Короб: 20 × 500 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/superior-dragon-beard-noodles.webp"
+                name="Лапша «супериор драконья борода»"
+                category="Лапша · Серия «супериор»"
+                description="Из муки сердцевины пшеницы высшего сорта с насыщенным ароматом пшеницы, в традиционной бумажной обёртке. Состав: мука из сердцевины пшеницы, вода, соль. Короб: 15 × 1 кг или 20 × 500 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/superior-egg-noodles.webp"
+                name="Яичная лапша «супериор»"
+                category="Лапша · Серия «супериор»"
+                description="Мука сердцевины пшеницы высшего сорта с добавлением яйца для более насыщенного вкуса, в традиционной бумажной обёртке. Состав: мука из сердцевины пшеницы, яичный порошок, вода, соль. Короб: 15 × 1 кг или 20 × 500 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/superior-original-noodles.webp"
+                name="Классическая лапша «супериор»"
+                category="Лапша · Серия «супериор»"
+                description="Насыщенный аромат пшеницы и гладкая текстура из муки сердцевины пшеницы высшего сорта, в бумажной обёртке. Состав: мука из сердцевины пшеницы, вода, соль. Короб: 15 × 1 кг или 20 × 500 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/superior-dragon-beard-noodles-800-g.webp"
+                name="Лапша «супериор драконья борода» 800 г"
+                category="Лапша · Серия «супериор»"
+                description="Версия 800 г в плёночной упаковке нашей лапши «супериор драконья борода» из муки сердцевины пшеницы высшего сорта. Состав: мука из сердцевины пшеницы, вода, соль. Короб: 15 × 800 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/superior-original-noodles-800-g.webp"
+                name="Классическая лапша «супериор» 800 г"
+                category="Лапша · Серия «супериор»"
+                description="Версия 800 г в плёночной упаковке нашей классической лапши «супериор» — насыщенный аромат пшеницы, гладкая текстура. Состав: мука из сердцевины пшеницы, вода, соль. Короб: 15 × 800 г."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/northern-wheat-dragon-beard-noodles.webp"
+                name="Лапша «драконья борода» из северной пшеницы"
+                category="Лапша · Серия «северная пшеница»"
+                description="Из северной китайской пшеницы — упругая и гладкая, без крахмальной мути в супе. Состав: пшеничная мука, вода, соль. Короб: 15 × 800 г, в бумажной обёртке."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/northern-wheat-egg-noodles.webp"
+                name="Яичная лапша из северной пшеницы"
+                category="Лапша · Серия «северная пшеница»"
+                description="Лапша из северной пшеницы, обогащённая яйцом — упругая и гладкая, без крахмальной мути в супе. Состав: пшеничная мука, яичный порошок, вода, соль. Короб: 15 × 800 г, в бумажной обёртке."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/northern-wheat-hand-rolled-style-noodles.webp"
+                name="Лапша из северной пшеницы в стиле ручной раскатки"
+                category="Лапша · Серия «северная пшеница»"
+                description="Нарезка в стиле ручной раскатки из северной китайской пшеницы — упругая, гладкая и сытная. Состав: пшеничная мука, вода, соль. Короб: 15 × 800 г, в бумажной обёртке."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/wheat-core-egg-noodle-sheets.webp"
+                name="Яичные листы лапши из сердцевины пшеницы"
+                category="Лапша · Серия «листы теста»"
+                description="Тончайшие листы лапши с гладкой, упругой текстурой и насыщенным яичным ароматом. Состав: мука из сердцевины пшеницы, яичный порошок, вода, соль. Короб: 10 × 1 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/homestyle-original-noodles.webp"
+                name="Домашняя классическая лапша"
+                category="Лапша · Серия «домашняя»"
+                description="Повседневная базовая лапша — гладкая, полезная и выгодная. Состав: пшеничная мука, вода, соль. Размеры упаковки от 350 г до 500 г, доступны разные ширины нарезки."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/homestyle-egg-noodles.webp"
+                name="Домашняя яичная лапша"
+                category="Лапша · Серия «домашняя»"
+                description="Повседневная лапша с добавлением яичного порошка для более полного вкуса. Состав: пшеничная мука, яичный порошок, вода, соль. Размеры упаковки 400 г / 500 г, доступны разные ширины нарезки."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/chinese-yam-noodles.webp"
+                name="Лапша с китайским ямсом"
+                category="Лапша · Серия «многозлаковая»"
+                description="С добавлением китайского ямса, ценимого в традиционном рационе за мягкое питательное действие. Сытная база с натуральным вкусом. Состав: пшеничная мука, порошок китайского ямса, вода, соль. Семейная упаковка, короб: 6 × 1,75 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/millet-noodles.webp"
+                name="Пшённая лапша"
+                category="Лапша · Серия «многозлаковая»"
+                description="Многозлаковая лапша с пшеном — много клетчатки и более низкий гликемический индекс для рациона с контролем сахара. Состав: пшеничная мука, пшённая мука, вода, соль. Семейная упаковка, короб: 6 × 1,75 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/wheat-core-knife-cut-noodle-sheets.webp"
+                name="Листы лапши ножевой резки из сердцевины пшеницы"
+                category="Лапша · Серия «листы теста»"
+                description="Листы лапши в стиле ножевой резки из отборной муки сердцевины пшеницы — шелковистые снаружи, с улучшенной упругостью. Состав: мука из сердцевины пшеницы, вода, соль. Короб: 20 × 250 г (также доступен размер 200 г)."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/wheat-core-egg-noodles-family-pack.webp"
+                name="Яичная лапша из сердцевины пшеницы, семейная упаковка"
+                category="Лапша · Серия «сердцевина пшеницы»"
+                description="Семейная упаковка 1,5 кг с ручкой нашей яичной лапши из сердцевины пшеницы, из качественного сырья. Состав: мука из сердцевины пшеницы, яичный порошок, вода, соль. Короб: 7 × 1,5 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/noodles1/millet-noodles-bulk-pack.webp"
+                name="Пшённая лапша, оптовая упаковка"
+                category="Лапша · Серия «HoReCa»"
+                description="Оптовая упаковка 4 кг с добавлением пшённой эссенции, для HoReCa и оптовых каналов. Состав: пшеничная мука, пшённая мука, вода, соль. Короб: 3 × 4 кг."
+              />
+            </div>
+
+            <!-- ============ Flour Products ============ -->
+            <div class="product-panel" data-product-panel="flour" hidden data-paginate>
+              <ProductCard lang="ru"
+                image="/images/products/flour1/eight-star-strong-gluten-wheat-flour.webp"
+                name="Пшеничная мука сильной клейковины, восьмизвёздная"
+                category="Мука · Серия «сильная клейковина»"
+                description="Высший сорт нашей линейки сильной клейковины, из отборной высокобелковой пшеницы для премиального хлеба, лапши и других высокоглютеновых изделий. Тканый мешок 25 кг с цветной плёнкой."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/seven-star-strong-gluten-wheat-flour.webp"
+                name="Пшеничная мука сильной клейковины, семизвёздная"
+                category="Мука · Серия «сильная клейковина»"
+                description="Универсальная мука сильной клейковины высшего сорта для широкого спектра премиальных высокоглютеновых изделий. Из отборной высокобелковой пшеницы. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/six-star-strong-gluten-wheat-flour.webp"
+                name="Пшеничная мука сильной клейковины, шестизвёздная"
+                category="Мука · Серия «сильная клейковина»"
+                description="Надёжная мука сильной клейковины для премиальных высокоглютеновых применений при сбалансированной цене. Из отборной высокобелковой пшеницы. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/eight-star-snowflake-flour.webp"
+                name="Мука «снежинка», восьмизвёздная"
+                category="Мука · Серия «универсальная»"
+                description="Премиальная мука «снежинка» из сердцевины пшеницы — высокая белизна и тонкий помол. Подходит для супных булочек, паровых булочек, лапши и лепёшек. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/seven-star-snowflake-flour.webp"
+                name="Мука «снежинка», семизвёздная"
+                category="Мука · Серия «универсальная»"
+                description="Универсальная мука «снежинка» для паровых булочек, баоцзы, лапши и лепёшек, со стабильным результатом в разных применениях. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/6a-snowflake-flour.webp"
+                name="Мука «снежинка» 6A"
+                category="Мука · Серия «универсальная»"
+                description="Универсальная мука «снежинка» для супных булочек, паровых булочек, лапши и лепёшек — надёжная рабочая лошадка для предприятий питания. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/special-refined-flour.webp"
+                name="Специальная рафинированная мука"
+                category="Мука · Серия «универсальная»"
+                description="Рафинированная пшеничная мука, хорошо подходящая для лепёшек и блинных изделий. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/golden-fuqiang-flour.webp"
+                name="Золотая мука фуцян"
+                category="Мука · Серия «универсальная»"
+                description="Классическая рафинированная мука для лепёшек и повседневных мучных изделий. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/seven-star-snowflake-bun-flour.webp"
+                name="Мука «снежинка» для булочек, семизвёздная"
+                category="Мука · Серия «для паровых изделий»"
+                description="Мука средне-высокого сорта, разработанная для баоцзы и паровой выпечки, даёт мягкий, белый, равномерно поднявшийся мякиш. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/super-refined-flour.webp"
+                name="Высокорафинированная мука"
+                category="Мука · Серия «для паровых изделий»"
+                description="Универсальная мука среднего сорта для баоцзы, паровых булочек, супных булочек, жареных булочек и печёных лепёшек. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/six-star-steamed-bun-flour.webp"
+                name="Мука для паровых булочек, шестизвёздная"
+                category="Мука · Серия «для паровых изделий»"
+                description="Мука высшего сорта, разработанная специально для паровых булочек — высокая толерантность к брожению и яркий, тонкий мякиш. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/golden-steamed-bun-flour.webp"
+                name="Золотая мука для паровых булочек"
+                category="Мука · Серия «для паровых изделий»"
+                description="Высокоглютеновая мука среднего сорта для паровых булочек, сочетающая упругость, белизну и стоимость для коммерческого приготовления на пару. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/four-star-steamed-bun-flour.webp"
+                name="Мука для паровых булочек, четырёхзвёздная"
+                category="Мука · Серия «для паровых изделий»"
+                description="Экономичная мука для паровых булочек в северном стиле с надёжным ежедневным результатом. Мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/three-star-steamed-bun-flour.webp"
+                name="Мука для паровых булочек, трёхзвёздная"
+                category="Мука · Серия «для паровых изделий»"
+                description="Мука бюджетного сорта для паровых булочек в северном стиле при объёмном производстве. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/eight-star-dumpling-wrapper-flour.webp"
+                name="Мука для пельменных обёрток, восьмизвёздная"
+                category="Мука · Серия «для отварных изделий»"
+                description="Мука сильной клейковины для премиальных обёрток пельменей, вонтонов и свежей лапши — обёртки остаются полупрозрачными и эластичными после варки. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/six-star-noodle-king-flour.webp"
+                name="Мука «король лапши», шестизвёздная"
+                category="Мука · Серия «для отварных изделий»"
+                description="Специальная мука для свежей резаной лапши, обёрток пельменей и вонтонов, разработанная для лапшичных и пищевых производителей. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/youtiao-special-flour.webp"
+                name="Специальная мука для ютяо"
+                category="Мука · Серия «для жареных изделий»"
+                description="Целевая мука для жареных мучных палочек (ютяо), подходящая для фабрик предварительно сформованного теста и премиальных жареных изделий — надёжное поднятие и хрустящая текстура. Тканый мешок 25 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/eight-star-snowflake-wheat-flour-australian-wheat.webp"
+                name="Пшеничная мука «снежинка», восьмизвёздная (австралийская пшеница)"
+                category="Мука · Серия «розничная упаковка»"
+                description="Мука «снежинка» сильной клейковины из смеси австралийской и китайской пшеницы, для премиальной домашней и ремесленной выпечки. Мешок тканевого типа, 5 кг × 5 или 10 кг × 1."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/professional-dumpling-flour.webp"
+                name="Профессиональная пельменная мука"
+                category="Мука · Серия «розничная упаковка»"
+                description="Мука профессионального сорта для премиальных пельменей — крепкое, растяжимое тесто и полупрозрачные обёртки. Мешок тканевого типа, 5 кг × 5 в коробе."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/superior-dumpling-flour-10-kg.webp"
+                name="Пельменная мука «супериор» 10 кг"
+                category="Мука · Серия «розничная упаковка»"
+                description="Мешок тканевого типа 10 кг нашей пельменной муки «супериор» для ресторанов и оптового домашнего использования. Также доступно как 5 кг × 5."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/superior-dumpling-flour-25-kg.webp"
+                name="Пельменная мука «супериор» 2,5 кг"
+                category="Мука · Серия «розничная упаковка»"
+                description="Удобная розничная упаковка 2,5 кг нашей пельменной муки «супериор» для премиальных домашних пельменей. Короб: 4 × 2,5 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/flour1/household-dumpling-flour.webp"
+                name="Домашняя пельменная мука"
+                category="Мука · Серия «розничная упаковка»"
+                description="Доступная пельменная мука для повседневной семейной лепки пельменей — простая в работе, со стабильным результатом. Короб: 4 × 2,5 кг."
+              />
+            </div>
+
+            <!-- ============ Flour Products · Lisheng Series ============ -->
+            <div class="product-panel" data-product-panel="flour-lisheng" hidden data-paginate>
+              {lishengFlour.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <!-- ============ Flour Products · Minsheng Series ============ -->
+            <div class="product-panel" data-product-panel="flour-minsheng" hidden data-paginate>
+              {minshengFlour.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <!-- ============ Custom Solutions ============ -->
+            <div class="product-panel" data-product-panel="customization" hidden>
+              <ProductCard lang="ru"
+                image="/images/products/customization1/shanghai-yangchun-noodles.webp"
+                name="Шанхайская лапша янчунь"
+                category="Индивидуальные решения"
+                description="Индивидуальный региональный продукт, разработанный для зарубежного бренда: классическая шанхайская тонкая лапша в розничной упаковке 2 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/customization1/lanzhou-ramen-noodles.webp"
+                name="Ланьчжоуская лапша рамэн"
+                category="Индивидуальные решения"
+                description="Лапша рамэн в ланьчжоуском стиле, произведённая под брендом клиента, с индивидуальным размером, текстурой и дизайном упаковки."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/customization1/sichuan-dandan-noodles.webp"
+                name="Сычуаньская лапша даньдань"
+                category="Индивидуальные решения"
+                description="Лапша в стиле сычуаньской даньдань, адаптированная для зарубежной розницы, часть серии региональной китайской лапши."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/customization1/shandong-ramen-noodles.webp"
+                name="Шаньдунская лапша рамэн"
+                category="Индивидуальные решения"
+                description="Лапша рамэн в шаньдунском стиле, разработанная как OEM-программа с индивидуальной рецептурой и форматом упаковки 2 кг."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/customization1/shanxi-sliced-noodles.webp"
+                name="Шаньсийская резаная лапша"
+                category="Индивидуальные решения"
+                description="Лапша в стиле шаньсийской ножевой нарезки, воспроизведённая для промышленного производства с сохранением традиционной широкой нарезки."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/customization1/wuhan-hot-dry-noodles.webp"
+                name="Уханьская жаре-сухая лапша"
+                category="Индивидуальные решения"
+                description="Лапша в стиле уханьской жэганьмянь, адаптированная для экспортной розницы, рассчитанная на классическое приготовление с кунжутной пастой."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/customization1/henan-hand-rolled-style-noodles.webp"
+                name="Хэнаньская лапша в стиле ручной раскатки"
+                category="Индивидуальные решения"
+                description="Лапша в хэнаньском стиле с текстурой ручной раскатки, производимая в масштабе для программы под частной маркой."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/customization1/old-beijing-style-noodles.webp"
+                name="Лапша в старопекинском стиле"
+                category="Индивидуальные решения"
+                description="Лапша в старопекинском стиле для блюд чжацзян, завершающая серию региональной китайской лапши."
+              />
+            </div>
+
+            <!-- ============ Frozen Products ============ -->
+            <div class="product-panel" data-product-panel="frozen" hidden>
+              <ProductCard lang="ru"
+                image="/images/products/frozen1/pork-and-celery-dumplings.webp"
+                name="Пельмени со свининой и сельдереем"
+                category="Замороженные продукты · Пищевая мастерская"
+                description="Быстрозамороженные пельмени с сочной начинкой из свинины и сельдерея в тонкой обёртке из пшеничной муки Lisheng. Часть линии «Пищевая мастерская», готовы к OEM- и private-label-поставкам."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/frozen1/pork-and-chinese-chive-dumplings.webp"
+                name="Пельмени со свининой и китайским луком"
+                category="Замороженные продукты · Пищевая мастерская"
+                description="Быстрозамороженные пельмени со свининой и китайским луком, с ароматной, насыщенной начинкой и гладкой, упругой обёрткой. Доступны для производства под частной маркой."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/frozen1/pork-and-scallion-dumplings.webp"
+                name="Пельмени со свининой и зелёным луком"
+                category="Замороженные продукты · Пищевая мастерская"
+                description="Классические пельмени со свининой и зелёным луком, быстрозамороженные для сохранения свежести, с нежной обёрткой из муки Lisheng. Готовы к OEM."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/frozen1/pork-and-cabbage-dumplings.webp"
+                name="Пельмени со свининой и пекинской капустой"
+                category="Замороженные продукты · Пищевая мастерская"
+                description="Домашний фаворит — свинина с пекинской капустой в тонкой, эластичной обёртке, быстрозамороженные для лёгкой варки или приготовления на пару. Доступны для поставок под частной маркой."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/frozen1/fresh-pork-wonton.webp"
+                name="Вонтоны со свежей свининой"
+                category="Замороженные продукты · Пищевая мастерская"
+                description="Тонкокожие вонтоны со свежей свиной начинкой, быстрозамороженные для быстрых супов и бульонов. Часть линии «Пищевая мастерская»."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/frozen1/fresh-pork-wonton-classic-pack.webp"
+                name="Вонтоны со свежей свининой — классическая упаковка"
+                category="Замороженные продукты · Пищевая мастерская"
+                description="Классическая розничная упаковка наших вонтонов со свежей свининой — нежные обёртки и сочная начинка, готовы за минуты. Доступны для OEM и частной марки."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/frozen1/chinese-chive-and-egg-dumplings.webp"
+                name="Пельмени с китайским луком и яйцом"
+                category="Замороженные продукты · Пищевая мастерская"
+                description="Быстрозамороженные пельмени с начинкой из китайского лука и яйца — более лёгкий, овощной вариант линии «Пищевая мастерская». Готовы к OEM."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/frozen1/chinese-chive-and-egg-dumplings-2.webp"
+                name="Пельмени с китайским луком и яйцом"
+                category="Замороженные продукты · Lisheng Select"
+                description="Версия линии «Select» пельменей с луком и яйцом — быстрозамороженная вегетарианская начинка в гладкой обёртке из пшеничной муки. Доступны для поставок под частной маркой."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/frozen1/carrot-and-egg-dumplings.webp"
+                name="Пельмени с морковью и яйцом"
+                category="Замороженные продукты · Пищевая мастерская"
+                description="Быстрозамороженные пельмени с начинкой из моркови и яйца — естественно сладкие, яркие и богатые овощами. Готовы к OEM."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/frozen1/pork-and-sweet-corn-dumplings.webp"
+                name="Пельмени со свининой и сладкой кукурузой"
+                category="Замороженные продукты · Lisheng Select"
+                description="Свинина в сочетании со сладкой кукурузой для сочной, слегка сладкой начинки, быстрозамороженные в линии «Select». Доступны для производства под частной маркой."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/frozen1/pork-and-mushroom-dumplings.webp"
+                name="Пельмени со свининой и грибами"
+                category="Замороженные продукты · Lisheng Select"
+                description="Пельмени со свининой и грибами с насыщенной начинкой умами, быстрозамороженные для удобного приготовления. Часть линии «Select», готовы к OEM."
+              />
+              <ProductCard lang="ru"
+                image="/images/products/frozen1/pork-and-shepherd-s-purse-dumplings.webp"
+                name="Пельмени со свининой и пастушьей сумкой"
+                category="Замороженные продукты · Lisheng Select"
+                description="Сезонный фаворит — свинина с зеленью пастушьей сумки (цзицай), быстрозамороженные для сохранения свежего травянистого вкуса. Доступны для поставок под частной маркой."
+              />
+            </div>
+
+            <!-- ============ Noodle Products · Lisheng Series ============ -->
+            <div class="product-panel" data-product-panel="noodles-lisheng" hidden data-paginate>
+              {lishengNoodles.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <!-- ============ Noodle Products · Minsheng Series ============ -->
+            <div class="product-panel" data-product-panel="noodles-minsheng" hidden data-paginate>
+              {minshengNoodles.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+
+          <nav class="products-pagination" aria-label="Страницы продукции" data-products-pagination hidden>
+            <button class="products-page-nav" type="button" data-products-prev aria-label="Предыдущая страница">&lsaquo;</button>
+            <span class="products-page-status" data-products-status>1 / 1</span>
+            <button class="products-page-nav" type="button" data-products-next aria-label="Следующая страница">&rsaquo;</button>
+          </nav>
+
+          <div class="products-cta">
+            <div>
+              <h2>Не нашли нужный продукт в списке?</h2>
+              <p>
+                Мы разрабатываем индивидуальную лапшу и муку по вашим
+                спецификациям — размер, текстура, рецептура и упаковка.
+              </p>
+            </div>
+            <a class="products-cta-link" href={withBase("/ru/contact/")}>
+              Запросить расчёт <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="ru" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+
+    <script>
+      // Open the tab matching the URL hash (e.g. /products/#flour),
+      // including when a dropdown link is clicked while already on this page.
+      const activateFromHash = () => {
+        const cat = location.hash.replace("#", "");
+        if (!cat) return;
+        const tab = document.querySelector(`[data-product-tab="${cat}"]`);
+        if (tab instanceof HTMLElement) tab.click();
+      };
+      window.addEventListener("hashchange", activateFromHash);
+      activateFromHash();
+
+      // Tab dropdowns (Noodle + Flour, each with Lisheng / Minsheng series).
+      // Desktop reveals on hover (CSS); on touch the caret toggles it.
+      const tabGroups = Array.from(document.querySelectorAll("[data-tab-group]"));
+      tabGroups.forEach((group) => {
+        const caret = group.querySelector("[data-tab-caret]");
+        caret?.addEventListener("click", (event) => {
+          event.stopPropagation();
+          // close any other open group, then toggle this one
+          tabGroups.forEach((g) => g !== group && g.classList.remove("open"));
+          group.classList.toggle("open");
+        });
+        group
+          .querySelectorAll(".tab-dropdown [data-product-tab]")
+          .forEach((btn) =>
+            btn.addEventListener("click", () => {
+              group.classList.remove("open");
+              // drop focus so :focus-within doesn't keep the menu pinned open
+              (btn as HTMLElement).blur();
+            })
+          );
+      });
+      document.addEventListener("click", (event) => {
+        tabGroups.forEach((group) => {
+          if (!group.contains(event.target as Node)) group.classList.remove("open");
+        });
+      });
+
+      // Client-side pagination (12 per page) for the Noodle / Flour panels.
+      // Custom Solutions (8) and Frozen (12) have no [data-paginate] → nav hides.
+      const PAGE_SIZE = 12;
+      const pagNav = document.querySelector<HTMLElement>("[data-products-pagination]");
+      const pagPrev = document.querySelector<HTMLButtonElement>("[data-products-prev]");
+      const pagNext = document.querySelector<HTMLButtonElement>("[data-products-next]");
+      const pagStatus = document.querySelector("[data-products-status]");
+      const pageOf = new Map<Element, number>();
+
+      const itemsOf = (panel: Element) =>
+        Array.from(panel.querySelectorAll<HTMLElement>(".product-tile, .catalog-tile"));
+
+      // Track the active panel ourselves (independent of site.js tab toggling).
+      let currentPanel: Element | null = document.querySelector(
+        "[data-product-panel]:not([hidden])"
+      );
+
+      const renderPagination = () => {
+        const paged = !!currentPanel?.hasAttribute("data-paginate");
+        if (pagNav) pagNav.hidden = !paged;
+        if (!paged || !currentPanel) return;
+        const items = itemsOf(currentPanel);
+        const pages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
+        let page = pageOf.get(currentPanel) ?? 0;
+        if (page > pages - 1) page = pages - 1;
+        pageOf.set(currentPanel, page);
+        items.forEach((el, i) => {
+          el.hidden = i < page * PAGE_SIZE || i >= (page + 1) * PAGE_SIZE;
+        });
+        if (pagStatus) pagStatus.textContent = `${page + 1} / ${pages}`;
+        if (pagPrev) pagPrev.disabled = page === 0;
+        if (pagNext) pagNext.disabled = page === pages - 1;
+      };
+
+      const step = (delta: number) => {
+        if (!currentPanel?.hasAttribute("data-paginate")) return;
+        const pages = Math.max(
+          1,
+          Math.ceil(itemsOf(currentPanel).length / PAGE_SIZE)
+        );
+        const np = Math.max(
+          0,
+          Math.min((pageOf.get(currentPanel) ?? 0) + delta, pages - 1)
+        );
+        if (np === pageOf.get(currentPanel)) return;
+        pageOf.set(currentPanel, np);
+        renderPagination();
+        document
+          .querySelector(".product-tabs")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+
+      pagPrev?.addEventListener("click", () => step(-1));
+      pagNext?.addEventListener("click", () => step(1));
+
+      // On tab / sub-tab switch: point at the new panel and reset it to page 1.
+      document.querySelectorAll<HTMLElement>("[data-product-tab]").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const target = document.querySelector(
+            `[data-product-panel="${tab.dataset.productTab}"]`
+          );
+          if (!target) return;
+          currentPanel = target;
+          pageOf.set(target, 0);
+          renderPagination();
+        });
+      });
+
+      renderPagination();
+    </script>
+  </body>
+</html>

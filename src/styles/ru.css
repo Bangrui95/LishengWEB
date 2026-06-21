@@ -1,0 +1,35 @@
+/* Russian-page typography adjustments.
+ *
+ * The English pages use uppercase + wide letter-spacing on "eyebrow" labels and
+ * CTA buttons. Cyrillic tolerates uppercase well, but Russian strings run ~15%
+ * longer than English, so the main job here is to relax tracking a touch and
+ * keep longer words from overflowing fixed-width chrome (nav, buttons, tags).
+ * Layout is otherwise inherited unchanged from the shared English stylesheets.
+ */
+
+/* Looser tracking on uppercase labels reads cleaner in Cyrillic */
+html[lang="ru"] .page-kicker,
+html[lang="ru"] .company-kicker,
+html[lang="ru"] .quote-kicker,
+html[lang="ru"] .quote-section-heading p,
+html[lang="ru"] .quote-form-intro p,
+html[lang="ru"] .qc-step,
+html[lang="ru"] .wg-card-tag,
+html[lang="ru"] .news-card-copy time {
+  letter-spacing: 0.04em;
+}
+
+/* CTA / button text: trim the wide English tracking so longer Russian labels fit */
+html[lang="ru"] .company-cta-link,
+html[lang="ru"] .split-link,
+html[lang="ru"] .about-more,
+html[lang="ru"] .quote-primary,
+html[lang="ru"] .quote-secondary,
+html[lang="ru"] .quote-form-footer button {
+  letter-spacing: 0.03em;
+}
+
+/* Guard against long Russian words breaking out of cards and chips */
+html[lang="ru"] {
+  overflow-wrap: break-word;
+}

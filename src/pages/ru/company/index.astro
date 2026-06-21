@@ -1,0 +1,337 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/company-about.css";
+import "../../../styles/ru.css";
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>О компании | Lisheng International</title>
+    <meta
+      name="description"
+      content="Shandong Lisheng Group: основана в 1995 году, восемь компаний, шесть производственных баз — интегрированное предприятие хранения зерна, мукомольного производства, выпуска лапши и логистики."
+    />
+  </head>
+  <body>
+    <Header lang="ru" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="company-hero-title">
+        <img src={withBase("/images/company/about/lisheng.webp")} alt="Логотип Lisheng Group" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">О Lisheng Group</p>
+          <h1 id="company-hero-title">Компания</h1>
+          <p class="page-hero-copy">
+            Крупное китайское пищевое предприятие, объединяющее хранение зерна,
+            мукомольное производство, выпуск лапши, упаковку и логистику с 1995
+            года.
+          </p>
+        </div>
+      </section>
+
+      <!-- Who we are + key figures -->
+      <section class="page-section" aria-labelledby="company-about-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Кто мы</p>
+          <h2 id="company-about-title">
+            От уездной мельницы до интегрированного пищевого холдинга
+          </h2>
+
+          <div class="about-lead">
+            <img
+              src={withBase("/images/company/about/company.webp")}
+              alt="Головной офис Shandong Lisheng Group в Цзинине"
+            />
+          </div>
+
+          <p>
+            Shandong Lisheng Group основана в 1995 году, штаб-квартира
+            расположена в зоне высоких технологий города Цзинин провинции
+            Шаньдун. Из единственной уездной мельницы компания выросла в группу
+            из восьми предприятий — шести производственных баз, а также
+            подразделений пищевых технологий и упаковки, — расположенных в
+            ведущих регионах выращивания пшеницы Китая: Шаньдуне, Хэбэе и Хэнани,
+            со штатом более 1 300 человек.
+          </p>
+          <p>
+            Следуя корпоративной миссии «создавать дело, которое служит
+            повседневной жизни людей», Lisheng контролирует всю цепочку — от
+            закупки пшеницы и хранения зерна до мукомольного производства,
+            выпуска сухой лапши, собственной упаковки и логистики. На мельницах
+            установлены полные мукомольные системы Bühler в паре с контрольными
+            приборами Perten; ежесуточно перерабатывается до 7 000 тонн пшеницы и
+            выпускается до 560 тонн сухой лапши при собственных мощностях
+            хранения зерна 200 000 тонн.
+          </p>
+          <p>
+            Мука, сухая лапша и линейки под частными марками поставляются более
+            чем в 300 городов в 30 провинциях и в международные розничные сети,
+            включая Walmart, Carrefour, RT-Mart и China Resources Vanguard, а
+            сухая лапша также экспортируется в Юго-Восточную Азию и Европу. Каждая
+            база работает по системам ISO 9001, ISO 22000 и HACCP и имеет
+            национальные статусы «Надёжное зерно и масло» и «Зелёный продукт».
+          </p>
+
+          <div class="company-stats" aria-label="Ключевые показатели Lisheng Group">
+            <dl>
+              <dt>1995</dt>
+              <dd>Основана в Цзинине, Шаньдун</dd>
+            </dl>
+            <dl>
+              <dt>8</dt>
+              <dd>Компаний, в т.ч. 6 производственных баз</dd>
+            </dl>
+            <dl>
+              <dt>1 300<span>+</span></dt>
+              <dd>Сотрудников</dd>
+            </dl>
+            <dl>
+              <dt>7 000<span>тонн</span></dt>
+              <dd>Переработка пшеницы в сутки</dd>
+            </dl>
+            <dl>
+              <dt>560<span>тонн</span></dt>
+              <dd>Выпуск сухой лапши в сутки</dd>
+            </dl>
+            <dl>
+              <dt>200 000<span>тонн</span></dt>
+              <dd>Мощность хранения зерна</dd>
+            </dl>
+          </div>
+
+          <div class="about-gallery" aria-label="Внутри Lisheng">
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-lab.webp")}
+                alt="Лаборатория контроля качества Lisheng"
+                loading="lazy"
+              />
+              <figcaption>Центр контроля качества</figcaption>
+            </figure>
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-base-2.webp")}
+                alt="Интеллектуальная производственная база Lisheng"
+                loading="lazy"
+              />
+              <figcaption>Интеллектуальная производственная база</figcaption>
+            </figure>
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-silos.webp")}
+                alt="Зерновые силосы Lisheng"
+                loading="lazy"
+              />
+              <figcaption>Хранилище зерна на 200 000 тонн</figcaption>
+            </figure>
+          </div>
+
+          <div class="company-cta">
+            <div>
+              <h2>Сотрудничество с Lisheng</h2>
+              <p>
+                Закупайте готовые к экспорту лапшу и муку напрямую у
+                производителя с поддержкой OEM и частных марок.
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/ru/contact/")}>
+              Запросить расчёт <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mission & values -->
+      <section class="page-section alt" aria-labelledby="company-values-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Культура</p>
+          <h2 id="company-values-title">Наши принципы</h2>
+
+          <div class="value-grid">
+            <div class="value-card">
+              <h3>Миссия</h3>
+              <p>Создавать дело, которое служит повседневной жизни людей.</p>
+            </div>
+            <div class="value-card">
+              <h3>Видение</h3>
+              <p>Lisheng на век вперёд — интегрированное предприятие зелёных продуктов питания.</p>
+            </div>
+            <div class="value-card">
+              <h3>Дух</h3>
+              <p>Единство, развитие, честность и инновации.</p>
+            </div>
+            <div class="value-card">
+              <h3>Философия</h3>
+              <p>Первоклассное качество, нерушимая добросовестность.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- From wheat to table: production overview -->
+      <section class="page-section" aria-labelledby="company-process-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">От пшеницы до стола</p>
+          <h2 id="company-process-title">Единая производственная цепочка</h2>
+          <p>
+            Каждая база Lisheng построена в национальном регионе производства
+            элитной пшеницы. Зерно поступает в собственную систему хранения,
+            перемалывается на оборудовании международного уровня и выходит мукой
+            или сухой лапшой по единой, контролируемой по качеству цепочке.
+          </p>
+
+          <ol class="process-flow">
+            <li>
+              <h3>Закупка и хранение пшеницы</h3>
+              <p>
+                Элитная пшеница из Шаньдуна, Хэбэя и Хэнани при собственных
+                хранилищах на 200 000 тонн.
+              </p>
+            </li>
+            <li>
+              <h3>Помол муки</h3>
+              <p>
+                Мукомольные системы Bühler с низкотемпературной обработкой и
+                многоступенчатой очисткой.
+              </p>
+            </li>
+            <li>
+              <h3>Производство лапши</h3>
+              <p>
+                Автоматизированные линии типа 1000: замес, резка, сушка и
+                упаковка.
+              </p>
+            </li>
+            <li>
+              <h3>Упаковка и логистика</h3>
+              <p>
+                Собственные упаковочные мощности и логистическая сеть для
+                внутренних и экспортных заказов.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Product lab teaser -->
+      <section class="page-section alt" aria-labelledby="company-lab-title">
+        <div class="page-section-inner">
+          <div class="split-row reverse" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src={withBase("/images/company/about/product-lab-rd-quality-testing.webp")}
+                alt="Продуктовая лаборатория Lisheng — НИОКР и контроль качества"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">Исследования и качество</p>
+              <h3 id="company-lab-title">Продуктовая лаборатория</h3>
+              <p>
+                Независимая лаборатория разработки и испытаний продукции: анализ
+                сырья, корректировка рецептур, разработка текстуры лапши и
+                испытания пищевой безопасности — обеспечивает стабильное качество
+                мучной и макаронной продукции для разных рынков.
+              </p>
+              <a class="split-link" href={withBase("/ru/factory/lab/")}>
+                Подробнее о лаборатории
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Production facilities teaser -->
+      <section class="page-section" aria-labelledby="company-facilities-title">
+        <div class="page-section-inner">
+          <div class="split-row" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src={withBase("/images/company/about/automated-production-line.webp")}
+                alt="Автоматизированная производственная линия на заводе Lisheng"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">Масштаб производства</p>
+              <h3 id="company-facilities-title">Производственные мощности</h3>
+              <p>
+                Шесть производственных баз перерабатывают до 7 000 тонн пшеницы и
+                выпускают до 560 тонн сухой лапши в сутки. Флагманский завод в
+                Ляншане использует четыре интеллектуальные мукомольные линии под
+                полным управлением PLC и MES — производство практически
+                безлюдное, с дистанционным управлением.
+              </p>
+              <a class="split-link" href={withBase("/ru/factory/production/")}>
+                Подробнее о производстве
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications teaser -->
+      <section class="page-section alt" aria-labelledby="company-cert-title">
+        <div class="page-section-inner">
+          <div class="split-row reverse" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src={withBase("/images/company/about/quality-certifications-display.webp")}
+                alt="Стенд сертификатов качества Lisheng"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">Качество и признание</p>
+              <h3>Сертифицировано, отмечено наградами, надёжно</h3>
+              <p>
+                Lisheng работает по системам менеджмента ISO 9001, ISO 22000 и
+                HACCP. Пшеничная мука «Lisheng» удостоена звания «Топ-бренд
+                Китая» в 2007 году, а торговая марка Lisheng признана «Известной
+                торговой маркой Китая» в 2011 году.
+              </p>
+              <a class="split-link" href={withBase("/ru/factory/certificates/")}>
+                Смотреть сертификаты и награды
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Subsidiaries teaser -->
+      <section class="page-section" aria-labelledby="company-sub-title">
+        <div class="page-section-inner">
+          <div class="sub-intro">
+            <div class="sub-intro-copy">
+              <p class="company-kicker">Структура группы</p>
+              <h2 id="company-sub-title">Восемь дочерних компаний, одна цепочка поставок</h2>
+              <p>
+                От головного офиса в Цзинине до флагманского интеллектуального
+                завода в Ляншане — каждая дочерняя компания Lisheng играет свою
+                роль в цепочке группы: мука, лапша, пищевые технологии и упаковка.
+              </p>
+              <a class="split-link" href={withBase("/ru/company/subsidiaries/")}>
+                Познакомиться с дочерними компаниями
+              </a>
+            </div>
+            <div class="sub-intro-logo">
+              <img
+                src={withBase("/images/company/about/logo.webp")}
+                alt="Логотип Lisheng Group"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="ru" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

@@ -20,36 +20,49 @@ const {
   lang = "en",
 } = Astro.props;
 
-const isZh = lang === "zh";
-
-// In-component chrome (the bits not passed as props), localised.
-const t = isZh
-  ? {
-      fallback:
-        "可承接 OEM 与自有品牌项目，包装形式灵活、规格可定制、供货出口就绪。",
-      detailsLabel: `${name} 详情`,
-      close: "关闭产品详情",
-      points: [
-        "可做自有品牌与 OEM 包装",
-        "尺寸、口感与配方可定制",
-        "提供出口单证支持",
-      ],
-      cta: "启动自有品牌项目",
-      contactHref: "/zh/contact/",
-    }
-  : {
-      fallback:
-        "Available for OEM and private label programs with flexible packaging formats, customised specifications and export-ready supply.",
-      detailsLabel: `${name} details`,
-      close: "Close product details",
-      points: [
-        "Private label & OEM packaging available",
-        "Customisable size, texture and formulation",
-        "Export documentation support",
-      ],
-      cta: "Start a Private Label Project",
-      contactHref: "/contact/",
-    };
+// In-component chrome (the bits not passed as props), localised per language.
+const chrome = {
+  en: {
+    fallback:
+      "Available for OEM and private label programs with flexible packaging formats, customised specifications and export-ready supply.",
+    detailsLabel: `${name} details`,
+    close: "Close product details",
+    points: [
+      "Private label & OEM packaging available",
+      "Customisable size, texture and formulation",
+      "Export documentation support",
+    ],
+    cta: "Start a Private Label Project",
+    contactHref: "/contact/",
+  },
+  zh: {
+    fallback:
+      "可承接 OEM 与自有品牌项目，包装形式灵活、规格可定制、供货出口就绪。",
+    detailsLabel: `${name} 详情`,
+    close: "关闭产品详情",
+    points: [
+      "可做自有品牌与 OEM 包装",
+      "尺寸、口感与配方可定制",
+      "提供出口单证支持",
+    ],
+    cta: "启动自有品牌项目",
+    contactHref: "/zh/contact/",
+  },
+  ru: {
+    fallback:
+      "Доступно для OEM и проектов под частной маркой с гибкими форматами упаковки, индивидуальными спецификациями и готовыми к экспорту поставками.",
+    detailsLabel: `${name} — детали`,
+    close: "Закрыть детали продукта",
+    points: [
+      "Доступны частная марка и OEM-упаковка",
+      "Настраиваемые размер, текстура и рецептура",
+      "Поддержка экспортной документации",
+    ],
+    cta: "Запустить проект под частной маркой",
+    contactHref: "/ru/contact/",
+  },
+};
+const t = chrome[lang] ?? chrome.en;
 
 const detailText = description || t.fallback;
 const imageAlt = alt || name;

@@ -1,0 +1,269 @@
+---
+import { withBase } from "../../../lib/url";
+import ContactCta from "../../../components/ContactCta.astro";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/products-specs.css";
+import "../../../styles/ru.css";
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>Образцы и спецификации | Lisheng International</title>
+    <meta
+      name="description"
+      content="Технический справочник базовых продуктов Lisheng: размеры резки лапши от сверхтонкой до широкой ножевой, параметры сухой лапши и спецификации пшеничной муки по сериям."
+    />
+  </head>
+  <body>
+    <Header lang="ru" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="specs-hero-title">
+        <img
+          src={withBase("/images/products/products.webp")}
+          alt="Образцы классической лапши и муки Lisheng"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Технический справочник</p>
+          <h1 id="specs-hero-title">Образцы и спецификации</h1>
+          <p class="page-hero-copy">
+            Базовые продукты за каждой программой — виды резки лапши и мучные
+            основы с техническими данными, которые запрашивает ваша служба
+            контроля качества.
+          </p>
+        </div>
+      </section>
+
+      <!-- Noodle cut sizes -->
+      <section class="page-section" aria-labelledby="specs-cuts-title">
+        <div class="page-section-inner">
+          <p class="specs-kicker">Образцы классической лапши</p>
+          <h2 id="specs-cuts-title">Размеры резки лапши</h2>
+          <p>
+            Вся сухая лапша производится на автоматизированных линиях типа 1000 и
+            обозначается китайскими номерами резки. Ширина и время варки — два
+            параметра, определяющие вкусовые ощущения; выберите резку, затем
+            подберите мучную основу ниже.
+          </p>
+
+          <div class="specs-table-wrap">
+            <table class="specs-table">
+              <thead>
+                <tr>
+                  <th>Резка</th>
+                  <th>Прибл. ширина</th>
+                  <th>Профиль</th>
+                  <th>Время варки</th>
+                  <th>Лучше всего для</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>№0 «Драконья борода»</td>
+                  <td class="num">≈ 1,0 мм</td>
+                  <td>Тонкая круглая</td>
+                  <td class="num">3–4 мин</td>
+                  <td>Прозрачные супы, быстрые порции, блюда в стиле angel hair</td>
+                </tr>
+                <tr>
+                  <td>№1,5 Тонкая</td>
+                  <td class="num">≈ 1,5 мм</td>
+                  <td>Круглая или квадратная</td>
+                  <td class="num">4–5 мин</td>
+                  <td>Лёгкая суповая лапша, стиль даньдань, порционные упаковки</td>
+                </tr>
+                <tr>
+                  <td>№2 Классическая</td>
+                  <td class="num">≈ 1,8 мм</td>
+                  <td>Круглая</td>
+                  <td class="num">5–6 мин</td>
+                  <td>Повседневная суповая лапша, применения в стиле спагетти</td>
+                </tr>
+                <tr>
+                  <td>№3 Средняя</td>
+                  <td class="num">≈ 2,5 мм</td>
+                  <td>Круглая или плоская</td>
+                  <td class="num">6–7 мин</td>
+                  <td>Жарка и ло-мейн, лапша с соусом</td>
+                </tr>
+                <tr>
+                  <td>№6 Широкая плоская</td>
+                  <td class="num">≈ 6 мм</td>
+                  <td>Плоская лента</td>
+                  <td class="num">7–9 мин</td>
+                  <td>Тушёные блюда, густые соусы, блюда в стиле феттучини</td>
+                </tr>
+                <tr>
+                  <td>№10 Ножевая</td>
+                  <td class="num">10 мм</td>
+                  <td>Широкая, волнистый край</td>
+                  <td class="num">8–10 мин</td>
+                  <td>Сытные блюда северного стиля, фирменная широкая лапша</td>
+                </tr>
+                <tr>
+                  <td>Листы теста</td>
+                  <td class="num">Под заказ</td>
+                  <td>Тонкий лист</td>
+                  <td class="num">5–7 мин</td>
+                  <td>Хого, суповые листы, региональные блюда из листовой лапши</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dried noodle base parameters -->
+      <section class="page-section alt" aria-labelledby="specs-base-title">
+        <div class="page-section-inner">
+          <p class="specs-kicker">Общие параметры</p>
+          <h2 id="specs-base-title">Базовые данные сухой лапши</h2>
+
+          <dl class="specs-base">
+            <div>
+              <dt>Влажность ≤ 14,5%</dt>
+              <dd>
+                Контролируемая низкотемпературная сушка по китайским стандартам
+                сухой лапши для стабильного срока годности при перевозке.
+              </dd>
+            </div>
+            <div>
+              <dt>Срок годности 12–24 месяца</dt>
+              <dd>
+                Типичный диапазон в зависимости от рецептуры и упаковки;
+                подтверждается по каждому продукту в сертификате анализа.
+              </dd>
+            </div>
+            <div>
+              <dt>Содержание соли — регулируемое</dt>
+              <dd>
+                Стандартные рецептуры или с пониженным содержанием натрия под
+                требования маркировки вашего рынка.
+              </dd>
+            </div>
+            <div>
+              <dt>Длина лапши — настраиваемая</dt>
+              <dd>
+                Стандартная длина для розничных упаковок или резка по вашей
+                спецификации для HoReCa.
+              </dd>
+            </div>
+            <div>
+              <dt>Вес нетто 150 г – 4 кг</dt>
+              <dd>
+                От порционных упаковок до оптовых HoReCa-коробов с подходящими
+                конфигурациями короба.
+              </dd>
+            </div>
+            <div>
+              <dt>Партионный контроль</dt>
+              <dd>
+                Каждая партия отгружается с записями контроля под управлением
+                ISO 22000 / HACCP.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Flour specifications -->
+      <section class="page-section" aria-labelledby="specs-flour-title">
+        <div class="page-section-inner">
+          <p class="specs-kicker">Мучные основы</p>
+          <h2 id="specs-flour-title">Пшеничная мука по сериям</h2>
+          <p>
+            Мука определяет текстуру. Это базовые серии, которые наши мельницы
+            выпускают ежедневно — приведены типичные значения; точные показатели
+            подтверждаются в сертификате анализа с каждым заказом.
+          </p>
+
+          <div class="specs-table-wrap">
+            <table class="specs-table">
+              <thead>
+                <tr>
+                  <th>Серия</th>
+                  <th>Белок (типично)</th>
+                  <th>Сырая клейковина</th>
+                  <th>Влажность</th>
+                  <th>Лучше всего для</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Сильная клейковина</td>
+                  <td class="num">≥ 12,5%</td>
+                  <td class="num">≥ 32%</td>
+                  <td class="num">≤ 14,5%</td>
+                  <td>Плотная лапша, премиальная выпечка, продукты с высоким содержанием клейковины</td>
+                </tr>
+                <tr>
+                  <td>Сердцевина пшеницы</td>
+                  <td class="num">≈ 13%</td>
+                  <td class="num">30–33%</td>
+                  <td class="num">≤ 14,5%</td>
+                  <td>Премиальная лапша и обёртки для пельменей</td>
+                </tr>
+                <tr>
+                  <td>Снежинка</td>
+                  <td class="num">11–12,5%</td>
+                  <td class="num">28–32%</td>
+                  <td class="num">≤ 14,5%</td>
+                  <td>Паровые булочки, баоцзы, повседневная лапша</td>
+                </tr>
+                <tr>
+                  <td>Высокорафинированная</td>
+                  <td class="num">10,5–12%</td>
+                  <td class="num">26–30%</td>
+                  <td class="num">≤ 14,5%</td>
+                  <td>Лепёшки и жареные на сковороде продукты</td>
+                </tr>
+                <tr>
+                  <td>Пельменная</td>
+                  <td class="num">12–13%</td>
+                  <td class="num">≥ 30%</td>
+                  <td class="num">≤ 14,5%</td>
+                  <td>Полупрозрачные эластичные обёртки для пельменей и вонтонов</td>
+                </tr>
+                <tr>
+                  <td>Цельнозерновая</td>
+                  <td class="num">12–13,5%</td>
+                  <td class="num">—</td>
+                  <td class="num">≤ 14,5%</td>
+                  <td>Лапша с высоким содержанием клетчатки и цельнозерновая выпечка</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="specs-note">
+            <p>
+              Приведённые значения ориентировочны и основаны на китайских
+              национальных стандартах (GB/T, LS/T) и нашем регулярном
+              производстве. Полный сертификат анализа сопровождает каждый заказ,
+              а образцы доступны для проверки в вашей лаборатории.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <ContactCta
+        kicker="Нужен полный технический паспорт?"
+        title="Запросите полные спецификации и образцы."
+        text="Укажите вид резки, мучную основу и целевой рынок — мы пришлём полный паспорт, формат сертификата анализа и физические образцы для вашей службы контроля качества."
+        buttonLabel="Запросить спецификации"
+        buttonHref="/ru/contact/"
+      />
+    </main>
+
+    <Footer showCta={false} lang="ru" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

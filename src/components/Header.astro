@@ -1,15 +1,22 @@
 ---
 import { withBase } from "../lib/url";
-import { getUI, localizeHref, type Lang } from "../lib/i18n";
+import {
+  getUI,
+  localizeHref,
+  languageAlternates,
+  langLabels,
+  type Lang,
+} from "../lib/i18n";
 import "../styles/header.css";
 
-// `lang` selects the label set; `langAltHref` is the same page in the other
-// language (when omitted the switcher stays a placeholder).
+// `lang` selects the label set. The language switcher is derived automatically
+// from the current path, so every language sees all the others. (`langAltHref`
+// is accepted for backward compatibility with older pages but is unused.)
 interface Props {
   lang?: Lang;
   langAltHref?: string;
 }
-const { lang = "en", langAltHref } = Astro.props;
+const { lang = "en" } = Astro.props;
 const t = getUI(lang).nav;
 const ui = getUI(lang);
 
@@ -17,7 +24,18 @@ const ui = getUI(lang);
 // version (see `zhReady` in lib/i18n.ts); everything else stays English.
 const localize = (href: string) => localizeHref(href, lang);
 
-const currentPath = Astro.url.pathname;
+// Astro.url.pathname includes the configured base (e.g. /LishengWEB/...), but
+// nav hrefs and the language routes are base-less — strip it so active-state
+// matching and the language switcher compare like for like.
+const BASE = import.meta.env.BASE_URL;
+const rawPath = Astro.url.pathname;
+const currentPath =
+  BASE !== "/" && rawPath.startsWith(BASE)
+    ? "/" + rawPath.slice(BASE.length)
+    : BASE !== "/" && rawPath === BASE.replace(/\/$/, "")
+      ? "/"
+      : rawPath;
+const langAlts = languageAlternates(currentPath);
 const navItems = [
   { href: localize("/"), label: t.home },
   {
@@ -58,8 +76,14 @@ const navItems = [
   { href: localize("/contact/"), label: t.contact }
 ];
 
+// Home / language roots ("/", "/zh/", "/ru/") must match exactly — otherwise
+// the localized home link ("/ru/") prefixes every page under that language and
+// would stay highlighted everywhere. Other leaves match by prefix as usual.
+const isRoot = (href: string) => href === "/" || /^\/[a-z]{2}\/$/.test(href);
 const isActive = (href: string) => {
-  if (href === "/") return currentPath === "/";
+  if (isRoot(href)) {
+    return currentPath === href || currentPath === href.replace(/\/$/, "");
+  }
   return currentPath.startsWith(href);
 };
 
@@ -120,12 +144,16 @@ const navActive = (item: { href: string; children?: { href: string }[] }) =>
     )}
   </nav>
 
-  <a class="quote-link" href={withBase("/contact/")}>{ui.quote}</a>
+  <a class="quote-link" href={withBase(localize("/contact/"))}>{ui.quote}</a>
 
   <div class="nav-item has-dropdown lang-switch">
-    <a href="#" aria-haspopup="true" aria-label="Language">{ui.langCurrent}</a>
+    <a href="#" aria-haspopup="true" aria-label="Language">{langLabels[lang]}</a>
     <div class="nav-dropdown" aria-label="Languages">
-      <a href={langAltHref ? withBase(langAltHref) : "#"}>{ui.langOther}</a>
+      {langAlts
+        .filter((alt) => !alt.current)
+        .map((alt) => (
+          <a href={withBase(alt.href)} hreflang={alt.code}>{alt.label}</a>
+        ))}
     </div>
   </div>
 </header>

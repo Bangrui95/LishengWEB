@@ -7,7 +7,7 @@
  * URLs are kept constant across languages for now: Chinese labels point at the
  * existing English sub-pages until those get their own /zh/ versions.
  */
-export type Lang = "en" | "zh";
+export type Lang = "en" | "zh" | "ru";
 
 export const ui = {
   en: {
@@ -126,35 +126,160 @@ export const ui = {
       secondary: "定制您的产品",
     },
   },
+  ru: {
+    htmlLang: "ru",
+    nav: {
+      home: "Главная",
+      company: "Компания",
+      about: "О компании",
+      honors: "Награды и сертификаты",
+      subsidiaries: "Дочерние компании",
+      factory: "Производство",
+      smartFactory: "Умный завод",
+      foodLab: "Пищевая лаборатория",
+      certifications: "Сертификация продукции",
+      factoryTour: "Экскурсия по заводу",
+      services: "Услуги",
+      oem: "Контрактное производство",
+      customization: "Индивидуальная разработка",
+      products: "Продукция",
+      ownProducts: "Собственная продукция",
+      noodleProducts: "Продукция из лапши",
+      flourProducts: "Мучная продукция",
+      partner: "Партнёрское сотрудничество",
+      specifications: "Образцы и спецификации",
+      news: "Новости",
+      contact: "Контакты",
+    },
+    quote: "Запросить расчёт",
+    footer: {
+      desc: "Производство лапши на экспорт, выпуск продукции под частной маркой и упаковочные решения для мировых пищевых брендов, импортёров и дистрибьюторов сегмента HoReCa.",
+      company: "Компания",
+      factory: "Производство",
+      services: "Услуги",
+      products: "Продукция",
+      contact: "Контакты",
+      news: "Новости",
+      about: "О компании",
+      certifications: "Сертификаты",
+      oemShort: "Контрактное производство",
+      allProducts: "Вся продукция",
+      noodleProducts: "Продукция из лапши",
+      flourProducts: "Мучная продукция",
+      specifications: "Спецификации",
+      startProject: "Запустить проект под частной маркой",
+      requestSamples: "Запросить образцы",
+      latestNews: "Последние новости",
+      rights: "© 2026 Lisheng. Все права защищены.",
+      privacy: "Политика конфиденциальности",
+      terms: "Условия использования",
+    },
+    cta: {
+      kicker: "Готовы запустить производство лапши под своей маркой?",
+      title: "Создадим вашу линейку лапши под частной маркой.",
+      text: "Расскажите о вашем рынке, идее продукта и целевых объёмах — наша экспортная команда подготовит практичное производственное предложение.",
+      button: "Связаться с нами",
+      secondary: "Настроить продукт",
+    },
+  },
 } as const;
 
 export function getUI(lang: Lang) {
   return ui[lang] ?? ui.en;
 }
 
-// Routes that already have a Chinese version under /zh/. Header and Footer use
-// `localizeHref` to point their links at the zh page when lang === "zh";
-// everything else stays on the shared English page. Add routes here as the
-// matching zh page is built — both nav and footer pick it up automatically.
-export const zhReady = new Set<string>([
-  "/",
-  "/company/",
-  "/company/honors/",
-  "/company/subsidiaries/",
-  "/factory/production/",
-  "/factory/lab/",
-  "/factory/certificates/",
-  "/services/",
-  "/services/customization/",
-  "/contact/",
-  "/products/",
-  "/products/specifications/",
-  "/news/",
-]);
+// Display order + labels for the language switcher. English is the base tree at
+// `/`; every other language lives under `/<code>/`. Add a language here once its
+// page tree exists and the switcher picks it up everywhere automatically.
+export const langOrder: Lang[] = ["en", "zh", "ru"];
+export const langLabels: Record<Lang, string> = {
+  en: "EN",
+  zh: "中文",
+  ru: "Русский",
+};
+
+// Routes that have a translated version under /<code>/. English is the base, so
+// it is implicitly "ready" for everything. Header and Footer use `localizeHref`
+// to point links at the localized page; anything not listed falls back to the
+// shared English page. Add routes here as the matching page is built — nav and
+// footer pick it up automatically.
+export const readyByLang: Record<Exclude<Lang, "en">, Set<string>> = {
+  zh: new Set<string>([
+    "/",
+    "/company/",
+    "/company/honors/",
+    "/company/subsidiaries/",
+    "/factory/production/",
+    "/factory/lab/",
+    "/factory/certificates/",
+    "/services/",
+    "/services/customization/",
+    "/contact/",
+    "/products/",
+    "/products/specifications/",
+    "/news/",
+  ]),
+  // Russian: full site except News (News stays English for now).
+  ru: new Set<string>([
+    "/",
+    "/company/",
+    "/company/honors/",
+    "/company/subsidiaries/",
+    "/factory/production/",
+    "/factory/lab/",
+    "/factory/certificates/",
+    "/services/",
+    "/services/customization/",
+    "/contact/",
+    "/products/",
+    "/products/specifications/",
+  ]),
+};
+
+function isReady(route: string, lang: Lang): boolean {
+  if (lang === "en") return true;
+  return readyByLang[lang]?.has(route) ?? false;
+}
 
 export function localizeHref(href: string, lang: Lang): string {
-  if (lang !== "zh") return href;
-  const path = href.split("#")[0];
-  if (!zhReady.has(path)) return href;
-  return path === "/" ? "/zh/" : "/zh" + href;
+  if (lang === "en") return href;
+  const route = href.split("#")[0];
+  if (!isReady(route, lang)) return href;
+  return route === "/" ? `/${lang}/` : `/${lang}${href}`;
+}
+
+// Split a pathname into its language and the canonical (English) route, so the
+// switcher can map the current page to its equivalent in every language.
+export function splitLangPath(pathname: string): { lang: Lang; route: string } {
+  for (const code of langOrder) {
+    if (code === "en") continue;
+    if (pathname === `/${code}` || pathname === `/${code}/`) {
+      return { lang: code, route: "/" };
+    }
+    if (pathname.startsWith(`/${code}/`)) {
+      return { lang: code, route: pathname.slice(code.length + 1) };
+    }
+  }
+  return { lang: "en", route: pathname };
+}
+
+export interface LangAlternate {
+  code: Lang;
+  label: string;
+  href: string;
+  current: boolean;
+}
+
+// All languages for the current page. A language that lacks this exact route
+// (e.g. News in Russian) falls back to that language's home page.
+export function languageAlternates(pathname: string): LangAlternate[] {
+  const { lang: current, route } = splitLangPath(pathname);
+  return langOrder.map((code) => {
+    const href = isReady(route, code)
+      ? localizeHref(route, code)
+      : code === "en"
+        ? "/"
+        : `/${code}/`;
+    return { code, label: langLabels[code], href, current: code === current };
+  });
 }

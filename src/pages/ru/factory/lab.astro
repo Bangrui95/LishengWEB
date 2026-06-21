@@ -1,0 +1,361 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/factory-lab.css";
+import "../../../styles/ru.css";
+
+const PAT = withBase("/images/factory/patents");
+
+// Patent certificate scans (portrait) — invention name in Russian + source file.
+const patents = [
+  { img: "patent-01.webp", name: "Регулируемый трёхвальцовый увлажнитель пшеницы" },
+  { img: "patent-02.webp", name: "Компактный ручной пылесос для мукомольного оборудования" },
+  { img: "patent-03.webp", name: "Рассев с функцией охлаждения" },
+  { img: "patent-04.webp", name: "Мобильная ситовеечная машина с лёгким монтажом" },
+  { img: "patent-05.webp", name: "Амортизирующее основание обоечной машины" },
+  { img: "patent-06.webp", name: "Высокоэффективное легкоочищаемое вибросито" },
+  { img: "patent-07.webp", name: "Камнеотборник с функцией транспортировки" },
+  { img: "patent-08.webp", name: "Легкоочищаемая обоечная машина" },
+  { img: "patent-09.webp", name: "Конвейерный узел мукофасовочной машины" },
+  { img: "patent-10.webp", name: "Удобное устройство для удержания мешков с мукой" },
+];
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>Пищевая лаборатория | Lisheng International</title>
+    <meta
+      name="description"
+      content="Лаборатория разработки продукции Lisheng Group: разработка рецептур муки и лапши, исследование текстуры, инновации в цельнозерновом каменном помоле и 10+ патентов на изобретения в пищевом производстве."
+    />
+  </head>
+  <body>
+    <Header lang="ru" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="lab-hero-title">
+        <img src={withBase("/images/factory/lab/product-development-laboratory.webp")} alt="Лаборатория разработки продукции Lisheng" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Исследования и разработки</p>
+          <h1 id="lab-hero-title">Продуктовая лаборатория</h1>
+          <p class="page-hero-copy">
+            Независимая система разработки, охватывающая муку, сухую лапшу и
+            продукты на основе зерна — от испытаний сырья до тестирования
+            упаковки.
+          </p>
+        </div>
+      </section>
+
+      <!-- R&D capability -->
+      <section class="page-section" aria-labelledby="lab-rd-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Чем занимается лаборатория</p>
+          <h2 id="lab-rd-title">От зерна до готовой к рынку рецептуры</h2>
+          <p>
+            Продуктовая команда Lisheng работает над испытаниями сырья,
+            корректировкой рецептур, разработкой текстуры лапши и тестированием
+            упаковки. Помимо разработки, специалисты лаборатории пищевой
+            безопасности участвуют на каждом этапе производства — отбирают пробы
+            и контролируют по всей линии, чтобы весь процесс оставался
+            безопасным, прослеживаемым и под надёжным контролем.
+          </p>
+
+          <div class="machine-grid">
+            <div>
+              <dt>Разработка рецептур</dt>
+              <dd>
+                Испытание и корректировка рецептур муки и теста под разные
+                требования к продукту — от лапши с высоким содержанием клейковины
+                до многозлаковых и овощных рецептур.
+              </dd>
+            </div>
+            <div>
+              <dt>Исследование текстуры и варки</dt>
+              <dd>
+                Размер, толщина, эластичность лапши и поведение при варке
+                настраиваются под каждый целевой рынок и способ приготовления.
+              </dd>
+            </div>
+            <div>
+              <dt>Оптимизация процессов</dt>
+              <dd>
+                Стабильность производства повышается за счёт собственных
+                запатентованных технологий пищевой переработки ещё до выхода
+                продукта на линию.
+              </dd>
+            </div>
+            <div>
+              <dt>Испытания упаковки</dt>
+              <dd>
+                Форматы упаковки, материалы и поведение при хранении проверяются
+                на собственных упаковочных мощностях группы.
+              </dd>
+            </div>
+          </div>
+
+          <div class="media-trio" aria-label="Фотографии лаборатории и НИОКР">
+            <img
+              src={withBase("/images/factory/lab/rd-specialist-checking-noodle-samples.webp")}
+              alt="Специалист НИОКР проверяет образцы лапши"
+            />
+            <img
+              src={withBase("/images/factory/lab/rd-team-product-development.webp")}
+              alt="Команда НИОКР обсуждает детали разработки продукта"
+            />
+            <img
+              src={withBase("/images/factory/lab/noodle-research-sample-testing.webp")}
+              alt="Исследование лапши и испытание образцов"
+            />
+          </div>
+
+          <div class="qc-flow" aria-label="Контроль качества по всей производственной цепочке">
+            <div class="qc-card">
+              <p class="qc-step">Этап 01</p>
+              <h3>Испытание сырья</h3>
+              <p>
+                Каждая поставка пшеницы отбирается и профилируется на приборах
+                Perten — влажность, белок, сырая клейковина, число падения и
+                зольность. Принимается только зерно, отвечающее спецификации, а
+                результаты определяют, как каждая партия распределяется по
+                бункерам по сорту и качеству.
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">Этап 02</p>
+              <h3>Проверки перед переработкой</h3>
+              <p>
+                Перед помолом лаборатория проверяет очистку и кондиционирование
+                (увлажнение) и утверждает смесь пшеницы — в соответствии с
+                целевыми показателями влажности и белка каждого сорта муки. Это
+                основа подхода Lisheng «смешивание по сорту и качеству».
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">Этап 03</p>
+              <h3>Контроль в процессе в реальном времени</h3>
+              <p>
+                На протяжении помола и производства лапши потоки муки отбираются
+                по линии и проверяются на зольность, белизну, влажность и
+                крупность. Показания возвращаются через систему MES, чтобы вальцы
+                и ситовейки можно было корректировать на ходу.
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">Этап 04</p>
+              <h3>Контроль готовой продукции</h3>
+              <p>
+                Готовая мука и лапша проходят физико-химический, органолептический
+                (варка и текстура) и санитарный контроль перед выпуском.
+                Контрольные образцы и партионные записи обеспечивают полную
+                прослеживаемость по ISO 22000 и HACCP — а также экспортную
+                документацию, нужную покупателям.
+              </p>
+            </div>
+          </div>
+
+          <div class="company-cta">
+            <div>
+              <h2>Разработайте продукт вместе с нашей лабораторией</h2>
+              <p>
+                Приходите с целевым продуктом или брифом по рынку — наша команда
+                возьмёт на себя рецептуру, текстуру, упаковку и образцы.
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/ru/contact/")}>
+              Начать проект <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Whole grain innovation -->
+      <section class="page-section alt" aria-labelledby="lab-wholegrain-title">
+        <div class="page-section-inner">
+          <div class="split-row" style="margin-top: 0;">
+            <div class="split-media wg-media">
+              <img
+                src={withBase("/images/factory/certificates/wholewheat-series.webp")}
+                alt="Упаковка серии цельнозерновой муки каменного помола Lisheng"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">Новейший продукт · 2025</p>
+              <h3 id="lab-wholegrain-title">Линия цельнозерновой продукции каменного помола</h3>
+              <p>
+                Lisheng располагает отдельным цехом цельнозерновой продукции —
+                самостоятельным зданием площадью 1 200 м² на трёх этажах,
+                спланированным по современным стандартам переработки. Он
+                охватывает всю внутреннюю цепочку: очистку, хранение и смешивание
+                зерна, обоечную обработку и очистку пшеницы, цветовую сортировку,
+                каменный помол и смешивание муки.
+              </p>
+              <p>
+                Каждая партия проходит единый контролируемый процесс — обработка
+                чистой пшеницы → стерилизация → цветовая сортировка пшеницы →
+                очистка → датский каменный помол → обжаривание и смешивание
+                отрубей.
+              </p>
+            </div>
+          </div>
+
+          <h4 class="wg-subhead">Как процесс сохраняет питательность</h4>
+          <div class="wg-feature-cards">
+            <div class="wg-card">
+              <p class="wg-card-tag">Низкая температура</p>
+              <h5>Каменный помол на низкой скорости и при низкой температуре</h5>
+              <p>
+                Нижний вращающийся каменный диск мелет на низкой скорости, а
+                точная система автоматического контроля удерживает температуру
+                помола в безопасном диапазоне — явное преимущество для сохранения
+                питательных веществ цельнозерновой муки.
+              </p>
+            </div>
+            <div class="wg-card">
+              <p class="wg-card-tag">Питательность сохранена</p>
+              <h5>Сохранение питательности</h5>
+              <p>
+                Тот же автоматический контроль температуры предотвращает
+                клейстеризацию крахмала и денатурацию белка, поэтому мука
+                сохраняет природный пищевой профиль пшеницы.
+              </p>
+            </div>
+            <div class="wg-card">
+              <p class="wg-card-tag">Обжаривание отрубей</p>
+              <h5>Инновация обжаривания отрубей</h5>
+              <p>
+                Высокотемпературное обжаривание отрубей улучшает вкус и
+                стабильность хранения отрубей и способствует пищеварению —
+                повышая общее потребительское качество цельнозерновой муки.
+              </p>
+            </div>
+          </div>
+
+          <h4 class="wg-subhead">Что внутри цельнозерновой муки</h4>
+          <p class="wg-lead">
+            Цельнозерновая мука перемалывается из цельного зерна пшеницы,
+            сохраняя все три его ценных компонента.
+          </p>
+          <dl class="machine-grid tri">
+            <div>
+              <dt>Отруби</dt>
+              <dd>Богаты пищевыми волокнами, витаминами группы B и минералами.</dd>
+            </div>
+            <div>
+              <dt>Эндосперм</dt>
+              <dd>Даёт качественные углеводы и белок.</dd>
+            </div>
+            <div>
+              <dt>Зародыш</dt>
+              <dd>
+                Насыщен витамином E, ненасыщенными жирными кислотами и
+                антиоксидантами.
+              </dd>
+            </div>
+          </dl>
+
+        </div>
+      </section>
+
+      <!-- Patents -->
+      <section class="page-section" aria-labelledby="lab-patents-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">Интеллектуальная собственность</p>
+          <h2 id="lab-patents-title">Запатентованные технологии помола и производства</h2>
+          <p>
+            Lisheng владеет портфелем национальных патентов на собственное
+            мукомольное и мукопроизводственное оборудование — от увлажнения,
+            обоечной обработки и камнеотбора пшеницы до просеивания, очистки и
+            фасовки. Эти собственные разработки повышают эффективность очистки,
+            стабильность машин и время безотказной работы линий, обеспечивая
+            стабильное промышленное качество. Нажмите на любой сертификат, чтобы
+            открыть оригинал.
+          </p>
+
+          <div class="patent-showcase">
+            <ul class="patent-list" role="tablist" aria-label="Список патентов">
+              {patents.map((p, i) => (
+                <li>
+                  <button
+                    type="button"
+                    class="patent-tab"
+                    role="tab"
+                    aria-selected={i === 0 ? "true" : "false"}
+                    data-patent-src={`${PAT}/${p.img}`}
+                    data-patent-name={p.name}
+                  >
+                    <span class="patent-tab-name">{p.name}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            <figure class="patent-viewer">
+              <a
+                id="patent-link"
+                href={`${PAT}/${patents[0].img}`}
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  id="patent-image"
+                  src={`${PAT}/${patents[0].img}`}
+                  alt={`Патентный сертификат Lisheng — ${patents[0].name}`}
+                />
+              </a>
+              <figcaption id="patent-caption">{patents[0].name}</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="ru" />
+    <script>
+      const tabs = document.querySelectorAll(".patent-tab");
+      const img = document.getElementById("patent-image");
+      const link = document.getElementById("patent-link");
+      const caption = document.getElementById("patent-caption");
+      const list = document.querySelector(".patent-list");
+
+      // Lock the certificate image height to the list (text) height on desktop,
+      // letting its width follow — pure CSS can't reference the sibling's height.
+      function fitPatentImage() {
+        if (!list || !img) return;
+        if (window.innerWidth <= 900) {
+          img.style.maxHeight = "";
+          return;
+        }
+        const padding = 36; // viewer top + bottom padding (18 × 2)
+        const capH = caption ? caption.offsetHeight + 16 : 0;
+        img.style.maxHeight =
+          Math.max(160, list.offsetHeight - padding - capH) + "px";
+      }
+      fitPatentImage();
+      window.addEventListener("resize", fitPatentImage);
+      window.addEventListener("load", fitPatentImage);
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const src = tab.dataset.patentSrc;
+          const name = tab.dataset.patentName;
+          img.src = src;
+          img.alt = `Патентный сертификат Lisheng — ${name}`;
+          link.href = src;
+          caption.textContent = name;
+          tabs.forEach((t) => t.setAttribute("aria-selected", "false"));
+          tab.setAttribute("aria-selected", "true");
+          fitPatentImage();
+        });
+      });
+    </script>
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

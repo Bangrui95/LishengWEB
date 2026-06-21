@@ -1,0 +1,340 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/customization.css";
+import "../../../styles/ru.css";
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>Индивидуальная разработка продукта | Lisheng International</title>
+    <meta
+      name="description"
+      content="Соберите свой продукт-лапшу шаг за шагом: сырьё, рецептура, форма, образцы, стандарты качества, объём, упаковка и условия экспорта."
+    />
+  </head>
+  <body>
+    <Header lang="ru" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="customization-hero-title">
+        <img
+          src={withBase("/images/main/products444.webp")}
+          alt="Индивидуальные продукты-лапша, разработанные Lisheng"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Сделано по вашей спецификации</p>
+          <h1 id="customization-hero-title">Индивидуальная разработка продукта</h1>
+          <p class="page-hero-copy">
+            Пройдите девять шагов, выберите то, что подходит вашему рынку, и
+            отправьте нам бриф — остальное мы спроектируем.
+          </p>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="config-title">
+        <div class="page-section-inner">
+          <p class="config-kicker">Составьте бриф на продукт</p>
+          <h2 id="config-title">Настройте свою программу по лапше</h2>
+          <p>
+            Каждый вариант ниже — реальная возможность наших заводов. Выберите
+            нужное на каждом шаге, а то, в чём не уверены, пропустите — наша
+            команда подскажет.
+          </p>
+
+          <!-- STEP 01 -->
+          <div class="config-step">
+            <span class="config-step-num">ШАГ 01</span>
+            <h3>Экспортный рынок</h3>
+            <p>
+              Где будет продаваться продукт? Ваши рынки определяют наши
+              рекомендации по соответствию, форматам и вкусовому направлению —
+              отметьте все подходящие.
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">Юго-Восточная Азия</button>
+              <button type="button">Восточная Азия (Япония / Корея)</button>
+              <button type="button">Европа</button>
+              <button type="button">Северная Америка</button>
+              <button type="button">Южная Америка</button>
+              <button type="button">Ближний Восток и Африка</button>
+              <button type="button">Океания</button>
+              <button type="button">Несколько / другие рынки</button>
+            </div>
+          </div>
+
+          <!-- STEP 02 -->
+          <div class="config-step">
+            <span class="config-step-num">ШАГ 02</span>
+            <h3>Тип продукта</h3>
+            <p>
+              Выберите базовый продукт для вашего бренда — китайская классика
+              или международные стили, всё на одной пшеничной экспертизе.
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">Китайская сухая лапша</button>
+              <button type="button">Рамэн</button>
+              <button type="button">Удон</button>
+              <button type="button">Соба / гречневая</button>
+              <button type="button">Спагетти</button>
+              <button type="button">Листы теста</button>
+              <button type="button">Региональная китайская серия</button>
+              <button type="button">Свой тип продукта</button>
+            </div>
+          </div>
+
+          <!-- STEP 03 -->
+          <div class="config-step">
+            <span class="config-step-num">ШАГ 03</span>
+            <h3>Сырьё</h3>
+            <p>
+              Выберите мучную основу по позиционированию — от экономичных
+              повседневных линеек до премиальных и оздоровительных ($ =
+              ориентировочный ценовой уровень).
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">Стандартная пшеничная мука $</button>
+              <button type="button">Мука из сердцевины пшеницы $$</button>
+              <button type="button">Мука с высоким содержанием клейковины $$</button>
+              <button type="button">Цельнозерновая мука $$$</button>
+              <button type="button">Многозлаковая смесь $$$</button>
+              <button type="button">Указать своё сырьё</button>
+            </div>
+          </div>
+
+          <!-- STEP 04 -->
+          <div class="config-step">
+            <span class="config-step-num">ШАГ 04</span>
+            <h3>Направление рецептуры</h3>
+            <p>
+              Опишите ожидаемые вкусовые ощущения вашего рынка — или принесите
+              свой рецепт, и мы адаптируем его под промышленное производство.
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">Упругая и эластичная (Восточная Азия)</button>
+              <button type="button">Мягкая и быстрого приготовления</button>
+              <button type="button">Плотная в стиле пасты (аль денте)</button>
+              <button type="button">Цельнозерновая с высоким содержанием клетчатки</button>
+              <button type="button">С добавлением яйца</button>
+              <button type="button">Овощная смесь</button>
+              <button type="button">Использовать мой рецепт</button>
+            </div>
+          </div>
+
+          <!-- STEP 05 -->
+          <div class="config-step">
+            <span class="config-step-num">ШАГ 05</span>
+            <h3>Форма и размер</h3>
+            <p>
+              Ширина резки, профиль и длина — китайские номера резки с ближайшими
+              западными аналогами пасты.
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">Сверхтонкая круглая (№0 / Angel Hair)</button>
+              <button type="button">Тонкая круглая (№2 / спагетти)</button>
+              <button type="button">Средняя (№3 / лингвини)</button>
+              <button type="button">Широкая плоская (№6 / феттучини)</button>
+              <button type="button">Широкая ножевая (№10 / паппарделле)</button>
+              <button type="button">Свой размер</button>
+            </div>
+          </div>
+
+          <!-- STEP 06 -->
+          <div class="config-step">
+            <span class="config-step-num">ШАГ 06</span>
+            <h3>Тестирование образцов</h3>
+            <p>Проверьте продукт до любых обязательств по объёму.</p>
+            <div class="config-options" data-config-group>
+              <button type="button">Международная доставка образцов</button>
+              <button type="button">Видеообзор образца</button>
+              <button type="button">Визит на завод и аудит</button>
+            </div>
+          </div>
+
+          <!-- STEP 07 -->
+          <div class="config-step">
+            <span class="config-step-num">ШАГ 07</span>
+            <h3>Качество и сертификация</h3>
+            <p>
+              Выберите все стандарты, которым должен соответствовать продукт —
+              можно несколько.
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">ISO 9001 / 22000 / HACCP (база)</button>
+              <button type="button">Соответствие рынку ЕС</button>
+              <button type="button">Соответствие рынку США</button>
+              <button type="button">Требования халяль</button>
+              <button type="button">Независимые лабораторные испытания</button>
+              <button type="button">Стандарт, заданный клиентом</button>
+            </div>
+          </div>
+
+          <!-- STEP 08 -->
+          <div class="config-step">
+            <span class="config-step-num">ШАГ 08</span>
+            <h3>Объём и график</h3>
+            <p>
+              Ритм заказов под ваш канал — начните с малого, масштабируйтесь на
+              наших резервных мощностях.
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">Пробный заказ (≤ 1 контейнера)</button>
+              <button type="button">Ежемесячная поставка контейнерами</button>
+              <button type="button">Квартальная программа</button>
+              <button type="button">Годовое рамочное соглашение</button>
+              <button type="button">Пока не уверен</button>
+            </div>
+          </div>
+
+          <!-- STEP 09 -->
+          <div class="config-step">
+            <span class="config-step-num">ШАГ 09</span>
+            <h3>Упаковка и экспорт</h3>
+            <p>
+              Выберите формат упаковки для вашего канала, затем укажите, как
+              доставить товар.
+            </p>
+            <p class="config-group-label">Формат упаковки</p>
+            <div class="config-options" data-config-group>
+              <button type="button">Розничная упаковка-подушка</button>
+              <button type="button">Связка в бумажной обёртке</button>
+              <button type="button">Семейная упаковка с ручкой</button>
+              <button type="button">Оптовый HoReCa-короб</button>
+              <button type="button">Полностью индивидуальная упаковка</button>
+            </div>
+            <p class="config-group-label">Условия экспорта</p>
+            <div class="config-options" data-config-group>
+              <button type="button">Доставка до вашего порта (CIF)</button>
+              <button type="button">Вы организуете фрахт (FOB)</button>
+              <button type="button">Самовывоз с завода (EXW)</button>
+              <button type="button">Нужен совет</button>
+            </div>
+          </div>
+
+          <!-- Save & contact -->
+          <div class="config-step">
+            <h3>Довольны конфигурацией?</h3>
+            <p>
+              Отправьте её нашей экспортной команде — мы ответим с направлением
+              по образцам, спецификациями и маршрутом расчёта.
+            </p>
+            <div class="config-save-actions">
+              <a class="config-save-link" href={withBase("/ru/contact/")}>
+                Сохранить и отправить запрос <span aria-hidden="true">→</span>
+              </a>
+              <button type="button" class="config-reset" data-config-reset>
+                Сбросить
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer showCta={false} lang="ru" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+
+    <script>
+      // Storage key for a group = its sub-label (step 9 has two groups) or,
+      // failing that, the step's h3 title.
+      function groupKey(step, group) {
+        const prev = group.previousElementSibling;
+        if (prev && prev.classList.contains("config-group-label")) {
+          return prev.textContent.trim();
+        }
+        const h3 = step.querySelector("h3");
+        return h3 ? h3.textContent.trim() : "";
+      }
+
+      // Every group is multi-select: click toggles a button on/off.
+      document.querySelectorAll("[data-config-group] button").forEach((btn) => {
+        btn.addEventListener("click", () => btn.classList.toggle("selected"));
+      });
+
+      // Clear every selection and the stored data. The Reset button and a
+      // browser refresh both run this, which also resets the contact page
+      // (it reads these same sessionStorage keys).
+      function clearConfig() {
+        document
+          .querySelectorAll("[data-config-group] button.selected")
+          .forEach((b) => b.classList.remove("selected"));
+        sessionStorage.removeItem("lisheng-customization");
+        sessionStorage.removeItem("lisheng-customization-types");
+      }
+
+      // Re-apply the saved picks (used when returning via "Edit").
+      function restoreConfig() {
+        let saved = null;
+        try {
+          const raw = sessionStorage.getItem("lisheng-customization");
+          if (raw) saved = JSON.parse(raw);
+        } catch (e) {}
+        if (!saved) return;
+        document.querySelectorAll(".config-step").forEach((step) => {
+          step.querySelectorAll("[data-config-group]").forEach((group) => {
+            const picked = saved[groupKey(step, group)] || [];
+            group.querySelectorAll("button").forEach((b) => {
+              if (picked.indexOf(b.textContent.trim()) !== -1) {
+                b.classList.add("selected");
+              }
+            });
+          });
+        });
+      }
+
+      // On load: returning via "Edit" (?edit=1) restores the saved picks; any
+      // other load — a fresh visit or a plain refresh — starts clean (which
+      // also clears the contact page). After restoring we drop the ?edit flag,
+      // so a later refresh resets as expected.
+      if (new URLSearchParams(location.search).has("edit")) {
+        restoreConfig();
+        history.replaceState(null, "", location.pathname);
+      } else {
+        clearConfig();
+      }
+
+      const resetBtn = document.querySelector("[data-config-reset]");
+      if (resetBtn) resetBtn.addEventListener("click", clearConfig);
+
+      // Save & Send: collect selections, persist to sessionStorage, then jump
+      // to the contact page with a flag so it shows the "filled" state.
+      const saveLink = document.querySelector(".config-save-link");
+      if (saveLink) {
+        saveLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          const selections = {};
+          document.querySelectorAll(".config-step").forEach((step) => {
+            step.querySelectorAll("[data-config-group]").forEach((group) => {
+              const picked = Array.from(
+                group.querySelectorAll("button.selected")
+              ).map((b) => b.textContent.trim());
+              if (picked.length) selections[groupKey(step, group)] = picked;
+            });
+          });
+
+          sessionStorage.setItem(
+            "lisheng-customization",
+            JSON.stringify(selections)
+          );
+          sessionStorage.setItem(
+            "lisheng-customization-types",
+            JSON.stringify(selections["Тип продукта"] || [])
+          );
+
+          const href = saveLink.getAttribute("href");
+          const sep = href.indexOf("?") === -1 ? "?" : "&";
+          // Land directly on the inquiry form (#quote-form) instead of the top.
+          location.href = href + sep + "from=customization#quote-form";
+        });
+      }
+    </script>
+  </body>
+</html>

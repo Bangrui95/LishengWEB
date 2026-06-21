@@ -21,8 +21,9 @@ const localize = (href: string) => localizeHref(href, lang);
     title={ui.cta.title}
     text={ui.cta.text}
     buttonLabel={ui.cta.button}
+    buttonHref={localize("/contact/")}
     secondaryLabel={ui.cta.secondary}
-    secondaryHref="/services/customization/"
+    secondaryHref={localize("/services/customization/")}
   />
 )}
 
@@ -31,7 +32,7 @@ const localize = (href: string) => localizeHref(href, lang);
     <div class="footer-brand">
       <img src={withBase("/images/icon/logo-white.webp")} alt="Lisheng logo" />
       <p>{f.desc}</p>
-      <a class="footer-quote" href={withBase("/contact/")}>{ui.quote}</a>
+      <a class="footer-quote" href={withBase(localize("/contact/"))}>{ui.quote}</a>
 
       {/* Social links — platforms not ready yet, all point to Contact for now; swap in real account URLs later */}
       <div class="footer-social" aria-label="Social media">
@@ -105,7 +106,7 @@ const localize = (href: string) => localizeHref(href, lang);
       {/* Privacy / Terms pages not built yet — render as non-clickable text */}
       <span class="footer-disabled">{f.privacy}</span>
       <span class="footer-disabled">{f.terms}</span>
-      <a href={withBase("/contact/")}>{f.contact}</a>
+      <a href={withBase(localize("/contact/"))}>{f.contact}</a>
     </div>
   </div>
 </footer>
