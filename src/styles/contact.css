@@ -321,7 +321,7 @@
 
 .quote-form-layout {
   width: min(var(--page-max), calc(100% - var(--page-gutter)));
-  margin: 26px auto 0;
+  margin: 14px auto 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(300px, 0.4fr);
   gap: 40px;
@@ -329,7 +329,7 @@
 }
 
 .quote-form {
-  padding: 42px;
+  padding: 42px 42px 24px;
   border: 1px solid #e6e0d6;
   background: #fff;
   /* When arriving via #quote-form (after saving a customization), leave room
@@ -427,6 +427,13 @@
   accent-color: var(--accent-red);
 }
 
+/* When the updates checkbox sits on the submit-button row, drop its top margin
+   and center it against the button. */
+.quote-form-footer .quote-check {
+  margin-top: 0;
+  align-items: center;
+}
+
 .quote-form-footer {
   display: flex;
   align-items: center;
@@ -472,6 +479,14 @@
 .quote-form-footer p {
   max-width: 420px;
   margin: 0;
+  color: #7b746c;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* Legal note — sits directly under the message field. */
+.quote-form-note {
+  margin: 14px 0 0;
   color: #7b746c;
   font-size: 14px;
   line-height: 1.55;
@@ -865,15 +880,25 @@
   overflow: hidden;
 }
 
-/* Inquiry submit status message (pending / success / error). */
+/* Inquiry submit status message (pending / success / error).
+   The row is always present and reserves its height, so showing a message
+   fills the pre-allocated space instead of pushing the form taller. When empty
+   it is transparent/borderless — just blank card space. */
 .quote-form-status {
-  margin-top: 12px;
-  padding: 12px 16px;
-  border-left: 3px solid #999;
-  background: #f7f0e6;
+  box-sizing: border-box;
+  min-height: 40px;
+  margin-top: 10px;
+  padding: 9px 16px;
+  border-left: 3px solid transparent;
+  background: transparent;
   font-size: 14px;
   line-height: 1.5;
   color: #333;
+}
+
+.quote-form-status[data-state="pending"] {
+  border-left-color: #999;
+  background: #f7f0e6;
 }
 
 .quote-form-status[data-state="success"] {

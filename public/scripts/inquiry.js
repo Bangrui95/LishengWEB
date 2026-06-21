@@ -13,6 +13,8 @@
     sending: form.getAttribute("data-msg-sending") || "Sending…",
     success: form.getAttribute("data-msg-success") || "Thank you — your inquiry has been received.",
     error: form.getAttribute("data-msg-error") || "Something went wrong. Please try again.",
+    invalidEmail: form.getAttribute("data-msg-invalid-email") || form.getAttribute("data-msg-error") || "Please enter a valid email address.",
+    missing: form.getAttribute("data-msg-missing") || form.getAttribute("data-msg-error") || "Please fill in all required fields.",
   };
 
   function setStatus(type, text) {
@@ -61,7 +63,12 @@
           var block = document.querySelector("[data-customization-block]");
           if (block) block.dataset.customizationBlock = "";
         } else {
-          setStatus("error", msg.error);
+          // A 400 means the input was rejected — show exactly which problem it
+          // was (bad email / missing field) instead of a generic failure.
+          var err = result && result.error;
+          if (err === "invalid_email") setStatus("error", msg.invalidEmail);
+          else if (err === "missing_fields") setStatus("error", msg.missing);
+          else setStatus("error", msg.error);
         }
       })
       .catch(function () {

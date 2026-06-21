@@ -73,7 +73,7 @@ import "../../styles/ru.css";
           <p>Форма запроса</p>
           <h2 id="quote-form-title">Расскажите о вашем проекте по лапше.</h2>
           <span>
-            Поля, отмеченные *, помогают нам быстрее подготовить точное предложение.
+            Мы храним ваши данные в безопасности и конфиденциальности. Поля с * обязательны.
           </span>
         </div>
 
@@ -87,6 +87,8 @@ import "../../styles/ru.css";
             data-msg-sending="Отправляем ваш запрос…"
             data-msg-success="Спасибо! Ваш запрос получен. Наша команда свяжется с вами в ближайшее время."
             data-msg-error="Извините, не удалось отправить запрос. Попробуйте ещё раз или напишите нам на lishengnoodles@gmail.com."
+            data-msg-invalid-email="Неверный адрес эл. почты. Укажите полный адрес, например name@company.com."
+            data-msg-missing="Заполнены не все обязательные поля. Заполните все поля, отмеченные *."
           >
             <input type="hidden" name="customization" data-customization-input />
             <div class="hp-field" aria-hidden="true">
@@ -98,13 +100,13 @@ import "../../styles/ru.css";
 
             <div class="form-grid">
               <label>
-                Имя*
-                <input type="text" name="first-name" autocomplete="given-name" required />
+                Имя
+                <input type="text" name="first-name" autocomplete="given-name" />
               </label>
 
               <label>
-                Фамилия*
-                <input type="text" name="last-name" autocomplete="family-name" required />
+                Фамилия
+                <input type="text" name="last-name" autocomplete="family-name" />
               </label>
 
               <label>
@@ -123,8 +125,8 @@ import "../../styles/ru.css";
               </label>
 
               <label>
-                Страна / рынок*
-                <input type="text" name="country" autocomplete="country-name" required />
+                Страна / рынок
+                <input type="text" name="country" autocomplete="country-name" />
               </label>
 
               <label>
@@ -199,19 +201,18 @@ import "../../styles/ru.css";
               </label>
 
               <label class="form-wide">
-                Ваше сообщение*
+                Ваше сообщение
                 <textarea
                   name="message"
-                  required
                   placeholder="Расскажите о целевом рынке, вкусовом направлении, идее упаковки, сертификации и сроках."
                 ></textarea>
               </label>
             </div>
 
-            <label class="quote-check">
-              <input type="checkbox" name="updates" />
-              <span>Я хочу получать новости о продуктах и OEM-производстве.</span>
-            </label>
+            <p class="quote-form-note">
+              Отправляя форму, вы соглашаетесь, что Lisheng может связаться с
+              вами по вашему запросу.
+            </p>
 
             <div class="quote-form-footer">
               <button type="submit">
@@ -221,12 +222,13 @@ import "../../styles/ru.css";
                 </svg>
                 Отправить запрос
               </button>
-              <p>
-                Отправляя форму, вы соглашаетесь, что Lisheng может связаться с
-                вами по вашему запросу. Поля с * обязательны.
-              </p>
-              <p class="quote-form-status" data-form-status role="status" aria-live="polite" hidden></p>
+              <label class="quote-check">
+                <input type="checkbox" name="updates" />
+                <span>Я хочу получать последние новости и обновления Lisheng.</span>
+              </label>
             </div>
+
+            <p class="quote-form-status" data-form-status role="status" aria-live="polite"></p>
           </form>
 
           <aside class="quote-side-panel" aria-label="Сопровождение запроса">
@@ -289,7 +291,7 @@ import "../../styles/ru.css";
               </svg>
             </span>
             <h3>E-mail</h3>
-            <p><a href="mailto:lsjt2000@126.com">lsjt2000@126.com</a></p>
+            <p><a href="mailto:lishengnoodles@gmail.com">lishengnoodles@gmail.com</a></p>
           </article>
 
           <article class="quote-contact-card">

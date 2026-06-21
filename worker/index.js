@@ -15,7 +15,7 @@ const DEFAULT_FROM = "Lisheng Website <inquiry@lishengnoodles.com>";
 const HONEYPOT_FIELD = "lisheng_hp";
 
 // Required for a usable inquiry (must match the form's `name` attributes).
-const REQUIRED = ["first-name", "last-name", "email", "company", "country", "product-category", "message"];
+const REQUIRED = ["email", "company", "product-category"];
 
 // Order + human labels for the email body. Optional fields are skipped when empty.
 const FIELD_LABELS = [

@@ -73,7 +73,7 @@ import "../../styles/zh.css";
           <p>询盘表单</p>
           <h2 id="quote-form-title">向我们介绍您的挂面项目。</h2>
           <span>
-            带 * 的字段有助于我们更快、更清晰地为您准备方案。
+            我们将确保您的信息安全保密。带 * 的字段为必填项。
           </span>
         </div>
 
@@ -87,6 +87,8 @@ import "../../styles/zh.css";
             data-msg-sending="正在发送您的询盘……"
             data-msg-success="感谢您的咨询，我们已收到，会尽快与您联系。"
             data-msg-error="抱歉，提交失败，请稍后重试，或直接发邮件至 lishengnoodles@gmail.com。"
+            data-msg-invalid-email="邮箱地址有误，请填写完整的邮箱地址（如 name@company.com）。"
+            data-msg-missing="有必填项未填写，请填好所有带 * 的字段。"
           >
             <input type="hidden" name="customization" data-customization-input />
             <div class="hp-field" aria-hidden="true">
@@ -98,13 +100,13 @@ import "../../styles/zh.css";
 
             <div class="form-grid">
               <label>
-                名*
-                <input type="text" name="first-name" autocomplete="given-name" required />
+                名
+                <input type="text" name="first-name" autocomplete="given-name" />
               </label>
 
               <label>
-                姓*
-                <input type="text" name="last-name" autocomplete="family-name" required />
+                姓
+                <input type="text" name="last-name" autocomplete="family-name" />
               </label>
 
               <label>
@@ -123,8 +125,8 @@ import "../../styles/zh.css";
               </label>
 
               <label>
-                国家 / 市场*
-                <input type="text" name="country" autocomplete="country-name" required />
+                国家 / 市场
+                <input type="text" name="country" autocomplete="country-name" />
               </label>
 
               <label>
@@ -196,19 +198,17 @@ import "../../styles/zh.css";
               </label>
 
               <label class="form-wide">
-                您的留言*
+                您的留言
                 <textarea
                   name="message"
-                  required
                   placeholder="请告诉我们您的目标市场、口味方向、包装构想、认证要求与时间安排。"
                 ></textarea>
               </label>
             </div>
 
-            <label class="quote-check">
-              <input type="checkbox" name="updates" />
-              <span>我愿意接收产品与 OEM 代加工相关资讯。</span>
-            </label>
+            <p class="quote-form-note">
+              提交本表单即表示您同意利生就您的询盘与您联系。
+            </p>
 
             <div class="quote-form-footer">
               <button type="submit">
@@ -218,11 +218,13 @@ import "../../styles/zh.css";
                 </svg>
                 提交询盘
               </button>
-              <p>
-                提交本表单即表示您同意利生就您的询盘与您联系。带 * 的字段为必填项。
-              </p>
-              <p class="quote-form-status" data-form-status role="status" aria-live="polite" hidden></p>
+              <label class="quote-check">
+                <input type="checkbox" name="updates" />
+                <span>我希望收到 Lisheng 的最新动态与新闻。</span>
+              </label>
             </div>
+
+            <p class="quote-form-status" data-form-status role="status" aria-live="polite"></p>
           </form>
 
           <aside class="quote-side-panel" aria-label="询盘支持说明">
@@ -285,7 +287,7 @@ import "../../styles/zh.css";
               </svg>
             </span>
             <h3>邮箱</h3>
-            <p><a href="mailto:lsjt2000@126.com">lsjt2000@126.com</a></p>
+            <p><a href="mailto:lishengnoodles@gmail.com">lishengnoodles@gmail.com</a></p>
           </article>
 
           <article class="quote-contact-card">

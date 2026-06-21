@@ -72,7 +72,7 @@ import "../styles/contact.css";
           <p>Inquiry Form</p>
           <h2 id="quote-form-title">Tell us about your noodle project.</h2>
           <span>
-            Fields marked with * help us prepare a clearer, faster proposal.
+            We keep your information secure and confidential. Fields with * are mandatory.
           </span>
         </div>
 
@@ -86,6 +86,8 @@ import "../styles/contact.css";
             data-msg-sending="Sending your inquiry…"
             data-msg-success="Thank you — your inquiry has been received. Our team will get back to you shortly."
             data-msg-error="Sorry, we couldn't send your inquiry. Please try again, or email us directly at lishengnoodles@gmail.com."
+            data-msg-invalid-email="The email address looks incorrect. Please enter a complete address, e.g. name@company.com."
+            data-msg-missing="Some required fields are missing. Please fill in every field marked with *."
           >
             <input type="hidden" name="customization" data-customization-input />
             <div class="hp-field" aria-hidden="true">
@@ -97,13 +99,13 @@ import "../styles/contact.css";
 
             <div class="form-grid">
               <label>
-                First name*
-                <input type="text" name="first-name" autocomplete="given-name" required />
+                First name
+                <input type="text" name="first-name" autocomplete="given-name" />
               </label>
 
               <label>
-                Last name*
-                <input type="text" name="last-name" autocomplete="family-name" required />
+                Last name
+                <input type="text" name="last-name" autocomplete="family-name" />
               </label>
 
               <label>
@@ -122,8 +124,8 @@ import "../styles/contact.css";
               </label>
 
               <label>
-                Country / Market*
-                <input type="text" name="country" autocomplete="country-name" required />
+                Country / Market
+                <input type="text" name="country" autocomplete="country-name" />
               </label>
 
               <label>
@@ -198,19 +200,18 @@ import "../styles/contact.css";
               </label>
 
               <label class="form-wide">
-                Your message*
+                Your message
                 <textarea
                   name="message"
-                  required
                   placeholder="Tell us about your target market, flavor direction, packaging idea, certifications, and timeline."
                 ></textarea>
               </label>
             </div>
 
-            <label class="quote-check">
-              <input type="checkbox" name="updates" />
-              <span>I would like to receive product and OEM manufacturing updates.</span>
-            </label>
+            <p class="quote-form-note">
+              By submitting this form, you agree that Lisheng may contact you
+              about your inquiry.
+            </p>
 
             <div class="quote-form-footer">
               <button type="submit">
@@ -220,12 +221,13 @@ import "../styles/contact.css";
                 </svg>
                 Submit Inquiry
               </button>
-              <p>
-                By submitting this form, you agree that Lisheng may contact you
-                about your inquiry. Fields with * are mandatory.
-              </p>
-              <p class="quote-form-status" data-form-status role="status" aria-live="polite" hidden></p>
+              <label class="quote-check">
+                <input type="checkbox" name="updates" />
+                <span>I'd like to receive the latest news and updates from Lisheng.</span>
+              </label>
             </div>
+
+            <p class="quote-form-status" data-form-status role="status" aria-live="polite"></p>
           </form>
 
           <aside class="quote-side-panel" aria-label="Inquiry support details">
@@ -288,7 +290,7 @@ import "../styles/contact.css";
               </svg>
             </span>
             <h3>E-mail</h3>
-            <p><a href="mailto:lsjt2000@126.com">lsjt2000@126.com</a></p>
+            <p><a href="mailto:lishengnoodles@gmail.com">lishengnoodles@gmail.com</a></p>
           </article>
 
           <article class="quote-contact-card">
