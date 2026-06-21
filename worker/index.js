@@ -80,16 +80,19 @@ async function handleSubmit(request, env) {
   const to = env.INQUIRY_TO || DEFAULT_TO;
   const from = env.INQUIRY_FROM || DEFAULT_FROM;
 
+  // Every field is always listed (consistent layout for archiving); empty
+  // fields show a muted "None" instead of being dropped.
   const rows = FIELD_LABELS
-    .filter(([name]) => String(data[name] || "").trim())
-    .map(
-      ([name, label]) =>
-        `<tr><td style="padding:6px 14px 6px 0;vertical-align:top;color:#666;white-space:nowrap;">${escapeHtml(
-          label
-        )}</td><td style="padding:6px 0;vertical-align:top;color:#111;white-space:pre-wrap;">${escapeHtml(
-          data[name]
-        )}</td></tr>`
-    )
+    .map(([name, label]) => {
+      const raw = String(data[name] || "").trim();
+      const value = raw || "None";
+      const valueColor = raw ? "#111" : "#aaa";
+      return `<tr><td style="padding:6px 14px 6px 0;vertical-align:top;color:#666;white-space:nowrap;">${escapeHtml(
+        label
+      )}</td><td style="padding:6px 0;vertical-align:top;color:${valueColor};white-space:pre-wrap;">${escapeHtml(
+        value
+      )}</td></tr>`;
+    })
     .join("");
 
   const wantsUpdates = data.updates ? "Yes" : "No";
@@ -107,8 +110,8 @@ async function handleSubmit(request, env) {
     <p style="color:#aaa;margin:18px 0 0;font-size:12px;">Reply directly to this email to respond to the customer.</p>
   </div>`;
 
-  const text = FIELD_LABELS.filter(([name]) => String(data[name] || "").trim())
-    .map(([name, label]) => `${label}: ${data[name]}`)
+  const text = FIELD_LABELS
+    .map(([name, label]) => `${label}: ${String(data[name] || "").trim() || "None"}`)
     .join("\n");
 
   const fullName = `${data["first-name"]} ${data["last-name"]}`.trim();
