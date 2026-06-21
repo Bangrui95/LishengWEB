@@ -1,0 +1,13 @@
+{
+  // Cloudflare Worker config for the Lisheng site.
+  // Serves the built static site (./dist) and runs worker/index.js for the
+  // dynamic /api/submit inquiry endpoint.
+  "name": "lishengnoodles",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-06-21",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  }
+}

@@ -78,8 +78,23 @@ import "../../styles/zh.css";
         </div>
 
         <div class="quote-form-layout">
-          <form id="quote-form" class="quote-form" action="#" method="post">
+          <form
+            id="quote-form"
+            class="quote-form"
+            action="/api/submit"
+            method="post"
+            data-lang="zh"
+            data-msg-sending="正在发送您的询盘……"
+            data-msg-success="感谢您的咨询，我们已收到，会尽快与您联系。"
+            data-msg-error="抱歉，提交失败，请稍后重试，或直接发邮件至 lishengnoodles@gmail.com。"
+          >
             <input type="hidden" name="customization" data-customization-input />
+            <div class="hp-field" aria-hidden="true">
+              <label
+                >请勿填写此栏
+                <input type="text" name="lisheng_hp" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
 
             <div class="form-grid">
               <label>
@@ -206,6 +221,7 @@ import "../../styles/zh.css";
               <p>
                 提交本表单即表示您同意利生就您的询盘与您联系。带 * 的字段为必填项。
               </p>
+              <p class="quote-form-status" data-form-status role="status" aria-live="polite" hidden></p>
             </div>
           </form>
 
@@ -287,6 +303,7 @@ import "../../styles/zh.css";
 
     <Footer lang="zh" showCta={false} />
     <script is:inline src={withBase("/scripts/site.js")} defer></script>
+    <script is:inline src={withBase("/scripts/inquiry.js")} defer></script>
 
     <script>
       // 产品定制状态行：若访客来自“产品定制”页（或已存在保存的选择），

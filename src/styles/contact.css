@@ -855,3 +855,35 @@
     font-size: 14px;
   }
 }
+
+/* Honeypot: off-screen, invisible to real users; bots that fill it are dropped. */
+.hp-field {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Inquiry submit status message (pending / success / error). */
+.quote-form-status {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-left: 3px solid #999;
+  background: #f7f0e6;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.quote-form-status[data-state="success"] {
+  border-left-color: #2e7d32;
+  background: #eaf4ea;
+  color: #1f5d22;
+}
+
+.quote-form-status[data-state="error"] {
+  border-left-color: #d71920;
+  background: #fbecec;
+  color: #a11217;
+}

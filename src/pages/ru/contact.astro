@@ -78,8 +78,23 @@ import "../../styles/ru.css";
         </div>
 
         <div class="quote-form-layout">
-          <form id="quote-form" class="quote-form" action="#" method="post">
+          <form
+            id="quote-form"
+            class="quote-form"
+            action="/api/submit"
+            method="post"
+            data-lang="ru"
+            data-msg-sending="Отправляем ваш запрос…"
+            data-msg-success="Спасибо! Ваш запрос получен. Наша команда свяжется с вами в ближайшее время."
+            data-msg-error="Извините, не удалось отправить запрос. Попробуйте ещё раз или напишите нам на lishengnoodles@gmail.com."
+          >
             <input type="hidden" name="customization" data-customization-input />
+            <div class="hp-field" aria-hidden="true">
+              <label
+                >Оставьте это поле пустым
+                <input type="text" name="lisheng_hp" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
 
             <div class="form-grid">
               <label>
@@ -210,6 +225,7 @@ import "../../styles/ru.css";
                 Отправляя форму, вы соглашаетесь, что Lisheng может связаться с
                 вами по вашему запросу. Поля с * обязательны.
               </p>
+              <p class="quote-form-status" data-form-status role="status" aria-live="polite" hidden></p>
             </div>
           </form>
 
@@ -292,6 +308,7 @@ import "../../styles/ru.css";
 
     <Footer showCta={false} lang="ru" />
     <script is:inline src={withBase("/scripts/site.js")} defer></script>
+    <script is:inline src={withBase("/scripts/inquiry.js")} defer></script>
 
     <script>
       // Product customization status row.

@@ -77,8 +77,23 @@ import "../styles/contact.css";
         </div>
 
         <div class="quote-form-layout">
-          <form id="quote-form" class="quote-form" action="#" method="post">
+          <form
+            id="quote-form"
+            class="quote-form"
+            action="/api/submit"
+            method="post"
+            data-lang="en"
+            data-msg-sending="Sending your inquiry…"
+            data-msg-success="Thank you — your inquiry has been received. Our team will get back to you shortly."
+            data-msg-error="Sorry, we couldn't send your inquiry. Please try again, or email us directly at lishengnoodles@gmail.com."
+          >
             <input type="hidden" name="customization" data-customization-input />
+            <div class="hp-field" aria-hidden="true">
+              <label
+                >Leave this field empty
+                <input type="text" name="lisheng_hp" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
 
             <div class="form-grid">
               <label>
@@ -209,6 +224,7 @@ import "../styles/contact.css";
                 By submitting this form, you agree that Lisheng may contact you
                 about your inquiry. Fields with * are mandatory.
               </p>
+              <p class="quote-form-status" data-form-status role="status" aria-live="polite" hidden></p>
             </div>
           </form>
 
@@ -291,6 +307,7 @@ import "../styles/contact.css";
 
     <Footer showCta={false} />
     <script is:inline src={withBase("/scripts/site.js")} defer></script>
+    <script is:inline src={withBase("/scripts/inquiry.js")} defer></script>
 
     <script>
       // Product customization status row.
