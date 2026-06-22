@@ -1,0 +1,158 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/company-subsidiaries.css";
+import "../../../styles/ko.css";
+
+// One entry per subsidiary — swap the placeholder images later.
+const subsidiaries = [
+  {
+    name: "Shandong Lisheng Food Group Co., Ltd.",
+    year: "1995",
+    kicker: "본사 · 지닝",
+    image: "/images/company/subsidiaries/jining-hq.webp",
+    facts: ["지닝시·산둥", "임직원 450명 이상", "밀 1,100톤/일", "면 200톤/일"],
+    copy: "그룹의 중핵 기업이자 창업의 땅. 지닝시 첨단산업개발구 류항에 위치합니다. 대규모 엔지니어·관리 팀을 포함한 450명 이상의 임직원을 보유하며, Bühler 설비와 Perten 검사 기기로 하루 밀 1,100톤을 처리하고 건면 200톤과 쌀 200톤을 생산합니다. 3개 제품 시리즈는 60품목 이상에 이르며, 30개 성 300개 이상 도시에 공급됩니다. 공장은 ISO 9001, ISO 14001, ISO 22000 인증을 취득하고, 국가 '신뢰할 수 있는 곡물·유지' 및 '무공해 농산물' 인정을 받았으며, 2011년 11월에는 'Lisheng' 상표가 '중국 저명 상표'로 인정되었습니다.",
+  },
+  {
+    name: "Shandong Lisheng Group Wenshang Flour Co., Ltd.",
+    year: "2005",
+    kicker: "생산 거점 · 원상",
+    image: "/images/company/subsidiaries/wenshang.webp",
+    facts: ["원상·지닝", "임직원 300명 이상", "밀 1,000톤/일", "면 200톤/일"],
+    copy: "2005년에 자본금 4,000만 위안으로 설립된 100% 출자 자회사. 원상현의 우량 밀 산지, 국도 105호 인근 33,000m²의 부지에 있으며 도로·철도·수운에 인접해 있습니다. 약 300명의 임직원이 제분·제면 일관 생산을 담당하며, Bühler 설비와 Perten 기기로 하루 밀 1,000톤을 처리하고 건면 200톤을 생산합니다. 2개 시리즈 60품목 이상이 국내 260개 이상 도시에 공급됩니다. ISO 9001, ISO 14001, ISO 22000 인증을 취득했으며, 제품은 '산둥 10대 제분 브랜드' 및 '전국 저명 건면 브랜드'에 선정되었습니다.",
+  },
+  {
+    name: "Shandong Lisheng Group Chengwu Food Co., Ltd.",
+    year: "2008",
+    kicker: "생산 거점 · 청우, 허쩌",
+    image: "/images/company/subsidiaries/chengwu.webp",
+    facts: ["청우·산둥", "임직원 300명 이상", "밀 1,000톤/일", "면 200톤/일"],
+    copy: "청우현 거우춘진——국가 곡물 생산 보호구에 있으며, 베이징~주룽, 르자오~허쩌, 룽하이 각 철도에 삼면이 둘러싸인 지주 자회사. 35,000m²의 부지, 총자산 8,000만 위안으로, 300명 이상의 임직원이 하루 밀 1,000톤을 처리하고 면 200톤을 생산합니다. 제분소는 정저우 곡물학원 전문가가 설계한 기술로 Bühler 설비를 완비:5기의 파쇄 계통과 8기의 제분 계통, 5회 정선 공정, 미들링 채취——흰색·향·안정된 품질로 알려진 밀가루를 화북의 거의 10개 성에 공급하고 있습니다. 오랜 기간 은행 시스템으로부터 AA 신용 등급을 부여받고 있습니다.",
+  },
+  {
+    name: "Shandong Lisheng Group Shenzhou Flour Co., Ltd.",
+    year: "2009",
+    kicker: "생산 거점 · 선저우, 허베이",
+    image: "/images/company/subsidiaries/shenzhou.webp",
+    facts: ["선저우·허베이", "밀 600톤/일", "밀가루 18만톤/년", "기지 17만 무"],
+    copy: "허베이성 선저우시의 타이구좡 공업단지에 있는 그룹 거점으로, 시의 중점 투자 프로젝트. 68명의 팀이 현대적인 MDDK 롤기와 퓨리파이어로 화북 평원의 밀을 하루 600톤 제분하고, 연간 최대 18만 톤의 밀가루를 생산, 베이징부터 광둥까지 20개 이상 주요 도시에서 100% 판매되고 있습니다. 그룹의 '기업＋기지＋농가' 모델이 처음 도입된 곳도 선저우입니다:17만 무의 밀 기지가 종자 일원 공급·영농 지원·매입 체제로 농가 1.8만 호와 연계——제분소에 들어가기 전부터 곡물 품질이 확보됩니다.",
+  },
+  {
+    name: "Henan Lisheng Flour Co., Ltd.",
+    year: "2016",
+    kicker: "생산 거점 · 화현, 허난",
+    image: "/images/company/subsidiaries/henan.webp",
+    facts: ["화현·허난", "임직원 100명", "기술자 20명"],
+    copy: "2016년에 자본금 3,360만 위안으로, '중국 밀 제1현' 화현의 신구 101무 부지에 설립. 화현에서는 매년 약 180만 무에 밀이 파종되어 약 10억 킬로그램의 우량 곡물이 수확되며, 무당 수확량은 약 30년에 걸쳐 허난성에서 1위를 유지하고 있습니다. 이는 현 정부의 중점 투자 프로젝트이며, 중견·상급 기술자 20명을 포함한 100명의 팀이 Lisheng의 생산 네트워크를 허난 밀 지대의 중심으로 넓히고 있습니다.",
+  },
+  {
+    name: "Liangshan Lisheng Food Co., Ltd.",
+    year: "2018",
+    kicker: "기함 스마트 공장 · 량산",
+    image: "/images/company/subsidiaries/liangshan.webp",
+    facts: ["량산·산둥", "투자 10억 위안", "특수분 3,000톤/일", "밀 100만톤/년"],
+    copy: "2018년 8월에 자본금 4,300만 위안으로 설립된 100% 출자 자회사로, 153,180m²의 부지에 세워진 총액 10억 위안의 스마트 곡물 산업 프로젝트. 4기의 스마트 제분 라인이 하루 특수분 3,000톤을 생산하고, 연간 100만 톤의 밀을 PLC와 MES의 완전 관리하에 받아들입니다——밀 입고부터 팰릿화까지 공정은 거의 무인입니다. 저온 제분이 밀의 영양가와 자연스러운 향을 유지하고, 지붕의 20,000m² 태양광 패널이 2MW를 발전, 태양열은 면 건조실에 이용됩니다. 본 공장은 생산 능력 배증과 프리미엄 특수분 시장 진출이라는 그룹 전략의 핵심이 됩니다.",
+  },
+  {
+    name: "Shandong Ruili Food Technology Co., Ltd.",
+    year: "2020",
+    kicker: "식품 기술 · 지닝",
+    image: "/images/company/subsidiaries/ruili.webp",
+    facts: ["지닝·산둥", "냉동식품 라인", "고도 가공 R&D"],
+    copy: "2020년 12월에 그룹의 식품 기술 부문으로 합류했으며, 본부는 지닝에 있습니다. Ruili는 Lisheng의 제분·제면 노하우를 차세대 즉석 제품에 응용해 냉동식품과 더 고도화된 가공으로 체인을 넓히고 있습니다. 냉동 제품의 판매 라인은 이미 가동되고 있습니다.",
+  },
+  {
+    name: "Jining Tianyu Color Printing & Packaging Co., Ltd.",
+    kicker: "포장 · 그룹의 포장 거점",
+    image: "/images/company/subsidiaries/tianyu.webp",
+    facts: ["지닝·산둥", "자사 포장", "PB 대응"],
+    copy: "지닝에 있는 그룹 자사 포장 회사로, Lisheng 제품 및 OEM 안건용으로 필름 포장과 종이 용기 포장을 제조합니다. 포장의 디자인과 제조를 그룹 내에 둠으로써 유연한 PB 대응, 소량 디자인 변경, 수출 고객용 단납기 포장 제작을 가능하게 합니다.",
+  },
+];
+---
+
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>그룹 회사 | Lisheng International</title>
+    <meta
+      name="description"
+      content="Shandong Lisheng Group의 8개 그룹 회사: 산둥·허베이·허난의 제분·제면 생산 거점, 그리고 식품 기술·포장 회사."
+    />
+  </head>
+  <body>
+    <Header lang="ko" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="sub-hero-title">
+        <img src={withBase("/images/company/about/lisheng.webp")} alt="Lisheng Group 그룹 회사의 생산 시설" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">그룹 구성</p>
+          <h1 id="sub-hero-title">그룹 회사</h1>
+          <p class="page-hero-copy">
+            산둥·허베이·허난의 8개 사——생산 거점, 식품 기술, 포장이 하나의
+            공급망을 형성하고 있습니다.
+          </p>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="sub-list-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">그룹의 기업</p>
+          <h2 id="sub-list-title">하나의 그룹,<br />8개의 전문 기업</h2>
+          <p>
+            각 생산 거점은 국가급 우량 밀 산지에 있으며, 기술 회사와 포장 회사가
+            곡물부터 판매 가능한 제품까지 체인을 연장합니다. 합쳐서 1,300명
+            이상이 재직하며, 추가로 저장 능력 20만 톤의 곡물 창고 회사 3개사가
+            있습니다.
+          </p>
+
+          <div class="subsidiary-list-block">
+            {subsidiaries.map((sub, i) => (
+              <article class={`subsidiary-card ${i % 2 === 1 ? "reverse" : ""}`}>
+                <div class="subsidiary-media">
+                  <img src={withBase(sub.image)} alt={`생산 시설 — ${sub.name}`} />
+                </div>
+                <div class="subsidiary-copy">
+                  {sub.year && <span class="subsidiary-year">{sub.year}</span>}
+                  <p class="company-kicker">{sub.kicker}</p>
+                  <h3>{sub.name}</h3>
+                  <p>{sub.copy}</p>
+                  <ul class="subsidiary-facts" aria-label="주요 데이터">
+                    {sub.facts.map((fact) => (
+                      <li>{fact}</li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div class="company-cta">
+            <div>
+              <h2>그룹 전체의 창구는 하나</h2>
+              <p>
+                고객의 제품에 어느 거점이 적합하더라도, OEM 문의는 하나의 수출
+                팀이 담당합니다.
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/ko/contact/")}>
+              견적 요청 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="ko" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

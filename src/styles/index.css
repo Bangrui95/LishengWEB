@@ -295,7 +295,10 @@
 }
 
 .report-action span:first-child {
-  white-space: nowrap;
+  /* Long localized labels (RU/JA/KO) must wrap instead of overflowing the
+     button on mobile — keep the arrow pinned right via the flex sibling. */
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .report-action span:last-child {

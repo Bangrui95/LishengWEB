@@ -1,0 +1,43 @@
+/* Korean-page typography adjustments.
+ *
+ * The English pages set uppercase + wide letter-spacing on "eyebrow" labels and
+ * CTA text. Hangul has word spacing (unlike Chinese/Japanese) but no case, so
+ * uppercasing does nothing and the wide tracking reads loose. We relax tracking,
+ * drop uppercasing, and loosen body line-height for Hangul readability. Heading
+ * FONTS are left untouched — Latin glyphs keep Georgia / Arial while Hangul
+ * falls back to the system serif/sans through the existing font stacks.
+ */
+
+html[lang="ko"] .page-kicker,
+html[lang="ko"] .company-kicker,
+html[lang="ko"] .quote-kicker,
+html[lang="ko"] .quote-section-heading p,
+html[lang="ko"] .quote-form-intro p,
+html[lang="ko"] .qc-step,
+html[lang="ko"] .wg-card-tag,
+html[lang="ko"] .news-card-copy time {
+  letter-spacing: 0.04em;
+}
+
+/* CTA / button text: English uses uppercase + tracking; Korean needs neither */
+html[lang="ko"] .company-cta-link,
+html[lang="ko"] .split-link,
+html[lang="ko"] .about-more,
+html[lang="ko"] .quote-primary,
+html[lang="ko"] .quote-secondary,
+html[lang="ko"] .quote-form-footer button {
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+/* Slightly looser line-height improves Hangul body readability */
+html[lang="ko"] .page-section-inner p,
+html[lang="ko"] .split-copy p,
+html[lang="ko"] .sub-card p {
+  line-height: 1.75;
+}
+
+/* Guard against long unbroken strings overflowing cards and chips */
+html[lang="ko"] {
+  overflow-wrap: break-word;
+}

@@ -7,7 +7,7 @@ import mapSvg from "./world-map.svg?raw";
 import "../styles/world-map.css";
 
 interface Props {
-  lang?: "en" | "zh" | "ru" | "ja";
+  lang?: "en" | "zh" | "ru" | "ja" | "ko";
 }
 const { lang = "en" } = Astro.props;
 
@@ -33,6 +33,11 @@ const labels = {
     group: "グローバル協業マップ",
     exportText: "輸出協業",
     materialText: "原材料調達",
+  },
+  ko: {
+    group: "글로벌 협력 지도",
+    exportText: "수출 협력",
+    materialText: "원자재 조달",
   },
 };
 const t = labels[lang];

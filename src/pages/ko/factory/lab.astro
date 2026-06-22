@@ -1,0 +1,342 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/factory-lab.css";
+import "../../../styles/ko.css";
+
+const PAT = withBase("/images/factory/patents");
+
+// Patent certificate scans (portrait) — invention name in Korean + source file.
+const patents = [
+  { img: "patent-01.webp", name: "조절식 3롤 밀 가수기" },
+  { img: "patent-02.webp", name: "제분 설비용 컴팩트 휴대 집진기" },
+  { img: "patent-03.webp", name: "냉각 기능 부착 플랜시프터" },
+  { img: "patent-04.webp", name: "간편 설치 이동식 퓨리파이어" },
+  { img: "patent-05.webp", name: "제진기의 방진 베이스" },
+  { img: "patent-06.webp", name: "고효율·청소 용이한 진동체" },
+  { img: "patent-07.webp", name: "반송 기능 부착 석발기" },
+  { img: "patent-08.webp", name: "청소 용이한 제진기" },
+  { img: "patent-09.webp", name: "밀가루 포장기의 컨베이어 유닛" },
+  { img: "patent-10.webp", name: "밀가루 포대 고정에 편리한 장치" },
+];
+---
+
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>식품 연구소 | Lisheng International</title>
+    <meta
+      name="description"
+      content="Lisheng Group의 제품 개발 랩: 밀가루·면 배합 개발, 식감 연구, 통곡물 맷돌 제분의 혁신, 식품 제조 발명 특허 10건 이상."
+    />
+  </head>
+  <body>
+    <Header lang="ko" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="lab-hero-title">
+        <img src={withBase("/images/factory/lab/product-development-laboratory.webp")} alt="Lisheng의 제품 개발 랩" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">연구개발</p>
+          <h1 id="lab-hero-title">제품 랩</h1>
+          <p class="page-hero-copy">
+            원료 시험부터 포장 시험까지, 밀가루·건면·곡물 제품을 망라하는 독립
+            적인 개발 시스템.
+          </p>
+        </div>
+      </section>
+
+      <!-- R&D capability -->
+      <section class="page-section" aria-labelledby="lab-rd-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">랩의 역할</p>
+          <h2 id="lab-rd-title">곡물부터 시장 대응 배합까지</h2>
+          <p>
+            Lisheng의 제품 팀은 원료 시험, 배합 조정, 면 식감 개발, 포장 시험에
+            임합니다. 개발에 더해 식품 안전 랩 전문가가 생산 각 단계에 관여——라인
+            전체에서 샘플링과 관리를 수행해 공정 전체가 안전·추적 가능·확실한
+            관리하에 있도록 합니다.
+          </p>
+
+          <div class="machine-grid">
+            <div>
+              <dt>배합 개발</dt>
+              <dd>
+                고글루텐 면부터 멀티그레인·채소 함유까지, 다양한 제품 요건에
+                맞춰 밀가루와 반죽 배합을 시험·조정합니다.
+              </dd>
+            </div>
+            <div>
+              <dt>식감과 삶는 특성 연구</dt>
+              <dd>
+                면의 크기, 굵기, 탄력, 삶을 때의 거동을 각 타깃 시장과 조리법에
+                맞춰 조정합니다.
+              </dd>
+            </div>
+            <div>
+              <dt>공정 최적화</dt>
+              <dd>
+                제품이 라인에 오르기 전부터 자사 특허 제조 기술로 생산 안정성을
+                높입니다.
+              </dd>
+            </div>
+            <div>
+              <dt>포장 시험</dt>
+              <dd>
+                포장 형태, 자재, 보관 시의 거동을 그룹 자사 포장 설비에서
+                검증합니다.
+              </dd>
+            </div>
+          </div>
+
+          <div class="media-trio" aria-label="랩과 R&D 사진">
+            <img
+              src={withBase("/images/factory/lab/rd-specialist-checking-noodle-samples.webp")}
+              alt="면 샘플을 확인하는 R&D 전문가"
+            />
+            <img
+              src={withBase("/images/factory/lab/rd-team-product-development.webp")}
+              alt="제품 개발을 논의하는 R&D 팀"
+            />
+            <img
+              src={withBase("/images/factory/lab/noodle-research-sample-testing.webp")}
+              alt="면 연구와 샘플 시험"
+            />
+          </div>
+
+          <div class="qc-flow" aria-label="생산 체인 전체의 품질 관리">
+            <div class="qc-card">
+              <p class="qc-step">단계 01</p>
+              <h3>원료 시험</h3>
+              <p>
+                입고되는 밀은 각 로트를 샘플링해 Perten 기기로 프로파일링——수분,
+                단백질, 습부질(웨트 글루텐), 폴링 넘버, 회분. 사양을 충족하는
+                곡물만 받아들이고, 그 결과에 따라 각 로트를 등급·품질별로 빈에
+                분배합니다.
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">단계 02</p>
+              <h3>가공 전 점검</h3>
+              <p>
+                제분 전에 랩이 정선과 조질(가수)을 확인하고, 각 밀가루 등급의
+                목표 수분·단백질에 맞춰 밀 블렌딩을 승인합니다. 이는 Lisheng의
+                '등급·품질별 블렌딩' 방식의 기초입니다.
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">단계 03</p>
+              <h3>공정 중 실시간 관리</h3>
+              <p>
+                제분·제면 전 공정에서 밀가루 플로우를 라인에서 샘플링해 회분,
+                흰색도, 수분, 입도를 검사합니다. 측정값은 MES 시스템을 통해
+                피드백되어 롤이나 퓨리파이어를 가동 중에 조정할 수 있습니다.
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">단계 04</p>
+              <h3>완성품 관리</h3>
+              <p>
+                완성된 밀가루와 면은 출하 전에 이화학 검사, 관능 검사(삶기·식감),
+                위생 검사를 받습니다. 보존 샘플과 배치 기록이 ISO 22000과 HACCP에
+                기반한 완전한 추적성——그리고 구매자에게 필요한 수출 서류——를
+                확보합니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="company-cta">
+            <div>
+              <h2>당사 랩과 함께 제품을 개발</h2>
+              <p>
+                타깃 제품 또는 시장 브리프를 가져와 주세요——배합, 식감, 포장,
+                샘플은 당사 팀이 담당합니다.
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/ko/contact/")}>
+              프로젝트 시작하기 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Whole grain innovation -->
+      <section class="page-section alt" aria-labelledby="lab-wholegrain-title">
+        <div class="page-section-inner">
+          <div class="split-row" style="margin-top: 0;">
+            <div class="split-media wg-media">
+              <img
+                src={withBase("/images/factory/certificates/wholewheat-series.webp")}
+                alt="Lisheng의 맷돌 제분 통곡물가루 시리즈 포장"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">최신 제품 · 2025</p>
+              <h3 id="lab-wholegrain-title">맷돌 제분 통곡물 제품 라인</h3>
+              <p>
+                Lisheng은 독립된 통곡물 제품 전용 동을 갖추고 있습니다——3층·
+                연면적 1,200m²의 독립 동으로, 현대적인 가공 기준으로 설계되었
+                습니다. 곡물의 정선·저장·블렌딩, 제진과 밀의 정선, 색채 선별,
+                맷돌 제분, 밀가루 블렌딩까지 자체 제작의 전체 체인을 망라합니다.
+              </p>
+              <p>
+                각 배치는 일관 관리된 공정을 거칩니다——청맥 처리 → 살균 →
+                밀 색채 선별 → 정선 → 덴마크식 맷돌 제분 → 밀기울 로스팅과
+                블렌딩.
+              </p>
+            </div>
+          </div>
+
+          <h4 class="wg-subhead">공정이 영양을 어떻게 지키는가</h4>
+          <div class="wg-feature-cards">
+            <div class="wg-card">
+              <p class="wg-card-tag">저온</p>
+              <h5>저속·저온 맷돌 제분</h5>
+              <p>
+                아래쪽 회전 맷돌이 저속으로 갈고, 정밀한 자동 온도 제어가 제분
+                온도를 안전한 범위로 유지합니다——통곡물가루의 영양소를 지키는
+                명확한 이점입니다.
+              </p>
+            </div>
+            <div class="wg-card">
+              <p class="wg-card-tag">영양 보존</p>
+              <h5>영양의 보존</h5>
+              <p>
+                같은 자동 온도 제어가 전분의 호화와 단백질 변성을 방지해 밀
+                본연의 영양 프로파일을 유지합니다.
+              </p>
+            </div>
+            <div class="wg-card">
+              <p class="wg-card-tag">밀기울 로스팅</p>
+              <h5>밀기울 로스팅의 혁신</h5>
+              <p>
+                고온에서의 밀기울 로스팅이 밀기울의 풍미와 보존 안정성을 높이고
+                소화를 돕습니다——통곡물가루 전체의 식용 품질을 향상시킵니다.
+              </p>
+            </div>
+          </div>
+
+          <h4 class="wg-subhead">통곡물가루의 구성</h4>
+          <p class="wg-lead">
+            통곡물가루는 밀의 통알에서 갈려, 3가지 귀중한 구성 요소를 모두
+            남깁니다.
+          </p>
+          <dl class="machine-grid tri">
+            <div>
+              <dt>밀기울</dt>
+              <dd>식이섬유, 비타민B군, 미네랄이 풍부.</dd>
+            </div>
+            <div>
+              <dt>배유</dt>
+              <dd>양질의 탄수화물과 단백질을 공급.</dd>
+            </div>
+            <div>
+              <dt>배아</dt>
+              <dd>
+                비타민E, 불포화지방산, 항산화 물질을 풍부하게 함유.
+              </dd>
+            </div>
+          </dl>
+
+        </div>
+      </section>
+
+      <!-- Patents -->
+      <section class="page-section" aria-labelledby="lab-patents-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">지적 재산</p>
+          <h2 id="lab-patents-title">특허 취득 제분·제조 기술</h2>
+          <p>
+            Lisheng은 자사 제분·밀가루 제조 설비에 관한 국가 특허 포트폴리오를
+            보유하고 있습니다——가수, 제진, 석발부터 체질, 정선, 포장까지. 이들
+            자사 개발은 정선 효율, 기계 안정성, 라인 가동 시간을 높여 안정된
+            공업 품질을 실현합니다. 증명서를 클릭하면 원본이 열립니다.
+          </p>
+
+          <div class="patent-showcase">
+            <ul class="patent-list" role="tablist" aria-label="특허 목록">
+              {patents.map((p, i) => (
+                <li>
+                  <button
+                    type="button"
+                    class="patent-tab"
+                    role="tab"
+                    aria-selected={i === 0 ? "true" : "false"}
+                    data-patent-src={`${PAT}/${p.img}`}
+                    data-patent-name={p.name}
+                  >
+                    <span class="patent-tab-name">{p.name}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            <figure class="patent-viewer">
+              <a
+                id="patent-link"
+                href={`${PAT}/${patents[0].img}`}
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  id="patent-image"
+                  src={`${PAT}/${patents[0].img}`}
+                  alt={`Lisheng 특허증 — ${patents[0].name}`}
+                />
+              </a>
+              <figcaption id="patent-caption">{patents[0].name}</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="ko" />
+    <script>
+      const tabs = document.querySelectorAll(".patent-tab");
+      const img = document.getElementById("patent-image");
+      const link = document.getElementById("patent-link");
+      const caption = document.getElementById("patent-caption");
+      const list = document.querySelector(".patent-list");
+
+      // Lock the certificate image height to the list (text) height on desktop,
+      // letting its width follow — pure CSS can't reference the sibling's height.
+      function fitPatentImage() {
+        if (!list || !img) return;
+        if (window.innerWidth <= 900) {
+          img.style.maxHeight = "";
+          return;
+        }
+        const padding = 36; // viewer top + bottom padding (18 × 2)
+        const capH = caption ? caption.offsetHeight + 16 : 0;
+        img.style.maxHeight =
+          Math.max(160, list.offsetHeight - padding - capH) + "px";
+      }
+      fitPatentImage();
+      window.addEventListener("resize", fitPatentImage);
+      window.addEventListener("load", fitPatentImage);
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const src = tab.dataset.patentSrc;
+          const name = tab.dataset.patentName;
+          img.src = src;
+          img.alt = `Lisheng 특허증 — ${name}`;
+          link.href = src;
+          caption.textContent = name;
+          tabs.forEach((t) => t.setAttribute("aria-selected", "false"));
+          tab.setAttribute("aria-selected", "true");
+          fitPatentImage();
+        });
+      });
+    </script>
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

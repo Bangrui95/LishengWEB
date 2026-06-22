@@ -1,0 +1,322 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/company-about.css";
+import "../../../styles/ko.css";
+---
+
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>회사 소개 | Lisheng International</title>
+    <meta
+      name="description"
+      content="Shandong Lisheng Group: 1995년 창업, 8개 기업, 6개 생산 거점——곡물 저장, 제분, 제면, 물류를 통합한 기업."
+    />
+  </head>
+  <body>
+    <Header lang="ko" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="company-hero-title">
+        <img src={withBase("/images/company/about/lisheng.webp")} alt="Lisheng Group 로고" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Lisheng Group 소개</p>
+          <h1 id="company-hero-title">회사 소개</h1>
+          <p class="page-hero-copy">
+            1995년 이래 곡물 저장, 제분, 제면, 포장, 물류를 통합하는 중국의 대형
+            식품 기업.
+          </p>
+        </div>
+      </section>
+
+      <!-- Who we are + key figures -->
+      <section class="page-section" aria-labelledby="company-about-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">회사 개요</p>
+          <h2 id="company-about-title">
+            현영 제분소에서 통합형 식품 그룹으로
+          </h2>
+
+          <div class="about-lead">
+            <img
+              src={withBase("/images/company/about/company.webp")}
+              alt="지닝시의 Shandong Lisheng Group 본사"
+            />
+          </div>
+
+          <p>
+            Shandong Lisheng Group은 1995년 창업, 본사는 산둥성 지닝시 첨단산업
+            개발구에 있습니다. 단일 현영 제분소에서 6개 생산 거점에 식품 기술·
+            포장 부문을 더한 8개 사로 구성된 그룹으로 성장했으며, 중국 유수의 밀
+            산지인 산둥·허베이·허난에 거점을 두고 임직원 1,300명 이상을 보유하고
+            있습니다.
+          </p>
+          <p>
+            '사람들의 일상에 도움이 되는 사업을 만든다'는 기업 이념 아래,
+            Lisheng은 밀 매입·곡물 저장부터 제분, 건면 제조, 자사 포장, 물류까지
+            전체 체인을 관리합니다. 제분소에는 Bühler의 완전 제분 시스템과 Perten
+            검사 기기를 도입해 하루 최대 7,000톤의 밀을 처리하고, 최대 560톤의
+            건면을 생산하며, 자사 곡물 저장 능력은 20만 톤에 달합니다.
+          </p>
+          <p>
+            밀가루, 건면, PB 제품은 중국 30개 성의 300개 이상 도시, 그리고
+            Walmart, Carrefour, RT-Mart, China Resources Vanguard 등 국제 소매
+            체인에 공급되며, 건면은 동남아시아와 유럽으로도 수출되고 있습니다.
+            각 거점은 ISO 9001, ISO 22000, HACCP 시스템으로 운영되며, 국가
+            '신뢰할 수 있는 곡물·유지' 및 '그린 식품' 인정을 받았습니다.
+          </p>
+
+          <div class="company-stats" aria-label="Lisheng Group 주요 지표">
+            <dl>
+              <dt>1995</dt>
+              <dd>산둥성 지닝시에서 창업</dd>
+            </dl>
+            <dl>
+              <dt>8</dt>
+              <dd>기업(생산 거점 6개 포함)</dd>
+            </dl>
+            <dl>
+              <dt>1,300<span>+</span></dt>
+              <dd>임직원</dd>
+            </dl>
+            <dl>
+              <dt>7,000<span>톤</span></dt>
+              <dd>1일 밀 처리량</dd>
+            </dl>
+            <dl>
+              <dt>560<span>톤</span></dt>
+              <dd>1일 건면 생산량</dd>
+            </dl>
+            <dl>
+              <dt>200,000<span>톤</span></dt>
+              <dd>곡물 저장 능력</dd>
+            </dl>
+          </div>
+
+          <div class="about-gallery" aria-label="Lisheng 내부">
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-lab.webp")}
+                alt="Lisheng의 품질 관리 랩"
+                loading="lazy"
+              />
+              <figcaption>품질 관리 센터</figcaption>
+            </figure>
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-base-2.webp")}
+                alt="Lisheng의 스마트 생산 거점"
+                loading="lazy"
+              />
+              <figcaption>스마트 생산 거점</figcaption>
+            </figure>
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-silos.webp")}
+                alt="Lisheng의 곡물 사일로"
+                loading="lazy"
+              />
+              <figcaption>20만 톤 곡물 저장고</figcaption>
+            </figure>
+          </div>
+
+          <div class="company-cta">
+            <div>
+              <h2>Lisheng과의 협업</h2>
+              <p>
+                OEM·PB 대응으로 수출 대응 면과 밀가루를 제조사에서 직접 조달
+                하세요.
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/ko/contact/")}>
+              견적 요청 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mission & values -->
+      <section class="page-section alt" aria-labelledby="company-values-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">기업 문화</p>
+          <h2 id="company-values-title">우리의 이념</h2>
+
+          <div class="value-grid">
+            <div class="value-card">
+              <h3>미션</h3>
+              <p>사람들의 일상에 도움이 되는 사업을 만든다.</p>
+            </div>
+            <div class="value-card">
+              <h3>비전</h3>
+              <p>백 년 앞의 Lisheng——그린 식품의 통합 기업.</p>
+            </div>
+            <div class="value-card">
+              <h3>정신</h3>
+              <p>단결, 발전, 성실, 혁신.</p>
+            </div>
+            <div class="value-card">
+              <h3>철학</h3>
+              <p>일류 품질, 흔들리지 않는 성실.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- From wheat to table: production overview -->
+      <section class="page-section" aria-labelledby="company-process-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">밀에서 식탁까지</p>
+          <h2 id="company-process-title">일관된 생산 체인</h2>
+          <p>
+            Lisheng의 각 거점은 국가급 우량 밀 산지에 건설되어 있습니다. 곡물은
+            자사 저장 시스템에 들어가 국제 수준의 설비로 제분되며, 품질 관리된
+            일관 체인을 통해 밀가루 또는 건면으로 출하됩니다.
+          </p>
+
+          <ol class="process-flow">
+            <li>
+              <h3>밀 매입과 저장</h3>
+              <p>
+                산둥·허베이·허난의 우량 밀을 20만 톤 자사 저장고에서 관리합니다.
+              </p>
+            </li>
+            <li>
+              <h3>제분</h3>
+              <p>
+                저온 처리와 다단 정선을 갖춘 Bühler 제분 시스템.
+              </p>
+            </li>
+            <li>
+              <h3>제면</h3>
+              <p>
+                1000형 자동 라인: 믹싱, 컷, 건조, 포장.
+              </p>
+            </li>
+            <li>
+              <h3>포장과 물류</h3>
+              <p>
+                국내·수출 주문에 대응하는 자사 포장 설비와 물류 네트워크.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Product lab teaser -->
+      <section class="page-section alt" aria-labelledby="company-lab-title">
+        <div class="page-section-inner">
+          <div class="split-row reverse" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src={withBase("/images/company/about/product-lab-rd-quality-testing.webp")}
+                alt="Lisheng의 제품 랩——R&D와 품질 시험"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">연구와 품질</p>
+              <h3 id="company-lab-title">제품 랩</h3>
+              <p>
+                원료 분석, 배합 조정, 면 식감 개발, 식품 안전 시험을 수행하는
+                독립적인 제품 개발·시험 랩——다양한 시장을 위한 밀·면 제품의
+                안정적인 품질을 확보합니다.
+              </p>
+              <a class="split-link" href={withBase("/ko/factory/lab/")}>
+                랩에 대해 자세히 보기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Production facilities teaser -->
+      <section class="page-section" aria-labelledby="company-facilities-title">
+        <div class="page-section-inner">
+          <div class="split-row" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src={withBase("/images/company/about/automated-production-line.webp")}
+                alt="Lisheng 공장의 자동 생산 라인"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">생산 규모</p>
+              <h3 id="company-facilities-title">생산 설비</h3>
+              <p>
+                6개 생산 거점이 하루 최대 7,000톤의 밀을 처리하고, 최대 560톤의
+                건면을 생산합니다. 량산의 기함 공장은 PLC와 MES에 의한 완전
+                관리하에 4기의 스마트 제분 라인을 운용——거의 무인으로 원격
+                제어에 의한 생산입니다.
+              </p>
+              <a class="split-link" href={withBase("/ko/factory/production/")}>
+                생산에 대해 자세히 보기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications teaser -->
+      <section class="page-section alt" aria-labelledby="company-cert-title">
+        <div class="page-section-inner">
+          <div class="split-row reverse" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src={withBase("/images/company/about/quality-certifications-display.webp")}
+                alt="Lisheng의 품질 인증 전시"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">품질과 평가</p>
+              <h3>인증 취득, 수상, 신뢰</h3>
+              <p>
+                Lisheng은 ISO 9001, ISO 22000, HACCP 경영 시스템으로 운영합니다.
+                'Lisheng' 밀가루는 2007년에 '중국 톱 브랜드'를 수상했고, Lisheng
+                상표는 2011년에 '중국 저명 상표'로 인정받았습니다.
+              </p>
+              <a class="split-link" href={withBase("/ko/factory/certificates/")}>
+                인증·수상 보기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Subsidiaries teaser -->
+      <section class="page-section" aria-labelledby="company-sub-title">
+        <div class="page-section-inner">
+          <div class="sub-intro">
+            <div class="sub-intro-copy">
+              <p class="company-kicker">그룹 구성</p>
+              <h2 id="company-sub-title">8개 그룹 회사, 하나의 공급망</h2>
+              <p>
+                지닝의 본사부터 량산의 기함 스마트 공장까지, Lisheng의 각 그룹
+                회사가 밀가루·면·식품 기술·포장이라는 그룹의 체인에서 각자의
+                역할을 담당하고 있습니다.
+              </p>
+              <a class="split-link" href={withBase("/ko/company/subsidiaries/")}>
+                그룹 회사 보기
+              </a>
+            </div>
+            <div class="sub-intro-logo">
+              <img
+                src={withBase("/images/company/about/logo.webp")}
+                alt="Lisheng Group 로고"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="ko" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

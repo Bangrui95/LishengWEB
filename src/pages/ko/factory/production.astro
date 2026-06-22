@@ -1,0 +1,348 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/factory-production.css";
+import "../../../styles/ko.css";
+
+const IMG = withBase("/images/factory/production");
+---
+
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>스마트 공장 | Lisheng International</title>
+    <meta
+      name="description"
+      content="6개 생산 거점, Bühler 스마트 제분 시스템, MES 관리 라인: Lisheng Group은 하루 밀 7,000톤, 건면 560톤을 가공합니다."
+    />
+  </head>
+  <body>
+    <Header lang="ko" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="production-hero-title">
+        <img
+          src={`${IMG}/automated-production-workshop.webp`}
+          alt="Lisheng의 자동화 생산 공장"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">생산</p>
+          <h1 id="production-hero-title">생산 설비</h1>
+          <p class="page-hero-copy">
+            중국 유수의 밀 산지에 있는 6개 생산 거점. 국제 수준의 설비를 스마트
+            공장 관리하에 운용하고 있습니다.
+          </p>
+        </div>
+      </section>
+
+      <!-- Capacity: intro + dark stats band -->
+      <section class="page-section" aria-labelledby="production-capacity-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">생산 능력</p>
+          <h2 id="production-capacity-title">양산을 위해 설계하고, 안정을 위해 가동한다</h2>
+          <p>
+            Lisheng은 산둥·허베이·허난에서 6개 생산 거점을 운영하며, 모두 국가급
+            우량 밀 산지에 있습니다. 이들이 합쳐져 해외 파트너에게 제조사 직결의
+            확장 여력 있는 생산 능력을 제공합니다.
+          </p>
+        </div>
+
+        <div class="prod-stats-band">
+          <div class="prod-stats-grid" aria-label="생산 능력 지표">
+            <dl>
+              <dt>7,000<span>톤</span></dt>
+              <dd>그룹의 1일 밀 처리량</dd>
+            </dl>
+            <dl>
+              <dt>560<span>톤</span></dt>
+              <dd>1일 건면 생산량</dd>
+            </dl>
+            <dl>
+              <dt>100만<span>톤</span></dt>
+              <dd>량산 공장의 연간 밀 수입량</dd>
+            </dl>
+            <dl>
+              <dt>200,000<span>톤</span></dt>
+              <dd>자사 곡물 저장 능력</dd>
+            </dl>
+            <dl>
+              <dt>7<span>라인</span></dt>
+              <dd>1000형 자동 제면</dd>
+            </dl>
+            <dl>
+              <dt>2<span>MW</span></dt>
+              <dd>량산의 지붕 태양광</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="page-section-inner">
+          <div class="company-cta">
+            <div>
+              <h2>설비를 직접 눈으로</h2>
+              <p>
+                제분 공정과 제면 라인을 견학하고 당사 수출팀과 만나보세요——대부분
+                의 견학은 하루에 완료됩니다.
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/ko/contact/")}>
+              문의하기 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Plant gallery -->
+      <section class="page-section tight-top" aria-labelledby="production-gallery-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">공장의 내부</p>
+          <h2 id="production-gallery-title">귀사의 제품이 태어나는 곳</h2>
+
+          <div class="prod-gallery" aria-label="공장 사진 갤러리">
+            <img
+              src={`${IMG}/fine-noodle-strands-production-line.webp`}
+              alt="생산 라인의 가는 면발"
+            />
+            <img
+              src={`${IMG}/automated-production-line.webp`}
+              alt="가동 중인 자동 생산 라인"
+            />
+            <img
+              src={`${IMG}/packaged-noodles-packing-machine.webp`}
+              alt="포장기에서 나오는 포장된 면"
+            />
+          </div>
+
+        </div>
+      </section>
+      <!-- Production journey with photos -->
+      <section class="page-section alt" aria-labelledby="production-process-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">생산 방식</p>
+          <h2 id="production-process-title">밀에서 팰릿까지——일관 관리된 체인</h2>
+
+          <ol class="prod-steps">
+            <li>
+              <img
+                src={`${IMG}/wheat-cleaning-milling-hall.webp`}
+                alt="밀 정선·제분 홀"
+              />
+              <span class="step-arrow" aria-hidden="true">단계 1</span>
+              <h3>정선과 제분</h3>
+              <p>
+                밀은 검사를 받아 등급별로 저장되고, 주문에 맞춰 블렌딩되어
+                저온에서 제분됩니다.
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/dough-preparation-sheeting-machine.webp`}
+                alt="반죽 믹싱·압연기"
+              />
+              <span class="step-arrow" aria-hidden="true">단계 2</span>
+              <h3>믹싱과 압연</h3>
+              <p>
+                밀가루, 물, 배합 성분을 섞어 균일한 반죽 시트로 압연합니다.
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/noodle-cutting-forming-line.webp`}
+                alt="면 컷·성형 라인"
+              />
+              <span class="step-arrow" aria-hidden="true">단계 3</span>
+              <h3>컷과 성형</h3>
+              <p>
+                교환식 칼날이 No.0 '용수염'부터 No.10 '나이프 컷'까지 모든 폭을
+                성형합니다.
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/noodles-drying-room.webp`}
+                alt="건조실의 면"
+              />
+              <span class="step-arrow" aria-hidden="true">단계 4</span>
+              <h3>저온 건조</h3>
+              <p>
+                걸어 둔 면을 온습도 관리된 건조실에서 천천히 건조——량산 공장
+                에서는 태양열을 이용합니다.
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/automated-noodle-packing-machine.webp`}
+                alt="면 자동 포장기"
+              />
+              <span class="step-arrow" aria-hidden="true">단계 5</span>
+              <h3>포장</h3>
+              <p>
+                소매·패밀리·HoReCa 각 포맷을 자사 포장 자재를 사용해 자동
+                라인에서 충전합니다.
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/finished-goods-warehouse.webp`}
+                alt="창고의 완성품"
+              />
+              <span class="step-arrow" aria-hidden="true">단계 6</span>
+              <h3>보관과 출하</h3>
+              <p>
+                완성품은 배치 단위로 창고 관리되어 그룹의 물류 네트워크를 통해
+                출하됩니다.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Equipment photo cards -->
+      <section class="page-section" aria-labelledby="production-equipment-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">설비와 기술</p>
+          <h2 id="production-equipment-title">국제 수준의 설비, 스마트한 제어</h2>
+
+          <div class="equip-row">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/buhler-milling-hall.webp`}
+                alt="Lisheng 공장의 Bühler 제분 홀"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>Bühler 스마트 제분 시스템</h3>
+              <p>
+                스위스 Bühler의 제분 설비가 그룹 전체에서 가동——지닝 본사와
+                청우 공장에는 Bühler 일식을, 기함인 량산 공장에는 일체형 스마트
+                제분 시스템을 도입해 4기의 라인이 하루 특수분 3,000톤을 전량
+                배합으로 생산합니다.
+              </p>
+              <p>
+                구매자에게 이는 배치마다 동일한 밀가루 사양을 의미합니다: 배합
+                레시피는 작업자의 수작업이 아니라 시스템이 실행합니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row reverse">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/grain-analysis-instruments.webp`}
+                alt="곡물 분석 기기를 조작하는 기술자"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>Perten 곡물 분석 기기</h3>
+              <p>
+                스웨덴 Perten의 분석기가 입고되는 밀과 출고되는 밀가루의 각
+                배치를 프로파일링——단백질, 수분, 글루텐 품질을 육안이 아니라
+                측정합니다. 이후 밀은 등급별로 저장되고 측정 데이터에 기반해
+                블렌딩됩니다.
+              </p>
+              <p>
+                각 주문의 배후에는 배치 기록이 있어 고객의 품질 관리 부문이 받는
+                분석 증명서의 기초가 됩니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/mddk-roller-mills-purifiers.webp`}
+                alt="MDDK 롤기와 퓨리파이어"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>MDDK 롤기와 다단 정선</h3>
+              <p>
+                MDDK 롤기는 정저우 곡물학원 전문가와 공동 개발한 5파쇄·8제분
+                계통 구성으로 가동하며, 5회 정선 공정과 미들링 채취를 수행합니다.
+              </p>
+              <p>
+                꼼꼼한 단계적 제분이 단백질과 전분을 보호——흰색, 향, 안정된
+                제빵 특성을 갖춘 고순도 밀가루 플로우입니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row reverse">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/intelligent-control-processing-equipment.webp`}
+                alt="스마트 제어하의 자동화 설비"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>PLC + MES에 의한 스마트 공장 관리</h3>
+              <p>
+                기함인 량산 공장에서는 각 공정이 PLC와 MES 시스템의 관리하에
+                가동——밀 검사, 빈 분배, 블렌딩, 제분, 등급별 저장, 밀가루 배합,
+                충전, 적재가 자동화되어 있습니다.
+              </p>
+              <p>
+                공장은 원격 제어하에 거의 무인으로 가동되며, 각 배치는 곡물부터
+                팰릿까지 완전한 디지털 이력을 남깁니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/low-temperature-milling-hall.webp`}
+                alt="저온 제분 홀"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>저온 제분</h3>
+              <p>
+                제분 온도를 정밀하게 제어해 비타민이나 고분자 영양소를 파괴하는
+                열 손상을 방지합니다——밀가루는 영양가와 밀 본연의 향을 유지
+                합니다.
+              </p>
+              <p>
+                같은 사상은 통곡물 제품 라인에도 미쳐, 덴마크식 맷돌이 저속으로
+                갈고 온도를 자동 제어합니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row reverse">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/thousand-type-noodle-production-line.webp`}
+                alt="1000형 자동 제면 라인"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>1000형 자동 제면 라인</h3>
+              <p>
+                7기의 1000형 자동 라인이 제면 전 공정——반죽 공급, 압연, 컷,
+                걸이, 건조, 포장——을 커버하며, 발효면, 중공면, 멀티그레인, 채소
+                함유 등을 포함해 하루 최대 560톤의 건면을 생산합니다.
+              </p>
+              <p>
+                량산의 건조실은 지붕의 2MW 태양광에 더해 1,200m²의 태양열
+                패널로 가온——에너지 소비를 억제하고 더 친환경적인 생산을
+                실현합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <Footer lang="ko" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

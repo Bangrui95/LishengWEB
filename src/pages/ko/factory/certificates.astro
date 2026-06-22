@@ -1,0 +1,219 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/factory-certificates.css";
+import "../../../styles/ko.css";
+
+const CERT = withBase("/images/factory/certificates/certificate");
+const GREEN = withBase("/images/factory/certificates/green");
+---
+
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>인증 | Lisheng International</title>
+    <meta
+      name="description"
+      content="Lisheng Group의 인증: ISO 9001, ISO 22000, HACCP(IQNET 국제 인증 포함), 그린 식품 A등급 제품, '중국 톱 브랜드', 업계 수상."
+    />
+  </head>
+  <body>
+    <Header lang="ko" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="cert-hero-title">
+        <img src={withBase("/images/factory/certificates/intelligent-flour-milling-plant.webp")} alt="Lisheng의 스마트 제분 공장" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">품질과 평가</p>
+          <h1 id="cert-hero-title">인증</h1>
+          <p class="page-hero-copy">
+            30년의 식품 제조로 쌓은 경영 시스템 인증, 국가 수준의 브랜드 평가,
+            업계 수상.
+          </p>
+        </div>
+      </section>
+
+      <!-- National recognition -->
+      <section class="page-section" aria-labelledby="cert-national-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">국가 수준의 평가</p>
+          <h2 id="cert-national-title">국가 수준에서의 평가</h2>
+
+          <dl class="machine-grid titles-only">
+            <div>
+              <dt><span class="cert-year">2007</span>중국 톱 브랜드</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2011</span>중국 저명 상표</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2006</span>전국 저명 건면 브랜드</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2016</span>중국 곡물·유지(식량) 10대 브랜드</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2010</span>농업 산업화 중점 선도 기업</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2010</span>국가 모범 가공 기업</dt>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Industry awards -->
+      <section class="page-section" aria-labelledby="cert-awards-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">업계 수상</p>
+          <h2 id="cert-awards-title">업계에서의 위상</h2>
+
+          <dl class="machine-grid">
+            <div>
+              <dt>중국 제분 기업 톱 50</dt>
+              <dd>
+                중국 제분 기업 톱 50에 연속되는 전국 랭킹으로 선정되고 있습니다.
+              </dd>
+            </div>
+            <div>
+              <dt>가장 영향력 있는 브랜드</dt>
+              <dd>
+                중국 곡물·유지 협회의 곡물·유지 마케팅 부문에 의해 수여.
+              </dd>
+            </div>
+            <div>
+              <dt>산둥 저명 브랜드——밀가루와 건면</dt>
+              <dd>
+                밀가루와 건면 라인이 '산둥 저명 브랜드'로 인정. 'Lisheng'은
+                '산둥 저명 상표'이기도 합니다.
+              </dd>
+            </div>
+            <div>
+              <dt>식품 안전 모범 기업</dt>
+              <dd>
+                산둥성의 식품 안전 모범 기업 및 하이테크 기업으로 인정되고
+                있습니다.
+              </dd>
+            </div>
+          </dl>
+
+          <div class="company-cta">
+            <div>
+              <h2>시장용 적합 서류가 필요하신가요?</h2>
+              <p>
+                증명서 사본, 사양, 수입 요건에 맞춘 수출 서류를 요청해 주세요.
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/ko/contact/")}>
+              문의하기 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Management systems -->
+      <section class="page-section alt" aria-labelledby="cert-systems-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">경영 시스템</p>
+          <h2 id="cert-systems-title">인증 취득 식품 안전 경영</h2>
+          <p>
+            Lisheng은 2003년 이래 인증된 경영 시스템으로 운영하고 있습니다.
+            품질·식품 안전·HACCP 각 증명서는 CQC(중국품질인증센터)가 발행하고,
+            IQNET의 국제 인증을 받으며, 정기적으로 재심사됩니다. 증명서를 클릭
+            하면 PDF 원본이 열립니다.
+          </p>
+
+          <div class="cert-grid" aria-label="경영 시스템 인증">
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/iso9001-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/iso9001-en-preview.webp`} alt="CQC 발행 ISO 9001:2015 품질 경영 시스템 증명서" loading="lazy" />
+              </a>
+              <h3>ISO 9001:2015</h3>
+              <p>품질 경영 시스템——건면과 밀가루</p>
+            </div>
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/iso22000-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/iso22000-en-preview.webp`} alt="CQC 발행 ISO 22000:2018 식품 안전 경영 시스템 증명서" loading="lazy" />
+              </a>
+              <h3>ISO 22000:2018</h3>
+              <p>밀가루·면 제조의 식품 안전 경영 시스템</p>
+            </div>
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/haccp-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/haccp-en-preview.webp`} alt="CQC 발행 HACCP 시스템 증명서" loading="lazy" />
+              </a>
+              <h3>HACCP</h3>
+              <p>위해요소 중점관리</p>
+            </div>
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/iso9001-iqnet-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/iqnet-preview.webp`} alt="Lisheng의 ISO 9001 경영 시스템을 뒷받침하는 IQNET 국제 증명서" loading="lazy" />
+              </a>
+              <h3>IQNET International</h3>
+              <p>ISO 9001 및 ISO 22000의 IQNET 국제 증명서</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Green Food certification -->
+      <section class="page-section alt has-divider" aria-labelledby="cert-green-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">그린 식품</p>
+          <h2 id="cert-green-title">그린 식품 A등급 인증 제품</h2>
+          <p>
+            Lisheng의 5개 제품이 중국 그린 식품 발전 센터로부터 '그린 식품'
+            A등급으로 인증되었습니다——이는 추적 가능하고 잔류물이 관리된 제품에
+            대한 중국에서 가장 엄격한 국가 기준입니다. 현행 증명서는 2026년
+            8월까지 유효합니다.
+          </p>
+
+          <div class="green-grid" aria-label="그린 식품 증명서">
+            <figure class="green-card">
+              <a href={`${GREEN}/green-super-refined-flour.webp`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-super-refined-flour.webp`} alt="고급 정제 밀가루의 그린 식품 A등급 증명서" loading="lazy" />
+              </a>
+              <figcaption>고급 정제 밀가루</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-wheat-core-flour.webp`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-wheat-core-flour.webp`} alt="밀 배유 다용도분의 그린 식품 A등급 증명서" loading="lazy" />
+              </a>
+              <figcaption>밀 배유 다용도분</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-dragon-beard-noodles.webp`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-dragon-beard-noodles.webp`} alt="프리미엄 용수염면의 그린 식품 A등급 증명서" loading="lazy" />
+              </a>
+              <figcaption>프리미엄 용수염면</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-egg-noodles.webp`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-egg-noodles.webp`} alt="프리미엄 계란면의 그린 식품 A등급 증명서" loading="lazy" />
+              </a>
+              <figcaption>프리미엄 계란면</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-original-noodles.webp`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-original-noodles.webp`} alt="프리미엄 정통면의 그린 식품 A등급 증명서" loading="lazy" />
+              </a>
+              <figcaption>프리미엄 정통면</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+
+    </main>
+
+    <Footer lang="ko" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

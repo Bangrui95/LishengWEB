@@ -7,7 +7,7 @@
  * URLs are kept constant across languages for now: Chinese labels point at the
  * existing English sub-pages until those get their own /zh/ versions.
  */
-export type Lang = "en" | "zh" | "ru" | "ja";
+export type Lang = "en" | "zh" | "ru" | "ja" | "ko";
 
 export const ui = {
   en: {
@@ -238,6 +238,62 @@ export const ui = {
       secondary: "製品をカスタマイズ",
     },
   },
+  ko: {
+    htmlLang: "ko",
+    nav: {
+      home: "홈",
+      company: "회사 소개",
+      about: "회사 개요",
+      honors: "수상 · 인증",
+      subsidiaries: "계열사",
+      factory: "공장",
+      smartFactory: "스마트 공장",
+      foodLab: "식품 연구소",
+      certifications: "제품 인증",
+      factoryTour: "공장 견학",
+      services: "서비스",
+      oem: "OEM 위탁 생산",
+      customization: "제품 맞춤 제작",
+      products: "제품",
+      ownProducts: "자사 제품",
+      noodleProducts: "면 제품",
+      flourProducts: "밀가루 제품",
+      partner: "파트너 협업",
+      specifications: "샘플 사양",
+      news: "뉴스",
+      contact: "문의하기",
+    },
+    quote: "견적 요청",
+    footer: {
+      desc: "전 세계 식품 브랜드·수입업체·외식 유통을 위한 수출 대응 면 위탁 생산, PB 생산, 포장 지원을 제공합니다.",
+      company: "회사 소개",
+      factory: "공장",
+      services: "서비스",
+      products: "제품",
+      contact: "문의하기",
+      news: "뉴스",
+      about: "회사 개요",
+      certifications: "제품 인증",
+      oemShort: "OEM 위탁 생산",
+      allProducts: "전체 제품",
+      noodleProducts: "면 제품",
+      flourProducts: "밀가루 제품",
+      specifications: "사양",
+      startProject: "PB 프로젝트 시작하기",
+      requestSamples: "샘플 요청",
+      latestNews: "최신 뉴스",
+      rights: "© 2026 Lisheng 그룹. 무단 전재를 금합니다.",
+      privacy: "개인정보 처리방침",
+      terms: "이용약관",
+    },
+    cta: {
+      kicker: "PB 면 생산을 고려하고 계신가요?",
+      title: "PB 면 프로그램을 함께 만들어 갑시다.",
+      text: "시장, 제품 아이디어, 목표 수량을 알려주세요. 당사 수출팀이 실질적인 생산 제안을 드립니다.",
+      button: "지금 문의하기",
+      secondary: "제품 맞춤 제작",
+    },
+  },
 } as const;
 
 export function getUI(lang: Lang) {
@@ -247,12 +303,13 @@ export function getUI(lang: Lang) {
 // Display order + labels for the language switcher. English is the base tree at
 // `/`; every other language lives under `/<code>/`. Add a language here once its
 // page tree exists and the switcher picks it up everywhere automatically.
-export const langOrder: Lang[] = ["en", "zh", "ru", "ja"];
+export const langOrder: Lang[] = ["en", "zh", "ru", "ja", "ko"];
 export const langLabels: Record<Lang, string> = {
   en: "EN",
   zh: "中文",
   ru: "Русский",
   ja: "日本語",
+  ko: "한국어",
 };
 
 // Routes that have a translated version under /<code>/. English is the base, so
@@ -293,6 +350,21 @@ export const readyByLang: Record<Exclude<Lang, "en">, Set<string>> = {
   ]),
   // Japanese: full site except News (News stays English for now).
   ja: new Set<string>([
+    "/",
+    "/company/",
+    "/company/honors/",
+    "/company/subsidiaries/",
+    "/factory/production/",
+    "/factory/lab/",
+    "/factory/certificates/",
+    "/services/",
+    "/services/customization/",
+    "/contact/",
+    "/products/",
+    "/products/specifications/",
+  ]),
+  // Korean: full site except News (News stays English for now).
+  ko: new Set<string>([
     "/",
     "/company/",
     "/company/honors/",

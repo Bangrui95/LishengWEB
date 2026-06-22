@@ -1,0 +1,175 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/company-honors.css";
+import "../../../styles/ko.css";
+
+const IMG = withBase("/images/company/honors");
+
+// Certificate wall — add a new honor by copying one block and swapping the image.
+const honors = [
+  { img: "china-top-brand-2007.webp", title: "중국 톱 브랜드", year: "2007" },
+  { img: "china-famous-trademark-2011.webp", title: "중국 저명 상표", year: "2011" },
+  { img: "key-leading-enterprise-2005.webp", title: "농업 산업화 국가 중점 선도 기업", year: "2005" },
+  { img: "national-noodle-brand-2006.webp", title: "전국 저명 건면 브랜드", year: "2006" },
+  { img: "top50-2011.webp", title: "중국 제분 기업 톱 50", year: "2011" },
+  { img: "top50-2013.webp", title: "중국 제분 기업 톱 50", year: "2013" },
+  { img: "top50-2015.webp", title: "중국 제분 기업 톱 50", year: "2015" },
+  { img: "top50-2017.webp", title: "중국 제분 기업 톱 50", year: "2017" },
+  { img: "top10-grain-oil-2016.webp", title: "중국 곡물·유지(식량) 10대 브랜드", year: "2016" },
+  { img: "shandong-brand-flour.webp", title: "산둥 저명 브랜드——밀가루", year: "산둥" },
+  { img: "shandong-brand-noodles.webp", title: "산둥 저명 브랜드——건면", year: "산둥" },
+  { img: "shandong-trademark-2009.webp", title: "산둥 저명 상표", year: "2009" },
+  { img: "shandong-top20-2007.webp", title: "산둥 식품 공업 톱 20", year: "2007" },
+  { img: "aaa-credit-2010.webp", title: "AAA 신용 등급 기업(중국농업은행)", year: "2010" },
+  { img: "contract-trust-2011.webp", title: "성급 '계약 준수·신용 중시' 기업", year: "2011" },
+  { img: "grain-emergency-2008.webp", title: "곡물 긴급 공급 지정 기업", year: "2008" },
+  { img: "demonstration-enterprise-2010.webp", title: "국가 모범 가공 기업", year: "2010" },
+  { img: "grain-assoc-member.webp", title: "중국 곡물 유통 협회 회원", year: "회원" },
+  { img: "most-influential-brand.webp", title: "가장 영향력 있는 브랜드", year: "업계" },
+];
+---
+
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>수상·인증 | Lisheng International</title>
+    <meta
+      name="description"
+      content="30년에 걸친 평가: 중국 톱 브랜드, 중국 저명 상표, 제분 기업 톱 50 등 Lisheng Group의 수상 이력."
+    />
+  </head>
+  <body>
+    <Header lang="ko" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="honors-hero-title">
+        <img
+          src={withBase("/images/company/about/lisheng.webp")}
+          alt="Lisheng Group 로고"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">평가·실적</p>
+          <h1 id="honors-hero-title">수상·인증</h1>
+          <p class="page-hero-copy">
+            안정적인 품질과 생산 기준에 뒷받침된, 30년에 걸친 국가·성 레벨의 평가.
+          </p>
+        </div>
+      </section>
+
+      <!-- Milestones by year -->
+      <section class="page-section" aria-labelledby="honors-milestones-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">연혁</p>
+          <h2 id="honors-milestones-title">해마다 쌓아 온 실적</h2>
+
+          <ol class="honor-timeline">
+            <li>
+              <span class="honor-year">2022</span>
+              <p>
+                산둥성 최초의 품질 브랜드 리스트
+                <strong>'산둥 우품'</strong>에 선정.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2019</span>
+              <p>
+                중국 곡물·유지 협회로부터 <strong>가장 경쟁력 있는 브랜드</strong>로
+                인정.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2017</span>
+              <p>
+                <strong>중국 제분 기업 톱 50</strong>——다시 전국 랭킹 진입.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2016</span>
+              <p>
+                <strong>중국 곡물·유지(식량) 10대 브랜드</strong>에 선정.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2015</span>
+              <p>
+                <strong>중국 제분 기업 톱 50</strong>——여러 해 연속 선정.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2011</span>
+              <p>
+                <strong>중국 저명 상표</strong>——그리고 <strong>중국 제분 기업
+                톱 50</strong>에 첫 선정.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2009</span>
+              <p>
+                'Lisheng'이 <strong>산둥 저명 상표</strong>로 인정.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2007</span>
+              <p>
+                'Lisheng' 밀가루가 <strong>중국 톱 브랜드</strong>를 수상.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2006</span>
+              <p>
+                <strong>전국 저명 건면 브랜드</strong>로 인정.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2005</span>
+              <p>
+                성급 <strong>농업 산업화 중점 선도 기업</strong>으로 인정.
+              </p>
+            </li>
+            <li>
+              <span class="honor-year">2003</span>
+              <p>
+                <strong>ISO 9001, ISO 22000, HACCP</strong> 경영 시스템 인증을
+                취득.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Certificate wall -->
+      <section class="page-section alt" aria-labelledby="honors-wall-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">인증</p>
+          <h2 id="honors-wall-title">업계에서의 평가</h2>
+          <p>
+            생산 품질과 식품 안전 기준을 뒷받침하는 공식 인증·수상·업계 평가.
+          </p>
+
+          <div class="honor-grid">
+            {honors.map((h) => (
+              <article class="honor-card">
+                <div class="honor-media">
+                  <img src={`${IMG}/${h.img}`} alt={h.title} loading="lazy" />
+                </div>
+                <h3>{h.title}</h3>
+                <p>{h.year}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="ko" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

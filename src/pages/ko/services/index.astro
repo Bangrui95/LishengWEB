@@ -1,0 +1,516 @@
+---
+import { withBase } from "../../../lib/url";
+import ContactCta from "../../../components/ContactCta.astro";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/services.css";
+import "../../../styles/ko.css";
+---
+
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>OEM 위탁 생산 | Lisheng International</title>
+    <meta
+      name="description"
+      content="PB 면 OEM 생산: 독자 배합의 자사 R&D, 국가급 곡물 조달, 안정적 수출 공급을 뒷받침하는 1일 560톤 생산 능력."
+    />
+  </head>
+  <body>
+    <Header lang="ko" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="services-hero-title">
+        <img
+          src={withBase("/images/services/oem-noodle-manufacturing-packaging.webp")}
+          alt="Lisheng의 OEM 면 제조 및 포장"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">OEM 위탁 생산</p>
+          <h1 id="services-hero-title">PB 면 제조</h1>
+          <p class="page-hero-copy">
+            귀사의 브랜드, 당사의 공장. 독자 배합의 건면을 국가급 기업 규모로
+            제조하고, 수출 대응·납기 엄수로 공급합니다.
+          </p>
+          <div class="services-hero-actions">
+            <a class="services-hero-primary" href={withBase("/ko/contact/")}>
+              PB 프로젝트 시작하기 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- OEM workflow -->
+      <section class="page-section" aria-labelledby="services-flow-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">문의부터 컨테이너까지</p>
+          <h2 id="services-flow-title">PB 프로젝트 진행 과정</h2>
+
+          <ol class="oem-flow">
+            <li>
+              <h3>문의 및 상담</h3>
+              <p>
+                타깃 시장, 제품 아이디어, 수량 계획, 포장 방향성을 알려주세요.
+                실현 가능성과 방향성을 확인합니다.
+              </p>
+            </li>
+            <li>
+              <h3>배합과 샘플</h3>
+              <p>
+                당사 R&D 랩이 배합을 개발하고, 맛·식감·사양 승인 전에 샘플을
+                보내드립니다.
+              </p>
+            </li>
+            <li>
+              <h3>견적과 계약</h3>
+              <p>
+                배합, 포장 형태, 주문량, 공급 조건에 기반한 투명한 견적——이후
+                생산 계약으로.
+              </p>
+            </li>
+            <li>
+              <h3>디자인과 시험 주문</h3>
+              <p>
+                자사 포장 부문이 디자인을 마무리하고, 시험 생산으로 생산 라인
+                에서의 제품을 확인합니다.
+              </p>
+            </li>
+            <li>
+              <h3>양산과 품질 관리</h3>
+              <p>
+                자동 라인이 ISO 22000 / HACCP 관리하에 양산하며, 곡물부터 완성
+                포장까지 배치 검사를 실시합니다.
+              </p>
+            </li>
+            <li>
+              <h3>수출과 배송</h3>
+              <p>
+                컨테이너 적재, 수출 서류, 지정 항구까지의 물류 지원——반복 주문
+                에도 안정적인 일정으로 대응합니다.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Three pillars -->
+      <section class="page-section tight-top" aria-labelledby="services-pillars-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">브랜드가 Lisheng에서 제조하는 이유</p>
+          <h2 id="services-pillars-title">
+            모든 주문을 뒷받침하는 3가지 보증
+          </h2>
+
+          <div class="pillar-grid">
+            <article class="pillar-card">
+              <span class="pillar-num">01</span>
+              <h3>자사 R&D, 독자 배합</h3>
+              <p>
+                자사 개발 시스템이 고객의 브리프를 배합 비율까지 포함한 양산
+                대응 처방으로 구체화합니다.
+              </p>
+              <ul>
+                <li>독자적인 밀가루 블렌드와 원료 배합 비율</li>
+                <li>면의 식감·굵기·삶는 시간 조정</li>
+                <li>식품 제조 분야 발명 특허 10건 이상</li>
+                <li>Perten 곡물 분석 기기를 통한 랩 검사</li>
+              </ul>
+            </article>
+
+            <article class="pillar-card">
+              <span class="pillar-num">02</span>
+              <h3>국가급 곡물 보증</h3>
+              <p>
+                농업 산업화 국가 중점 선도 기업으로서 우량 밀 할당에 우선적으로
+                접근할 수 있습니다.
+              </p>
+              <ul>
+                <li>중국 유수의 밀 산지에 거점</li>
+                <li>계약 밀 기지 17만 무, 농가 1.8만 호</li>
+                <li>20만 톤의 자사 곡물 저장</li>
+                <li>ISO 9001 / ISO 22000 / HACCP 인증 취득 생산</li>
+              </ul>
+            </article>
+
+            <article class="pillar-card">
+              <span class="pillar-num">03</span>
+              <h3>안정적 수출을 위한 생산 능력</h3>
+              <p>
+                6개 생산 거점이 능력에 여유를 두고, 브랜드의 성장에 맞춰 공급을
+                안정적으로 유지합니다.
+              </p>
+              <ul>
+                <li>그룹 전체 1일 건면 560톤</li>
+                <li>1000형 자동 제면 라인 7기</li>
+                <li>디자인 신속 대응의 자사 포장 부문</li>
+                <li>해외 주문용 수출 서류 지원</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- What you can customise -->
+      <section class="page-section alt" aria-labelledby="services-custom-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">고객 사양에 따른 제조</p>
+          <h2 id="services-custom-title">맞춤 제작 가능한 항목</h2>
+
+          <div class="custom-grid">
+            <div class="custom-item">
+              <h3>배합과 원료</h3>
+              <p>
+                밀가루 블렌드, 단백질 수준, 계란·채소 함유, 멀티그레인 비율——
+                보유 배합으로도, 제로부터도 대응합니다.
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>형상과 컷</h3>
+              <p>
+                초극세 '용수염'부터 광폭 '나이프 컷'까지, 둥근면·납작면, 나아가
+                면대나 지방 포맷에도 대응.
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>식감과 삶는 시간</h3>
+              <p>
+                탄력, 쫄깃함, 삶을 때의 거동을 시장의 조리 습관에 맞춰 조정합니다.
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>포장 형태</h3>
+              <p>
+                필로우, 종이 띠, 손잡이 패밀리팩, 업소용 HoReCa 카톤——고객의
+                디자인으로.
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>포장 중량과 카톤</h3>
+              <p>
+                정미 150g부터 4kg까지의 중량과, 소매·도매 채널에 맞춘 카톤 구성.
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>지방 스타일</h3>
+              <p>
+                양춘면, 라면, 단단면, 후이면 등 지방 중국 면의 실적 있는 OEM
+                프로그램.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Production journey: vertical timeline (overview only — detail page to follow) -->
+      <section class="page-section" aria-labelledby="services-journey-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">생산 여정</p>
+          <h2 id="services-journey-title">곡물부터 지정 항구까지</h2>
+
+          <ol class="prod-timeline">
+            <li>
+              <span class="prod-step-num">단계 01</span>
+              <h3>원료 선정</h3>
+              <p>
+                국가 밀 산지의 계약 기지에서 온 우량 밀을, 입고 전에 등급별로
+                검사·저장합니다.
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">단계 02</span>
+              <h3>배합과 원료</h3>
+              <p>
+                배합은 자사 R&D 랩에서 개발——완전 맞춤형 원료 배합 비율에
+                대응합니다.
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">단계 03</span>
+              <h3>크기와 형상 조정</h3>
+              <p>
+                다양한 지방 면에 맞춰 컷·폭·두께를 오더메이드로 성형합니다.
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">단계 04</span>
+              <h3>오리지널 포장 디자인</h3>
+              <p>
+                포장 형태와 디자인을 그룹 자사 포장 설비에서 제작합니다.
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">단계 05</span>
+              <h3>품질 관리</h3>
+              <p>
+                밀가루부터 완성 포장까지 ISO 22000과 HACCP 관리하에 배치 검사를
+                실시합니다.
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">단계 06</span>
+              <h3>수출과 출하</h3>
+              <p>
+                컨테이너 적재, 수출 서류, 지정 항구까지 납기를 엄수해 공급합니다.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Company strength: raw material / R&D / nationwide plants -->
+      <section class="page-section tight-top" aria-label="Lisheng이 대응할 수 있는 이유">
+        <div class="page-section-inner">
+          <div class="services-split">
+            <div class="services-split-media">
+              <img
+                src={withBase("/images/services/wheat-quality-inspection-milling.webp")}
+                alt="Lisheng의 밀 품질 검사 및 제분"
+              />
+            </div>
+            <div class="services-split-copy">
+              <p class="services-kicker">원료 보증</p>
+              <h3 id="services-quality-title">
+                품질은 밀밭에서 시작된다
+              </h3>
+              <p>
+                Lisheng의 각 거점은 국가급 우량 밀 산지에 있습니다. '기업＋기지＋
+                농가' 모델을 통해 17만 무의 밀을 계약하고, 종자·재배·매입을 일원
+                공급——그래서 제분소에 도착하기 전부터 그 곡물을 파악하고 있습니다.
+              </p>
+              <p>
+                입고된 밀은 등급별로 검사·저장하고, 주문에 맞춰 블렌딩하여
+                저온에서 제분합니다. 국가 중점 선도 기업으로서 Lisheng은 우량
+                곡물 할당을 우선적으로 확보——고객의 제품에 양질의 밀이 항상
+                공급됩니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="services-split reverse">
+            <div class="services-split-media">
+              <img
+                src={withBase("/images/services/rd-laboratory-product-development.webp")}
+                alt="Lisheng의 R&D 랩과 제품 개발"
+              />
+            </div>
+            <div class="services-split-copy">
+              <p class="services-kicker">자사 R&D</p>
+              <h3 id="services-rd-title">배합을 자사가 쥐고 있는 랩</h3>
+              <p>
+                Lisheng은 원료 검사, 배합 조정, 면 식감 개발, 포장 검사를
+                망라하는 독립적인 제품 개발 시스템을 운영——고객의 제품은 즉흥이
+                아니라 설계됩니다.
+              </p>
+              <p>
+                그룹은 <strong>식품 제조 발명 특허 10건 이상</strong>을 보유하고
+                있으며, 최신 개발인 저온 제분과 밀기울 로스팅을 활용한 덴마크식
+                맷돌 제분의 통곡물 제품 라인은 랩이 배합을 어디까지 파고들고
+                있는지를 보여줍니다.
+              </p>
+              <a class="services-split-link" href={withBase("/ko/factory/lab/")}>
+                제품 랩 보기
+              </a>
+            </div>
+          </div>
+
+          <div class="services-split">
+            <div class="services-split-media">
+              <img
+                src={withBase("/images/services/automated-noodle-production-lines.webp")}
+                alt="Lisheng 공장의 자동 제면 라인"
+              />
+            </div>
+            <div class="services-split-copy">
+              <p class="services-kicker">공장의 생산 능력</p>
+              <h3 id="services-network-title">
+                중국 전역의 자동화 공장
+              </h3>
+              <p>
+                6개 생산 거점이 산둥·허베이·허난을 커버——모두 우량 밀 산지에
+                건설되어 자동화된 가공 라인을 갖추고 있습니다. 합쳐서 하루
+                7,000톤의 밀을 제분하고 560톤의 건면을 생산합니다.
+              </p>
+              <p>
+                1000형 자동 제면 라인 7기가 반죽 공급·컷·건조·포장을 커버하며,
+                량산의 기함 스마트 공장을 축으로 전개——그래서 고객의 주문은 단일
+                공장의 일정에 묶이지 않습니다.
+              </p>
+              <a class="services-split-link" href={withBase("/ko/company/subsidiaries/")}>
+                생산 거점 보기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Production environment & machinery -->
+      <section class="page-section alt" aria-labelledby="services-equip-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">생산 환경</p>
+          <h2 id="services-equip-title">현대적 공장, 스마트 라인</h2>
+          <p>
+            고객의 주문은 세계 유수의 제분소가 신뢰하는 국제 수준과 동일한
+            설비로 제조됩니다——고객 감사에 열려 있는 청결한 전용 공장에서.
+          </p>
+
+          <dl class="equip-grid">
+            <div>
+              <dt>Bühler 스마트 제분 시스템</dt>
+              <dd>
+                스위스 Bühler 설비를 그룹 전체에 도입. 량산 공장의 전량 배합
+                대응 완전 스마트 제분 라인을 포함합니다.
+              </dd>
+            </div>
+            <div>
+              <dt>Perten 곡물 분석 기기</dt>
+              <dd>
+                밀과 밀가루의 각 배치를 프로파일링하여, 주문마다 측정 가능하고
+                재현성 있는 사양을 유지합니다.
+              </dd>
+            </div>
+            <div>
+              <dt>MDDK 롤기, 5회 정선 공정</dt>
+              <dd>
+                미들링을 꼼꼼히 선별하여 단백질과 전분을 보호——영양을 남긴
+                고순도 밀가루.
+              </dd>
+            </div>
+            <div>
+              <dt>PLC + MES에 의한 무인 운전</dt>
+              <dd>
+                밀 입고부터 팰릿화까지, 기함 공장은 원격 스마트 제어하에 거의
+                무인으로 운전합니다.
+              </dd>
+            </div>
+            <div>
+              <dt>저온 제분</dt>
+              <dd>
+                제분 온도를 제어하여 각 패키지에 밀의 비타민과 자연스러운 향을
+                남깁니다.
+              </dd>
+            </div>
+            <div>
+              <dt>그린 에너지 생산</dt>
+              <dd>
+                2MW의 지붕 태양광과 태양열 건조실이 각 배치 면의 탄소 발자국을
+                줄입니다.
+              </dd>
+            </div>
+          </dl>
+          <a class="services-split-link" href={withBase("/ko/factory/production/")}>
+            생산에 대해 자세히 보기
+          </a>
+        </div>
+      </section>
+
+      <!-- Certifications & export credentials -->
+      <section class="page-section" aria-labelledby="services-cert-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">국제 거래용 인증 취득</p>
+          <h2 id="services-cert-title">
+            수입 담당자가 확인하는 서류 일체
+          </h2>
+          <p>
+            인증된 관리 시스템, 국가 수준의 브랜드 인지, 수출 서류 지원——본격
+            적인 OEM 문의에는 증명서 사본을 준비해 드립니다.
+          </p>
+
+          <div class="cert-chip-grid">
+            <div class="cert-chip">
+              <h3>ISO 9001</h3>
+              <p>품질 경영 시스템 인증.</p>
+            </div>
+            <div class="cert-chip">
+              <h3>ISO 22000</h3>
+              <p>식품 안전 경영 시스템 인증.</p>
+            </div>
+            <div class="cert-chip">
+              <h3>HACCP</h3>
+              <p>위해요소 중점관리 시스템.</p>
+            </div>
+            <div class="cert-chip">
+              <h3>ISO 14001</h3>
+              <p>환경 경영 시스템 인증.</p>
+            </div>
+            <div class="cert-chip">
+              <h3>중국 그린 식품</h3>
+              <p>
+                일부 제품은 중국 '그린 식품' 인증과 '무공해 농산물' 마크를
+                취득했습니다.
+              </p>
+            </div>
+            <div class="cert-chip">
+              <h3>수출 서류</h3>
+              <p>
+                원산지 증명, 위생·검사 서류를 도착지 시장의 요건에 맞춰 준비
+                합니다.
+              </p>
+            </div>
+          </div>
+          <a class="services-split-link" href={withBase("/ko/factory/certificates/")}>
+            모든 인증·수상 보기
+          </a>
+        </div>
+      </section>
+
+      <!-- Capacity & export -->
+      <section class="page-section alt" aria-labelledby="services-capacity-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">생산 능력과 수출 대응력</p>
+          <h2 id="services-capacity-title">
+            여유 있는 생산 능력, 계획대로의 공급
+          </h2>
+          <p>
+            OEM 프로그램은 생산 능력이 바닥나면 무너집니다. Lisheng의 6개 거점은
+            한계를 크게 밑돌며 가동되어 고객의 성장을 위한 여력을 확보——수출팀이
+            서류를 담당해 컨테이너를 매번 제때 내보냅니다.
+          </p>
+
+          <div class="services-stats" aria-label="생산 능력 지표">
+            <dl>
+              <dt>560<span>톤</span></dt>
+              <dd>그룹의 1일 건면</dd>
+            </dl>
+            <dl>
+              <dt>7,000<span>톤</span></dt>
+              <dd>1일 밀 처리량</dd>
+            </dl>
+            <dl>
+              <dt>7</dt>
+              <dd>1000형 자동 제면 라인</dd>
+            </dl>
+            <dl>
+              <dt>200,000<span>톤</span></dt>
+              <dd>자사 곡물 저장 능력</dd>
+            </dl>
+            <dl>
+              <dt>6</dt>
+              <dd>3개 성에 있는 생산 거점</dd>
+            </dl>
+            <dl>
+              <dt>30<span>+</span></dt>
+              <dd>식품 제조 연수</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <ContactCta
+        kicker="OEM 프로젝트 시작하기"
+        title="제품 아이디어를 보내주세요——제조 제안을 드립니다."
+        text="타깃 시장, 원하시는 포장 형태, 예상 수량을 알려주세요. 당사 수출팀이 샘플 방향성, 사양, 실질적인 견적 경로를 회신해 드립니다."
+        buttonLabel="견적 요청"
+        buttonHref="/ko/contact/"
+      />
+    </main>
+
+    <Footer showCta={false} lang="ko" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>
