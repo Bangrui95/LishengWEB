@@ -1,0 +1,963 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import ProductCard from "../../../components/ProductCard.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/products.css";
+import "../../../styles/ja.css";
+
+// Catalog scraped from the official site (lishengws.com) noodle section,
+// split into the two brand series. Lightweight image + name cards.
+const lishengNoodles = [
+  { img: "/images/products/noodles-lisheng/lisheng-clear-soup-wheat-core-noodles.webp", name: "Lisheng 小麦胚乳 清湯麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-silver-thread-wheat-core-noodles.webp", name: "Lisheng 小麦胚乳 銀糸麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-hand-rolled-noodles.webp", name: "Lisheng 小麦胚乳 手延べ風麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-dragon-beard-noodles.webp", name: "Lisheng 小麦胚乳 龍のひげ麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-hand-rolled-style-noodles.webp", name: "Lisheng プレミアム手延べ風麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-silver-thread-noodles.webp", name: "Lisheng プレミアム銀糸麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-noodles-i.webp", name: "Lisheng 小麦胚乳麺 I" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-noodles-ii.webp", name: "Lisheng 小麦胚乳麺 II" },
+  { img: "/images/products/noodles-lisheng/lisheng-knife-cut-noodles.webp", name: "Lisheng ナイフカット麺" },
+  { img: "/images/products/noodles-lisheng/premium-refined-original-noodles.webp", name: "プレミアム精製 定番麺" },
+  { img: "/images/products/noodles-lisheng/high-gluten-clear-soup-noodles.webp", name: "高グルテン 清湯麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-i.webp", name: "Lisheng 定番麺 I" },
+  { img: "/images/products/noodles-lisheng/lisheng-yangchun-noodles.webp", name: "Lisheng 陽春麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-wheat-aroma-noodles.webp", name: "Lisheng 高グルテン 麦の香り麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-dragon-beard-noodles.webp", name: "Lisheng 高グルテン 龍のひげ麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-wonton-noodles.webp", name: "Lisheng 高グルテン ワンタン用麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-double-happiness-noodles.webp", name: "Lisheng 双喜麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-ii.webp", name: "Lisheng 定番麺 II" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-iii.webp", name: "Lisheng 定番麺 III" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-iv.webp", name: "Lisheng 定番麺 IV" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-aroma-noodles.webp", name: "Lisheng 麦の香り麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-smooth-noodles.webp", name: "Lisheng なめらか麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-original-noodles-v.webp", name: "Lisheng 定番麺 V" },
+  { img: "/images/products/noodles-lisheng/lisheng-northern-wheat-hand-rolled-noodles.webp", name: "Lisheng 北方小麦 手延べ風麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-northern-wheat-dragon-beard-noodles.webp", name: "Lisheng 北方小麦 龍のひげ麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-egg-wheat-core-noodles.webp", name: "Lisheng 卵入り小麦胚乳麺" },
+  { img: "/images/products/noodles-lisheng/premium-refined-egg-noodles.webp", name: "プレミアム精製 卵麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-wheat-core-egg-noodles.webp", name: "Lisheng 小麦胚乳 卵麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-golden-egg-noodles.webp", name: "Lisheng プレミアム黄金卵麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-premium-buckwheat-noodles.webp", name: "Lisheng プレミアムそば麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-egg-noodles-i.webp", name: "Lisheng 高グルテン卵麺 I" },
+  { img: "/images/products/noodles-lisheng/lisheng-homestyle-egg-noodles.webp", name: "Lisheng 家庭用卵麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-egg-noodles-ii.webp", name: "Lisheng 高グルテン卵麺 II" },
+  { img: "/images/products/noodles-lisheng/lisheng-high-gluten-mushroom-noodles.webp", name: "Lisheng 高グルテンきのこ麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-egg-noodles-i.webp", name: "Lisheng 卵麺 I" },
+  { img: "/images/products/noodles-lisheng/lisheng-northern-wheat-egg-noodles.webp", name: "Lisheng 北方小麦 卵麺" },
+  { img: "/images/products/noodles-lisheng/lisheng-egg-noodles-ii.webp", name: "Lisheng 卵麺 II" },
+];
+
+const minshengNoodles = [
+  { img: "/images/products/noodles-minsheng/minsheng-premium-wheat-noodles-i-m-bag.webp", name: "Minsheng プレミアム小麦麺 I（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-premium-wheat-noodles-ii-m-bag.webp", name: "Minsheng プレミアム小麦麺 II（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-dragon-beard-noodles-m-bag.webp", name: "Minsheng 龍のひげ麺（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-smooth-noodles-m-bag.webp", name: "Minsheng 小麦胚乳 なめらか麺（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-plain-noodles-paper-wrapped.webp", name: "Minsheng 小麦胚乳 定番麺（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-smooth-noodles-paper-wrapped.webp", name: "Minsheng 小麦胚乳 なめらか麺（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-dragon-beard-noodles-paper-wrapped.webp", name: "Minsheng 小麦胚乳 龍のひげ麺（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-chongqing-xiaomian-noodles-paper-wrapped.webp", name: "Minsheng 重慶小麺（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-i-m-bag.webp", name: "Minsheng 卵麺 I（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-i-m-bag.webp", name: "Minsheng きのこ麺 I（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-egg-noodles-m-bag.webp", name: "Minsheng 小麦胚乳 卵麺（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-egg-noodles-paper-wrapped.webp", name: "Minsheng 小麦胚乳 卵麺（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-core-mushroom-noodles-paper-wrapped.webp", name: "Minsheng 小麦胚乳 きのこ麺（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-iron-stick-yam-noodles-m-bag.webp", name: "Minsheng 鉄棍山芋麺（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-ii-m-bag.webp", name: "Minsheng きのこ麺 II（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-i-paper-wrapped.webp", name: "Minsheng 卵麺 I（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-ii-paper-wrapped.webp", name: "Minsheng 卵麺 II（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-iii-m-bag.webp", name: "Minsheng きのこ麺 III（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-i-paper-wrapped.webp", name: "Minsheng きのこ麺 I（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iii-paper-wrapped.webp", name: "Minsheng 卵麺 III（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iv-paper-wrapped.webp", name: "Minsheng 卵麺 IV（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-gift-pack.webp", name: "Minsheng きのこ麺（ギフトパック）" },
+  { img: "/images/products/noodles-minsheng/minsheng-mushroom-noodles-ii-paper-wrapped.webp", name: "Minsheng きのこ麺 II（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-ii-m-bag.webp", name: "Minsheng 卵麺 II（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iii-m-bag.webp", name: "Minsheng 卵麺 III（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-egg-noodles-iv-m-bag.webp", name: "Minsheng 卵麺 IV（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-millet-and-mung-bean-noodles-m-bag.webp", name: "Minsheng 粟・緑豆麺（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-corn-and-pumpkin-noodles-m-bag.webp", name: "Minsheng とうもろこし・かぼちゃ麺（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-i-m-bag.webp", name: "Minsheng そば麺 I（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-i-paper-wrapped.webp", name: "Minsheng そば麺 I（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-ii-paper-wrapped.webp", name: "Minsheng そば麺 II（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-buckwheat-noodles-ii-m-bag.webp", name: "Minsheng そば麺 II（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-mung-bean-noodles-paper-wrapped.webp", name: "Minsheng 緑豆麺（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-corn-noodles-paper-wrapped.webp", name: "Minsheng とうもろこし麺（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-alkaline-noodles-i-paper-wrapped.webp", name: "Minsheng かんすい麺 I（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-alkaline-noodles-ii-paper-wrapped.webp", name: "Minsheng かんすい麺 II（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-country-style-noodles-paper-wrapped.webp", name: "Minsheng 田舎風麺（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-plain-noodles-paper-wrapped.webp", name: "Minsheng プレーン麺（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-i-paper-wrapped.webp", name: "Minsheng 定番麺 I（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-ii-paper-wrapped.webp", name: "Minsheng 定番麺 II（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-dragon-beard-noodles-paper-wrapped.webp", name: "Minsheng 龍のひげ麺（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-jade-ribbon-noodles-paper-wrapped.webp", name: "Minsheng 翡翠リボン麺（紙包み）" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-i-m-bag.webp", name: "Minsheng 定番麺 I（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-ii-m-bag.webp", name: "Minsheng 定番麺 II（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-red-double-happiness-noodles-m-bag.webp", name: "Minsheng 紅・双喜麺（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-iii-m-bag.webp", name: "Minsheng 定番麺 III（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-iv-m-bag.webp", name: "Minsheng 定番麺 IV（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-original-noodles-v-m-bag.webp", name: "Minsheng 定番麺 V（M袋）" },
+  { img: "/images/products/noodles-minsheng/minsheng-wheat-aroma-noodles-m-bag.webp", name: "Minsheng 麦の香り麺（M袋）" },
+];
+
+const lishengFlour = [
+  { img: "/images/products/flour-lisheng/lisheng-seven-star-snowflake-flour-5-kg.webp", name: "Lisheng 雪花粉 七つ星 5kg" },
+  { img: "/images/products/flour-lisheng/lisheng-seven-star-snowflake-flour-10-kg.webp", name: "Lisheng 雪花粉 七つ星 10kg" },
+  { img: "/images/products/flour-lisheng/lisheng-eight-star-strong-gluten-snowflake-flour-25-kg.webp", name: "Lisheng 強力雪花粉 八つ星 25kg" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-snowflake-flour-10-kg.webp", name: "Lisheng プレミアム雪花粉 10kg" },
+  { img: "/images/products/flour-lisheng/lisheng-eight-star-strong-gluten-snowflake-flour-10-kg.webp", name: "Lisheng 強力雪花粉 八つ星 10kg" },
+  { img: "/images/products/flour-lisheng/lisheng-nine-star-premium-snowflake-flour.webp", name: "Lisheng プレミアム雪花粉 九つ星" },
+  { img: "/images/products/flour-lisheng/lisheng-eight-star-strong-gluten-snowflake-flour-5-kg.webp", name: "Lisheng 強力雪花粉 八つ星 5kg" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-snowflake-flour.webp", name: "Lisheng プレミアム雪花粉" },
+  { img: "/images/products/flour-lisheng/lisheng-strong-gluten-snowflake-flour.webp", name: "Lisheng 強力雪花粉" },
+  { img: "/images/products/flour-lisheng/lisheng-seven-star-snowflake-flour.webp", name: "Lisheng 雪花粉 七つ星" },
+  { img: "/images/products/flour-lisheng/lisheng-snowflake-flour.webp", name: "Lisheng 雪花粉" },
+  { img: "/images/products/flour-lisheng/lisheng-strong-gluten-dumpling-wrapper-flour.webp", name: "Lisheng 強力 餃子皮用粉" },
+  { img: "/images/products/flour-lisheng/lisheng-wheat-core-semolina-flour.webp", name: "Lisheng 小麦胚乳セモリナ粉" },
+  { img: "/images/products/flour-lisheng/lisheng-six-star-super-refined-flour.webp", name: "Lisheng 高精製粉 六つ星" },
+  { img: "/images/products/flour-lisheng/lisheng-special-refined-flour.webp", name: "Lisheng 特製精製粉" },
+  { img: "/images/products/flour-lisheng/lisheng-super-special-refined-flour.webp", name: "Lisheng 最高級特製精製粉" },
+  { img: "/images/products/flour-lisheng/lisheng-multi-purpose-wheat-core-flour-i.webp", name: "Lisheng 小麦胚乳 多用途粉 I" },
+  { img: "/images/products/flour-lisheng/lisheng-multi-purpose-wheat-core-flour-ii.webp", name: "Lisheng 小麦胚乳 多用途粉 II" },
+  { img: "/images/products/flour-lisheng/lisheng-king-flour.webp", name: "Lisheng キング粉" },
+  { img: "/images/products/flour-lisheng/lisheng-silver-flour.webp", name: "Lisheng シルバー粉" },
+  { img: "/images/products/flour-lisheng/lisheng-high-grade-flour.webp", name: "Lisheng 高級粉" },
+  { img: "/images/products/flour-lisheng/lisheng-golden-fuqiang-flour.webp", name: "Lisheng ゴールド富強粉" },
+  { img: "/images/products/flour-lisheng/lisheng-special-no1-flour-colour-pack.webp", name: "Lisheng 特製粉 No.1（カラーパック）" },
+  { img: "/images/products/flour-lisheng/lisheng-special-no1-flour-plain-pack.webp", name: "Lisheng 特製粉 No.1（プレーンパック）" },
+  { img: "/images/products/flour-lisheng/lisheng-high-gluten-wheat-aroma-flour.webp", name: "Lisheng 高グルテン 麦の香り粉" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-dumpling-flour-i.webp", name: "Lisheng プレミアム餃子粉 I" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-dumpling-flour-ii.webp", name: "Lisheng プレミアム餃子粉 II" },
+  { img: "/images/products/flour-lisheng/lisheng-dumpling-flour.webp", name: "Lisheng 餃子粉" },
+  { img: "/images/products/flour-lisheng/lisheng-snowflake-bun-and-pastry-flour.webp", name: "Lisheng 雪花 包子・パン用粉" },
+  { img: "/images/products/flour-lisheng/lisheng-six-star-noodle-king-flour.webp", name: "Lisheng 麺キング粉 六つ星" },
+  { img: "/images/products/flour-lisheng/lisheng-fresh-noodle-king-flour.webp", name: "Lisheng 生麺キング粉" },
+  { img: "/images/products/flour-lisheng/lisheng-five-star-steamed-bun-flour.webp", name: "Lisheng 蒸しパン用粉 五つ星" },
+  { img: "/images/products/flour-lisheng/lisheng-four-star-steamed-bun-flour-colour-pack.webp", name: "Lisheng 蒸しパン用粉 四つ星（カラーパック）" },
+  { img: "/images/products/flour-lisheng/lisheng-four-star-steamed-bun-flour-plain-pack.webp", name: "Lisheng 蒸しパン用粉 四つ星（プレーンパック）" },
+  { img: "/images/products/flour-lisheng/lisheng-three-star-steamed-bun-flour-colour-pack.webp", name: "Lisheng 蒸しパン用粉 三つ星（カラーパック）" },
+  { img: "/images/products/flour-lisheng/lisheng-three-star-steamed-bun-flour-plain-pack.webp", name: "Lisheng 蒸しパン用粉 三つ星（プレーンパック）" },
+  { img: "/images/products/flour-lisheng/lisheng-steamed-bun-flour-new.webp", name: "Lisheng 蒸しパン用粉（新）" },
+  { img: "/images/products/flour-lisheng/lisheng-youtiao-flour-new.webp", name: "Lisheng 油条用粉（新）" },
+  { img: "/images/products/flour-lisheng/lisheng-premium-bread-flour.webp", name: "Lisheng プレミアムパン用粉" },
+  { img: "/images/products/flour-lisheng/lisheng-bread-flour.webp", name: "Lisheng パン用粉" },
+  { img: "/images/products/flour-lisheng/lisheng-brown-bread-flour.webp", name: "Lisheng ブラウンブレッド用粉" },
+  { img: "/images/products/flour-lisheng/lisheng-hamburger-bun-flour.webp", name: "Lisheng ハンバーガーバンズ用粉" },
+  { img: "/images/products/flour-lisheng/lisheng-sachima-flour.webp", name: "Lisheng サチマ用粉" },
+  { img: "/images/products/flour-lisheng/lisheng-600-pastry-flour.webp", name: "Lisheng 600 製菓用粉" },
+  { img: "/images/products/flour-lisheng/lisheng-300-pastry-flour.webp", name: "Lisheng 300 製菓用粉" },
+  { img: "/images/products/flour-lisheng/lisheng-special-bread-flour.webp", name: "Lisheng 特製パン用粉" },
+];
+
+const minshengFlour = [
+  { img: "/images/products/flour-minsheng/minsheng-multi-purpose-wheat-core-flour-5-kg.webp", name: "Minsheng 小麦胚乳 多用途粉 5kg" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-refined-flour-5-kg.webp", name: "Minsheng 高グルテン精製粉 5kg" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-refined-flour-i.webp", name: "Minsheng 高グルテン精製粉 I" },
+  { img: "/images/products/flour-minsheng/minsheng-multi-purpose-wheat-core-flour.webp", name: "Minsheng 小麦胚乳 多用途粉" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-snowflake-flour-i.webp", name: "Minsheng 強力雪花粉 七つ星 I" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-snowflake-flour-i.webp", name: "Minsheng プレミアム雪花粉 I" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-snowflake-flour-ii.webp", name: "Minsheng プレミアム雪花粉 II" },
+  { img: "/images/products/flour-minsheng/minsheng-eight-star-strong-gluten-snowflake-flour.webp", name: "Minsheng 強力雪花粉 八つ星" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-snowflake-flour-ii.webp", name: "Minsheng 強力雪花粉 七つ星 II" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-dumpling-wrapper-flour.webp", name: "Minsheng 強力 餃子皮用粉 七つ星" },
+  { img: "/images/products/flour-minsheng/minsheng-six-star-strong-gluten-snowflake-flour.webp", name: "Minsheng 強力雪花粉 六つ星" },
+  { img: "/images/products/flour-minsheng/minsheng-super-special-refined-flour.webp", name: "Minsheng 最高級特製精製粉" },
+  { img: "/images/products/flour-minsheng/minsheng-six-star-super-snowflake-flour.webp", name: "Minsheng 最高級雪花粉 六つ星" },
+  { img: "/images/products/flour-minsheng/minsheng-five-star-special-refined-flour.webp", name: "Minsheng 特製精製粉 五つ星" },
+  { img: "/images/products/flour-minsheng/minsheng-multi-purpose-flour.webp", name: "Minsheng 多用途粉" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-fuqiang-flour.webp", name: "Minsheng 高グルテン富強粉" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-refined-flour-ii.webp", name: "Minsheng 高グルテン精製粉 II" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-special-no1-flour.webp", name: "Minsheng 高グルテン特製粉 No.1" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-original-flour.webp", name: "Minsheng 高グルテン定番粉" },
+  { img: "/images/products/flour-minsheng/minsheng-seven-star-strong-gluten-bun-and-pastry-flour.webp", name: "Minsheng 強力 包子・パン用粉 七つ星" },
+  { img: "/images/products/flour-minsheng/minsheng-high-gluten-steamed-bun-flour.webp", name: "Minsheng 高グルテン蒸しパン用粉" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-steamed-bun-flour.webp", name: "Minsheng プレミアム蒸しパン用粉" },
+  { img: "/images/products/flour-minsheng/minsheng-six-star-strong-gluten-dumpling-wrapper-flour.webp", name: "Minsheng 強力 餃子皮用粉 六つ星" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-dumpling-flour-i.webp", name: "Minsheng プレミアム餃子粉 I" },
+  { img: "/images/products/flour-minsheng/minsheng-premium-dumpling-flour-ii.webp", name: "Minsheng プレミアム餃子粉 II" },
+];
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>製品 | Lisheng International</title>
+    <meta
+      name="description"
+      content="Lisheng Group の製品ラインナップ: 乾麺シリーズ、小麦粉シリーズ、小売・HoReCa・輸出市場向けのカスタムOEM麺ソリューション。"
+    />
+  </head>
+  <body>
+    <Header lang="ja" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="products-hero-title">
+        <img
+          src={withBase("/images/products/products.webp")}
+          alt="Lisheng の麺と小麦粉のラインナップ"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">麺と小麦粉</p>
+          <h1 id="products-hero-title">製品</h1>
+          <p class="page-hero-copy">
+            乾麺シリーズ、小麦粉シリーズ、小売・HoReCa・輸出市場向けの
+            プライベートブランド・カスタムソリューション。
+          </p>
+          <div class="products-hero-actions">
+            <a class="products-hero-button" href={withBase("/ja/services/customization/")}>
+              製品をカスタマイズ <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="products-catalog" aria-labelledby="products-catalog-title">
+        <div class="products-catalog-inner">
+          <h2 id="products-catalog-title" class="sr-only">製品カタログ</h2>
+
+          <div class="products-catalog-intro">
+            <p>
+              下記のどの製品もお客様のブランドで製造可能です。各製品をクリック
+              すると詳細が表示され、必要な仕様と包装形態でOEMプロジェクトを
+              始められます。
+            </p>
+          </div>
+
+          <div class="product-tabs-extra">
+            <a class="tab-link" href={withBase("/ja/products/specifications/")}>
+              製品仕様 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <div
+            class="product-tabs"
+            role="tablist"
+            aria-label="製品カテゴリー"
+          >
+            <div class="tab-group" data-tab-group>
+              <button
+                class="active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                data-product-tab="noodles"
+              >
+                麺
+                <span class="tab-caret" data-tab-caret aria-hidden="true">▾</span>
+              </button>
+              <div class="tab-dropdown" role="menu">
+                <button type="button" role="tab" aria-selected="false" data-product-tab="noodles-lisheng">
+                  Lisheng シリーズ
+                </button>
+                <button type="button" role="tab" aria-selected="false" data-product-tab="noodles-minsheng">
+                  Minsheng シリーズ
+                </button>
+              </div>
+            </div>
+            <div class="tab-group" data-tab-group>
+              <button
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-product-tab="flour"
+              >
+                小麦粉
+                <span class="tab-caret" data-tab-caret aria-hidden="true">▾</span>
+              </button>
+              <div class="tab-dropdown" role="menu">
+                <button type="button" role="tab" aria-selected="false" data-product-tab="flour-lisheng">
+                  Lisheng シリーズ
+                </button>
+                <button type="button" role="tab" aria-selected="false" data-product-tab="flour-minsheng">
+                  Minsheng シリーズ
+                </button>
+              </div>
+            </div>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-product-tab="customization"
+            >
+              カスタムソリューション
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-product-tab="frozen"
+            >
+              冷凍食品
+            </button>
+          </div>
+
+          <div class="product-panels">
+            <!-- ============ Noodle Products ============ -->
+            <div class="product-panel active" data-product-panel="noodles" data-paginate>
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/whole-wheat-noodles-500-g.webp"
+                name="全粒麺 500g"
+                category="麺 · 全粒シリーズ"
+                description="小麦の全粒から挽き、ふすまと胚芽を残しつつ上品な麺の食感に仕上げました。食物繊維が豊富。原材料: 全粒粉、水、塩。ケース: 20 × 500g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/whole-wheat-noodles-1-kg.webp"
+                name="全粒麺 1kg"
+                category="麺 · 全粒シリーズ"
+                description="全粒ラインのファミリーパック——食物繊維たっぷり・低脂肪で、毎日の食事をより軽やかに。原材料: 全粒粉、水、塩。ケース: 15 × 1kg、紙包み。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/buckwheat-noodles.webp"
+                name="そば麺"
+                category="麺 · マルチグレインシリーズ"
+                description="小麦粉にそばを合わせ、香ばしい風味と豊富な食物繊維、低めのGI値を実現——血糖管理を意識した食事に人気です。原材料: 小麦粉、そば粉、水、塩。ケース: 15 × 800g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/royal-egg-noodles.webp"
+                name="ロイヤル卵麺"
+                category="麺 · ロイヤルシリーズ"
+                description="「グリーン食品」認証のプレミアム麺。コシがあり、豊かな卵の香り。原材料: 小麦粉、卵粉、水、塩。ケース: 15 × 1kg、紙包み。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/royal-dragon-beard-noodles.webp"
+                name="ロイヤル龍のひげ麺"
+                category="麺 · ロイヤルシリーズ"
+                description="厳選小麦から作る「グリーン食品」認証の極細麺。なめらかでコシがあり、豊かな麦の香り。原材料: 小麦粉、水、塩。ケース: 15 × 1kg、紙包み。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/slim-silver-thread-noodles.webp"
+                name="細 銀糸麺"
+                category="麺 · オーストラリア小麦シリーズ"
+                description="オーストラリア産と中国産小麦をブレンドした極細麺——早ゆででも、しっかりコシが残ります。原材料: 小麦粉（豪州・国産小麦）、水、塩。ケース: 15 × 1kg、紙包み。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/wheat-core-dragon-beard-noodles.webp"
+                name="小麦胚乳 龍のひげ麺"
+                category="麺 · 小麦胚乳シリーズ"
+                description="たんぱく質約13%の小麦胚乳から作る極細麺——やわらかくても煮崩れせず、細くてもくっつきません。原材料: 小麦胚乳粉、水、塩。ケース: 15 × 900g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/wheat-core-egg-noodles.webp"
+                name="小麦胚乳 卵麺"
+                category="麺 · 小麦胚乳シリーズ"
+                description="小麦胚乳粉に卵を加え、なめらかでコシのある食感に。原材料: 小麦胚乳粉、卵粉、水、塩。ケース: 15 × 900g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/wheat-core-hand-rolled-style-noodles.webp"
+                name="小麦胚乳 手延べ風麺"
+                category="麺 · 小麦胚乳シリーズ"
+                description="やや太めの手延べ風カットで、コシのある食感を強化。原材料: 小麦胚乳粉、水、塩。ケース: 15 × 900g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/wheat-core-wide-noodles.webp"
+                name="小麦胚乳 幅広麺"
+                category="麺 · 小麦胚乳シリーズ"
+                description="厳選した小麦胚乳粉から作る、コシの強い幅広麺——炒め物や煮込みに最適。原材料: 小麦胚乳粉、水、塩。ケース: 15 × 900g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/premium-fine-round-noodles.webp"
+                name="プレミアム細丸麺"
+                category="麺 · プレミアムシリーズ"
+                description="なめらかでコシのある細丸麺。原材料: 小麦粉、水、塩。ケース: 15 × 800g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/premium-egg-noodles.webp"
+                name="プレミアム卵麺"
+                category="麺 · プレミアムシリーズ"
+                description="卵を加えて栄養と風味を高めたプレミアムシリーズの麺。原材料: 小麦粉、卵粉、水、塩。ケース: 15 × 800g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/premium-original-noodles.webp"
+                name="プレミアム定番麺"
+                category="麺 · プレミアムシリーズ"
+                description="長くゆでても形が崩れない中太の定番麺。原材料: 小麦粉、水、塩。ケース: 15 × 800g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/high-gluten-dragon-beard-noodles-1-kg.webp"
+                name="高グルテン 龍のひげ麺 1kg"
+                category="麺 · 高グルテンシリーズ"
+                description="極細の高グルテン麺——やわらかくなめらかで早ゆで。原材料: 高グルテン小麦粉、水、塩。ケース: 15 × 1kg（20 × 400g もあり）。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/high-gluten-egg-noodles-1-kg.webp"
+                name="高グルテン卵麺 1kg"
+                category="麺 · 高グルテンシリーズ"
+                description="コシがありなめらかな高グルテン麺。ほのかな卵の風味で、ゆで上がりもスムーズ。原材料: 高グルテン小麦粉、卵粉、水、塩。ケース: 15 × 1kg。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/high-gluten-clear-soup-noodles-1-kg.webp"
+                name="高グルテン 清湯麺 1kg"
+                category="麺 · 高グルテンシリーズ"
+                description="なめらかにゆで上がり、スープを濁らせない高グルテン麺。原材料: 高グルテン小麦粉、水、塩。ケース: 15 × 1kg（20 × 400g もあり）。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/high-gluten-dragon-beard-noodles-500-g.webp"
+                name="高グルテン 龍のひげ麺 500g"
+                category="麺 · 高グルテンシリーズ"
+                description="極細高グルテン麺の500g小売パック——やわらか、なめらか、早ゆで。原材料: 高グルテン小麦粉、水、塩。ケース: 20 × 500g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/high-gluten-egg-noodles-500-g.webp"
+                name="高グルテン卵麺 500g"
+                category="麺 · 高グルテンシリーズ"
+                description="高グルテン卵麺の500g小売パック——コシがありなめらか、ほのかな卵の風味。原材料: 高グルテン小麦粉、卵粉、水、塩。ケース: 20 × 500g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/high-gluten-clear-soup-noodles-500-g.webp"
+                name="高グルテン 清湯麺 500g"
+                category="麺 · 高グルテンシリーズ"
+                description="清湯麺の500g小売パック——なめらかでゆでやすく、スープを濁らせません。原材料: 高グルテン小麦粉、水、塩。ケース: 20 × 500g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/superior-dragon-beard-noodles.webp"
+                name="スーペリア 龍のひげ麺"
+                category="麺 · スーペリアシリーズ"
+                description="高級小麦胚乳粉から作り、豊かな麦の香り。伝統的な紙包み。原材料: 小麦胚乳粉、水、塩。ケース: 15 × 1kg または 20 × 500g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/superior-egg-noodles.webp"
+                name="スーペリア卵麺"
+                category="麺 · スーペリアシリーズ"
+                description="高級小麦胚乳粉に卵を加え、より豊かな風味に。伝統的な紙包み。原材料: 小麦胚乳粉、卵粉、水、塩。ケース: 15 × 1kg または 20 × 500g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/superior-original-noodles.webp"
+                name="スーペリア定番麺"
+                category="麺 · スーペリアシリーズ"
+                description="高級小麦胚乳粉による豊かな麦の香りとなめらかな食感。紙包み。原材料: 小麦胚乳粉、水、塩。ケース: 15 × 1kg または 20 × 500g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/superior-dragon-beard-noodles-800-g.webp"
+                name="スーペリア 龍のひげ麺 800g"
+                category="麺 · スーペリアシリーズ"
+                description="高級小麦胚乳粉のスーペリア龍のひげ麺、フィルム包装の800g版。原材料: 小麦胚乳粉、水、塩。ケース: 15 × 800g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/superior-original-noodles-800-g.webp"
+                name="スーペリア定番麺 800g"
+                category="麺 · スーペリアシリーズ"
+                description="スーペリア定番麺のフィルム包装800g版——豊かな麦の香り、なめらかな食感。原材料: 小麦胚乳粉、水、塩。ケース: 15 × 800g。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/northern-wheat-dragon-beard-noodles.webp"
+                name="北方小麦 龍のひげ麺"
+                category="麺 · 北方小麦シリーズ"
+                description="中国北方産小麦を使用——コシがありなめらかで、スープにでんぷんの濁りが出ません。原材料: 小麦粉、水、塩。ケース: 15 × 800g、紙包み。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/northern-wheat-egg-noodles.webp"
+                name="北方小麦 卵麺"
+                category="麺 · 北方小麦シリーズ"
+                description="北方小麦に卵を加えた麺——コシがありなめらかで、スープが濁りません。原材料: 小麦粉、卵粉、水、塩。ケース: 15 × 800g、紙包み。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/northern-wheat-hand-rolled-style-noodles.webp"
+                name="北方小麦 手延べ風麺"
+                category="麺 · 北方小麦シリーズ"
+                description="中国北方産小麦の手延べ風カット——コシがあり、なめらかで食べ応え十分。原材料: 小麦粉、水、塩。ケース: 15 × 800g、紙包み。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/wheat-core-egg-noodle-sheets.webp"
+                name="小麦胚乳 卵麺帯"
+                category="麺 · 麺帯シリーズ"
+                description="なめらかでコシのある極薄の麺帯、豊かな卵の香り。原材料: 小麦胚乳粉、卵粉、水、塩。ケース: 10 × 1kg。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/homestyle-original-noodles.webp"
+                name="家庭用定番麺"
+                category="麺 · 家庭用シリーズ"
+                description="毎日使える定番麺——なめらか、ヘルシー、お得。原材料: 小麦粉、水、塩。包装は350g〜500g、カット幅も各種。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/homestyle-egg-noodles.webp"
+                name="家庭用卵麺"
+                category="麺 · 家庭用シリーズ"
+                description="卵粉を加え風味を高めた毎日使える麺。原材料: 小麦粉、卵粉、水、塩。包装400g/500g、カット幅各種。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/chinese-yam-noodles.webp"
+                name="山芋麺"
+                category="麺 · マルチグレインシリーズ"
+                description="伝統的な食生活で穏やかな滋養が尊ばれる山芋を配合。食べ応えがあり自然な風味。原材料: 小麦粉、山芋粉、水、塩。ファミリーパック、ケース: 6 × 1.75kg。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/millet-noodles.webp"
+                name="粟麺"
+                category="麺 · マルチグレインシリーズ"
+                description="粟入りのマルチグレイン麺——食物繊維が豊富で低めのGI値、血糖管理を意識した食事に。原材料: 小麦粉、粟粉、水、塩。ファミリーパック、ケース: 6 × 1.75kg。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/wheat-core-knife-cut-noodle-sheets.webp"
+                name="小麦胚乳 ナイフカット麺帯"
+                category="麺 · 麺帯シリーズ"
+                description="厳選小麦胚乳粉のナイフカット風麺帯——表面はシルキー、コシを強化。原材料: 小麦胚乳粉、水、塩。ケース: 20 × 250g（200g もあり）。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/wheat-core-egg-noodles-family-pack.webp"
+                name="小麦胚乳 卵麺 ファミリーパック"
+                category="麺 · 小麦胚乳シリーズ"
+                description="良質な原料で作る小麦胚乳卵麺の、持ち手付き1.5kgファミリーパック。原材料: 小麦胚乳粉、卵粉、水、塩。ケース: 7 × 1.5kg。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/noodles1/millet-noodles-bulk-pack.webp"
+                name="粟麺 業務用パック"
+                category="麺 · HoReCaシリーズ"
+                description="粟エキスを加えた4kg業務用パック、HoReCa・卸チャネル向け。原材料: 小麦粉、粟粉、水、塩。ケース: 3 × 4kg。"
+              />
+            </div>
+
+            <!-- ============ Flour Products ============ -->
+            <div class="product-panel" data-product-panel="flour" hidden data-paginate>
+              <ProductCard lang="ja"
+                image="/images/products/flour1/eight-star-strong-gluten-wheat-flour.webp"
+                name="強力小麦粉 八つ星"
+                category="小麦粉 · 強力シリーズ"
+                description="強力ライン最高級グレード。厳選した高たんぱく小麦から、高級パン・麺などの高グルテン製品向けに。25kg織布袋・カラーフィルム。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/seven-star-strong-gluten-wheat-flour.webp"
+                name="強力小麦粉 七つ星"
+                category="小麦粉 · 強力シリーズ"
+                description="幅広い高級高グルテン製品に対応する最高級の多用途強力粉。厳選した高たんぱく小麦から。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/six-star-strong-gluten-wheat-flour.webp"
+                name="強力小麦粉 六つ星"
+                category="小麦粉 · 強力シリーズ"
+                description="バランスの取れた価格で高級高グルテン用途に応える信頼の強力粉。厳選した高たんぱく小麦から。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/eight-star-snowflake-flour.webp"
+                name="雪花粉 八つ星"
+                category="小麦粉 · 多用途シリーズ"
+                description="小麦胚乳から作るプレミアム雪花粉——高い白さと細かい挽き。スープ包子、蒸しパン、麺、餅に。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/seven-star-snowflake-flour.webp"
+                name="雪花粉 七つ星"
+                category="小麦粉 · 多用途シリーズ"
+                description="蒸しパン、包子、麺、餅に対応する多用途の雪花粉。さまざまな用途で安定した仕上がり。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/6a-snowflake-flour.webp"
+                name="雪花粉 6A"
+                category="小麦粉 · 多用途シリーズ"
+                description="スープ包子、蒸しパン、麺、餅に使える多用途の雪花粉——外食店の頼れる定番。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/special-refined-flour.webp"
+                name="特製精製粉"
+                category="小麦粉 · 多用途シリーズ"
+                description="餅や薄焼き系によく合う精製小麦粉。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/golden-fuqiang-flour.webp"
+                name="ゴールド富強粉"
+                category="小麦粉 · 多用途シリーズ"
+                description="餅や日常の粉物に使う定番の精製粉。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/seven-star-snowflake-bun-flour.webp"
+                name="雪花 包子用粉 七つ星"
+                category="小麦粉 · 蒸し物用シリーズ"
+                description="包子や蒸し菓子向けに開発した中上級グレード。やわらかく白い、均一に膨らむ生地に。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/super-refined-flour.webp"
+                name="高精製粉"
+                category="小麦粉 · 蒸し物用シリーズ"
+                description="包子、蒸しパン、スープ包子、焼き包子、焼き餅に使える中級多用途粉。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/six-star-steamed-bun-flour.webp"
+                name="蒸しパン用粉 六つ星"
+                category="小麦粉 · 蒸し物用シリーズ"
+                description="蒸しパン専用に開発した最高級グレード——発酵耐性が高く、きめ細かく明るい生地。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/golden-steamed-bun-flour.webp"
+                name="ゴールド蒸しパン用粉"
+                category="小麦粉 · 蒸し物用シリーズ"
+                description="コシ・白さ・コストを両立した、業務用蒸し物向けの中級高グルテン粉。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/four-star-steamed-bun-flour.webp"
+                name="蒸しパン用粉 四つ星"
+                category="小麦粉 · 蒸し物用シリーズ"
+                description="北方風蒸しパン向けの経済的な粉。毎日安定した仕上がり。25kg袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/three-star-steamed-bun-flour.webp"
+                name="蒸しパン用粉 三つ星"
+                category="小麦粉 · 蒸し物用シリーズ"
+                description="大量生産向け、北方風蒸しパンのバジェットグレード粉。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/eight-star-dumpling-wrapper-flour.webp"
+                name="餃子皮用粉 八つ星"
+                category="小麦粉 · ゆで物用シリーズ"
+                description="高級な餃子・ワンタンの皮、生麺向けの強力粉——ゆでても半透明で弾力のある皮に。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/six-star-noodle-king-flour.webp"
+                name="麺キング粉 六つ星"
+                category="小麦粉 · ゆで物用シリーズ"
+                description="生切り麺、餃子・ワンタンの皮向けの専用粉。製麺・食品メーカー向け。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/youtiao-special-flour.webp"
+                name="油条専用粉"
+                category="小麦粉 · 揚げ物用シリーズ"
+                description="揚げ棒パン（油条）向けの専用粉。プリフォーム生地工場や高級揚げ物に——安定した膨らみとサクサク食感。25kg織布袋。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/eight-star-snowflake-wheat-flour-australian-wheat.webp"
+                name="雪花小麦粉 八つ星（オーストラリア小麦）"
+                category="小麦粉 · 小売パックシリーズ"
+                description="オーストラリア産と中国産小麦をブレンドした強力雪花粉、高級な家庭・職人向けの製パンに。織布袋タイプ、5kg × 5 または 10kg × 1。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/professional-dumpling-flour.webp"
+                name="プロ仕様餃子粉"
+                category="小麦粉 · 小売パックシリーズ"
+                description="高級餃子向けのプロ仕様粉——強く伸びる生地と半透明の皮。織布袋タイプ、5kg × 5/ケース。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/superior-dumpling-flour-10-kg.webp"
+                name="スーペリア餃子粉 10kg"
+                category="小麦粉 · 小売パックシリーズ"
+                description="レストランや卸の家庭用に、スーペリア餃子粉の10kg織布袋タイプ。5kg × 5 もあり。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/superior-dumpling-flour-25-kg.webp"
+                name="スーペリア餃子粉 2.5kg"
+                category="小麦粉 · 小売パックシリーズ"
+                description="高級な手作り餃子向けの便利な2.5kg小売パック。ケース: 4 × 2.5kg。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/flour1/household-dumpling-flour.webp"
+                name="家庭用餃子粉"
+                category="小麦粉 · 小売パックシリーズ"
+                description="毎日の家庭餃子に使いやすい手頃な餃子粉——扱いやすく安定した仕上がり。ケース: 4 × 2.5kg。"
+              />
+            </div>
+
+            <!-- ============ Flour Products · Lisheng Series ============ -->
+            <div class="product-panel" data-product-panel="flour-lisheng" hidden data-paginate>
+              {lishengFlour.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <!-- ============ Flour Products · Minsheng Series ============ -->
+            <div class="product-panel" data-product-panel="flour-minsheng" hidden data-paginate>
+              {minshengFlour.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <!-- ============ Custom Solutions ============ -->
+            <div class="product-panel" data-product-panel="customization" hidden>
+              <ProductCard lang="ja"
+                image="/images/products/customization1/shanghai-yangchun-noodles.webp"
+                name="上海 陽春麺"
+                category="カスタムソリューション"
+                description="海外ブランド向けに開発した地方製品: 定番の上海式細麺、2kg小売パック。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/customization1/lanzhou-ramen-noodles.webp"
+                name="蘭州ラーメン"
+                category="カスタムソリューション"
+                description="顧客ブランドで製造した蘭州風ラーメン。サイズ・食感・包装デザインをカスタム。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/customization1/sichuan-dandan-noodles.webp"
+                name="四川 担担麺"
+                category="カスタムソリューション"
+                description="海外小売向けにアレンジした四川担担麺風、地方中国麺シリーズの一つ。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/customization1/shandong-ramen-noodles.webp"
+                name="山東ラーメン"
+                category="カスタムソリューション"
+                description="独自配合と2kg包装でOEMプログラムとして開発した山東風ラーメン。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/customization1/shanxi-sliced-noodles.webp"
+                name="山西 刀削麺"
+                category="カスタムソリューション"
+                description="伝統的な幅広カットを保ちつつ量産化した山西刀削麺風。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/customization1/wuhan-hot-dry-noodles.webp"
+                name="武漢 熱乾麺"
+                category="カスタムソリューション"
+                description="輸出小売向けにアレンジした武漢熱乾麺風、ごまだれの定番調理を想定。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/customization1/henan-hand-rolled-style-noodles.webp"
+                name="河南 手延べ風麺"
+                category="カスタムソリューション"
+                description="プライベートブランド向けに量産する、手延べ食感の河南風麺。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/customization1/old-beijing-style-noodles.webp"
+                name="老北京風麺"
+                category="カスタムソリューション"
+                description="ジャージャー麺（炸醤）向けの老北京風麺。地方中国麺シリーズの締めくくり。"
+              />
+            </div>
+
+            <!-- ============ Frozen Products ============ -->
+            <div class="product-panel" data-product-panel="frozen" hidden>
+              <ProductCard lang="ja"
+                image="/images/products/frozen1/pork-and-celery-dumplings.webp"
+                name="豚肉とセロリの餃子"
+                category="冷凍食品 · フードワークショップ"
+                description="Lisheng の小麦粉で作る薄い皮に、ジューシーな豚肉とセロリを包んだ瞬間冷凍餃子。「フードワークショップ」ラインの一つで、OEM・プライベートブランド供給に対応。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/frozen1/pork-and-chinese-chive-dumplings.webp"
+                name="豚肉とニラの餃子"
+                category="冷凍食品 · フードワークショップ"
+                description="豚肉とニラの瞬間冷凍餃子。香り豊かな餡と、なめらかでコシのある皮。プライベートブランド製造に対応。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/frozen1/pork-and-scallion-dumplings.webp"
+                name="豚肉と青ねぎの餃子"
+                category="冷凍食品 · フードワークショップ"
+                description="定番の豚肉と青ねぎの餃子。鮮度を保つ瞬間冷凍、Lisheng の粉によるやわらかな皮。OEM対応。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/frozen1/pork-and-cabbage-dumplings.webp"
+                name="豚肉と白菜の餃子"
+                category="冷凍食品 · フードワークショップ"
+                description="定番の人気——豚肉と白菜を薄く弾力のある皮で。ゆでても蒸しても手軽な瞬間冷凍。プライベートブランド供給に対応。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/frozen1/fresh-pork-wonton.webp"
+                name="豚肉ワンタン"
+                category="冷凍食品 · フードワークショップ"
+                description="薄皮に新鮮な豚肉を包んだワンタン。手早いスープに使える瞬間冷凍。「フードワークショップ」ラインの一つ。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/frozen1/fresh-pork-wonton-classic-pack.webp"
+                name="豚肉ワンタン — 定番パック"
+                category="冷凍食品 · フードワークショップ"
+                description="豚肉ワンタンの定番小売パック——やわらかな皮とジューシーな餡で、数分で完成。OEM・プライベートブランド対応。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/frozen1/chinese-chive-and-egg-dumplings.webp"
+                name="ニラと卵の餃子"
+                category="冷凍食品 · フードワークショップ"
+                description="ニラと卵を包んだ瞬間冷凍餃子——「フードワークショップ」ラインの軽めの野菜系。OEM対応。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/frozen1/chinese-chive-and-egg-dumplings-2.webp"
+                name="ニラと卵の餃子"
+                category="冷凍食品 · Lisheng Select"
+                description="「Select」ラインのニラと卵の餃子——なめらかな小麦粉の皮に瞬間冷凍したベジタリアン餡。プライベートブランド供給に対応。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/frozen1/carrot-and-egg-dumplings.webp"
+                name="にんじんと卵の餃子"
+                category="冷凍食品 · フードワークショップ"
+                description="にんじんと卵の瞬間冷凍餃子——自然な甘みと彩り、野菜たっぷり。OEM対応。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/frozen1/pork-and-sweet-corn-dumplings.webp"
+                name="豚肉とスイートコーンの餃子"
+                category="冷凍食品 · Lisheng Select"
+                description="豚肉にスイートコーンを合わせ、ジューシーでほんのり甘い餡に。「Select」ラインの瞬間冷凍。プライベートブランド製造に対応。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/frozen1/pork-and-mushroom-dumplings.webp"
+                name="豚肉ときのこの餃子"
+                category="冷凍食品 · Lisheng Select"
+                description="豚肉ときのこの旨味たっぷりの餡を瞬間冷凍、手軽な調理に。「Select」ラインの一つ、OEM対応。"
+              />
+              <ProductCard lang="ja"
+                image="/images/products/frozen1/pork-and-shepherd-s-purse-dumplings.webp"
+                name="豚肉とナズナの餃子"
+                category="冷凍食品 · Lisheng Select"
+                description="季節の人気——豚肉にナズナ（薺）を合わせ、爽やかな香りを瞬間冷凍で封じ込めました。プライベートブランド供給に対応。"
+              />
+            </div>
+
+            <!-- ============ Noodle Products · Lisheng Series ============ -->
+            <div class="product-panel" data-product-panel="noodles-lisheng" hidden data-paginate>
+              {lishengNoodles.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <!-- ============ Noodle Products · Minsheng Series ============ -->
+            <div class="product-panel" data-product-panel="noodles-minsheng" hidden data-paginate>
+              {minshengNoodles.map((p) => (
+                <figure class="catalog-tile">
+                  <span class="catalog-tile-media">
+                    <img src={withBase(p.img)} alt={p.name} loading="lazy" />
+                  </span>
+                  <figcaption class="catalog-tile-name">{p.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+
+          <nav class="products-pagination" aria-label="製品ページ" data-products-pagination hidden>
+            <button class="products-page-nav" type="button" data-products-prev aria-label="前のページ">&lsaquo;</button>
+            <span class="products-page-status" data-products-status>1 / 1</span>
+            <button class="products-page-nav" type="button" data-products-next aria-label="次のページ">&rsaquo;</button>
+          </nav>
+
+          <div class="products-cta">
+            <div>
+              <h2>お探しの製品が見つかりませんか？</h2>
+              <p>
+                サイズ、食感、配合、包装まで、お客様の仕様に合わせて麺と小麦粉を
+                オーダー開発します。
+              </p>
+            </div>
+            <a class="products-cta-link" href={withBase("/ja/contact/")}>
+              お見積もり依頼 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="ja" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+
+    <script>
+      // Open the tab matching the URL hash (e.g. /products/#flour),
+      // including when a dropdown link is clicked while already on this page.
+      const activateFromHash = () => {
+        const cat = location.hash.replace("#", "");
+        if (!cat) return;
+        const tab = document.querySelector(`[data-product-tab="${cat}"]`);
+        if (tab instanceof HTMLElement) tab.click();
+      };
+      window.addEventListener("hashchange", activateFromHash);
+      activateFromHash();
+
+      // Tab dropdowns (Noodle + Flour, each with Lisheng / Minsheng series).
+      // Desktop reveals on hover (CSS); on touch the caret toggles it.
+      const tabGroups = Array.from(document.querySelectorAll("[data-tab-group]"));
+      tabGroups.forEach((group) => {
+        const caret = group.querySelector("[data-tab-caret]");
+        caret?.addEventListener("click", (event) => {
+          event.stopPropagation();
+          // close any other open group, then toggle this one
+          tabGroups.forEach((g) => g !== group && g.classList.remove("open"));
+          group.classList.toggle("open");
+        });
+        group
+          .querySelectorAll(".tab-dropdown [data-product-tab]")
+          .forEach((btn) =>
+            btn.addEventListener("click", () => {
+              group.classList.remove("open");
+              // drop focus so :focus-within doesn't keep the menu pinned open
+              (btn as HTMLElement).blur();
+            })
+          );
+      });
+      document.addEventListener("click", (event) => {
+        tabGroups.forEach((group) => {
+          if (!group.contains(event.target as Node)) group.classList.remove("open");
+        });
+      });
+
+      // Client-side pagination (12 per page) for the Noodle / Flour panels.
+      // Custom Solutions (8) and Frozen (12) have no [data-paginate] → nav hides.
+      const PAGE_SIZE = 12;
+      const pagNav = document.querySelector<HTMLElement>("[data-products-pagination]");
+      const pagPrev = document.querySelector<HTMLButtonElement>("[data-products-prev]");
+      const pagNext = document.querySelector<HTMLButtonElement>("[data-products-next]");
+      const pagStatus = document.querySelector("[data-products-status]");
+      const pageOf = new Map<Element, number>();
+
+      const itemsOf = (panel: Element) =>
+        Array.from(panel.querySelectorAll<HTMLElement>(".product-tile, .catalog-tile"));
+
+      // Track the active panel ourselves (independent of site.js tab toggling).
+      let currentPanel: Element | null = document.querySelector(
+        "[data-product-panel]:not([hidden])"
+      );
+
+      const renderPagination = () => {
+        const paged = !!currentPanel?.hasAttribute("data-paginate");
+        if (pagNav) pagNav.hidden = !paged;
+        if (!paged || !currentPanel) return;
+        const items = itemsOf(currentPanel);
+        const pages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
+        let page = pageOf.get(currentPanel) ?? 0;
+        if (page > pages - 1) page = pages - 1;
+        pageOf.set(currentPanel, page);
+        items.forEach((el, i) => {
+          el.hidden = i < page * PAGE_SIZE || i >= (page + 1) * PAGE_SIZE;
+        });
+        if (pagStatus) pagStatus.textContent = `${page + 1} / ${pages}`;
+        if (pagPrev) pagPrev.disabled = page === 0;
+        if (pagNext) pagNext.disabled = page === pages - 1;
+      };
+
+      const step = (delta: number) => {
+        if (!currentPanel?.hasAttribute("data-paginate")) return;
+        const pages = Math.max(
+          1,
+          Math.ceil(itemsOf(currentPanel).length / PAGE_SIZE)
+        );
+        const np = Math.max(
+          0,
+          Math.min((pageOf.get(currentPanel) ?? 0) + delta, pages - 1)
+        );
+        if (np === pageOf.get(currentPanel)) return;
+        pageOf.set(currentPanel, np);
+        renderPagination();
+        document
+          .querySelector(".product-tabs")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+
+      pagPrev?.addEventListener("click", () => step(-1));
+      pagNext?.addEventListener("click", () => step(1));
+
+      // On tab / sub-tab switch: point at the new panel and reset it to page 1.
+      document.querySelectorAll<HTMLElement>("[data-product-tab]").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const target = document.querySelector(
+            `[data-product-panel="${tab.dataset.productTab}"]`
+          );
+          if (!target) return;
+          currentPanel = target;
+          pageOf.set(target, 0);
+          renderPagination();
+        });
+      });
+
+      renderPagination();
+    </script>
+  </body>
+</html>

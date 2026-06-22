@@ -1,0 +1,340 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/factory-lab.css";
+import "../../../styles/ja.css";
+
+const PAT = withBase("/images/factory/patents");
+
+// Patent certificate scans (portrait) — invention name in Japanese + source file.
+const patents = [
+  { img: "patent-01.webp", name: "調整式三本ロール小麦加水機" },
+  { img: "patent-02.webp", name: "製粉設備用コンパクト手持ち集塵機" },
+  { img: "patent-03.webp", name: "冷却機能付きプランシフター" },
+  { img: "patent-04.webp", name: "簡単設置の移動式ピュリファイヤー" },
+  { img: "patent-05.webp", name: "除塵機の防振ベース" },
+  { img: "patent-06.webp", name: "高効率・清掃容易な振動ふるい" },
+  { img: "patent-07.webp", name: "搬送機能付き石抜き機" },
+  { img: "patent-08.webp", name: "清掃容易な除塵機" },
+  { img: "patent-09.webp", name: "小麦粉包装機のコンベアユニット" },
+  { img: "patent-10.webp", name: "小麦粉袋の保持に便利な装置" },
+];
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>食品ラボ | Lisheng International</title>
+    <meta
+      name="description"
+      content="Lisheng Group の製品開発ラボ: 小麦粉・麺の配合開発、食感研究、全粒石臼挽きの革新、食品製造の発明特許10件以上。"
+    />
+  </head>
+  <body>
+    <Header lang="ja" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="lab-hero-title">
+        <img src={withBase("/images/factory/lab/product-development-laboratory.webp")} alt="Lisheng の製品開発ラボ" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">研究開発</p>
+          <h1 id="lab-hero-title">製品ラボ</h1>
+          <p class="page-hero-copy">
+            原料試験から包装試験まで、小麦粉・乾麺・穀物製品を網羅する独立した
+            開発システム。
+          </p>
+        </div>
+      </section>
+
+      <!-- R&D capability -->
+      <section class="page-section" aria-labelledby="lab-rd-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">ラボの役割</p>
+          <h2 id="lab-rd-title">穀物から市場対応の配合まで</h2>
+          <p>
+            Lisheng の製品チームは、原料試験、配合調整、麺の食感開発、包装試験に
+            取り組みます。開発に加え、食品安全ラボの専門家が生産の各段階に関与
+            ——ライン全体でサンプリングと管理を行い、工程全体が安全・追跡可能・
+            確実な管理下にあるようにします。
+          </p>
+
+          <div class="machine-grid">
+            <div>
+              <dt>配合開発</dt>
+              <dd>
+                高グルテン麺からマルチグレイン・野菜入りまで、さまざまな製品要件
+                に合わせて小麦粉と生地の配合を試験・調整します。
+              </dd>
+            </div>
+            <div>
+              <dt>食感とゆで特性の研究</dt>
+              <dd>
+                麺のサイズ、太さ、弾力、ゆで時の挙動を、各ターゲット市場と調理法
+                に合わせて調整します。
+              </dd>
+            </div>
+            <div>
+              <dt>工程の最適化</dt>
+              <dd>
+                製品がラインに乗る前から、自社の特許製造技術によって生産の安定性
+                を高めます。
+              </dd>
+            </div>
+            <div>
+              <dt>包装試験</dt>
+              <dd>
+                包装形態、資材、保管時の挙動を、グループ自社の包装設備で検証
+                します。
+              </dd>
+            </div>
+          </div>
+
+          <div class="media-trio" aria-label="ラボとR&Dの写真">
+            <img
+              src={withBase("/images/factory/lab/rd-specialist-checking-noodle-samples.webp")}
+              alt="麺サンプルを確認するR&D専門家"
+            />
+            <img
+              src={withBase("/images/factory/lab/rd-team-product-development.webp")}
+              alt="製品開発の詳細を議論するR&Dチーム"
+            />
+            <img
+              src={withBase("/images/factory/lab/noodle-research-sample-testing.webp")}
+              alt="麺の研究とサンプル試験"
+            />
+          </div>
+
+          <div class="qc-flow" aria-label="生産チェーン全体の品質管理">
+            <div class="qc-card">
+              <p class="qc-step">ステップ 01</p>
+              <h3>原料試験</h3>
+              <p>
+                入荷する小麦は各ロットをサンプリングし、Perten 機器でプロファイ
+                リング——水分、たんぱく質、湿麺筋(ウェットグルテン)、フォーリング
+                ナンバー、灰分。仕様を満たす穀物のみ受け入れ、その結果により各
+                ロットを等級・品質別にビンへ振り分けます。
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">ステップ 02</p>
+              <h3>加工前チェック</h3>
+              <p>
+                製粉前に、ラボが精選と調質(加水)を確認し、各小麦粉グレードの目標
+                水分・たんぱく質に合わせて小麦のブレンドを承認します。これは
+                Lisheng の「等級・品質別ブレンド」方式の基礎です。
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">ステップ 03</p>
+              <h3>工程中のリアルタイム管理</h3>
+              <p>
+                製粉・製麺の全工程で、小麦粉フローをラインからサンプリングし、
+                灰分、白さ、水分、粒度を検査します。測定値は MES システムを通じて
+                フィードバックされ、ロールやピュリファイヤーを稼働中に調整できます。
+              </p>
+            </div>
+            <div class="qc-card">
+              <p class="qc-step">ステップ 04</p>
+              <h3>完成品の管理</h3>
+              <p>
+                完成した小麦粉と麺は、出荷前に理化学検査、官能検査(ゆで・食感)、
+                衛生検査を受けます。保存サンプルとバッチ記録が、ISO 22000と
+                HACCPに基づく完全な追跡性——そして購入者に必要な輸出書類——を
+                確保します。
+              </p>
+            </div>
+          </div>
+
+          <div class="company-cta">
+            <div>
+              <h2>当社のラボと一緒に製品を開発</h2>
+              <p>
+                ターゲット製品または市場ブリーフをお持ちください——配合、食感、
+                包装、サンプルは当社チームが担当します。
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/ja/contact/")}>
+              プロジェクトを始める <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Whole grain innovation -->
+      <section class="page-section alt" aria-labelledby="lab-wholegrain-title">
+        <div class="page-section-inner">
+          <div class="split-row" style="margin-top: 0;">
+            <div class="split-media wg-media">
+              <img
+                src={withBase("/images/factory/certificates/wholewheat-series.webp")}
+                alt="Lisheng の石臼挽き全粒粉シリーズの包装"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">最新製品 · 2025</p>
+              <h3 id="lab-wholegrain-title">石臼挽き全粒製品ライン</h3>
+              <p>
+                Lisheng は独立した全粒製品の専用棟を備えています——3階建て・
+                延床1,200m²の独立棟で、近代的な加工基準で設計されています。
+                穀物の精選・貯蔵・ブレンド、除塵と小麦の精選、色彩選別、石臼
+                製粉、小麦粉ブレンドまで、内製の全チェーンを網羅します。
+              </p>
+              <p>
+                各バッチは一貫管理された工程を経ます——清麦の処理 → 殺菌 →
+                小麦の色彩選別 → 精選 → デンマーク式石臼製粉 → ふすまの焙煎と
+                ブレンド。
+              </p>
+            </div>
+          </div>
+
+          <h4 class="wg-subhead">工程が栄養をどう守るか</h4>
+          <div class="wg-feature-cards">
+            <div class="wg-card">
+              <p class="wg-card-tag">低温</p>
+              <h5>低速・低温の石臼製粉</h5>
+              <p>
+                下側の回転石臼が低速で挽き、精密な自動温度制御が製粉温度を安全な
+                範囲に保ちます——全粒粉の栄養素を守る明確な利点です。
+              </p>
+            </div>
+            <div class="wg-card">
+              <p class="wg-card-tag">栄養を保持</p>
+              <h5>栄養の保持</h5>
+              <p>
+                同じ自動温度制御がでんぷんの糊化とたんぱく質の変性を防ぎ、小麦
+                本来の栄養プロファイルを保ちます。
+              </p>
+            </div>
+            <div class="wg-card">
+              <p class="wg-card-tag">ふすま焙煎</p>
+              <h5>ふすま焙煎の革新</h5>
+              <p>
+                高温でのふすま焙煎が、ふすまの風味と保存安定性を高め、消化を
+                助けます——全粒粉全体の食用品質を向上させます。
+              </p>
+            </div>
+          </div>
+
+          <h4 class="wg-subhead">全粒粉の中身</h4>
+          <p class="wg-lead">
+            全粒粉は小麦の全粒から挽かれ、3つの貴重な構成要素すべてを残します。
+          </p>
+          <dl class="machine-grid tri">
+            <div>
+              <dt>ふすま</dt>
+              <dd>食物繊維、ビタミンB群、ミネラルが豊富。</dd>
+            </div>
+            <div>
+              <dt>胚乳</dt>
+              <dd>良質な炭水化物とたんぱく質を供給。</dd>
+            </div>
+            <div>
+              <dt>胚芽</dt>
+              <dd>
+                ビタミンE、不飽和脂肪酸、抗酸化物質を豊富に含む。
+              </dd>
+            </div>
+          </dl>
+
+        </div>
+      </section>
+
+      <!-- Patents -->
+      <section class="page-section" aria-labelledby="lab-patents-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">知的財産</p>
+          <h2 id="lab-patents-title">特許取得の製粉・製造技術</h2>
+          <p>
+            Lisheng は、自社の製粉・小麦粉製造設備に関する国家特許のポートフォリオ
+            を保有しています——加水、除塵、石抜きから、ふるい分け、精選、包装まで。
+            これらの自社開発は、精選効率、機械の安定性、ラインの稼働時間を高め、
+            安定した工業品質を実現します。証明書をクリックすると原本が開きます。
+          </p>
+
+          <div class="patent-showcase">
+            <ul class="patent-list" role="tablist" aria-label="特許一覧">
+              {patents.map((p, i) => (
+                <li>
+                  <button
+                    type="button"
+                    class="patent-tab"
+                    role="tab"
+                    aria-selected={i === 0 ? "true" : "false"}
+                    data-patent-src={`${PAT}/${p.img}`}
+                    data-patent-name={p.name}
+                  >
+                    <span class="patent-tab-name">{p.name}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            <figure class="patent-viewer">
+              <a
+                id="patent-link"
+                href={`${PAT}/${patents[0].img}`}
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  id="patent-image"
+                  src={`${PAT}/${patents[0].img}`}
+                  alt={`Lisheng 特許証 — ${patents[0].name}`}
+                />
+              </a>
+              <figcaption id="patent-caption">{patents[0].name}</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="ja" />
+    <script>
+      const tabs = document.querySelectorAll(".patent-tab");
+      const img = document.getElementById("patent-image");
+      const link = document.getElementById("patent-link");
+      const caption = document.getElementById("patent-caption");
+      const list = document.querySelector(".patent-list");
+
+      // Lock the certificate image height to the list (text) height on desktop,
+      // letting its width follow — pure CSS can't reference the sibling's height.
+      function fitPatentImage() {
+        if (!list || !img) return;
+        if (window.innerWidth <= 900) {
+          img.style.maxHeight = "";
+          return;
+        }
+        const padding = 36; // viewer top + bottom padding (18 × 2)
+        const capH = caption ? caption.offsetHeight + 16 : 0;
+        img.style.maxHeight =
+          Math.max(160, list.offsetHeight - padding - capH) + "px";
+      }
+      fitPatentImage();
+      window.addEventListener("resize", fitPatentImage);
+      window.addEventListener("load", fitPatentImage);
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const src = tab.dataset.patentSrc;
+          const name = tab.dataset.patentName;
+          img.src = src;
+          img.alt = `Lisheng 特許証 — ${name}`;
+          link.href = src;
+          caption.textContent = name;
+          tabs.forEach((t) => t.setAttribute("aria-selected", "false"));
+          tab.setAttribute("aria-selected", "true");
+          fitPatentImage();
+        });
+      });
+    </script>
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

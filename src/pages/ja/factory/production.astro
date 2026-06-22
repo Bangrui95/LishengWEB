@@ -1,0 +1,346 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/factory-production.css";
+import "../../../styles/ja.css";
+
+const IMG = withBase("/images/factory/production");
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>スマート工場 | Lisheng International</title>
+    <meta
+      name="description"
+      content="6つの生産拠点、Bühler スマート製粉システム、MES管理ライン: Lisheng Group は1日あたり小麦7,000トン、乾麺560トンを加工します。"
+    />
+  </head>
+  <body>
+    <Header lang="ja" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="production-hero-title">
+        <img
+          src={`${IMG}/automated-production-workshop.webp`}
+          alt="Lisheng の自動化生産工場"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">生産</p>
+          <h1 id="production-hero-title">生産設備</h1>
+          <p class="page-hero-copy">
+            中国有数の小麦産地にある6つの生産拠点。国際水準の設備を、スマート
+            工場管理のもとで運用しています。
+          </p>
+        </div>
+      </section>
+
+      <!-- Capacity: intro + dark stats band -->
+      <section class="page-section" aria-labelledby="production-capacity-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">生産能力</p>
+          <h2 id="production-capacity-title">量産のために設計し、安定のために稼働する</h2>
+          <p>
+            Lisheng は山東・河北・河南で6つの生産拠点を運営し、いずれも国家級の
+            優良小麦産地にあります。これらが合わさり、海外パートナーにメーカー
+            直結のスケール余力ある生産能力を提供します。
+          </p>
+        </div>
+
+        <div class="prod-stats-band">
+          <div class="prod-stats-grid" aria-label="生産能力の指標">
+            <dl>
+              <dt>7,000<span>トン</span></dt>
+              <dd>グループの1日あたり小麦処理量</dd>
+            </dl>
+            <dl>
+              <dt>560<span>トン</span></dt>
+              <dd>1日あたりの乾麺生産量</dd>
+            </dl>
+            <dl>
+              <dt>100万<span>トン</span></dt>
+              <dd>梁山工場の年間小麦受入量</dd>
+            </dl>
+            <dl>
+              <dt>200,000<span>トン</span></dt>
+              <dd>自社の穀物貯蔵能力</dd>
+            </dl>
+            <dl>
+              <dt>7<span>ライン</span></dt>
+              <dd>1000型の自動製麺</dd>
+            </dl>
+            <dl>
+              <dt>2<span>MW</span></dt>
+              <dd>梁山の屋根置き太陽光</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="page-section-inner">
+          <div class="company-cta">
+            <div>
+              <h2>設備をその目で</h2>
+              <p>
+                製粉工程と製麺ラインを見学し、当社の輸出チームとお会いください
+                ——ほとんどの見学は1日で完了します。
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/ja/contact/")}>
+              お問い合わせ <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Plant gallery -->
+      <section class="page-section tight-top" aria-labelledby="production-gallery-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">工場の内側</p>
+          <h2 id="production-gallery-title">あなたの製品が生まれる場所</h2>
+
+          <div class="prod-gallery" aria-label="工場の写真ギャラリー">
+            <img
+              src={`${IMG}/fine-noodle-strands-production-line.webp`}
+              alt="生産ラインの細い麺線"
+            />
+            <img
+              src={`${IMG}/automated-production-line.webp`}
+              alt="稼働中の自動生産ライン"
+            />
+            <img
+              src={`${IMG}/packaged-noodles-packing-machine.webp`}
+              alt="包装機から出てくる包装済みの麺"
+            />
+          </div>
+
+        </div>
+      </section>
+      <!-- Production journey with photos -->
+      <section class="page-section alt" aria-labelledby="production-process-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">生産の仕組み</p>
+          <h2 id="production-process-title">小麦からパレットまで——一貫管理されたチェーン</h2>
+
+          <ol class="prod-steps">
+            <li>
+              <img
+                src={`${IMG}/wheat-cleaning-milling-hall.webp`}
+                alt="小麦の精選・製粉ホール"
+              />
+              <span class="step-arrow" aria-hidden="true">ステップ 1</span>
+              <h3>精選と製粉</h3>
+              <p>
+                小麦は検査を受け、等級別に貯蔵され、オーダーに合わせてブレンド
+                され、低温で製粉されます。
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/dough-preparation-sheeting-machine.webp`}
+                alt="生地のミキシング・圧延機"
+              />
+              <span class="step-arrow" aria-hidden="true">ステップ 2</span>
+              <h3>ミキシングと圧延</h3>
+              <p>
+                小麦粉、水、配合成分を混ぜ合わせ、均一な生地シートに圧延します。
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/noodle-cutting-forming-line.webp`}
+                alt="麺のカット・成形ライン"
+              />
+              <span class="step-arrow" aria-hidden="true">ステップ 3</span>
+              <h3>カットと成形</h3>
+              <p>
+                交換式の刃が、No.0「龍のひげ」からNo.10「ナイフカット」まで
+                あらゆる幅を成形します。
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/noodles-drying-room.webp`}
+                alt="乾燥室の麺"
+              />
+              <span class="step-arrow" aria-hidden="true">ステップ 4</span>
+              <h3>低温乾燥</h3>
+              <p>
+                吊るした麺を温湿度管理された乾燥室でゆっくり乾燥——梁山工場では
+                太陽熱を利用しています。
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/automated-noodle-packing-machine.webp`}
+                alt="麺の自動包装機"
+              />
+              <span class="step-arrow" aria-hidden="true">ステップ 5</span>
+              <h3>包装</h3>
+              <p>
+                小売・ファミリー・HoReCa の各フォーマットを、自社の包装資材を
+                用いて自動ラインで充填します。
+              </p>
+            </li>
+            <li>
+              <img
+                src={`${IMG}/finished-goods-warehouse.webp`}
+                alt="倉庫の完成品"
+              />
+              <span class="step-arrow" aria-hidden="true">ステップ 6</span>
+              <h3>保管と出荷</h3>
+              <p>
+                完成品はバッチ単位で倉庫管理され、グループの物流ネットワークを
+                通じて出荷されます。
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Equipment photo cards -->
+      <section class="page-section" aria-labelledby="production-equipment-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">設備と技術</p>
+          <h2 id="production-equipment-title">国際水準の設備、スマートな制御</h2>
+
+          <div class="equip-row">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/buhler-milling-hall.webp`}
+                alt="Lisheng 工場の Bühler 製粉ホール"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>Bühler スマート製粉システム</h3>
+              <p>
+                スイス Bühler の製粉設備がグループ全体で稼働——済寧本社と成武の
+                工場には Bühler 一式を、旗艦の梁山工場には一体型のスマート製粉
+                システムを導入し、4本のラインが1日あたり特殊粉3,000トンを全量
+                配合で生産します。
+              </p>
+              <p>
+                購入者にとっては、これはバッチごとに同一の小麦粉仕様を意味します:
+                配合のレシピは作業者の手作業ではなく、システムが実行します。
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row reverse">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/grain-analysis-instruments.webp`}
+                alt="穀物分析機器を操作する技術者"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>Perten 穀物分析機器</h3>
+              <p>
+                スウェーデン Perten のアナライザーが、入荷する小麦と出荷する
+                小麦粉の各バッチをプロファイリング——たんぱく質、水分、グルテン
+                品質を目視ではなく測定します。その後、小麦は等級別に貯蔵され、
+                測定データに基づいてブレンドされます。
+              </p>
+              <p>
+                各注文の背後にはバッチ記録があり、お客様の品質管理部門が受け取る
+                分析証明書の基礎となります。
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/mddk-roller-mills-purifiers.webp`}
+                alt="MDDK ロール機とピュリファイヤー"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>MDDK ロール機と多段精選</h3>
+              <p>
+                MDDK ロール機は、鄭州穀物学院の専門家と共同開発した5破砕・8製粉
+                系統の構成で稼働し、5回の精選工程とミドリング採取を行います。
+              </p>
+              <p>
+                丁寧な段階的製粉がたんぱく質とでんぷんを保護——白さ、香り、
+                安定した製パン特性を備えた高純度の小麦粉フローです。
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row reverse">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/intelligent-control-processing-equipment.webp`}
+                alt="スマート制御下の自動化設備"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>PLC + MES によるスマート工場管理</h3>
+              <p>
+                旗艦の梁山工場では、各工程が PLC と MES システムの管理下で稼働
+                ——小麦の検査、ビンへの振り分け、ブレンド、製粉、等級別貯蔵、
+                小麦粉配合、充填、積み込みが自動化されています。
+              </p>
+              <p>
+                工場は遠隔制御のもとほぼ無人で稼働し、各バッチは穀物からパレット
+                まで完全なデジタル履歴を残します。
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/low-temperature-milling-hall.webp`}
+                alt="低温製粉ホール"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>低温製粉</h3>
+              <p>
+                製粉温度を精密に制御し、ビタミンや高分子の栄養素を壊す熱損傷を
+                防ぎます——小麦粉は栄養価と小麦本来の香りを保ちます。
+              </p>
+              <p>
+                同じ思想は全粒製品ラインにも及び、デンマーク式石臼が低速で挽き、
+                温度を自動制御します。
+              </p>
+            </div>
+          </div>
+
+          <div class="equip-row reverse">
+            <div class="equip-media">
+              <img
+                src={`${IMG}/thousand-type-noodle-production-line.webp`}
+                alt="1000型の自動製麺ライン"
+              />
+            </div>
+            <div class="equip-copy">
+              <h3>1000型の自動製麺ライン</h3>
+              <p>
+                7本の1000型自動ラインが製麺の全工程——生地供給、圧延、カット、
+                吊り掛け、乾燥、包装——をカバーし、発酵麺、中空麺、マルチグレイン、
+                野菜入りなどを含め、1日あたり最大560トンの乾麺を生産します。
+              </p>
+              <p>
+                梁山の乾燥室は、屋根の2MW太陽光に加え、1,200m²の太陽熱パネルで
+                加温——エネルギー消費を抑え、より環境に優しい生産を実現します。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <Footer lang="ja" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

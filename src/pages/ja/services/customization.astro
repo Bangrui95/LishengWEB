@@ -1,0 +1,336 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/customization.css";
+import "../../../styles/ja.css";
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>製品カスタマイズ | Lisheng International</title>
+    <meta
+      name="description"
+      content="麺製品をステップごとに設計します: 原料、配合、形状、サンプル、品質基準、数量、包装、輸出条件。"
+    />
+  </head>
+  <body>
+    <Header lang="ja" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="customization-hero-title">
+        <img
+          src={withBase("/images/main/products444.webp")}
+          alt="Lisheng が開発したカスタム麺製品"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">お客様の仕様で製造</p>
+          <h1 id="customization-hero-title">製品カスタマイズ</h1>
+          <p class="page-hero-copy">
+            9つのステップを進み、市場に合うものを選んでブリーフをお送りください
+            ——残りは当社が設計します。
+          </p>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="config-title">
+        <div class="page-section-inner">
+          <p class="config-kicker">製品ブリーフを作成</p>
+          <h2 id="config-title">麺プログラムをカスタマイズ</h2>
+          <p>
+            以下の各選択肢は、当社工場で実際に対応可能なものです。各ステップで
+            必要なものを選び、わからないものはスキップしてください——担当チームが
+            ご案内します。
+          </p>
+
+          <!-- STEP 01 -->
+          <div class="config-step">
+            <span class="config-step-num">ステップ 01</span>
+            <h3>輸出市場</h3>
+            <p>
+              製品はどこで販売されますか？市場によって、適合・形態・味の方向性に
+              関する当社の提案が変わります——該当するものをすべて選択してください。
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">東南アジア</button>
+              <button type="button">東アジア（日本／韓国）</button>
+              <button type="button">ヨーロッパ</button>
+              <button type="button">北米</button>
+              <button type="button">南米</button>
+              <button type="button">中東・アフリカ</button>
+              <button type="button">オセアニア</button>
+              <button type="button">複数／その他の市場</button>
+            </div>
+          </div>
+
+          <!-- STEP 02 -->
+          <div class="config-step">
+            <span class="config-step-num">ステップ 02</span>
+            <h3>製品タイプ</h3>
+            <p>
+              ブランドのベース製品を選択してください——中国の定番から国際的な
+              スタイルまで、すべて同じ小麦技術で対応します。
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">中国式乾麺</button>
+              <button type="button">ラーメン</button>
+              <button type="button">うどん</button>
+              <button type="button">そば／そば粉麺</button>
+              <button type="button">スパゲッティ</button>
+              <button type="button">麺帯（生地シート）</button>
+              <button type="button">中国地方シリーズ</button>
+              <button type="button">独自の製品タイプ</button>
+            </div>
+          </div>
+
+          <!-- STEP 03 -->
+          <div class="config-step">
+            <span class="config-step-num">ステップ 03</span>
+            <h3>原料</h3>
+            <p>
+              ポジショニングに合わせて小麦粉ベースを選択してください——手頃な
+              日常向けからプレミアム・健康志向まで（$ = 目安の価格帯）。
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">標準小麦粉 $</button>
+              <button type="button">小麦胚乳粉 $$</button>
+              <button type="button">高グルテン小麦粉 $$</button>
+              <button type="button">全粒粉 $$$</button>
+              <button type="button">マルチグレインブレンド $$$</button>
+              <button type="button">原料を指定する</button>
+            </div>
+          </div>
+
+          <!-- STEP 04 -->
+          <div class="config-step">
+            <span class="config-step-num">ステップ 04</span>
+            <h3>配合の方向性</h3>
+            <p>
+              市場が期待する食感をお知らせください——または独自のレシピをお持ち
+              いただければ、量産向けに調整します。
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">コシのある弾力タイプ（東アジア）</button>
+              <button type="button">やわらかく早ゆでタイプ</button>
+              <button type="button">パスタ風のしっかり食感（アルデンテ）</button>
+              <button type="button">全粒・高食物繊維</button>
+              <button type="button">卵入り</button>
+              <button type="button">野菜入りブレンド</button>
+              <button type="button">自社レシピを使用</button>
+            </div>
+          </div>
+
+          <!-- STEP 05 -->
+          <div class="config-step">
+            <span class="config-step-num">ステップ 05</span>
+            <h3>形状とサイズ</h3>
+            <p>
+              麺の幅、断面、長さ——中国のカット番号と、それに近い西洋パスタの
+              対応を示します。
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">極細丸麺（No.0／エンジェルヘア）</button>
+              <button type="button">細丸麺（No.2／スパゲッティ）</button>
+              <button type="button">中太（No.3／リングイネ）</button>
+              <button type="button">幅広平麺（No.6／フェットチーネ）</button>
+              <button type="button">幅広カット（No.10／パッパルデッレ）</button>
+              <button type="button">独自のサイズ</button>
+            </div>
+          </div>
+
+          <!-- STEP 06 -->
+          <div class="config-step">
+            <span class="config-step-num">ステップ 06</span>
+            <h3>サンプルテスト</h3>
+            <p>数量のお約束の前に製品をご確認ください。</p>
+            <div class="config-options" data-config-group>
+              <button type="button">サンプルの国際発送</button>
+              <button type="button">サンプルの動画レビュー</button>
+              <button type="button">工場見学・監査</button>
+            </div>
+          </div>
+
+          <!-- STEP 07 -->
+          <div class="config-step">
+            <span class="config-step-num">ステップ 07</span>
+            <h3>品質と認証</h3>
+            <p>
+              製品が満たすべき基準をすべて選択してください——複数選択可能です。
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">ISO 9001 / 22000 / HACCP（基本）</button>
+              <button type="button">EU市場対応</button>
+              <button type="button">米国市場対応</button>
+              <button type="button">ハラール要件</button>
+              <button type="button">第三者ラボ試験</button>
+              <button type="button">顧客指定の基準</button>
+            </div>
+          </div>
+
+          <!-- STEP 08 -->
+          <div class="config-step">
+            <span class="config-step-num">ステップ 08</span>
+            <h3>数量とスケジュール</h3>
+            <p>
+              チャネルに合わせた発注ペース——小ロットから始め、当社の予備生産
+              能力でスケールできます。
+            </p>
+            <div class="config-options" data-config-group>
+              <button type="button">試験注文（1コンテナ以下）</button>
+              <button type="button">毎月のコンテナ供給</button>
+              <button type="button">四半期プログラム</button>
+              <button type="button">年間基本契約</button>
+              <button type="button">未定</button>
+            </div>
+          </div>
+
+          <!-- STEP 09 -->
+          <div class="config-step">
+            <span class="config-step-num">ステップ 09</span>
+            <h3>包装と輸出</h3>
+            <p>
+              チャネルに合った包装形態を選び、配送方法を指定してください。
+            </p>
+            <p class="config-group-label">包装形態</p>
+            <div class="config-options" data-config-group>
+              <button type="button">小売用ピロー包装</button>
+              <button type="button">紙帯束ね包装</button>
+              <button type="button">持ち手付きファミリーパック</button>
+              <button type="button">業務用HoReCaカートン</button>
+              <button type="button">完全オーダー包装</button>
+            </div>
+            <p class="config-group-label">輸出条件</p>
+            <div class="config-options" data-config-group>
+              <button type="button">指定港まで配送（CIF）</button>
+              <button type="button">お客様が輸送手配（FOB）</button>
+              <button type="button">工場渡し（EXW）</button>
+              <button type="button">アドバイスが必要</button>
+            </div>
+          </div>
+
+          <!-- Save & contact -->
+          <div class="config-step">
+            <h3>この構成でよろしいですか？</h3>
+            <p>
+              当社の輸出チームにお送りください——サンプルの方向性、仕様、
+              見積もりの道筋をご返信します。
+            </p>
+            <div class="config-save-actions">
+              <a class="config-save-link" href={withBase("/ja/contact/")}>
+                保存してお問い合わせを送る <span aria-hidden="true">→</span>
+              </a>
+              <button type="button" class="config-reset" data-config-reset>
+                リセット
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer showCta={false} lang="ja" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+
+    <script>
+      // Storage key for a group = its sub-label (step 9 has two groups) or,
+      // failing that, the step's h3 title.
+      function groupKey(step, group) {
+        const prev = group.previousElementSibling;
+        if (prev && prev.classList.contains("config-group-label")) {
+          return prev.textContent.trim();
+        }
+        const h3 = step.querySelector("h3");
+        return h3 ? h3.textContent.trim() : "";
+      }
+
+      // Every group is multi-select: click toggles a button on/off.
+      document.querySelectorAll("[data-config-group] button").forEach((btn) => {
+        btn.addEventListener("click", () => btn.classList.toggle("selected"));
+      });
+
+      // Clear every selection and the stored data. The Reset button and a
+      // browser refresh both run this, which also resets the contact page
+      // (it reads these same sessionStorage keys).
+      function clearConfig() {
+        document
+          .querySelectorAll("[data-config-group] button.selected")
+          .forEach((b) => b.classList.remove("selected"));
+        sessionStorage.removeItem("lisheng-customization");
+        sessionStorage.removeItem("lisheng-customization-types");
+      }
+
+      // Re-apply the saved picks (used when returning via "Edit").
+      function restoreConfig() {
+        let saved = null;
+        try {
+          const raw = sessionStorage.getItem("lisheng-customization");
+          if (raw) saved = JSON.parse(raw);
+        } catch (e) {}
+        if (!saved) return;
+        document.querySelectorAll(".config-step").forEach((step) => {
+          step.querySelectorAll("[data-config-group]").forEach((group) => {
+            const picked = saved[groupKey(step, group)] || [];
+            group.querySelectorAll("button").forEach((b) => {
+              if (picked.indexOf(b.textContent.trim()) !== -1) {
+                b.classList.add("selected");
+              }
+            });
+          });
+        });
+      }
+
+      // On load: returning via "Edit" (?edit=1) restores the saved picks; any
+      // other load — a fresh visit or a plain refresh — starts clean (which
+      // also clears the contact page). After restoring we drop the ?edit flag,
+      // so a later refresh resets as expected.
+      if (new URLSearchParams(location.search).has("edit")) {
+        restoreConfig();
+        history.replaceState(null, "", location.pathname);
+      } else {
+        clearConfig();
+      }
+
+      const resetBtn = document.querySelector("[data-config-reset]");
+      if (resetBtn) resetBtn.addEventListener("click", clearConfig);
+
+      // Save & Send: collect selections, persist to sessionStorage, then jump
+      // to the contact page with a flag so it shows the "filled" state.
+      const saveLink = document.querySelector(".config-save-link");
+      if (saveLink) {
+        saveLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          const selections = {};
+          document.querySelectorAll(".config-step").forEach((step) => {
+            step.querySelectorAll("[data-config-group]").forEach((group) => {
+              const picked = Array.from(
+                group.querySelectorAll("button.selected")
+              ).map((b) => b.textContent.trim());
+              if (picked.length) selections[groupKey(step, group)] = picked;
+            });
+          });
+
+          sessionStorage.setItem(
+            "lisheng-customization",
+            JSON.stringify(selections)
+          );
+          sessionStorage.setItem(
+            "lisheng-customization-types",
+            JSON.stringify(selections["製品タイプ"] || [])
+          );
+
+          const href = saveLink.getAttribute("href");
+          const sep = href.indexOf("?") === -1 ? "?" : "&";
+          // Land directly on the inquiry form (#quote-form) instead of the top.
+          location.href = href + sep + "from=customization#quote-form";
+        });
+      }
+    </script>
+  </body>
+</html>

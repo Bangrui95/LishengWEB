@@ -1,0 +1,519 @@
+---
+import { withBase } from "../../../lib/url";
+import ContactCta from "../../../components/ContactCta.astro";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/services.css";
+import "../../../styles/ja.css";
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>OEM受託製造 | Lisheng International</title>
+    <meta
+      name="description"
+      content="プライベートブランドの麺OEM製造: 独自配合の自社R&D、国家級の穀物調達、安定した輸出供給を支える1日560トンの生産能力。"
+    />
+  </head>
+  <body>
+    <Header lang="ja" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="services-hero-title">
+        <img
+          src={withBase("/images/services/oem-noodle-manufacturing-packaging.webp")}
+          alt="Lisheng のOEM麺製造と包装"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">OEM受託製造</p>
+          <h1 id="services-hero-title">プライベートブランドの麺製造</h1>
+          <p class="page-hero-copy">
+            あなたのブランド、当社の工場。独自配合の乾麺を国家級企業の規模で
+            製造し、輸出対応・納期厳守でお届けします。
+          </p>
+          <div class="services-hero-actions">
+            <a class="services-hero-primary" href={withBase("/ja/contact/")}>
+              プライベートブランド案件を始める <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- OEM workflow -->
+      <section class="page-section" aria-labelledby="services-flow-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">お問い合わせからコンテナまで</p>
+          <h2 id="services-flow-title">プライベートブランド案件の流れ</h2>
+
+          <ol class="oem-flow">
+            <li>
+              <h3>お問い合わせと相談</h3>
+              <p>
+                ターゲット市場、製品アイデア、数量計画、包装の方向性をお聞かせ
+                ください。実現可能性と方向性を確認します。
+              </p>
+            </li>
+            <li>
+              <h3>配合とサンプル</h3>
+              <p>
+                当社R&Dラボが配合を開発し、味・食感・仕様の承認前にサンプルを
+                お送りします。
+              </p>
+            </li>
+            <li>
+              <h3>見積もりと契約</h3>
+              <p>
+                配合、包装形態、注文量、供給条件に基づく透明な見積もり——その後、
+                生産契約へ。
+              </p>
+            </li>
+            <li>
+              <h3>デザインと試験注文</h3>
+              <p>
+                自社包装部門がデザインを仕上げ、試験生産で生産ラインでの製品を
+                確認します。
+              </p>
+            </li>
+            <li>
+              <h3>量産と品質管理</h3>
+              <p>
+                自動ラインがISO 22000 / HACCP管理下で量産し、穀物から完成包装
+                までバッチ試験を実施します。
+              </p>
+            </li>
+            <li>
+              <h3>輸出と配送</h3>
+              <p>
+                コンテナ積み込み、輸出書類、指定港までの物流サポート——リピート
+                注文にも安定したスケジュールで対応します。
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Three pillars -->
+      <section class="page-section tight-top" aria-labelledby="services-pillars-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">ブランドが Lisheng で製造する理由</p>
+          <h2 id="services-pillars-title">
+            すべての注文を支える3つの保証
+          </h2>
+
+          <div class="pillar-grid">
+            <article class="pillar-card">
+              <span class="pillar-num">01</span>
+              <h3>自社R&D、独自配合</h3>
+              <p>
+                自社の開発システムが、お客様のブリーフを配合比率まで含めた
+                量産対応の処方に落とし込みます。
+              </p>
+              <ul>
+                <li>独自の小麦粉ブレンドと原料配合比率</li>
+                <li>麺の食感・太さ・ゆで時間の調整</li>
+                <li>食品製造分野の発明特許10件以上</li>
+                <li>Perten 穀物分析機器によるラボ試験</li>
+              </ul>
+            </article>
+
+            <article class="pillar-card">
+              <span class="pillar-num">02</span>
+              <h3>国家級の穀物保証</h3>
+              <p>
+                農業産業化の国家重点リーディング企業として、優良小麦の割当に
+                優先的にアクセスできます。
+              </p>
+              <ul>
+                <li>中国有数の小麦産地に拠点</li>
+                <li>契約小麦基地17万ムー、農家1.8万戸</li>
+                <li>20万トンの自社穀物貯蔵</li>
+                <li>ISO 9001 / ISO 22000 / HACCP 認証取得の生産</li>
+              </ul>
+            </article>
+
+            <article class="pillar-card">
+              <span class="pillar-num">03</span>
+              <h3>安定輸出のための生産能力</h3>
+              <p>
+                6つの生産拠点が能力に余裕を持ち、ブランドの成長に合わせて供給を
+                安定的に維持します。
+              </p>
+              <ul>
+                <li>グループ全体で1日あたり乾麺560トン</li>
+                <li>1000型の自動製麺ライン7本</li>
+                <li>デザイン迅速対応の自社包装部門</li>
+                <li>海外注文向けの輸出書類サポート</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- What you can customise -->
+      <section class="page-section alt" aria-labelledby="services-custom-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">お客様の仕様で製造</p>
+          <h2 id="services-custom-title">カスタマイズできる項目</h2>
+
+          <div class="custom-grid">
+            <div class="custom-item">
+              <h3>配合と原料</h3>
+              <p>
+                小麦粉ブレンド、たんぱく質レベル、卵・野菜含有、マルチグレイン
+                比率——お持ちの配合でも、ゼロからでも対応します。
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>形状とカット</h3>
+              <p>
+                極細の「龍のひげ」から幅広「ナイフカット」まで、丸麺・平麺、
+                さらに麺帯や地方フォーマットにも対応。
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>食感とゆで時間</h3>
+              <p>
+                弾力、コシ、ゆで時の挙動を、市場の調理習慣に合わせて調整します。
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>包装形態</h3>
+              <p>
+                ピロー、紙帯、持ち手付きファミリーパック、業務用HoReCaカートン
+                ——お客様のデザインで。
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>包装重量とカートン</h3>
+              <p>
+                正味150gから4kgまでの重量と、小売・卸チャネルに合わせた
+                カートン構成。
+              </p>
+            </div>
+            <div class="custom-item">
+              <h3>地方スタイル</h3>
+              <p>
+                陽春麺、ラーメン、担担麺、燴麺など、地方中国麺の実績ある
+                OEMプログラム。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Production journey: vertical timeline (overview only — detail page to follow) -->
+      <section class="page-section" aria-labelledby="services-journey-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">生産の道のり</p>
+          <h2 id="services-journey-title">穀物から指定港まで</h2>
+
+          <ol class="prod-timeline">
+            <li>
+              <span class="prod-step-num">ステップ 01</span>
+              <h3>原料の選定</h3>
+              <p>
+                国家小麦産地の契約基地からの優良小麦を、受入前に等級別に
+                検査・貯蔵します。
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">ステップ 02</span>
+              <h3>配合と原料</h3>
+              <p>
+                配合は自社R&Dラボで開発——完全カスタムの原料配合比率に対応
+                します。
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">ステップ 03</span>
+              <h3>サイズと形状の調整</h3>
+              <p>
+                さまざまな地方麺に合わせ、カット・幅・厚みをオーダーメイドで
+                成形します。
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">ステップ 04</span>
+              <h3>オリジナル包装デザイン</h3>
+              <p>
+                包装形態とデザインを、グループ自社の包装設備で製作します。
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">ステップ 05</span>
+              <h3>品質管理</h3>
+              <p>
+                小麦粉から完成包装まで、ISO 22000とHACCP管理下でバッチ試験を
+                実施します。
+              </p>
+            </li>
+            <li>
+              <span class="prod-step-num">ステップ 06</span>
+              <h3>輸出と出荷</h3>
+              <p>
+                コンテナ積み込み、輸出書類、指定港まで納期厳守でお届けします。
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Company strength: raw material / R&D / nationwide plants -->
+      <section class="page-section tight-top" aria-label="Lisheng が対応できる理由">
+        <div class="page-section-inner">
+          <div class="services-split">
+            <div class="services-split-media">
+              <img
+                src={withBase("/images/services/wheat-quality-inspection-milling.webp")}
+                alt="Lisheng の小麦品質検査と製粉"
+              />
+            </div>
+            <div class="services-split-copy">
+              <p class="services-kicker">原料保証</p>
+              <h3 id="services-quality-title">
+                品質は小麦畑から始まる
+              </h3>
+              <p>
+                Lisheng の各拠点は国家級の優良小麦産地にあります。「企業＋基地＋
+                農家」モデルにより、17万ムーの小麦を契約し、種子・作付け・買付け
+                を一元供給——だから製粉所に届く前から、その穀物のことを把握して
+                います。
+              </p>
+              <p>
+                入荷した小麦は等級別に検査・貯蔵し、オーダーに合わせてブレンド
+                し、低温で製粉します。国家重点リーディング企業として、Lisheng は
+                優良穀物の割当を優先的に確保——お客様の製品に良質な小麦が常に
+                行き渡ります。
+              </p>
+            </div>
+          </div>
+
+          <div class="services-split reverse">
+            <div class="services-split-media">
+              <img
+                src={withBase("/images/services/rd-laboratory-product-development.webp")}
+                alt="Lisheng のR&Dラボと製品開発"
+              />
+            </div>
+            <div class="services-split-copy">
+              <p class="services-kicker">自社R&D</p>
+              <h3 id="services-rd-title">配合を自社で握るラボ</h3>
+              <p>
+                Lisheng は、原料試験、配合調整、麺の食感開発、包装試験を網羅する
+                独立した製品開発システムを運営——お客様の製品は即興ではなく、
+                設計されています。
+              </p>
+              <p>
+                グループは<strong>食品製造の発明特許10件以上</strong>を保有し、
+                最新の開発である、低温製粉とふすま焙煎を用いたデンマーク式
+                石臼挽きの全粒製品ラインは、ラボが配合をどこまで突き詰めて
+                いるかを示しています。
+              </p>
+              <a class="services-split-link" href={withBase("/ja/factory/lab/")}>
+                製品ラボを見る
+              </a>
+            </div>
+          </div>
+
+          <div class="services-split">
+            <div class="services-split-media">
+              <img
+                src={withBase("/images/services/automated-noodle-production-lines.webp")}
+                alt="Lisheng 工場の自動製麺ライン"
+              />
+            </div>
+            <div class="services-split-copy">
+              <p class="services-kicker">工場の生産能力</p>
+              <h3 id="services-network-title">
+                中国全土の自動化工場
+              </h3>
+              <p>
+                6つの生産拠点が山東・河北・河南をカバー——いずれも優良小麦産地に
+                建設され、自動化された加工ラインを備えています。合わせて1日
+                7,000トンの小麦を製粉し、560トンの乾麺を生産します。
+              </p>
+              <p>
+                1000型の自動製麺ライン7本が、生地供給・カット・乾燥・包装を
+                カバーし、梁山の旗艦スマート工場を軸に展開——だからお客様の注文は
+                単一工場のスケジュールに縛られません。
+              </p>
+              <a class="services-split-link" href={withBase("/ja/company/subsidiaries/")}>
+                生産拠点を見る
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Production environment & machinery -->
+      <section class="page-section alt" aria-labelledby="services-equip-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">生産環境</p>
+          <h2 id="services-equip-title">近代的な工場、スマートライン</h2>
+          <p>
+            お客様の注文は、世界有数の製粉所が信頼する国際水準と同じ設備で
+            製造されます——顧客監査に開かれた、清潔な専用工場で。
+          </p>
+
+          <dl class="equip-grid">
+            <div>
+              <dt>Bühler スマート製粉システム</dt>
+              <dd>
+                スイス Bühler の設備をグループ全体に導入。梁山工場の全量配合対応
+                の完全スマート製粉ラインを含みます。
+              </dd>
+            </div>
+            <div>
+              <dt>Perten 穀物分析機器</dt>
+              <dd>
+                小麦と小麦粉の各バッチをプロファイリングし、注文ごとに測定可能で
+                再現性のある仕様を維持します。
+              </dd>
+            </div>
+            <div>
+              <dt>MDDK ロール機、5回の精選工程</dt>
+              <dd>
+                ミドリングを丁寧に選別し、たんぱく質とでんぷんを保護——栄養を
+                残した高純度の小麦粉。
+              </dd>
+            </div>
+            <div>
+              <dt>PLC + MES による無人運転</dt>
+              <dd>
+                小麦の受入からパレタイズまで、旗艦工場はリモートのスマート制御下
+                でほぼ無人で運転します。
+              </dd>
+            </div>
+            <div>
+              <dt>低温製粉</dt>
+              <dd>
+                製粉温度を制御し、各パッケージに小麦のビタミンと自然な香りを
+                残します。
+              </dd>
+            </div>
+            <div>
+              <dt>グリーンエネルギー生産</dt>
+              <dd>
+                2MWの屋根置き太陽光と太陽熱乾燥室が、各バッチの麺のカーボン
+                フットプリントを削減します。
+              </dd>
+            </div>
+          </dl>
+          <a class="services-split-link" href={withBase("/ja/factory/production/")}>
+            生産についてもっと見る
+          </a>
+        </div>
+      </section>
+
+      <!-- Certifications & export credentials -->
+      <section class="page-section" aria-labelledby="services-cert-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">国際取引向けの認証取得</p>
+          <h2 id="services-cert-title">
+            輸入担当が確認する書類一式
+          </h2>
+          <p>
+            認証された管理システム、国家レベルのブランド認知、輸出書類サポート
+            ——本格的なOEMのお問い合わせには証明書のコピーをご用意できます。
+          </p>
+
+          <div class="cert-chip-grid">
+            <div class="cert-chip">
+              <h3>ISO 9001</h3>
+              <p>品質マネジメントシステム認証。</p>
+            </div>
+            <div class="cert-chip">
+              <h3>ISO 22000</h3>
+              <p>食品安全マネジメントシステム認証。</p>
+            </div>
+            <div class="cert-chip">
+              <h3>HACCP</h3>
+              <p>危害分析重要管理点システム。</p>
+            </div>
+            <div class="cert-chip">
+              <h3>ISO 14001</h3>
+              <p>環境マネジメントシステム認証。</p>
+            </div>
+            <div class="cert-chip">
+              <h3>中国グリーン食品</h3>
+              <p>
+                一部の製品は中国の「グリーン食品」認証と「無公害農産物」マークを
+                取得しています。
+              </p>
+            </div>
+            <div class="cert-chip">
+              <h3>輸出書類</h3>
+              <p>
+                原産地証明、衛生・検査書類を、仕向け地市場の要件に合わせて準備
+                します。
+              </p>
+            </div>
+          </div>
+          <a class="services-split-link" href={withBase("/ja/factory/certificates/")}>
+            すべての認証・受賞を見る
+          </a>
+        </div>
+      </section>
+
+      <!-- Capacity & export -->
+      <section class="page-section alt" aria-labelledby="services-capacity-title">
+        <div class="page-section-inner">
+          <p class="services-kicker">生産能力と輸出対応力</p>
+          <h2 id="services-capacity-title">
+            余力ある生産能力、計画通りの供給
+          </h2>
+          <p>
+            OEMプログラムは生産能力が尽きると破綻します。Lisheng の6拠点は限界を
+            はるかに下回って稼働し、お客様の成長のための余力を確保——輸出チームが
+            書類を担当し、コンテナを毎回時間通りに送り出します。
+          </p>
+
+          <div class="services-stats" aria-label="生産能力の指標">
+            <dl>
+              <dt>560<span>トン</span></dt>
+              <dd>グループの1日あたり乾麺</dd>
+            </dl>
+            <dl>
+              <dt>7,000<span>トン</span></dt>
+              <dd>1日あたりの小麦処理量</dd>
+            </dl>
+            <dl>
+              <dt>7</dt>
+              <dd>1000型の自動製麺ライン</dd>
+            </dl>
+            <dl>
+              <dt>200,000<span>トン</span></dt>
+              <dd>自社の穀物貯蔵能力</dd>
+            </dl>
+            <dl>
+              <dt>6</dt>
+              <dd>3省にある生産拠点</dd>
+            </dl>
+            <dl>
+              <dt>30<span>+</span></dt>
+              <dd>食品製造の年数</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <ContactCta
+        kicker="OEMプロジェクトを始める"
+        title="製品アイデアをお送りください——製造提案をお返しします。"
+        text="ターゲット市場、ご希望の包装形態、予想数量をお聞かせください。当社の輸出チームが、サンプルの方向性、仕様、実践的な見積もりの道筋をご返信します。"
+        buttonLabel="お見積もり依頼"
+        buttonHref="/ja/contact/"
+      />
+    </main>
+
+    <Footer showCta={false} lang="ja" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

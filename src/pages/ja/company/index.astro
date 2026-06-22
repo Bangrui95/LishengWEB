@@ -1,0 +1,321 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/company-about.css";
+import "../../../styles/ja.css";
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>会社情報 | Lisheng International</title>
+    <meta
+      name="description"
+      content="Shandong Lisheng Group: 1995年創業、8つの企業、6つの生産拠点——穀物貯蔵、製粉、製麺、物流を統合した企業。"
+    />
+  </head>
+  <body>
+    <Header lang="ja" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="company-hero-title">
+        <img src={withBase("/images/company/about/lisheng.webp")} alt="Lisheng Group ロゴ" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Lisheng Group について</p>
+          <h1 id="company-hero-title">会社情報</h1>
+          <p class="page-hero-copy">
+            1995年以来、穀物貯蔵、製粉、製麺、包装、物流を統合する中国の大手
+            食品企業。
+          </p>
+        </div>
+      </section>
+
+      <!-- Who we are + key figures -->
+      <section class="page-section" aria-labelledby="company-about-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">私たちについて</p>
+          <h2 id="company-about-title">
+            県営製粉所から統合型食品グループへ
+          </h2>
+
+          <div class="about-lead">
+            <img
+              src={withBase("/images/company/about/company.webp")}
+              alt="済寧市の Shandong Lisheng Group 本社"
+            />
+          </div>
+
+          <p>
+            Shandong Lisheng Group は1995年創業、本社は山東省済寧市のハイテク産業
+            開発区にあります。単一の県営製粉所から、6つの生産拠点に食品技術・包装
+            部門を加えた8社からなるグループへと成長し、中国有数の小麦産地である
+            山東・河北・河南に拠点を構え、従業員1,300名以上を擁します。
+          </p>
+          <p>
+            「人々の日常に役立つ事業を創る」という企業理念のもと、Lisheng は
+            小麦の買付け・穀物貯蔵から製粉、乾麺製造、自社包装、物流まで全チェーン
+            を管理します。製粉所には Bühler の完全製粉システムと Perten の検査
+            機器を導入し、1日あたり最大7,000トンの小麦を処理、最大560トンの乾麺を
+            生産、自社の穀物貯蔵能力は20万トンに達します。
+          </p>
+          <p>
+            小麦粉、乾麺、プライベートブランド製品は、中国30省の300以上の都市、
+            そして Walmart、Carrefour、RT-Mart、China Resources Vanguard などの
+            国際小売チェーンに供給され、乾麺は東南アジアやヨーロッパへも輸出されて
+            います。各拠点は ISO 9001、ISO 22000、HACCP の各システムで運営され、
+            国家「信頼できる穀物・油」および「グリーン食品」の認定を受けています。
+          </p>
+
+          <div class="company-stats" aria-label="Lisheng Group の主要指標">
+            <dl>
+              <dt>1995</dt>
+              <dd>山東省済寧市で創業</dd>
+            </dl>
+            <dl>
+              <dt>8</dt>
+              <dd>企業（うち生産拠点6）</dd>
+            </dl>
+            <dl>
+              <dt>1,300<span>+</span></dt>
+              <dd>従業員</dd>
+            </dl>
+            <dl>
+              <dt>7,000<span>トン</span></dt>
+              <dd>1日あたりの小麦処理量</dd>
+            </dl>
+            <dl>
+              <dt>560<span>トン</span></dt>
+              <dd>1日あたりの乾麺生産量</dd>
+            </dl>
+            <dl>
+              <dt>200,000<span>トン</span></dt>
+              <dd>穀物貯蔵能力</dd>
+            </dl>
+          </div>
+
+          <div class="about-gallery" aria-label="Lisheng の内部">
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-lab.webp")}
+                alt="Lisheng の品質管理ラボ"
+                loading="lazy"
+              />
+              <figcaption>品質管理センター</figcaption>
+            </figure>
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-base-2.webp")}
+                alt="Lisheng のスマート生産拠点"
+                loading="lazy"
+              />
+              <figcaption>スマート生産拠点</figcaption>
+            </figure>
+            <figure>
+              <img
+                src={withBase("/images/company/about/about-silos.webp")}
+                alt="Lisheng の穀物サイロ"
+                loading="lazy"
+              />
+              <figcaption>20万トンの穀物貯蔵庫</figcaption>
+            </figure>
+          </div>
+
+          <div class="company-cta">
+            <div>
+              <h2>Lisheng との協業</h2>
+              <p>
+                OEM・プライベートブランド対応で、輸出対応の麺と小麦粉をメーカーから
+                直接ご調達ください。
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/ja/contact/")}>
+              お見積もり依頼 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mission & values -->
+      <section class="page-section alt" aria-labelledby="company-values-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">企業文化</p>
+          <h2 id="company-values-title">私たちの理念</h2>
+
+          <div class="value-grid">
+            <div class="value-card">
+              <h3>ミッション</h3>
+              <p>人々の日常に役立つ事業を創る。</p>
+            </div>
+            <div class="value-card">
+              <h3>ビジョン</h3>
+              <p>百年先の Lisheng——グリーン食品の統合企業。</p>
+            </div>
+            <div class="value-card">
+              <h3>精神</h3>
+              <p>団結、発展、誠実、革新。</p>
+            </div>
+            <div class="value-card">
+              <h3>哲学</h3>
+              <p>一流の品質、揺るがぬ誠実。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- From wheat to table: production overview -->
+      <section class="page-section" aria-labelledby="company-process-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">小麦から食卓まで</p>
+          <h2 id="company-process-title">一貫した生産チェーン</h2>
+          <p>
+            Lisheng の各拠点は国家級の優良小麦産地に建設されています。穀物は自社の
+            貯蔵システムに入り、国際水準の設備で製粉され、品質管理された一貫
+            チェーンを通じて小麦粉または乾麺として出荷されます。
+          </p>
+
+          <ol class="process-flow">
+            <li>
+              <h3>小麦の買付けと貯蔵</h3>
+              <p>
+                山東・河北・河南の優良小麦を、20万トンの自社貯蔵庫で管理します。
+              </p>
+            </li>
+            <li>
+              <h3>製粉</h3>
+              <p>
+                低温処理と多段精選を備えた Bühler 製粉システム。
+              </p>
+            </li>
+            <li>
+              <h3>製麺</h3>
+              <p>
+                1000型の自動ライン:ミキシング、カット、乾燥、包装。
+              </p>
+            </li>
+            <li>
+              <h3>包装と物流</h3>
+              <p>
+                国内・輸出注文に対応する自社包装設備と物流ネットワーク。
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Product lab teaser -->
+      <section class="page-section alt" aria-labelledby="company-lab-title">
+        <div class="page-section-inner">
+          <div class="split-row reverse" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src={withBase("/images/company/about/product-lab-rd-quality-testing.webp")}
+                alt="Lisheng の製品ラボ——R&Dと品質試験"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">研究と品質</p>
+              <h3 id="company-lab-title">製品ラボ</h3>
+              <p>
+                原料分析、配合調整、麺の食感開発、食品安全試験を行う独立した製品
+                開発・試験ラボ——多様な市場向けに小麦・麺製品の安定した品質を確保
+                します。
+              </p>
+              <a class="split-link" href={withBase("/ja/factory/lab/")}>
+                ラボについてもっと見る
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Production facilities teaser -->
+      <section class="page-section" aria-labelledby="company-facilities-title">
+        <div class="page-section-inner">
+          <div class="split-row" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src={withBase("/images/company/about/automated-production-line.webp")}
+                alt="Lisheng 工場の自動生産ライン"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">生産規模</p>
+              <h3 id="company-facilities-title">生産設備</h3>
+              <p>
+                6つの生産拠点が1日あたり最大7,000トンの小麦を処理し、最大560トンの
+                乾麺を生産します。梁山の旗艦工場は、PLCとMESによる完全管理下で
+                4本のスマート製粉ラインを運用——ほぼ無人で、遠隔制御による生産
+                です。
+              </p>
+              <a class="split-link" href={withBase("/ja/factory/production/")}>
+                生産についてもっと見る
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications teaser -->
+      <section class="page-section alt" aria-labelledby="company-cert-title">
+        <div class="page-section-inner">
+          <div class="split-row reverse" style="margin-top: 0;">
+            <div class="split-media">
+              <img
+                src={withBase("/images/company/about/quality-certifications-display.webp")}
+                alt="Lisheng の品質認証展示"
+              />
+            </div>
+            <div class="split-copy">
+              <p class="company-kicker">品質と評価</p>
+              <h3>認証取得、受賞、信頼</h3>
+              <p>
+                Lisheng は ISO 9001、ISO 22000、HACCP のマネジメントシステムで
+                運営しています。「Lisheng」小麦粉は2007年に「中国トップブランド」を
+                受賞し、Lisheng 商標は2011年に「中国著名商標」として認定されました。
+              </p>
+              <a class="split-link" href={withBase("/ja/factory/certificates/")}>
+                認証・受賞を見る
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Subsidiaries teaser -->
+      <section class="page-section" aria-labelledby="company-sub-title">
+        <div class="page-section-inner">
+          <div class="sub-intro">
+            <div class="sub-intro-copy">
+              <p class="company-kicker">グループ構成</p>
+              <h2 id="company-sub-title">8つのグループ会社、一つのサプライチェーン</h2>
+              <p>
+                済寧の本社から梁山の旗艦スマート工場まで、Lisheng の各グループ
+                会社が、小麦粉・麺・食品技術・包装というグループのチェーンで
+                それぞれの役割を担っています。
+              </p>
+              <a class="split-link" href={withBase("/ja/company/subsidiaries/")}>
+                グループ会社を見る
+              </a>
+            </div>
+            <div class="sub-intro-logo">
+              <img
+                src={withBase("/images/company/about/logo.webp")}
+                alt="Lisheng Group ロゴ"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="ja" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

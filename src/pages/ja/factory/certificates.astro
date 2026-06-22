@@ -1,0 +1,221 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/factory-certificates.css";
+import "../../../styles/ja.css";
+
+const CERT = withBase("/images/factory/certificates/certificate");
+const GREEN = withBase("/images/factory/certificates/green");
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>認証 | Lisheng International</title>
+    <meta
+      name="description"
+      content="Lisheng Group の認証: ISO 9001、ISO 22000、HACCP（IQNET 国際認証付き）、グリーン食品Aクラス製品、「中国トップブランド」、業界受賞。"
+    />
+  </head>
+  <body>
+    <Header lang="ja" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="cert-hero-title">
+        <img src={withBase("/images/factory/certificates/intelligent-flour-milling-plant.webp")} alt="Lisheng のスマート製粉工場" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">品質と評価</p>
+          <h1 id="cert-hero-title">認証</h1>
+          <p class="page-hero-copy">
+            30年の食品製造で培った、マネジメントシステム認証、国家レベルの
+            ブランド評価、業界受賞。
+          </p>
+        </div>
+      </section>
+
+      <!-- National recognition -->
+      <section class="page-section" aria-labelledby="cert-national-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">国家レベルの評価</p>
+          <h2 id="cert-national-title">国家レベルでの評価</h2>
+
+          <dl class="machine-grid titles-only">
+            <div>
+              <dt><span class="cert-year">2007</span>中国トップブランド</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2011</span>中国著名商標</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2006</span>全国著名乾麺ブランド</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2016</span>中国穀物・油（食糧）十大ブランド</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2010</span>農業産業化重点リーディング企業</dt>
+            </div>
+            <div>
+              <dt><span class="cert-year">2010</span>国家模範加工企業</dt>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Industry awards -->
+      <section class="page-section" aria-labelledby="cert-awards-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">業界受賞</p>
+          <h2 id="cert-awards-title">業界での地位</h2>
+
+          <dl class="machine-grid">
+            <div>
+              <dt>中国製粉企業トップ50</dt>
+              <dd>
+                中国の製粉企業トップ50に、連続する全国ランキングで選出されて
+                います。
+              </dd>
+            </div>
+            <div>
+              <dt>最も影響力のあるブランド</dt>
+              <dd>
+                中国穀物・油協会の穀物・油マーケティング部門により授与。
+              </dd>
+            </div>
+            <div>
+              <dt>山東著名ブランド——小麦粉と乾麺</dt>
+              <dd>
+                小麦粉と乾麺のラインが「山東著名ブランド」に認定。「Lisheng」は
+                「山東著名商標」でもあります。
+              </dd>
+            </div>
+            <div>
+              <dt>食品安全模範企業</dt>
+              <dd>
+                山東省の食品安全模範企業およびハイテク企業として認定されて
+                います。
+              </dd>
+            </div>
+          </dl>
+
+          <div class="company-cta">
+            <div>
+              <h2>市場向けの適合書類が必要ですか？</h2>
+              <p>
+                証明書のコピー、仕様、輸入要件に合わせた輸出書類をお求め
+                ください。
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/ja/contact/")}>
+              お問い合わせ <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Management systems -->
+      <section class="page-section alt" aria-labelledby="cert-systems-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">マネジメントシステム</p>
+          <h2 id="cert-systems-title">認証取得の食品安全マネジメント</h2>
+          <p>
+            Lisheng は2003年以来、認証されたマネジメントシステムで運営しています。
+            品質・食品安全・HACCP の各証明書は CQC（中国品質認証センター）が発行
+            し、IQNET の国際認証を受け、定期的に再審査されます。証明書をクリック
+            すると PDF 原本が開きます。
+          </p>
+
+          <div class="cert-grid" aria-label="マネジメントシステム認証">
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/iso9001-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/iso9001-en-preview.webp`} alt="CQC 発行の ISO 9001:2015 品質マネジメントシステム証明書" loading="lazy" />
+              </a>
+              <h3>ISO 9001:2015</h3>
+              <p>品質マネジメントシステム——乾麺と小麦粉</p>
+            </div>
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/iso22000-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/iso22000-en-preview.webp`} alt="CQC 発行の ISO 22000:2018 食品安全マネジメントシステム証明書" loading="lazy" />
+              </a>
+              <h3>ISO 22000:2018</h3>
+              <p>小麦粉・麺製造の食品安全マネジメントシステム</p>
+            </div>
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/haccp-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/haccp-en-preview.webp`} alt="CQC 発行の HACCP システム証明書" loading="lazy" />
+              </a>
+              <h3>HACCP</h3>
+              <p>危害分析重要管理点</p>
+            </div>
+            <div class="cert-card">
+              <a class="cert-media" href={`${CERT}/iso9001-iqnet-en.pdf`} target="_blank" rel="noopener">
+                <img src={`${CERT}/iqnet-preview.webp`} alt="Lisheng の ISO 9001 マネジメントシステムを裏付ける IQNET 国際証明書" loading="lazy" />
+              </a>
+              <h3>IQNET International</h3>
+              <p>ISO 9001 および ISO 22000 の IQNET 国際証明書</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Green Food certification -->
+      <section class="page-section alt has-divider" aria-labelledby="cert-green-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">グリーン食品</p>
+          <h2 id="cert-green-title">グリーン食品Aクラス認証製品</h2>
+          <p>
+            Lisheng の5製品が、中国グリーン食品発展センターより「グリーン食品」
+            Aクラスとして認証されています——これは追跡可能で残留物管理された製品
+            に対する中国で最も厳格な国家基準です。現行の証明書は2026年8月まで
+            有効です。
+          </p>
+
+          <div class="green-grid" aria-label="グリーン食品証明書">
+            <figure class="green-card">
+              <a href={`${GREEN}/green-super-refined-flour.webp`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-super-refined-flour.webp`} alt="高級精製小麦粉のグリーン食品Aクラス証明書" loading="lazy" />
+              </a>
+              <figcaption>高級精製小麦粉</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-wheat-core-flour.webp`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-wheat-core-flour.webp`} alt="小麦胚乳多用途粉のグリーン食品Aクラス証明書" loading="lazy" />
+              </a>
+              <figcaption>小麦胚乳多用途粉</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-dragon-beard-noodles.webp`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-dragon-beard-noodles.webp`} alt="プレミアム龍のひげ麺のグリーン食品Aクラス証明書" loading="lazy" />
+              </a>
+              <figcaption>プレミアム龍のひげ麺</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-egg-noodles.webp`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-egg-noodles.webp`} alt="プレミアム卵麺のグリーン食品Aクラス証明書" loading="lazy" />
+              </a>
+              <figcaption>プレミアム卵麺</figcaption>
+            </figure>
+            <figure class="green-card">
+              <a href={`${GREEN}/green-original-noodles.webp`} target="_blank" rel="noopener">
+                <img src={`${GREEN}/green-original-noodles.webp`} alt="プレミアム定番麺のグリーン食品Aクラス証明書" loading="lazy" />
+              </a>
+              <figcaption>プレミアム定番麺</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+
+    </main>
+
+    <Footer lang="ja" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

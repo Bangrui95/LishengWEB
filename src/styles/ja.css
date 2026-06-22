@@ -1,0 +1,43 @@
+/* Japanese-page typography adjustments.
+ *
+ * Like the Chinese pages, Japanese is CJK: the English pages' uppercase +
+ * wide letter-spacing on "eyebrow" labels and CTA text reads as awkward gaps
+ * between kana/kanji. We relax that tracking and drop uppercasing here, and
+ * loosen body line-height for readability. Heading FONTS are left untouched —
+ * Latin glyphs keep Georgia / Arial while Japanese glyphs fall back to the
+ * system serif/sans through the existing font stacks.
+ */
+
+html[lang="ja"] .page-kicker,
+html[lang="ja"] .company-kicker,
+html[lang="ja"] .quote-kicker,
+html[lang="ja"] .quote-section-heading p,
+html[lang="ja"] .quote-form-intro p,
+html[lang="ja"] .qc-step,
+html[lang="ja"] .wg-card-tag,
+html[lang="ja"] .news-card-copy time {
+  letter-spacing: 0.04em;
+}
+
+/* CTA / button text: English uses uppercase + tracking; Japanese needs neither */
+html[lang="ja"] .company-cta-link,
+html[lang="ja"] .split-link,
+html[lang="ja"] .about-more,
+html[lang="ja"] .quote-primary,
+html[lang="ja"] .quote-secondary,
+html[lang="ja"] .quote-form-footer button {
+  letter-spacing: 0.03em;
+  text-transform: none;
+}
+
+/* Slightly looser line-height improves CJK body readability */
+html[lang="ja"] .page-section-inner p,
+html[lang="ja"] .split-copy p,
+html[lang="ja"] .sub-card p {
+  line-height: 1.8;
+}
+
+/* Guard against long unbroken strings overflowing cards and chips */
+html[lang="ja"] {
+  overflow-wrap: break-word;
+}

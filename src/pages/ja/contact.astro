@@ -1,0 +1,375 @@
+---
+import { withBase } from "../../lib/url";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/global.css";
+import "../../styles/contact.css";
+import "../../styles/ja.css";
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>お見積もり依頼 | Lisheng International</title>
+    <meta
+      name="description"
+      content="麺のOEM製造、プライベートブランド生産、オリジナル包装、サンプル、輸出対応の供給について、Lishengにお問い合わせください。"
+    />
+  </head>
+  <body class="quote-page">
+    <Header lang="ja" />
+
+    <main>
+      <section class="quote-hero" aria-labelledby="quote-hero-title">
+        <div class="quote-hero-inner">
+          <div class="quote-hero-text">
+            <p class="quote-kicker">お見積もり依頼</p>
+            <h1 id="quote-hero-title">
+              Lisheng と<span>プライベートブランドの麺プロジェクト</span>を始めましょう
+            </h1>
+            <div class="quote-hero-actions">
+              <a href={withBase("/ja/services/customization/")} class="quote-primary">製品カスタマイズ</a>
+              <a href="#quote-form" class="quote-secondary">お問い合わせを送る</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="quote-process" class="quote-process" aria-labelledby="quote-process-title">
+        <div class="quote-section-heading">
+          <p>お問い合わせから生産まで</p>
+          <h2 id="quote-process-title">わかりやすいプライベートブランドの流れ。</h2>
+        </div>
+
+        <ol class="quote-process-list">
+          <li>
+            <span>01</span>
+            <h3>ご要望を共有</h3>
+            <p>製品の方向性、ターゲット市場、包装イメージ、スケジュールをお送りください。</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h3>サンプルを確認</h3>
+            <p>配合・食感・風味・包装・仕様の詳細をすり合わせます。</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h3>お見積もりを受領</h3>
+            <p>製品範囲、MOQ、包装、輸出要件に基づいた提案をお出しします。</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h3>生産を計画</h3>
+            <p>デザイン入稿、生産スケジュール、品質検査、出荷計画へと進みます。</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="quote-form-section" aria-labelledby="quote-form-title">
+        <div class="quote-form-intro">
+          <p>お問い合わせフォーム</p>
+          <h2 id="quote-form-title">あなたの麺プロジェクトについてお聞かせください。</h2>
+          <span>
+            お客様の情報は安全かつ機密に取り扱います。* は必須項目です。
+          </span>
+        </div>
+
+        <div class="quote-form-layout">
+          <form
+            id="quote-form"
+            class="quote-form"
+            action="/api/submit"
+            method="post"
+            data-lang="ja"
+            data-msg-sending="お問い合わせを送信中…"
+            data-msg-success="ありがとうございます。お問い合わせを受け付けました。担当チームより速やかにご連絡いたします。"
+            data-msg-error="申し訳ございません。送信できませんでした。もう一度お試しいただくか、lishengnoodles@gmail.com まで直接ご連絡ください。"
+            data-msg-invalid-email="メールアドレスが正しくないようです。完全なアドレスをご入力ください（例: name@company.com）。"
+            data-msg-missing="未入力の必須項目があります。* の付いた項目をすべてご入力ください。"
+          >
+            <input type="hidden" name="customization" data-customization-input />
+            <div class="hp-field" aria-hidden="true">
+              <label
+                >この欄は空のままにしてください
+                <input type="text" name="lisheng_hp" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
+
+            <div class="form-grid">
+              <label>
+                名
+                <input type="text" name="first-name" autocomplete="given-name" />
+              </label>
+
+              <label>
+                姓
+                <input type="text" name="last-name" autocomplete="family-name" />
+              </label>
+
+              <label>
+                ビジネスメール*
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+
+              <label>
+                電話 / WhatsApp
+                <input type="tel" name="phone" autocomplete="tel" />
+              </label>
+
+              <label>
+                会社名*
+                <input type="text" name="company" autocomplete="organization" required />
+              </label>
+
+              <label>
+                国 / 市場
+                <input type="text" name="country" autocomplete="country-name" />
+              </label>
+
+              <label>
+                製品カテゴリー*
+                <select name="product-category" required>
+                  <option value="">製品カテゴリーを選択</option>
+                  <option>乾麺</option>
+                  <option>ラーメン</option>
+                  <option>業務用バルク麺</option>
+                  <option>OEMカスタム製品</option>
+                </select>
+              </label>
+
+              <label>
+                予想注文量
+                <select name="order-volume">
+                  <option value="">予想数量を選択</option>
+                  <option>試験注文 / サンプル段階</option>
+                  <option>1コンテナ</option>
+                  <option>毎月のコンテナ供給</option>
+                  <option>ディストリビュータープログラム</option>
+                  <option>未定</option>
+                </select>
+              </label>
+
+              <div class="form-customization form-wide" data-customization-block>
+                <h3>製品カスタマイズの詳細</h3>
+                <div class="form-customization-row">
+                  <div class="form-customization-display">
+                    <span class="form-customization-empty"
+                      >カスタマイズはまだ保存されていません</span
+                    >
+                    <span class="form-customization-saved"
+                      >カスタマイズを保存しました</span
+                    >
+                  </div>
+                  <div class="form-customization-actions">
+                    <a
+                      class="form-customization-button"
+                      href={withBase("/ja/services/customization/")}
+                    >
+                      <span class="form-customization-cta-empty">カスタマイズ</span>
+                      <span class="form-customization-cta-filled">編集</span>
+                    </a>
+                    <button
+                      type="button"
+                      class="form-customization-reset"
+                      data-customization-reset
+                      aria-label="保存したカスタマイズをクリア"
+                    >
+                      <span aria-hidden="true">✕</span>
+                    </button>
+                  </div>
+                </div>
+                <p class="form-customization-note">
+                  先に製品をより詳しく定義しますか？「製品カスタマイズ」で麺の種類、配合、包装形態、認証要件をステップごとに指定できます。選択内容はこのお問い合わせと一緒に送信されます。
+                </p>
+              </div>
+
+              <label class="form-wide customization-details-field">
+                カスタマイズ詳細
+                <textarea
+                  name="customization-details"
+                  class="customization-details"
+                  data-customization-details
+                  readonly
+                  placeholder="上の「カスタマイズ」ボタンで製品仕様を作成してください。選択内容がここに表示されます。"
+                ></textarea>
+              </label>
+
+              <label class="form-wide">
+                メッセージ
+                <textarea
+                  name="message"
+                  placeholder="ターゲット市場、味の方向性、包装イメージ、認証、スケジュールについてお聞かせください。"
+                ></textarea>
+              </label>
+            </div>
+
+            <p class="quote-form-note">
+              本フォームを送信することで、Lisheng がお問い合わせについてご連絡することに同意したものとみなされます。
+            </p>
+
+            <div class="quote-form-footer">
+              <button type="submit">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M21 3 10.8 13.2" />
+                  <path d="m21 3-6.5 18-3.7-7.8L3 9.5 21 3Z" />
+                </svg>
+                お問い合わせを送信
+              </button>
+              <label class="quote-check">
+                <input type="checkbox" name="updates" />
+                <span>Lisheng の最新ニュース・情報を受け取りたい。</span>
+              </label>
+            </div>
+
+            <p class="quote-form-status" data-form-status role="status" aria-live="polite"></p>
+          </form>
+
+          <aside class="quote-side-panel" aria-label="お問い合わせサポート">
+            <h2>この後の流れ</h2>
+            <ul>
+              <li>
+                <span>1</span>
+                <p>製品タイプ、市場、包装、目標数量を確認します。</p>
+              </li>
+              <li>
+                <span>2</span>
+                <p>担当チームが実現可能性、サンプルの方向性、主要仕様を確認します。</p>
+              </li>
+              <li>
+                <span>3</span>
+                <p>OEM生産に向けた実践的な見積もりの道筋をご案内します。</p>
+              </li>
+            </ul>
+            <div class="quote-side-card">
+              <p>正確なお見積もりのため、以下をご用意ください:</p>
+              <strong>製品タイプ、包装サイズ、市場、数量、認証要件。</strong>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="quote-contact" aria-labelledby="quote-contact-title">
+        <div class="quote-section-heading">
+          <p>お問い合わせ</p>
+          <h2 id="quote-contact-title">連絡先情報。</h2>
+        </div>
+
+        <div class="quote-contact-grid">
+          <article class="quote-contact-card">
+            <span class="quote-contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </span>
+            <h3>住所</h3>
+            <p>中国 山東省 済寧市 ハイテク産業開発区 柳行 国道327号 5番</p>
+          </article>
+
+          <article class="quote-contact-card">
+            <span class="quote-contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+              </svg>
+            </span>
+            <h3>電話</h3>
+            <p><a href="tel:+865373206996">+86 537-3206996</a></p>
+          </article>
+
+          <article class="quote-contact-card">
+            <span class="quote-contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 7-10 6L2 7" />
+              </svg>
+            </span>
+            <h3>メール</h3>
+            <p><a href="mailto:lishengnoodles@gmail.com">lishengnoodles@gmail.com</a></p>
+          </article>
+
+          <article class="quote-contact-card">
+            <span class="quote-contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+              </svg>
+            </span>
+            <h3>LinkedIn</h3>
+            <p><a href="#" target="_blank" rel="noopener">Lisheng Group</a></p>
+          </article>
+        </div>
+      </section>
+
+    </main>
+
+    <Footer showCta={false} lang="ja" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+    <script is:inline src={withBase("/scripts/inquiry.js")} defer></script>
+
+    <script>
+      // Product customization status row.
+      // If the visitor arrives from the Product Customization page (or a saved
+      // selection already exists), show the "recorded" confirmation instead of
+      // the empty hint — without revealing the stored details.
+      // NOTE: the actual storage/transfer of selections is wired up later;
+      // for now we detect a URL flag or a sessionStorage marker.
+      (function () {
+        const block = document.querySelector("[data-customization-block]");
+        if (!block) return;
+        const hidden = document.querySelector("[data-customization-input]");
+        const detailsEl = document.querySelector("[data-customization-details]");
+
+        // One line per step: "Product Type: Udon Style / Ramen Style".
+        function formatSelections(sel) {
+          return Object.keys(sel)
+            .map((k) => k + ": " + sel[k].join(" / "))
+            .join("\n");
+        }
+
+        // Reflect saved customization (if any) from sessionStorage: the status
+        // box shows "saved", the full selection is listed line by line in the
+        // details field, and the raw object rides along in the hidden field so
+        // it ships with the form once the backend is wired.
+        let selections = null;
+        try {
+          const raw = sessionStorage.getItem("lisheng-customization");
+          if (raw) selections = JSON.parse(raw);
+        } catch (e) {}
+        const filled = selections && Object.keys(selections).length > 0;
+
+        block.dataset.customizationBlock = filled ? "filled" : "";
+        if (hidden) hidden.value = filled ? JSON.stringify(selections) : "";
+        if (detailsEl)
+          detailsEl.value = filled ? formatSelections(selections) : "";
+
+        // When something is saved the button is "Edit": send a flag so the
+        // customization page restores the saved picks instead of clearing.
+        if (filled) {
+          const editBtn = block.querySelector(".form-customization-button");
+          if (editBtn) {
+            const base = editBtn.getAttribute("href");
+            editBtn.setAttribute(
+              "href",
+              base + (base.indexOf("?") === -1 ? "?" : "&") + "edit=1"
+            );
+          }
+        }
+
+        // Reset: clear the saved customization on this page (storage + fields)
+        // and revert the status box to "not saved".
+        const resetBtn = block.querySelector("[data-customization-reset]");
+        if (resetBtn) {
+          resetBtn.addEventListener("click", () => {
+            sessionStorage.removeItem("lisheng-customization");
+            sessionStorage.removeItem("lisheng-customization-types");
+            block.dataset.customizationBlock = "";
+            if (hidden) hidden.value = "";
+            if (detailsEl) detailsEl.value = "";
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

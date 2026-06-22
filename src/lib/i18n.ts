@@ -7,7 +7,7 @@
  * URLs are kept constant across languages for now: Chinese labels point at the
  * existing English sub-pages until those get their own /zh/ versions.
  */
-export type Lang = "en" | "zh" | "ru";
+export type Lang = "en" | "zh" | "ru" | "ja";
 
 export const ui = {
   en: {
@@ -182,6 +182,62 @@ export const ui = {
       secondary: "Настроить продукт",
     },
   },
+  ja: {
+    htmlLang: "ja",
+    nav: {
+      home: "ホーム",
+      company: "会社情報",
+      about: "会社概要",
+      honors: "受賞・認証",
+      subsidiaries: "グループ会社",
+      factory: "工場",
+      smartFactory: "スマート工場",
+      foodLab: "食品ラボ",
+      certifications: "製品認証",
+      factoryTour: "工場見学",
+      services: "サービス",
+      oem: "OEM受託製造",
+      customization: "製品カスタマイズ",
+      products: "製品",
+      ownProducts: "自社製品",
+      noodleProducts: "麺製品",
+      flourProducts: "小麦粉製品",
+      partner: "パートナー協業",
+      specifications: "サンプル仕様",
+      news: "ニュース",
+      contact: "お問い合わせ",
+    },
+    quote: "お見積もり依頼",
+    footer: {
+      desc: "世界の食品ブランド・輸入業者・外食流通向けに、輸出対応の麺受託製造、プライベートブランド生産、包装サポートを提供します。",
+      company: "会社情報",
+      factory: "工場",
+      services: "サービス",
+      products: "製品",
+      contact: "お問い合わせ",
+      news: "ニュース",
+      about: "会社概要",
+      certifications: "製品認証",
+      oemShort: "OEM受託製造",
+      allProducts: "全製品",
+      noodleProducts: "麺製品",
+      flourProducts: "小麦粉製品",
+      specifications: "仕様",
+      startProject: "プライベートブランド案件を始める",
+      requestSamples: "サンプル請求",
+      latestNews: "最新ニュース",
+      rights: "© 2026 利生グループ。無断転載を禁じます。",
+      privacy: "プライバシーポリシー",
+      terms: "利用規約",
+    },
+    cta: {
+      kicker: "プライベートブランドの麺製造をお考えですか？",
+      title: "プライベートブランドの麺プログラムを共に構築しましょう。",
+      text: "市場、製品アイデア、目標数量をお知らせください。当社の輸出チームが実践的な製造提案をご提示します。",
+      button: "今すぐお問い合わせ",
+      secondary: "製品をカスタマイズ",
+    },
+  },
 } as const;
 
 export function getUI(lang: Lang) {
@@ -191,11 +247,12 @@ export function getUI(lang: Lang) {
 // Display order + labels for the language switcher. English is the base tree at
 // `/`; every other language lives under `/<code>/`. Add a language here once its
 // page tree exists and the switcher picks it up everywhere automatically.
-export const langOrder: Lang[] = ["en", "zh", "ru"];
+export const langOrder: Lang[] = ["en", "zh", "ru", "ja"];
 export const langLabels: Record<Lang, string> = {
   en: "EN",
   zh: "中文",
   ru: "Русский",
+  ja: "日本語",
 };
 
 // Routes that have a translated version under /<code>/. English is the base, so
@@ -221,6 +278,21 @@ export const readyByLang: Record<Exclude<Lang, "en">, Set<string>> = {
   ]),
   // Russian: full site except News (News stays English for now).
   ru: new Set<string>([
+    "/",
+    "/company/",
+    "/company/honors/",
+    "/company/subsidiaries/",
+    "/factory/production/",
+    "/factory/lab/",
+    "/factory/certificates/",
+    "/services/",
+    "/services/customization/",
+    "/contact/",
+    "/products/",
+    "/products/specifications/",
+  ]),
+  // Japanese: full site except News (News stays English for now).
+  ja: new Set<string>([
     "/",
     "/company/",
     "/company/honors/",

@@ -1,0 +1,261 @@
+---
+import { withBase } from "../../../lib/url";
+import ContactCta from "../../../components/ContactCta.astro";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/products-specs.css";
+import "../../../styles/ja.css";
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>サンプルと仕様 | Lisheng International</title>
+    <meta
+      name="description"
+      content="Lisheng の基本製品の技術リファレンス: 極細から幅広ナイフカットまでの麺カットサイズ、乾麺のパラメータ、シリーズ別の小麦粉仕様。"
+    />
+  </head>
+  <body>
+    <Header lang="ja" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="specs-hero-title">
+        <img
+          src={withBase("/images/products/products.webp")}
+          alt="Lisheng の定番麺と小麦粉のサンプル"
+        />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">技術リファレンス</p>
+          <h1 id="specs-hero-title">サンプルと仕様</h1>
+          <p class="page-hero-copy">
+            あらゆるプログラムを支える基本製品——麺のカット種別と小麦粉ベースを、
+            お客様の品質管理部門が求める技術データとともにご紹介します。
+          </p>
+        </div>
+      </section>
+
+      <!-- Noodle cut sizes -->
+      <section class="page-section" aria-labelledby="specs-cuts-title">
+        <div class="page-section-inner">
+          <p class="specs-kicker">定番麺のサンプル</p>
+          <h2 id="specs-cuts-title">麺のカットサイズ</h2>
+          <p>
+            すべての乾麺は1000型の自動ラインで製造され、中国のカット番号で表記
+            されます。幅とゆで時間が食感を決める2つのパラメータです。カットを選び、
+            下の小麦粉ベースを合わせてください。
+          </p>
+
+          <div class="specs-table-wrap">
+            <table class="specs-table">
+              <thead>
+                <tr>
+                  <th>カット</th>
+                  <th>概算幅</th>
+                  <th>断面</th>
+                  <th>ゆで時間</th>
+                  <th>適した用途</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>No.0「龍のひげ」</td>
+                  <td class="num">≈ 1.0 mm</td>
+                  <td>細丸</td>
+                  <td class="num">3〜4分</td>
+                  <td>澄んだスープ、即席ポーション、エンジェルヘア風料理</td>
+                </tr>
+                <tr>
+                  <td>No.1.5 細</td>
+                  <td class="num">≈ 1.5 mm</td>
+                  <td>丸または角</td>
+                  <td class="num">4〜5分</td>
+                  <td>軽いスープ麺、担担風、ポーション包装</td>
+                </tr>
+                <tr>
+                  <td>No.2 定番</td>
+                  <td class="num">≈ 1.8 mm</td>
+                  <td>丸</td>
+                  <td class="num">5〜6分</td>
+                  <td>日常のスープ麺、スパゲッティ風用途</td>
+                </tr>
+                <tr>
+                  <td>No.3 中</td>
+                  <td class="num">≈ 2.5 mm</td>
+                  <td>丸または平</td>
+                  <td class="num">6〜7分</td>
+                  <td>炒め・ロー麺、ソース和え麺</td>
+                </tr>
+                <tr>
+                  <td>No.6 幅広平</td>
+                  <td class="num">≈ 6 mm</td>
+                  <td>平リボン</td>
+                  <td class="num">7〜9分</td>
+                  <td>煮込み料理、濃いソース、フェットチーネ風料理</td>
+                </tr>
+                <tr>
+                  <td>No.10 ナイフカット</td>
+                  <td class="num">10 mm</td>
+                  <td>幅広・波打ち縁</td>
+                  <td class="num">8〜10分</td>
+                  <td>ボリュームある北方料理、看板の幅広麺</td>
+                </tr>
+                <tr>
+                  <td>麺帯（生地シート）</td>
+                  <td class="num">オーダー対応</td>
+                  <td>薄いシート</td>
+                  <td class="num">5〜7分</td>
+                  <td>火鍋、スープ用シート、地方の麺帯料理</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dried noodle base parameters -->
+      <section class="page-section alt" aria-labelledby="specs-base-title">
+        <div class="page-section-inner">
+          <p class="specs-kicker">共通パラメータ</p>
+          <h2 id="specs-base-title">乾麺の基本データ</h2>
+
+          <dl class="specs-base">
+            <div>
+              <dt>水分 ≤ 14.5%</dt>
+              <dd>
+                輸送時の安定した保存性のため、中国の乾麺基準に基づく温度管理
+                された低温乾燥。
+              </dd>
+            </div>
+            <div>
+              <dt>賞味期限 12〜24か月</dt>
+              <dd>
+                配合と包装による一般的な範囲。各製品で分析証明書に明記されます。
+              </dd>
+            </div>
+            <div>
+              <dt>塩分——調整可能</dt>
+              <dd>
+                標準配合、または市場の表示要件に合わせた減ナトリウム。
+              </dd>
+            </div>
+            <div>
+              <dt>麺の長さ——調整可能</dt>
+              <dd>
+                小売包装向けの標準長、または HoReCa 向けに仕様に合わせてカット。
+              </dd>
+            </div>
+            <div>
+              <dt>正味重量 150g〜4kg</dt>
+              <dd>
+                ポーション包装から業務用HoReCaカートンまで、適切なカートン構成で。
+              </dd>
+            </div>
+            <div>
+              <dt>バッチ管理</dt>
+              <dd>
+                各バッチは ISO 22000 / HACCP 管理下の検査記録とともに出荷されます。
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Flour specifications -->
+      <section class="page-section" aria-labelledby="specs-flour-title">
+        <div class="page-section-inner">
+          <p class="specs-kicker">小麦粉ベース</p>
+          <h2 id="specs-flour-title">シリーズ別の小麦粉</h2>
+          <p>
+            小麦粉が食感を決めます。これらは当社の製粉所が日々生産する基本シリーズ
+            で、代表値を掲載しています。正確な数値は各注文の分析証明書で確認され
+            ます。
+          </p>
+
+          <div class="specs-table-wrap">
+            <table class="specs-table">
+              <thead>
+                <tr>
+                  <th>シリーズ</th>
+                  <th>たんぱく質（代表値）</th>
+                  <th>湿麺筋</th>
+                  <th>水分</th>
+                  <th>適した用途</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>高グルテン</td>
+                  <td class="num">≥ 12.5%</td>
+                  <td class="num">≥ 32%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>コシのある麺、高級ベーカリー、高グルテン製品</td>
+                </tr>
+                <tr>
+                  <td>小麦胚乳</td>
+                  <td class="num">≈ 13%</td>
+                  <td class="num">30〜33%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>高級麺、餃子の皮</td>
+                </tr>
+                <tr>
+                  <td>雪花粉</td>
+                  <td class="num">11〜12.5%</td>
+                  <td class="num">28〜32%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>蒸しパン、包子、日常の麺</td>
+                </tr>
+                <tr>
+                  <td>高精製</td>
+                  <td class="num">10.5〜12%</td>
+                  <td class="num">26〜30%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>餅（フラットブレッド）、焼き物</td>
+                </tr>
+                <tr>
+                  <td>餃子用</td>
+                  <td class="num">12〜13%</td>
+                  <td class="num">≥ 30%</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>半透明で弾力のある餃子・ワンタンの皮</td>
+                </tr>
+                <tr>
+                  <td>全粒</td>
+                  <td class="num">12〜13.5%</td>
+                  <td class="num">—</td>
+                  <td class="num">≤ 14.5%</td>
+                  <td>高食物繊維の麺、全粒ベーカリー</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="specs-note">
+            <p>
+              掲載の数値は目安であり、中国の国家規格（GB/T、LS/T）と当社の通常
+              生産に基づきます。完全な分析証明書が各注文に付属し、サンプルは
+              お客様のラボでの検証用にご用意できます。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <ContactCta
+        kicker="完全な技術仕様書が必要ですか？"
+        title="完全な仕様とサンプルをご請求ください。"
+        text="カット種別、小麦粉ベース、ターゲット市場をお知らせください。完全な仕様書、分析証明書の様式、お客様の品質管理部門向けの実物サンプルをお送りします。"
+        buttonLabel="仕様を請求する"
+        buttonHref="/ja/contact/"
+      />
+    </main>
+
+    <Footer showCta={false} lang="ja" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

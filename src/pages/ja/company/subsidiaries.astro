@@ -1,0 +1,157 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/company-subsidiaries.css";
+import "../../../styles/ja.css";
+
+// One entry per subsidiary — swap the placeholder images later.
+const subsidiaries = [
+  {
+    name: "Shandong Lisheng Food Group Co., Ltd.",
+    year: "1995",
+    kicker: "本社 · 済寧",
+    image: "/images/company/subsidiaries/jining-hq.webp",
+    facts: ["済寧市・山東", "従業員450名以上", "小麦1,100トン/日", "麺200トン/日"],
+    copy: "グループの中核企業であり創業の地。済寧市ハイテク産業開発区の柳行に位置します。大規模なエンジニア・管理チームを含む450名以上の従業員を擁し、Bühler 設備と Perten 検査機器により、1日あたり小麦1,100トンを処理し、乾麺200トンと米200トンを生産します。3つの製品シリーズは60品目以上に及び、30省300以上の都市に供給されています。工場は ISO 9001、ISO 14001、ISO 22000 認証を取得し、国家「信頼できる穀物・油」および「無公害農産物」の認定を受け、2011年11月には「Lisheng」商標が「中国著名商標」に認定されました。",
+  },
+  {
+    name: "Shandong Lisheng Group Wenshang Flour Co., Ltd.",
+    year: "2005",
+    kicker: "生産拠点 · 汶上",
+    image: "/images/company/subsidiaries/wenshang.webp",
+    facts: ["汶上・済寧", "従業員300名以上", "小麦1,000トン/日", "麺200トン/日"],
+    copy: "2005年に資本金4,000万元で設立された100%出資の子会社。汶上県の優良小麦産地、国道105号沿いの33,000m²の用地にあり、道路・鉄道・水運に隣接しています。約300名の従業員が製粉・製麺の一貫生産を担い、Bühler 設備と Perten 機器で1日あたり小麦1,000トンを処理し、乾麺200トンを生産。2シリーズ60品目以上が国内260以上の都市に供給されています。ISO 9001、ISO 14001、ISO 22000 認証を取得し、製品は「山東十大製粉ブランド」および「全国著名乾麺ブランド」に選ばれています。",
+  },
+  {
+    name: "Shandong Lisheng Group Chengwu Food Co., Ltd.",
+    year: "2008",
+    kicker: "生産拠点 · 成武、菏沢",
+    image: "/images/company/subsidiaries/chengwu.webp",
+    facts: ["成武・山東", "従業員300名以上", "小麦1,000トン/日", "麺200トン/日"],
+    copy: "成武県苟村鎮——国家穀物生産保護区にあり、北京～九龍、日照～菏沢、隴海の各鉄道に三方を囲まれた持株子会社。35,000m²の用地、総資産8,000万元で、300名以上の従業員が1日あたり小麦1,000トンを処理し、麺200トンを生産します。製粉所は鄭州穀物学院の専門家が設計した技術により Bühler 設備を完備:5基の破砕系統と8基の製粉系統、5回の精選工程、ミドリング採取——白さ・香り・安定した品質で知られる小麦粉を、華北のほぼ10省に供給しています。長年にわたり、銀行システムから AA の信用格付けを付与されています。",
+  },
+  {
+    name: "Shandong Lisheng Group Shenzhou Flour Co., Ltd.",
+    year: "2009",
+    kicker: "生産拠点 · 深州、河北",
+    image: "/images/company/subsidiaries/shenzhou.webp",
+    facts: ["深州・河北", "小麦600トン/日", "小麦粉18万トン/年", "基地17万ムー"],
+    copy: "河北省深州市の太古荘工業団地にあるグループ拠点で、市の重点投資プロジェクト。68名のチームが、近代的な MDDK ロール機とピュリファイヤーで華北平原の小麦を1日600トン製粉し、年間最大18万トンの小麦粉を生産、北京から広東まで20以上の主要都市で100%販売されています。グループの「企業＋基地＋農家」モデルが初めて導入されたのも深州です:17万ムーの小麦基地が、種子の一元供給・営農支援・買付けの体制で農家1.8万戸と連携——製粉所に入る前から穀物の品質が確保されています。",
+  },
+  {
+    name: "Henan Lisheng Flour Co., Ltd.",
+    year: "2016",
+    kicker: "生産拠点 · 滑県、河南",
+    image: "/images/company/subsidiaries/henan.webp",
+    facts: ["滑県・河南", "従業員100名", "技術者20名"],
+    copy: "2016年に資本金3,360万元で、「中国小麦第一県」滑県の新区の101ムーの用地に設立。滑県では毎年約180万ムーに小麦が作付けされ、約10億キログラムの優良穀物が収穫され、ムーあたり収量は約30年にわたり河南省で首位を保っています。これは県政府の重点投資プロジェクトであり、中堅・上級の技術者20名を含む100名のチームが、Lisheng の生産ネットワークを河南の小麦地帯の中心へと広げています。",
+  },
+  {
+    name: "Liangshan Lisheng Food Co., Ltd.",
+    year: "2018",
+    kicker: "旗艦スマート工場 · 梁山",
+    image: "/images/company/subsidiaries/liangshan.webp",
+    facts: ["梁山・山東", "投資10億元", "特殊粉3,000トン/日", "小麦100万トン/年"],
+    copy: "2018年8月に資本金4,300万元で設立された100%出資の子会社で、153,180m²の用地に建つ総額10億元のスマート穀物産業プロジェクト。4本のスマート製粉ラインが1日あたり特殊粉3,000トンを生産し、年間100万トンの小麦を、PLCとMESの完全管理下で受け入れます——小麦の受入からパレタイズまで、工程はほぼ無人です。低温製粉が小麦の栄養価と自然な香りを保ち、屋根の20,000m²の太陽光パネルが2MWを発電、太陽熱は麺の乾燥室に利用されます。本工場は、生産能力の倍増とプレミアム特殊粉市場への参入というグループ戦略の要となります。",
+  },
+  {
+    name: "Shandong Ruili Food Technology Co., Ltd.",
+    year: "2020",
+    kicker: "食品技術 · 済寧",
+    image: "/images/company/subsidiaries/ruili.webp",
+    facts: ["済寧・山東", "冷凍食品ライン", "高度加工のR&D"],
+    copy: "2020年12月にグループの食品技術部門として加わり、本部は済寧にあります。Ruili は、Lisheng の製粉・製麺の知見を次世代の即席製品に応用し、冷凍食品とより高度な加工へとチェーンを広げています。冷凍製品の販売ラインはすでに稼働しています。",
+  },
+  {
+    name: "Jining Tianyu Color Printing & Packaging Co., Ltd.",
+    kicker: "包装 · グループの包装拠点",
+    image: "/images/company/subsidiaries/tianyu.webp",
+    facts: ["済寧・山東", "自社包装", "プライベートブランド対応"],
+    copy: "済寧にあるグループ自社の包装会社で、Lisheng 製品およびOEM案件向けにフィルム包装と紙器包装を製造します。包装のデザインと製造をグループ内に置くことで、柔軟なプライベートブランド対応、小ロットのデザイン変更、輸出顧客向けの短納期の包装製作を可能にしています。",
+  },
+];
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>グループ会社 | Lisheng International</title>
+    <meta
+      name="description"
+      content="Shandong Lisheng Group の8つのグループ会社: 山東・河北・河南の製粉・製麺生産拠点、ならびに食品技術・包装会社。"
+    />
+  </head>
+  <body>
+    <Header lang="ja" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="sub-hero-title">
+        <img src={withBase("/images/company/about/lisheng.webp")} alt="Lisheng Group グループ会社の生産施設" />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">グループ構成</p>
+          <h1 id="sub-hero-title">グループ会社</h1>
+          <p class="page-hero-copy">
+            山東・河北・河南の8社——生産拠点、食品技術、包装が一つの
+            サプライチェーンを形成しています。
+          </p>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="sub-list-title">
+        <div class="page-section-inner">
+          <p class="company-kicker">グループの企業</p>
+          <h2 id="sub-list-title">一つのグループ、<br />8つの専門企業</h2>
+          <p>
+            各生産拠点は国家級の優良小麦産地にあり、技術会社と包装会社が穀物から
+            販売可能な製品までチェーンを延長します。合わせて1,300名以上が在籍し、
+            加えて貯蔵能力20万トンの穀物倉庫会社3社があります。
+          </p>
+
+          <div class="subsidiary-list-block">
+            {subsidiaries.map((sub, i) => (
+              <article class={`subsidiary-card ${i % 2 === 1 ? "reverse" : ""}`}>
+                <div class="subsidiary-media">
+                  <img src={withBase(sub.image)} alt={`生産施設 — ${sub.name}`} />
+                </div>
+                <div class="subsidiary-copy">
+                  {sub.year && <span class="subsidiary-year">{sub.year}</span>}
+                  <p class="company-kicker">{sub.kicker}</p>
+                  <h3>{sub.name}</h3>
+                  <p>{sub.copy}</p>
+                  <ul class="subsidiary-facts" aria-label="主要データ">
+                    {sub.facts.map((fact) => (
+                      <li>{fact}</li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div class="company-cta">
+            <div>
+              <h2>グループ全体の窓口は一つ</h2>
+              <p>
+                お客様の製品にどの拠点が適していても、OEMのお問い合わせは一つの
+                輸出チームが担当します。
+              </p>
+            </div>
+            <a class="company-cta-link" href={withBase("/ja/contact/")}>
+              お見積もり依頼 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="ja" />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>
