@@ -63,7 +63,9 @@ const hasBody = mod.rawContent().trim().length > 0;
 // Astro's attribute handling, so prefix the base on the compiled HTML.
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const bodyHtml = hasBody
-  ? (await mod.compiledContent()).replaceAll('"/images/', `"${base}/images/`)
+  ? (await mod.compiledContent())
+      .replaceAll('"/images/', `"${base}/images/`)
+      .replaceAll('href="/', `href="${base}/`)
   : "";
 ---
 

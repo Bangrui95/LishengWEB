@@ -25,9 +25,6 @@ const {
 } = Astro.props;
 
 const Tag = href ? "a" : "div";
-// Editorial flags localised to the page language.
-const intlFlag = lang === "zh" ? "国际站" : "Featured";
-const newFlag = lang === "zh" ? "新稿" : "New";
 ---
 
 <article
@@ -39,8 +36,6 @@ const newFlag = lang === "zh" ? "新稿" : "New";
   <Tag class="news-card-link" href={href || undefined}>
     <span class="news-card-media">
       <img src={withBase(image)} alt={title} loading="lazy" />
-      {intlReady && <span class="news-card-flag">{intlFlag}</span>}
-      {generated && <span class="news-card-flag news-card-flag-gen">{newFlag}</span>}
     </span>
     <span class="news-card-copy">
       {date && <time datetime={date}>{date}</time>}
@@ -76,35 +71,6 @@ const newFlag = lang === "zh" ? "新稿" : "New";
     aspect-ratio: 1.42;
     overflow: hidden;
     background: var(--soft-gray);
-  }
-
-  /* Editorial marker: news selected as suitable for the international site */
-  .news-card[data-intl-ready="true"] .news-card-media {
-    background: #e3f3e8;
-    box-shadow: inset 0 0 0 3px #2e8b57;
-  }
-
-  /* Editorial marker: newly drafted articles (News batch D) — red */
-  .news-card[data-generated="true"] .news-card-media {
-    background: #fbe9e9;
-    box-shadow: inset 0 0 0 3px var(--accent-red);
-  }
-
-  .news-card-flag {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 1;
-    padding: 3px 10px;
-    background: #2e8b57;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-  }
-
-  .news-card-flag-gen {
-    background: var(--accent-red);
   }
 
   .news-card-media img {
