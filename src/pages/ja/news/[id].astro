@@ -1,0 +1,117 @@
+---
+import { withBase } from "../../../lib/url";
+import type { MarkdownInstance } from "astro";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import { newsTitles } from "../../../data/news-titles";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/news-article.css";
+import "../../../styles/ja.css";
+
+type NewsFrontmatter = {
+  title: string;
+  date: string | Date;
+  source?: string;
+  cover?: string;
+  category?: string;
+};
+
+type NewsModule = MarkdownInstance<NewsFrontmatter>;
+
+// タイトルと UI は日本語、本文は英語版（src/data/news-en/、無い場合は中国語）。
+export async function getStaticPaths() {
+  const zhMods = import.meta.glob<NewsModule>("../../../data/news/*.md", {
+    eager: true,
+  });
+  const enMods = import.meta.glob<NewsModule>("../../../data/news-en/*.md", {
+    eager: true,
+  });
+  const idOf = (p: string) => (p.split("/").pop() ?? "").replace(".md", "");
+  const enById = new Map(Object.entries(enMods).map(([p, m]) => [idOf(p), m]));
+  return Object.entries(zhMods).map(([path, zhMod]) => {
+    const id = idOf(path);
+    return { params: { id }, props: { mod: enById.get(id) ?? zhMod } };
+  });
+}
+
+interface Props {
+  mod: NewsModule;
+}
+
+const { mod } = Astro.props;
+const fm = mod.frontmatter;
+const id = Astro.params.id;
+
+const title = newsTitles[id]?.ja ?? fm.title;
+const date = (
+  fm.date instanceof Date ? fm.date.toISOString() : String(fm.date)
+).slice(0, 10);
+const cover = fm.cover || "/images/news/default-news-cover.webp";
+const source = fm.source || "";
+const kicker = fm.category === "industry" ? "業界ニュース" : "企業ニュース";
+const hasBody = mod.rawContent().trim().length > 0;
+
+// 英語本文は Astro の属性処理を経由しないため、画像・リンクに base を補い、
+// /contact/ リンクは日本語版に差し替える。
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const bodyHtml = hasBody
+  ? (await mod.compiledContent())
+      .replaceAll('href="/contact/"', 'href="/ja/contact/"')
+      .replaceAll('"/images/', `"${base}/images/`)
+      .replaceAll('href="/', `href="${base}/`)
+  : "";
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>{title} | Lisheng International</title>
+    <meta name="description" content={`Lisheng Groupのニュース：${title}`} />
+  </head>
+  <body>
+    <Header lang="ja" langAltHref={`/news/${id}/`} />
+
+    <main>
+      <section class="page-hero" aria-labelledby="article-title">
+        <img src={withBase(cover)} alt={title} />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">{kicker}</p>
+          <h1 id="article-title">{title}</h1>
+        </div>
+      </section>
+
+      <article class="article-section">
+        <div class="article-inner">
+          <a class="article-back" href={withBase("/ja/news/?from=article")}>← ニュース一覧へ戻る</a>
+
+          <div class="article-meta">
+            <time datetime={date}>{date}</time>
+            {source && (
+              <a href={source} target="_blank" rel="noopener">
+                元記事 (lishengmf.com)
+              </a>
+            )}
+          </div>
+
+          <div class="article-body" lang="en">
+            {hasBody ? (
+              <Fragment set:html={bodyHtml} />
+            ) : (
+              <p class="article-empty">
+                元記事は画像のみのため、本文を準備中です。
+              </p>
+            )}
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <Footer lang="ja" showCta={false} />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

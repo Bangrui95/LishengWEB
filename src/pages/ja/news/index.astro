@@ -1,0 +1,191 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import NewsCard from "../../../components/NewsCard.astro";
+import { newsTitles } from "../../../data/news-titles";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/news.css";
+import "../../../styles/ja.css";
+
+// データは src/data/news/ から。タイトルは news-titles.ts（日本語）を使用し、
+// カードはタイトルと画像のみを表示（日付・抜粋なし）。
+type NewsMod = { frontmatter: Record<string, any> };
+const modules = import.meta.glob<NewsMod>("../../../data/news/*.md", { eager: true });
+
+const articles = Object.entries(modules)
+  .map(([path, mod]) => {
+    const id = (path.split("/").pop() ?? "").replace(".md", "");
+    const fm = mod.frontmatter;
+    const date = (
+      fm.date instanceof Date ? fm.date.toISOString() : String(fm.date)
+    ).slice(0, 10);
+    const category = fm.category === "industry" ? "industry" : "company";
+    const title = newsTitles[id]?.ja ?? (fm.title as string);
+    return { id, title, date, cover: fm.cover as string, category };
+  })
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>ニュース | Lisheng International</title>
+    <meta
+      name="description"
+      content="Lisheng Groupのニュース：新製品、生産の節目、受賞、業界動向。"
+    />
+  </head>
+  <body>
+    <Header lang="ja" langAltHref="/news/" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="news-hero-title">
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">企業の最新情報</p>
+          <h1 id="news-hero-title">ニュース</h1>
+          <p class="page-hero-copy">
+            Lisheng Groupの新製品、生産の節目、受賞、ストーリーをお届けします。
+          </p>
+        </div>
+      </section>
+
+      <section class="news-listing" aria-labelledby="news-listing-title">
+        <div class="news-listing-inner">
+          <h2 id="news-listing-title" class="sr-only">すべてのニュース</h2>
+
+          <div class="news-tabs" role="tablist" aria-label="ニュースのカテゴリ">
+            <button class="active" type="button" data-news-cat="company">
+              企業ニュース
+            </button>
+            <button type="button" data-news-cat="industry">業界ニュース</button>
+          </div>
+
+          <div class="news-grid" data-news-grid>
+            {articles.map((a) => (
+              <NewsCard
+                lang="ja"
+                category={a.category}
+                image={a.cover}
+                href={withBase(`/ja/news/${a.id}/`)}
+                title={a.title}
+              />
+            ))}
+          </div>
+
+          <nav class="news-pagination" aria-label="ニュースのページ">
+            <button
+              class="news-page-nav"
+              type="button"
+              data-news-prev
+              aria-label="前のページ"
+            >
+              &lsaquo;
+            </button>
+            <span class="news-page-status" data-news-status>1 / 1</span>
+            <button
+              class="news-page-nav"
+              type="button"
+              data-news-next
+              aria-label="次のページ"
+            >
+              &rsaquo;
+            </button>
+          </nav>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="ja" showCta={false} />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+
+    <script>
+      // カテゴリフィルター + クライアントサイドのページング（1ページ8件）。
+      const PAGE_SIZE = 8;
+      const grid = document.querySelector("[data-news-grid]");
+      const allCards = grid
+        ? Array.from(grid.querySelectorAll<HTMLElement>(".news-card"))
+        : [];
+      const tabs = Array.from(
+        document.querySelectorAll<HTMLButtonElement>("[data-news-cat]")
+      );
+      const prev =
+        document.querySelector<HTMLButtonElement>("[data-news-prev]");
+      const next =
+        document.querySelector<HTMLButtonElement>("[data-news-next]");
+      const status = document.querySelector("[data-news-status]");
+
+      let category = "company";
+      let page = 0;
+
+      const visible = () =>
+        allCards.filter((c) => c.dataset.category === category);
+
+      const render = () => {
+        const cards = visible();
+        const pages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
+        if (page > pages - 1) page = pages - 1;
+        allCards.forEach((c) => (c.hidden = true));
+        cards.forEach((card, i) => {
+          card.hidden = i < page * PAGE_SIZE || i >= (page + 1) * PAGE_SIZE;
+        });
+        if (status) status.textContent = `${page + 1} / ${pages}`;
+        if (prev) prev.disabled = page === 0;
+        if (next) next.disabled = page === pages - 1;
+      };
+
+      const goTo = (target: number) => {
+        const pages = Math.max(1, Math.ceil(visible().length / PAGE_SIZE));
+        const clamped = Math.max(0, Math.min(target, pages - 1));
+        if (clamped === page) return;
+        page = clamped;
+        sessionStorage.setItem("lisheng-news-page", String(page));
+        render();
+      };
+
+      const tabCat = (t: HTMLButtonElement) => t.dataset.newsCat || "company";
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const nextCat = tabCat(tab);
+          if (nextCat === category) return;
+          category = nextCat;
+          page = 0;
+          tabs.forEach((t) => t.classList.toggle("active", t === tab));
+          sessionStorage.removeItem("lisheng-news-page");
+          render();
+        });
+      });
+
+      const params = new URLSearchParams(location.search);
+      if (params.has("from")) {
+        const savedCat = sessionStorage.getItem("lisheng-news-cat");
+        if (savedCat === "industry") {
+          category = "industry";
+          tabs.forEach((t) =>
+            t.classList.toggle("active", tabCat(t) === "industry")
+          );
+        }
+        const saved = Number(sessionStorage.getItem("lisheng-news-page"));
+        if (Number.isFinite(saved) && saved > 0) page = saved;
+        history.replaceState(null, "", location.pathname);
+      } else {
+        sessionStorage.removeItem("lisheng-news-page");
+      }
+
+      prev?.addEventListener("click", () => goTo(page - 1));
+      next?.addEventListener("click", () => goTo(page + 1));
+      tabs.forEach((tab) =>
+        tab.addEventListener("click", () =>
+          sessionStorage.setItem("lisheng-news-cat", category)
+        )
+      );
+      render();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+---
+import { withBase } from "../../../lib/url";
+import type { MarkdownInstance } from "astro";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import { newsTitles } from "../../../data/news-titles";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/news-article.css";
+import "../../../styles/ru.css";
+
+type NewsFrontmatter = {
+  title: string;
+  date: string | Date;
+  source?: string;
+  cover?: string;
+  category?: string;
+};
+
+type NewsModule = MarkdownInstance<NewsFrontmatter>;
+
+// Заголовок и оформление — на русском; тело статьи берётся из английской
+// версии (src/data/news-en/, с откатом на китайский источник).
+export async function getStaticPaths() {
+  const zhMods = import.meta.glob<NewsModule>("../../../data/news/*.md", {
+    eager: true,
+  });
+  const enMods = import.meta.glob<NewsModule>("../../../data/news-en/*.md", {
+    eager: true,
+  });
+  const idOf = (p: string) => (p.split("/").pop() ?? "").replace(".md", "");
+  const enById = new Map(Object.entries(enMods).map(([p, m]) => [idOf(p), m]));
+  return Object.entries(zhMods).map(([path, zhMod]) => {
+    const id = idOf(path);
+    return { params: { id }, props: { mod: enById.get(id) ?? zhMod } };
+  });
+}
+
+interface Props {
+  mod: NewsModule;
+}
+
+const { mod } = Astro.props;
+const fm = mod.frontmatter;
+const id = Astro.params.id;
+
+const title = newsTitles[id]?.ru ?? fm.title;
+const date = (
+  fm.date instanceof Date ? fm.date.toISOString() : String(fm.date)
+).slice(0, 10);
+const cover = fm.cover || "/images/news/default-news-cover.webp";
+const source = fm.source || "";
+const kicker = fm.category === "industry" ? "Отраслевые новости" : "Новости компании";
+const hasBody = mod.rawContent().trim().length > 0;
+
+// Тело статьи (английское) обходит обработку атрибутов Astro: дополняем base к
+// путям картинок и ссылок, а ссылку на /contact/ локализуем для русской версии.
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const bodyHtml = hasBody
+  ? (await mod.compiledContent())
+      .replaceAll('href="/contact/"', 'href="/ru/contact/"')
+      .replaceAll('"/images/', `"${base}/images/`)
+      .replaceAll('href="/', `href="${base}/`)
+  : "";
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>{title} | Lisheng International</title>
+    <meta name="description" content={`Новости Lisheng Group: ${title}`} />
+  </head>
+  <body>
+    <Header lang="ru" langAltHref={`/news/${id}/`} />
+
+    <main>
+      <section class="page-hero" aria-labelledby="article-title">
+        <img src={withBase(cover)} alt={title} />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">{kicker}</p>
+          <h1 id="article-title">{title}</h1>
+        </div>
+      </section>
+
+      <article class="article-section">
+        <div class="article-inner">
+          <a class="article-back" href={withBase("/ru/news/?from=article")}>← Назад к новостям</a>
+
+          <div class="article-meta">
+            <time datetime={date}>{date}</time>
+            {source && (
+              <a href={source} target="_blank" rel="noopener">
+                Оригинал статьи (lishengmf.com)
+              </a>
+            )}
+          </div>
+
+          <div class="article-body" lang="en">
+            {hasBody ? (
+              <Fragment set:html={bodyHtml} />
+            ) : (
+              <p class="article-empty">
+                Оригинал статьи на сайте компании содержит только изображения;
+                текст готовится.
+              </p>
+            )}
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <Footer lang="ru" showCta={false} />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

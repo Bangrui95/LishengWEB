@@ -1,0 +1,194 @@
+---
+import { withBase } from "../../../lib/url";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import NewsCard from "../../../components/NewsCard.astro";
+import { newsTitles } from "../../../data/news-titles";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/news.css";
+import "../../../styles/ru.css";
+
+// Данные из src/data/news/. Заголовки берутся из news-titles.ts (русский);
+// карточки показывают только заголовок и изображение (без даты и анонса).
+type NewsMod = { frontmatter: Record<string, any> };
+const modules = import.meta.glob<NewsMod>("../../../data/news/*.md", { eager: true });
+
+const articles = Object.entries(modules)
+  .map(([path, mod]) => {
+    const id = (path.split("/").pop() ?? "").replace(".md", "");
+    const fm = mod.frontmatter;
+    const date = (
+      fm.date instanceof Date ? fm.date.toISOString() : String(fm.date)
+    ).slice(0, 10);
+    const category = fm.category === "industry" ? "industry" : "company";
+    const title = newsTitles[id]?.ru ?? (fm.title as string);
+    return { id, title, date, cover: fm.cover as string, category };
+  })
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>Новости | Lisheng International</title>
+    <meta
+      name="description"
+      content="Новости Lisheng Group: новые продукты, производственные достижения, награды и отраслевые обновления."
+    />
+  </head>
+  <body>
+    <Header lang="ru" langAltHref="/news/" />
+
+    <main>
+      <section class="page-hero" aria-labelledby="news-hero-title">
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">Обновления компании</p>
+          <h1 id="news-hero-title">Новости</h1>
+          <p class="page-hero-copy">
+            Запуски продуктов, производственные достижения, награды и истории
+            Lisheng Group.
+          </p>
+        </div>
+      </section>
+
+      <section class="news-listing" aria-labelledby="news-listing-title">
+        <div class="news-listing-inner">
+          <h2 id="news-listing-title" class="sr-only">Все новости</h2>
+
+          <div class="news-tabs" role="tablist" aria-label="Категории новостей">
+            <button class="active" type="button" data-news-cat="company">
+              Новости компании
+            </button>
+            <button type="button" data-news-cat="industry">
+              Отраслевые новости
+            </button>
+          </div>
+
+          <div class="news-grid" data-news-grid>
+            {articles.map((a) => (
+              <NewsCard
+                lang="ru"
+                category={a.category}
+                image={a.cover}
+                href={withBase(`/ru/news/${a.id}/`)}
+                title={a.title}
+              />
+            ))}
+          </div>
+
+          <nav class="news-pagination" aria-label="Страницы новостей">
+            <button
+              class="news-page-nav"
+              type="button"
+              data-news-prev
+              aria-label="Предыдущая страница"
+            >
+              &lsaquo;
+            </button>
+            <span class="news-page-status" data-news-status>1 / 1</span>
+            <button
+              class="news-page-nav"
+              type="button"
+              data-news-next
+              aria-label="Следующая страница"
+            >
+              &rsaquo;
+            </button>
+          </nav>
+        </div>
+      </section>
+    </main>
+
+    <Footer lang="ru" showCta={false} />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+
+    <script>
+      // Фильтр по категории + клиентская пагинация (8 карточек на страницу).
+      const PAGE_SIZE = 8;
+      const grid = document.querySelector("[data-news-grid]");
+      const allCards = grid
+        ? Array.from(grid.querySelectorAll<HTMLElement>(".news-card"))
+        : [];
+      const tabs = Array.from(
+        document.querySelectorAll<HTMLButtonElement>("[data-news-cat]")
+      );
+      const prev =
+        document.querySelector<HTMLButtonElement>("[data-news-prev]");
+      const next =
+        document.querySelector<HTMLButtonElement>("[data-news-next]");
+      const status = document.querySelector("[data-news-status]");
+
+      let category = "company";
+      let page = 0;
+
+      const visible = () =>
+        allCards.filter((c) => c.dataset.category === category);
+
+      const render = () => {
+        const cards = visible();
+        const pages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
+        if (page > pages - 1) page = pages - 1;
+        allCards.forEach((c) => (c.hidden = true));
+        cards.forEach((card, i) => {
+          card.hidden = i < page * PAGE_SIZE || i >= (page + 1) * PAGE_SIZE;
+        });
+        if (status) status.textContent = `${page + 1} / ${pages}`;
+        if (prev) prev.disabled = page === 0;
+        if (next) next.disabled = page === pages - 1;
+      };
+
+      const goTo = (target: number) => {
+        const pages = Math.max(1, Math.ceil(visible().length / PAGE_SIZE));
+        const clamped = Math.max(0, Math.min(target, pages - 1));
+        if (clamped === page) return;
+        page = clamped;
+        sessionStorage.setItem("lisheng-news-page", String(page));
+        render();
+      };
+
+      const tabCat = (t: HTMLButtonElement) => t.dataset.newsCat || "company";
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const nextCat = tabCat(tab);
+          if (nextCat === category) return;
+          category = nextCat;
+          page = 0;
+          tabs.forEach((t) => t.classList.toggle("active", t === tab));
+          sessionStorage.removeItem("lisheng-news-page");
+          render();
+        });
+      });
+
+      const params = new URLSearchParams(location.search);
+      if (params.has("from")) {
+        const savedCat = sessionStorage.getItem("lisheng-news-cat");
+        if (savedCat === "industry") {
+          category = "industry";
+          tabs.forEach((t) =>
+            t.classList.toggle("active", tabCat(t) === "industry")
+          );
+        }
+        const saved = Number(sessionStorage.getItem("lisheng-news-page"));
+        if (Number.isFinite(saved) && saved > 0) page = saved;
+        history.replaceState(null, "", location.pathname);
+      } else {
+        sessionStorage.removeItem("lisheng-news-page");
+      }
+
+      prev?.addEventListener("click", () => goTo(page - 1));
+      next?.addEventListener("click", () => goTo(page + 1));
+      tabs.forEach((tab) =>
+        tab.addEventListener("click", () =>
+          sessionStorage.setItem("lisheng-news-cat", category)
+        )
+      );
+      render();
+    </script>
+  </body>
+</html>

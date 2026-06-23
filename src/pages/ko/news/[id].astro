@@ -1,0 +1,117 @@
+---
+import { withBase } from "../../../lib/url";
+import type { MarkdownInstance } from "astro";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import { newsTitles } from "../../../data/news-titles";
+import "../../../styles/global.css";
+import "../../../styles/subpage.css";
+import "../../../styles/news-article.css";
+import "../../../styles/ko.css";
+
+type NewsFrontmatter = {
+  title: string;
+  date: string | Date;
+  source?: string;
+  cover?: string;
+  category?: string;
+};
+
+type NewsModule = MarkdownInstance<NewsFrontmatter>;
+
+// 제목과 UI는 한국어, 본문은 영어판(src/data/news-en/, 없으면 중국어)을 재사용.
+export async function getStaticPaths() {
+  const zhMods = import.meta.glob<NewsModule>("../../../data/news/*.md", {
+    eager: true,
+  });
+  const enMods = import.meta.glob<NewsModule>("../../../data/news-en/*.md", {
+    eager: true,
+  });
+  const idOf = (p: string) => (p.split("/").pop() ?? "").replace(".md", "");
+  const enById = new Map(Object.entries(enMods).map(([p, m]) => [idOf(p), m]));
+  return Object.entries(zhMods).map(([path, zhMod]) => {
+    const id = idOf(path);
+    return { params: { id }, props: { mod: enById.get(id) ?? zhMod } };
+  });
+}
+
+interface Props {
+  mod: NewsModule;
+}
+
+const { mod } = Astro.props;
+const fm = mod.frontmatter;
+const id = Astro.params.id;
+
+const title = newsTitles[id]?.ko ?? fm.title;
+const date = (
+  fm.date instanceof Date ? fm.date.toISOString() : String(fm.date)
+).slice(0, 10);
+const cover = fm.cover || "/images/news/default-news-cover.webp";
+const source = fm.source || "";
+const kicker = fm.category === "industry" ? "업계 뉴스" : "기업 뉴스";
+const hasBody = mod.rawContent().trim().length > 0;
+
+// 영어 본문은 Astro 속성 처리를 거치지 않으므로 이미지·링크에 base를 붙이고,
+// /contact/ 링크는 한국어판으로 교체한다.
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const bodyHtml = hasBody
+  ? (await mod.compiledContent())
+      .replaceAll('href="/contact/"', 'href="/ko/contact/"')
+      .replaceAll('"/images/', `"${base}/images/`)
+      .replaceAll('href="/', `href="${base}/`)
+  : "";
+---
+
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
+    <title>{title} | Lisheng International</title>
+    <meta name="description" content={`Lisheng 그룹 뉴스: ${title}`} />
+  </head>
+  <body>
+    <Header lang="ko" langAltHref={`/news/${id}/`} />
+
+    <main>
+      <section class="page-hero" aria-labelledby="article-title">
+        <img src={withBase(cover)} alt={title} />
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-inner">
+          <p class="page-kicker">{kicker}</p>
+          <h1 id="article-title">{title}</h1>
+        </div>
+      </section>
+
+      <article class="article-section">
+        <div class="article-inner">
+          <a class="article-back" href={withBase("/ko/news/?from=article")}>← 뉴스로 돌아가기</a>
+
+          <div class="article-meta">
+            <time datetime={date}>{date}</time>
+            {source && (
+              <a href={source} target="_blank" rel="noopener">
+                원문 보기 (lishengmf.com)
+              </a>
+            )}
+          </div>
+
+          <div class="article-body" lang="en">
+            {hasBody ? (
+              <Fragment set:html={bodyHtml} />
+            ) : (
+              <p class="article-empty">
+                원문 기사가 이미지로만 되어 있어 본문을 준비 중입니다.
+              </p>
+            )}
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <Footer lang="ko" showCta={false} />
+    <script is:inline src={withBase("/scripts/site.js")} defer></script>
+  </body>
+</html>

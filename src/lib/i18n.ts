@@ -333,7 +333,7 @@ export const readyByLang: Record<Exclude<Lang, "en">, Set<string>> = {
     "/products/specifications/",
     "/news/",
   ]),
-  // Russian: full site except News (News stays English for now).
+  // Russian: full site. News is handled by the /news/ rule in isReady().
   ru: new Set<string>([
     "/",
     "/company/",
@@ -348,7 +348,7 @@ export const readyByLang: Record<Exclude<Lang, "en">, Set<string>> = {
     "/products/",
     "/products/specifications/",
   ]),
-  // Japanese: full site except News (News stays English for now).
+  // Japanese: full site. News is handled by the /news/ rule in isReady().
   ja: new Set<string>([
     "/",
     "/company/",
@@ -363,7 +363,7 @@ export const readyByLang: Record<Exclude<Lang, "en">, Set<string>> = {
     "/products/",
     "/products/specifications/",
   ]),
-  // Korean: full site except News (News stays English for now).
+  // Korean: full site. News is handled by the /news/ rule in isReady().
   ko: new Set<string>([
     "/",
     "/company/",
@@ -382,6 +382,12 @@ export const readyByLang: Record<Exclude<Lang, "en">, Set<string>> = {
 
 function isReady(route: string, lang: Lang): boolean {
   if (lang === "en") return true;
+  // News is localised for every language (the list page and every article
+  // detail page): titles and chrome are translated, and the non-Chinese
+  // languages reuse the English article body. So any /news/... route — list or
+  // /news/{id}/ — is treated as ready everywhere, keeping the language switcher
+  // mapping article → article across all languages.
+  if (route.startsWith("/news/")) return true;
   return readyByLang[lang]?.has(route) ?? false;
 }
 
