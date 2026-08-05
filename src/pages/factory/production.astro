@@ -1,4 +1,5 @@
 ---
+import Seo from "../../components/Seo.astro";
 import { withBase } from "../../lib/url";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
@@ -20,6 +21,7 @@ const IMG = withBase("/images/factory/production");
       name="description"
       content="Six production bases, Bühler intelligent milling systems, MES-controlled lines: 7,000 tons of wheat and 560 tons of dried noodles processed daily by Lisheng Group."
     />
+    <Seo title={"Smart Factory | Lisheng International"} description={"Six production bases, Bühler intelligent milling systems, MES-controlled lines: 7,000 tons of wheat and 560 tons of dried noodles processed daily by Lisheng Group."} />
   </head>
   <body>
     <Header langAltHref="/zh/factory/production/" />

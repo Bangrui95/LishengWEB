@@ -1,4 +1,5 @@
 ---
+import Seo from "../../components/Seo.astro";
 import { withBase } from "../../lib/url";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
@@ -34,6 +35,7 @@ const patents = [
       name="description"
       content="Lisheng Group's product development lab: flour and noodle formula development, texture research, stone-milled whole grain innovation and 10+ food production invention patents."
     />
+    <Seo title={"Food Lab | Lisheng International"} description={"Lisheng Group's product development lab: flour and noodle formula development, texture research, stone-milled whole grain innovation and 10+ food production invention patents."} />
   </head>
   <body>
     <Header langAltHref="/zh/factory/lab/" />

@@ -1,4 +1,5 @@
 ---
+import Seo from "../../../components/Seo.astro";
 import { withBase } from "../../../lib/url";
 import Footer from "../../../components/Footer.astro";
 import Header from "../../../components/Header.astro";
@@ -39,6 +40,7 @@ const articles = Object.entries(modules)
       name="description"
       content="Новости Lisheng Group: новые продукты, производственные достижения, награды и отраслевые обновления."
     />
+    <Seo title={"Новости | Lisheng International"} description={"Новости Lisheng Group: новые продукты, производственные достижения, награды и отраслевые обновления."} />
   </head>
   <body>
     <Header lang="ru" langAltHref="/news/" />

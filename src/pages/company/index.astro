@@ -1,4 +1,5 @@
 ---
+import Seo from "../../components/Seo.astro";
 import { withBase } from "../../lib/url";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
@@ -18,6 +19,7 @@ import "../../styles/company-about.css";
       name="description"
       content="Shandong Lisheng Group: founded in 1995, eight companies, six production bases — an integrated grain storage, flour milling, noodle manufacturing and logistics enterprise."
     />
+    <Seo title={"About | Lisheng International"} description={"Shandong Lisheng Group: founded in 1995, eight companies, six production bases — an integrated grain storage, flour milling, noodle manufacturing and logistics enterprise."} />
   </head>
   <body>
     <Header langAltHref="/zh/company/" />

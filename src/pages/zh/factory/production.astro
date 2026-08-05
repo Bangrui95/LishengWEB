@@ -1,4 +1,5 @@
 ---
+import Seo from "../../../components/Seo.astro";
 import { withBase } from "../../../lib/url";
 import Footer from "../../../components/Footer.astro";
 import Header from "../../../components/Header.astro";
@@ -21,6 +22,7 @@ const IMG = withBase("/images/factory/production");
       name="description"
       content="六大生产基地、布勒智能制粉系统、MES 全程控制：利生集团日处理小麦 7,000 吨、日产挂面 560 吨。"
     />
+    <Seo title={"智能工厂 | 利生集团"} description={"六大生产基地、布勒智能制粉系统、MES 全程控制：利生集团日处理小麦 7,000 吨、日产挂面 560 吨。"} />
   </head>
   <body>
     <Header lang="zh" langAltHref="/factory/production/" />

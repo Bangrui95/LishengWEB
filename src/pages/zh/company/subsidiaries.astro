@@ -1,4 +1,5 @@
 ---
+import Seo from "../../../components/Seo.astro";
 import { withBase } from "../../../lib/url";
 import Footer from "../../../components/Footer.astro";
 import Header from "../../../components/Header.astro";
@@ -86,6 +87,7 @@ const subsidiaries = [
       name="description"
       content="山东利生集团旗下八家子公司：分布于山东、河北、河南的面粉与挂面生产基地，以及食品科技与包装公司。"
     />
+    <Seo title={"下属公司 | 利生集团"} description={"山东利生集团旗下八家子公司：分布于山东、河北、河南的面粉与挂面生产基地，以及食品科技与包装公司。"} />
   </head>
   <body>
     <Header lang="zh" langAltHref="/company/subsidiaries/" />

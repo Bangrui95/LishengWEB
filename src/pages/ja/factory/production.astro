@@ -1,4 +1,5 @@
 ---
+import Seo from "../../../components/Seo.astro";
 import { withBase } from "../../../lib/url";
 import Footer from "../../../components/Footer.astro";
 import Header from "../../../components/Header.astro";
@@ -21,6 +22,7 @@ const IMG = withBase("/images/factory/production");
       name="description"
       content="6つの生産拠点、Bühler スマート製粉システム、MES管理ライン: Lisheng Group は1日あたり小麦7,000トン、乾麺560トンを加工します。"
     />
+    <Seo title={"スマート工場 | Lisheng International"} description={"6つの生産拠点、Bühler スマート製粉システム、MES管理ライン: Lisheng Group は1日あたり小麦7,000トン、乾麺560トンを加工します。"} />
   </head>
   <body>
     <Header lang="ja" />

@@ -1,5 +1,6 @@
 ---
 import { withBase } from "../../../lib/url";
+import Seo from "../../../components/Seo.astro";
 import type { MarkdownInstance } from "astro";
 import Footer from "../../../components/Footer.astro";
 import Header from "../../../components/Header.astro";
@@ -63,6 +64,7 @@ const bodyHtml = hasBody
     <link rel="icon" type="image/png" href={withBase("/images/icon/favicon.png")} />
     <title>{title} | 利生集团</title>
     <meta name="description" content={`利生集团新闻：${title}`} />
+    <Seo title={`${title} | 利生集团`} description={`利生集团新闻：${title}`} />
   </head>
   <body>
     <Header lang="zh" langAltHref={`/news/${id}/`} />

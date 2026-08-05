@@ -1,0 +1,94 @@
+---
+// Head-only SEO component. Renders NOTHING visible — it only injects
+// <link>/<meta> tags into <head>: canonical, hreflang alternates, Open Graph
+// and Twitter Card. It derives the current path + language automatically from
+// Astro.url, reusing the same route/i18n helpers the Header uses, so a page
+// only needs to pass its title + description.
+import { withBase } from "../lib/url";
+import {
+  splitLangPath,
+  localizeHref,
+  readyByLang,
+  langOrder,
+  type Lang,
+} from "../lib/i18n";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+const {
+  title = "Lisheng International",
+  description = "OEM and private label noodle manufacturing for global food brands, importers, and distributors.",
+  image = "/images/main/lisheng-brand-hero.webp",
+} = Astro.props;
+
+// Site origin from astro.config `site`; strip trailing slash for clean joins.
+const SITE = (Astro.site?.href ?? "https://lishengnoodles.com/").replace(/\/$/, "");
+
+// Astro.url.pathname carries the configured base (e.g. /LishengWEB/...) — strip
+// it so we compare/join base-less routes, exactly like Header does.
+const BASE = import.meta.env.BASE_URL;
+const rawPath = Astro.url.pathname;
+const currentPath =
+  BASE !== "/" && rawPath.startsWith(BASE)
+    ? "/" + rawPath.slice(BASE.length)
+    : BASE !== "/" && rawPath === BASE.replace(/\/$/, "")
+      ? "/"
+      : rawPath;
+
+const { lang: currentLang, route } = splitLangPath(currentPath);
+
+// Absolute URL for a base-less site path: origin + configured base + path.
+const abs = (p: string) => SITE + (withBase(p) ?? p);
+
+// A language has this exact page when it's English, any /news/... route, or the
+// route is listed as ready for that language (mirrors isReady() in i18n.ts).
+const hasRoute = (code: Lang) =>
+  code === "en" ||
+  route.startsWith("/news/") ||
+  (readyByLang[code as Exclude<Lang, "en">]?.has(route) ?? false);
+
+const pageLangs = langOrder.filter(hasRoute);
+
+const hreflangCode: Record<Lang, string> = {
+  en: "en",
+  zh: "zh-CN",
+  ru: "ru",
+  ja: "ja",
+  ko: "ko",
+};
+const ogLocale: Record<Lang, string> = {
+  en: "en_US",
+  zh: "zh_CN",
+  ru: "ru_RU",
+  ja: "ja_JP",
+  ko: "ko_KR",
+};
+
+const canonical = abs(currentPath);
+const ogImage = abs(image);
+const enHref = abs(localizeHref(route, "en"));
+---
+<link rel="canonical" href={canonical} />
+{pageLangs.map((code) => (
+  <link rel="alternate" hreflang={hreflangCode[code]} href={abs(localizeHref(route, code))} />
+))}
+<link rel="alternate" hreflang="x-default" href={enHref} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Lisheng International" />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content={ogLocale[currentLang]} />
+{pageLangs.filter((c) => c !== currentLang).map((code) => (
+  <meta property="og:locale:alternate" content={ogLocale[code]} />
+))}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />

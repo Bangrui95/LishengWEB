@@ -1,4 +1,5 @@
 ---
+import Seo from "../../../components/Seo.astro";
 import { withBase } from "../../../lib/url";
 import Footer from "../../../components/Footer.astro";
 import Header from "../../../components/Header.astro";
@@ -21,6 +22,7 @@ const IMG = withBase("/images/factory/production");
       name="description"
       content="Шесть производственных баз, интеллектуальные мукомольные системы Bühler, линии под управлением MES: 7 000 тонн пшеницы и 560 тонн сухой лапши перерабатываются Lisheng Group ежесуточно."
     />
+    <Seo title={"Умный завод | Lisheng International"} description={"Шесть производственных баз, интеллектуальные мукомольные системы Bühler, линии под управлением MES: 7 000 тонн пшеницы и 560 тонн сухой лапши перерабатываются Lisheng Group ежесуточно."} />
   </head>
   <body>
     <Header lang="ru" />

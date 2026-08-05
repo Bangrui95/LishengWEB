@@ -1,4 +1,5 @@
 ---
+import Seo from "../../../components/Seo.astro";
 import { withBase } from "../../../lib/url";
 import Footer from "../../../components/Footer.astro";
 import Header from "../../../components/Header.astro";
@@ -22,6 +23,7 @@ const GREEN = withBase("/images/factory/certificates/green");
       name="description"
       content="Lisheng Group の認証: ISO 9001、ISO 22000、HACCP（IQNET 国際認証付き）、グリーン食品Aクラス製品、「中国トップブランド」、業界受賞。"
     />
+    <Seo title={"認証 | Lisheng International"} description={"Lisheng Group の認証: ISO 9001、ISO 22000、HACCP（IQNET 国際認証付き）、グリーン食品Aクラス製品、「中国トップブランド」、業界受賞。"} />
   </head>
   <body>
     <Header lang="ja" />
